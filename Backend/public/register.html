@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        input {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .password-toggle {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .password-toggle input {
+            width: auto;
+            margin-right: 10px;
+        }
+        .error {
+            color: red;
+            margin-top: -10px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Create Account</h1>
+        <form id="registerForm" action="/register" method="POST">
+            <input type="text" name="firstname" placeholder="First Name" required>
+            <input type="text" name="lastname" placeholder="Last Name" required>
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" id="password" placeholder="Password" required>
+            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required>
+            <div class="password-toggle">
+                <input type="checkbox" id="togglePassword"> 
+                <label for="togglePassword">Show Password</label>
+            </div>
+            <div class="error" id="errorMessage" style="display:none;"></div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const errorMessage = document.getElementById('errorMessage');
+
+        togglePassword.addEventListener('change', () => {
+            const type = togglePassword.checked ? 'text' : 'password';
+            password.type = type;
+            confirmPassword.type = type;
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', (e) => {
+            if (password.value !== confirmPassword.value) {
+                e.preventDefault();
+                errorMessage.textContent = 'Passwords do not match.';
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none'; 
+        }});
+    </script>
+</body>
+</html>
+
