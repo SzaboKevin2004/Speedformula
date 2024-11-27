@@ -1,0 +1,72 @@
+
+body{
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+.be-keret {
+    display: flex;
+    width: 450px;
+    height: auto;
+    padding: 25px;
+    border-radius: 64px;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.nav-cim {
+    width: 0;
+    color: black;
+    
+}
+
+.be-form {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+input[type="button"] {
+    width: 40%;
+    margin-top: 10px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+    color: white;
+    background-color: #414141;
+}
+
+input[type="button"]:hover {
+    background-color: #222222;
+}
+
+a[routerLink="/regisztracio"] {
+    text-decoration: none;
+    font-size: 16px;
+    color: #585858;
+}
+
+a[routerLink="/regisztracio"]:hover {
+    text-decoration: underline;
+}
+
+a[routerLink="/regisztracio"]:active {
+   color: #000000;
+}
+

@@ -1,0 +1,86 @@
+<div *ngIf="navMegjelenites">
+<nav class="nav-sav">
+  <div class="nav-keret">
+    <a class="nav-cim" routerLink="/" (click)="profilMenuHA()">
+      <img src="../assets/img/logo.png">
+      SpeedFormula</a>
+
+      <ul class="nav-fo">
+        <li class="nav-elo" (click)="profilMenuHA()">
+          <a class="nav-link" routerLink="/elo">
+            <img src="../assets/icons/camera-white.png">
+            ÉLŐ</a>
+        </li>
+        <li class="nav-hirek" (click)="profilMenuHA()">
+          <a class="nav-link" routerLink="/hirek">
+            <img src="../assets/icons/news-white.png">
+            Hírek</a>
+        </li>
+        <li class="nav-versenyzok" (click)="profilMenuHA()">
+          <a class="nav-link" routerLink="/versenyzok">
+            <img src="../assets/icons/pilot-white.png">
+            Versenyzők</a>
+        </li>
+        <li class="nav-csapatok" (click)="profilMenuHA()">
+          <a class="nav-link" routerLink="/csapatok">
+            <img src="../assets/icons/teams-white.png">
+            Csapatok</a>
+        </li>
+        <li class="nav-tortenet" (click)="profilMenuHA()">
+          <a class="nav-link" routerLink="/tortenet">
+            <img src="../assets/icons/history-white.png">
+            Történet</a>
+        </li>
+        <li class="nav-forum" (click)="profilMenuHA()">
+          <a class="nav-link" routerLink="/forum">
+            <img src="../assets/icons/forum-white.png">
+            Fórum</a>
+        </li>
+      </ul>
+
+      <div *ngIf="bejelentkezesMegjelenites">
+        <ul class="nav-regjel">
+        <li>
+          <a class="nav-link" routerLink="/regisztracio">
+            <img src="../assets/icons/register-white.png">
+            Regisztráció</a>
+        </li>
+        <li>
+          <a class="nav-link" routerLink="/bejelentkezes">
+            <img src="../assets/icons/login-white.png">
+            Bejelentkezés</a>
+        </li>
+        </ul>
+      </div>
+
+      <div class="nav-bejel" *ngIf="profilMegjelenites">
+        <ul>
+        <li>
+          <p>Felhasználónév</p>
+          <img [src]= "'../assets/pfp/' + randomKep" id="felhasznalo-kep" (click)="profilMenu()">
+        </li>
+        </ul>
+      </div>
+
+    </div>
+</nav>
+
+<div class="bejel-lenyilo" [ngStyle]="{display: profilMenuMegjelenites ? 'flex' : 'none'}">
+  <ul>
+  <li (click)="profilMenu()"><img [src]= "'../assets/pfp/' + randomKep" width="39px" height="39px">
+    <a routerLink="/profil">
+     Fórum profil</a>
+  </li>
+  <li (click)="profilMenu()"><img src="../assets/icons/setting-white.png" width="35px" height="35px">
+    <a routerLink="/beallitasok">
+    Beállítások</a>
+  </li>
+  <li (click)="kijelentkezes()" (click)="profilMenu()"><img src="../assets/icons/logout-white.png" width="35px" height="35px">
+    <a id="kijelentkezes">
+    Kijelentkezés</a>
+  </li>
+  </ul>
+</div>
+</div>
+
+<router-outlet></router-outlet>
