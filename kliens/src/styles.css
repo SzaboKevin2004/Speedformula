@@ -232,11 +232,41 @@ footer {
     width: 100%;
     height: 150px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    text-align: center;
     font-size: var(--betumeret-regjel);
     font-family: var(--betutipus-alap);
     color: white;
     background-color: var(--szin-footersav);
+}
+
+.footer-keret {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10vw;
+}
+
+.footer-oszlop {
+    width: 50%;
+}
+
+footer ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+footer a {
+    display: block;
+    text-decoration: none;
+    margin-top: 5px;
+    color: white;
+}
+
+footer img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
 }
 
