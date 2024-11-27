@@ -4,7 +4,7 @@
   "main": "src/app.js",
   "type": "module",
   "scripts": {
-    "start": "node src/app.cjs",
+    "start": "node src/app.js",
     "dev": " npx nodemon"
   },
   "keywords": [],
@@ -15,11 +15,13 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "express-session": "^1.18.1",
     "jsonwebtoken": "^9.0.2",
     "mysql": "^2.18.1",
+    "mysql2": "^3.11.4",
     "sequelize": "^6.37.5"
   },
   "devDependencies": {

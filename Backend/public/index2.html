@@ -27,6 +27,10 @@
         h1 {
             margin-bottom: 20px;
         }
+        #username {
+            font-weight: bold;
+            color: #333;
+        }
         button {
             width: 100%;
             padding: 10px;
@@ -44,10 +48,38 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Your Dashboard</h1>
-        <form action="/logout" method="POST">
+        <h1>Welcome, <span id="username">User</span>!</h1>
+        <form action="/regist/logout" method="POST">
             <button type="submit">Logout</button>
         </form>
     </div>
+<script>
+    async function login(identifier, password) {
+    try {
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ identifier, password }),
+        });
+
+        if (!response.ok) throw new Error('Login failed');
+
+        const data = await response.json();
+        if (data.auth) {
+            localStorage.setItem('username', data.username); // Store username
+            localStorage.setItem('token', data.token); // Store token if needed
+            window.location.href = '/regist/index2.html'; // Redirect to the dashboard
+        } else {
+            alert(data.message || 'Login unsuccessful');
+        }
+    } catch (error) {
+        console.error('Error during login:', error);
+    }
+}
+
+</script>
+  
+    
+    
 </body>
 </html>
