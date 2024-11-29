@@ -20,7 +20,6 @@ import { ForumPosztReszletComponent } from './forum-poszt-reszlet/forum-poszt-re
 import { ProfilComponent } from './profil/profil.component';
 import { HibaComponent } from './hiba/hiba.component';
 
-
 export const routes: Routes = [
     {path: '', component: KezdolapComponent},
     {path: 'regisztracio', component: RegisztracioComponent}, 

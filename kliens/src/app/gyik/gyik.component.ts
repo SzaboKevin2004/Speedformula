@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-gyik',
   standalone: true,
-  imports: [],
+  imports: [ FooterComponent ],
   templateUrl: './gyik.component.html',
   styleUrl: './gyik.component.css'
 })

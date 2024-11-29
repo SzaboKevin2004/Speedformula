@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
       filter(vizsgal => vizsgal instanceof NavigationEnd)
     ).subscribe(() => {
       const jelenlegiUrl = this.router.url;
-      this.navMegjelenites = !(jelenlegiUrl.includes('bejelentkezes') || jelenlegiUrl.includes('regisztracio') || jelenlegiUrl.includes('hiba'));
+      this.navMegjelenites = !(jelenlegiUrl.includes('bejelentkezes') || jelenlegiUrl.includes('regisztracio') || jelenlegiUrl.includes('hiba') || jelenlegiUrl.includes('visszajelzes'));
     });
 
     this.authservice.felhBejelentkezettE$.subscribe(bejelentkezettE => {

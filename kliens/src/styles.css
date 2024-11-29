@@ -18,6 +18,7 @@ body::-webkit-scrollbar {
     display: none;
 }
 
+
 body {
     box-sizing: border-box;
     margin: auto;
@@ -232,12 +233,17 @@ footer {
     width: 100%;
     height: 150px;
     display: flex;
+    margin-top: 50px;
     align-items: center;
     text-align: center;
     font-size: var(--betumeret-regjel);
     font-family: var(--betutipus-alap);
     color: white;
     background-color: var(--szin-footersav);
+}
+
+.tartalom-nelkul footer{
+    margin-top: 100vh;
 }
 
 .footer-keret {
@@ -251,6 +257,10 @@ footer {
     width: 50%;
 }
 
+footer h3{
+    letter-spacing: 2px;
+}
+
 footer ul {
     margin: 0;
     padding: 0;
@@ -259,14 +269,19 @@ footer ul {
 
 footer a {
     display: block;
-    text-decoration: none;
     margin-top: 5px;
+    text-decoration: none;
     color: white;
 }
 
 footer img {
     width: 20px;
     height: 20px;
+    margin-right: 5px;
     vertical-align: middle;
+
 }
 
+footer a:hover {
+    text-decoration: underline;
+}

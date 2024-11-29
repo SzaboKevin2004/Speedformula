@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-csapat',
   standalone: true,
-  imports: [],
+  imports: [ FooterComponent ],
   templateUrl: './csapat.component.html',
   styleUrl: './csapat.component.css'
 })
