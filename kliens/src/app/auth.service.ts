@@ -70,6 +70,8 @@ export class AuthService {
 
       this.felhBejelentkezettE.next(true);
       this.router.navigate(['/']);
+    }, error => {
+      console.error('Hiba történt a bejelentkezés során', error);
     });
   }
 
