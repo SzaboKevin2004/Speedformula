@@ -1,20 +1,43 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { RouterModule, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Router, RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-regisztracio',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, FormsModule],
   templateUrl: './regisztracio.component.html',
-  styleUrl: './regisztracio.component.css',
+  styleUrls: ['./regisztracio.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 export class RegisztracioComponent {
-  constructor(private authservice: AuthService, private router: Router) {}
+  first_name: string = '';
+  last_name: string = '';
+  username: string = '';
+  email: string = '';
+  password: string = '';
+  confirmPassword: string = '';
+
+  constructor(private authService: AuthService, private router: Router) {}
+
   regisztracio() {
-    this.authservice.regisztracio();
-    this.authservice.bejelentkezes(); 
-    this.router.navigate(['/']);
+    
+    if (this.password !== this.confirmPassword) {
+      alert('A jelszavak nem egyeznek!');
+      return;
+    }
+
+    const regisztracioData = {
+      first_name: this.first_name,
+      last_name: this.last_name,
+      username: this.username,
+      email: this.email,
+      password: this.password,
+      confirmPassword: this.confirmPassword
+    };
+
+  
+    this.authService.regisztracio(regisztracioData);
   }
 }

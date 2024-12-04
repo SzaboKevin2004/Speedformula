@@ -2,16 +2,16 @@
     <a class="nav-cim" routerLink="/">
         <img src="../assets/img/logo.png">
         SpeedFormula</a>
-        <form class="reg-form" action="">
+    <form class="reg-form">
         <div class="reg-teljesNev">
-        <input type="text" id="vezeteknev" placeholder="Vezetéknév">
-        <input type="text" id="keresztnev" placeholder="Keresztnév">
+            <input type="text" id="vezeteknev" placeholder="Vezetéknév" [(ngModel)]="first_name" name="first_name">
+            <input type="text" id="keresztnev" placeholder="Keresztnév" [(ngModel)]="last_name" name="last_name">
         </div>
-        <input type="text" id="felhasznalonev" placeholder="Felhasználónév">
-        <input type="text" id="emailcim" placeholder="E-mail-cím">
-        <input type="password" id="jelszo" placeholder="Jelszó">
-        <input type="password" placeholder="Jelszó ismét">
+        <input type="text" id="felhasznalonev" placeholder="Felhasználónév" [(ngModel)]="username" name="username">
+        <input type="text" id="emailcim" placeholder="E-mail-cím" [(ngModel)]="email" name="email">
+        <input type="password" id="jelszo" placeholder="Jelszó" [(ngModel)]="password" name="password">
+        <input type="password" placeholder="Jelszó ismét" [(ngModel)]="confirmPassword" name="confirmPassword">
         <input type="button" value="REGISZTRÁLÁS" (click)="regisztracio()">
         <a routerLink="/bejelentkezes">Már van fiókod?</a>
-        </form>
+    </form>
 </div>
