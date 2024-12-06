@@ -37,6 +37,7 @@ export class AppComponent implements OnInit {
 
     this.authservice.randomKep$.subscribe(kep => {
       this.randomKep = kep;
+      console.log(kep);
     });
 
   }

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 interface AuthResponse {
   token: string;
+  pfp_id: number;
 }
 
 @Injectable({
@@ -17,6 +18,8 @@ export class AuthService {
 
   private randomKep = new BehaviorSubject<string>("");
   randomKep$ = this.randomKep.asObservable();
+
+  private pfp_id: number = 0;
 
   private kepEleres = [
     "pfp_black.png",
@@ -43,12 +46,28 @@ export class AuthService {
     "pfp_dark-red.png"
   ];
 
-  constructor(private http: HttpClient, private router: Router) {}
+  getKepEleresLength(): number {
+    return this.kepEleres.length;
+  }
 
-  regisztracio(regisztracioData: { first_name: string, last_name: string, username: string, email: string, password: string, confirmPassword: string }) {
+  constructor(private http: HttpClient, private router: Router) {}
+  
+  setPfpId(pfpId: number) {
+    this.pfp_id = pfpId;
+    this.randomKep.next(this.kepEleres[this.pfp_id]);
+  }
+
+  getPfpId() {
+    return this.pfp_id;
+  }
+
+  setBejelentkezettE(allapot: boolean) {
+    this.felhBejelentkezettE.next(allapot);
+  }
+
+  regisztracio(regisztracioData: { first_name: string, last_name: string, username: string, email: string, password: string, confirmPassword: string, pfp_id: number}) {
     return this.http.post(`${this.apiUrl}/register`, regisztracioData).pipe(
       catchError((error) => {
-        console.error('Hiba történt a regisztráció során', error);
         return throwError(() => error);
       })
     );
@@ -56,10 +75,8 @@ export class AuthService {
   
 
   bejelentkezes(loginData: { identifier: string, password: string }) {
-    this.felhBejelentkezettE.next(true);
     return this.http.post<AuthResponse>(`${this.apiUrl}/login`, loginData).pipe(
       catchError((error) => {
-        console.error('Hiba történt a bejelentkezés során', error);
         return throwError(() => error);
       })
     );

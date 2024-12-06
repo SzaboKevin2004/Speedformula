@@ -1,7 +1,8 @@
-<div class="hibasav" [ngStyle]="{display: hiba ? 'flex' : 'none'}">
-    <p *ngIf="hibaUzenet" id="hibauzenet" [ngStyle]="{display: hiba ? 'flex' : 'none'}">{{ hibaUzenet }}</p>
+<div *ngIf="hiba || siker" class="ertesitessav" [ngClass]="{ 'hibaSzin': hiba , 'sikerSzin': siker , 'hibaVillan': hiba , 'sikerVillan': siker }">
+    <p *ngIf="hibaUzenet" id="uzenet" >{{ hibaUzenet }}</p>
+    <p *ngIf="sikerUzenet" id="uzenet" >{{ sikerUzenet }}</p>
 </div>
-<div class="reg-keret">
+<div *ngIf="keretMegjelenites" class="reg-keret">
     <a class="nav-cim" routerLink="/">
         <img src="../assets/img/logo.png">
         SpeedFormula</a>

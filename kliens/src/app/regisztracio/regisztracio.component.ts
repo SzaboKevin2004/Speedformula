@@ -21,17 +21,18 @@ export class RegisztracioComponent {
   confirmPassword: string = '';
   hiba: boolean = false;
   hibaUzenet: string = '';
+  siker: boolean = false;
+  sikerUzenet: string = '';
+  keretMegjelenites: boolean = true;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   regisztracio() {
-  
+    this.hiba = false;
+    this.hibaUzenet = '';
 
-    if (!this.first_name ||!this.last_name ||!this.username ||!this.email ||!this.password ||!this.confirmPassword) {
-      this.hiba = true;
-      this.hibaUzenet = "Minden mező kitöltése kötelező!";
-      return;
-    }
+    const randomSzam = Math.floor(Math.random() * this.authService.getKepEleresLength());
+    console.log(randomSzam)
 
     const regisztracioData = {
       first_name: this.first_name,
@@ -39,14 +40,19 @@ export class RegisztracioComponent {
       username: this.username,
       email: this.email,
       password: this.password,
-      confirmPassword: this.confirmPassword
+      confirmPassword: this.confirmPassword,
+      pfp_id: randomSzam
     };
 
-  
     this.authService.regisztracio(regisztracioData).subscribe({
       next: () => {
+        this.keretMegjelenites = false;
+        this.siker = true;
+        this.sikerUzenet = "Sikeres regisztráció!";
         console.log('Regisztráció sikeres');
-        this.router.navigate(['/bejelentkezes']);
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 1500);
       },
       error: (err) => {
         this.hiba = true;

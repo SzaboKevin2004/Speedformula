@@ -70,20 +70,56 @@ a[routerLink="/regisztracio"]:active {
    color: #000000;
 }
 
-.hibasav{
-    width: 100%;
+.ertesitessav{
+    display: flex;
+    width: 450px;
     height: 50px;
+    margin: auto;
     margin-bottom: 20px;
     border-radius: 35px;
-    background-color: rgb(255, 158, 158);
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
-#hibauzenet{
+.hibaSzin{
+    background-color: rgb(255, 158, 158);
+}
+
+.sikerSzin{
+    background-color: rgb(110, 204, 123);
+}
+
+#uzenet{
     margin: auto;
     align-items: center;
+    text-align: center;
     font-size: 18px;
     font-family: var(--betutipus-alap);
     cursor: default;
     color: white;
+}
+
+@keyframes hibaVillan {
+    0%, 100% {
+        background-color: rgb(255, 158, 158);
+    }
+    50% {
+        background-color: rgb(255, 87, 87);
+    }
+}
+
+@keyframes sikerVillan {
+    0%, 100% {
+        background-color: rgb(110, 204, 123);
+    }
+    50% {
+        background-color: rgb(46, 216, 54);
+    }
+}
+
+.ertesitessav.hibaVillan {
+    animation: hibaVillan 0.5s ease-in-out;
+}
+
+.ertesitessav.sikerVillan {
+    animation: sikerVillan 0.5s ease-in-out;
 }

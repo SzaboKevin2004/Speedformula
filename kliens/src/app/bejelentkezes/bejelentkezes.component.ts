@@ -17,16 +17,16 @@ export class BejelentkezesComponent {
   password: string = '';
   hiba: boolean = false;
   hibaUzenet: string = '';
+  siker: boolean = false;
+  sikerUzenet: string = '';
+  keretMegjelenites: boolean = true;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   bejelentkezes() {
+    this.hiba = false;
+    this.hibaUzenet = '';
     
-    if (!this.identifier || !this.password) {
-      this.hiba = true;
-      this.hibaUzenet = 'Mindkét mező kitöltése kötelező!';
-      return;
-    }
 
     const loginData = {
       identifier: this.identifier,
@@ -35,9 +35,16 @@ export class BejelentkezesComponent {
 
     this.authService.bejelentkezes(loginData).subscribe({
       next: (response) => {
+        this.keretMegjelenites = false;
+        this.siker = true;
+        this.sikerUzenet = "Sikeres bejelentkezés!";
         console.log('Bejelentkezés sikeres', response);
         localStorage.setItem('token', response.token);
-        this.router.navigate(['/']);
+        this.authService.setPfpId(response.pfp_id);
+        this.authService.setBejelentkezettE(true);
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 1500);
       },
       error: (err) => {
         this.hiba = true;
