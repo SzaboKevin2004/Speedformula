@@ -70,3 +70,20 @@ a[routerLink="/regisztracio"]:active {
    color: #000000;
 }
 
+.hibasav{
+    width: 100%;
+    height: 50px;
+    margin-bottom: 20px;
+    border-radius: 35px;
+    background-color: rgb(255, 158, 158);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+#hibauzenet{
+    margin: auto;
+    align-items: center;
+    font-size: 18px;
+    font-family: var(--betutipus-alap);
+    cursor: default;
+    color: white;
+}

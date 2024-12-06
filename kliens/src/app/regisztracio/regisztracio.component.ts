@@ -20,22 +20,16 @@ export class RegisztracioComponent {
   password: string = '';
   confirmPassword: string = '';
   hiba: boolean = false;
-  uresmezo: boolean = false;
-  elterojelszo: boolean = false;
+  hibaUzenet: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   regisztracio() {
-    
-    if (this.password !== this.confirmPassword) {
-      this.hiba = true;
-      this.elterojelszo = true;
-      return;
-    }
+  
 
     if (!this.first_name ||!this.last_name ||!this.username ||!this.email ||!this.password ||!this.confirmPassword) {
       this.hiba = true;
-      this.uresmezo = true;
+      this.hibaUzenet = "Minden mező kitöltése kötelező!";
       return;
     }
 
@@ -49,6 +43,19 @@ export class RegisztracioComponent {
     };
 
   
-    this.authService.regisztracio(regisztracioData);
+    this.authService.regisztracio(regisztracioData).subscribe({
+      next: () => {
+        console.log('Regisztráció sikeres');
+        this.router.navigate(['/bejelentkezes']);
+      },
+      error: (err) => {
+        this.hiba = true;
+        if (err.error?.message) {
+          this.hibaUzenet = err.error.message;
+        } else {
+          this.hibaUzenet = "Ismeretlen hiba történt a regisztráció során!";
+        }
+      }
+    });
   }
 }

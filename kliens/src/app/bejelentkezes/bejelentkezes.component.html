@@ -1,3 +1,6 @@
+<div class="hibasav" [ngStyle]="{display: hiba ? 'flex' : 'none'}">
+    <p *ngIf="hibaUzenet" id="hibauzenet" [ngStyle]="{display: hiba ? 'flex' : 'none'}">{{ hibaUzenet }}</p>
+</div>
 <div class="be-keret">
     <a class="nav-cim" routerLink="/">
         <img src="../assets/img/logo.png">

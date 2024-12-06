@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, catchError, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -46,33 +46,23 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
   regisztracio(regisztracioData: { first_name: string, last_name: string, username: string, email: string, password: string, confirmPassword: string }) {
-    const randomKepSzam = Math.floor(Math.random() * this.kepEleres.length);
-    const randomKep = this.kepEleres[randomKepSzam];
-    this.randomKep.next(randomKep);
-    console.log(randomKep);
-  
- 
-    this.http.post(`${this.apiUrl}/register`, regisztracioData).subscribe(response => {
-      console.log('Regisztráció sikeres', response);
-      this.router.navigate(['/bejelentkezes']);
-
-    }, error => {
-      console.error('Hiba történt a regisztráció során', error);
-    });
+    return this.http.post(`${this.apiUrl}/register`, regisztracioData).pipe(
+      catchError((error) => {
+        console.error('Hiba történt a regisztráció során', error);
+        return throwError(() => error);
+      })
+    );
   }
   
 
   bejelentkezes(loginData: { identifier: string, password: string }) {
-
-    this.http.post<AuthResponse>(`${this.apiUrl}/login`, loginData).subscribe((response) => {
-
-      localStorage.setItem('token', response.token);
-
-      this.felhBejelentkezettE.next(true);
-      this.router.navigate(['/']);
-    }, error => {
-      console.error('Hiba történt a bejelentkezés során', error);
-    });
+    this.felhBejelentkezettE.next(true);
+    return this.http.post<AuthResponse>(`${this.apiUrl}/login`, loginData).pipe(
+      catchError((error) => {
+        console.error('Hiba történt a bejelentkezés során', error);
+        return throwError(() => error);
+      })
+    );
   }
 
   kijelentkezes() {
