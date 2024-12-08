@@ -3,7 +3,7 @@
 :root {
     /* MÉRETEK */
     --betumeret-logoszoveg: 25px;
-    --betumeret-fo: 20px;
+    --betumeret-fo: 18px;
     --betumeret-regjel: 16px;
 
     /* BETŰSTÍLUS */
@@ -11,7 +11,9 @@
 
     /* SZÍNEK */
     --szin-navsav: rgba(48, 48, 48, 0.75);
-    --szin-footersav: rgb(48, 48, 48);
+    --szin-footersav: rgb(39, 39, 39);
+    --szin-keret: rgb(39, 39, 39);
+    --szin-hover: grey;
 }
 
 body::-webkit-scrollbar {
@@ -205,7 +207,7 @@ body {
 .nav-fo li:hover, .nav-regjel li:hover {
     transform: scale(1.1);
     border-radius: 4px;
-    background-color: grey;
+    background-color: var(--szin-hover);
 }
 
 .nav-fo li:hover img, .nav-regjel li:hover img {
@@ -221,12 +223,12 @@ body {
 
 .nav-bejel img:active {
     border-radius: 32px;
-    background-color: grey;
+    background-color: var(--szin-hover);
 }
 
 .bejel-lenyilo li:hover {
     border-radius: 4px;
-    background-color: grey;
+    background-color: var(--szin-hover);
 }
 
 footer {

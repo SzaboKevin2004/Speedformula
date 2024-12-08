@@ -1,0 +1,136 @@
+.tartalom{
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.keret{
+    height: 60vh;
+    width: 45vw;
+    margin-bottom: 40px;
+    border-radius: 70px;
+    background-color: var(--szin-keret);
+}
+
+h1, h2{
+    text-align: center;
+    font-family: var(--betutipus-alap);
+    font-weight: normal;
+    user-select: none;
+    color: white;
+}
+
+h2{
+    margin-right: 30vw;
+    margin-top: 2vh;
+}
+
+p{
+    margin-left: 1vw;
+    font-family: var(--betutipus-alap);
+    font-weight: normal;
+    user-select: none;
+    color: white;
+}
+
+p.adat{
+    margin-right: 1vw;
+    user-select: none;
+    color: grey;
+}
+
+.gomb{
+    height: 45px;
+    width: 45px;
+    margin-right: 1vw;
+    user-select: none;
+}
+
+.opcio{
+    display: flex;
+    width: 35vw;
+    margin-left: 6vw;
+    margin-top: -0.5vh;
+    text-align: center;
+    justify-content: space-between;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.opcioTema {
+    display: flex;
+    margin-top: 4vh;
+    justify-content: center;
+    gap: 3vw;
+}
+
+.temaElem {
+    display: flex;
+    padding: 10px 20px 10px 20px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.temaIkon {
+    display: block;
+    height: 125px;
+    width: 125px;
+    user-select: none;
+}
+
+.temaElem p {
+    margin: 0;
+    margin-top: 1vh;
+    font-family: var(--betutipus-alap);
+    font-size:  var(--betumeret-fo);
+    user-select: none;
+}
+
+
+ul.valaszto{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    list-style-type: none;
+}
+
+.valaszto li{
+    margin: 0 10px;
+    padding: 5px 10px;
+    font-family: var(--betutipus-alap);
+    font-size:  var(--betumeret-fo);
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    color: white;
+    transition: background-color 0.2s;
+}
+
+.valaszto li:hover{
+    background-color: var(--szin-hover);
+}
+
+.aktivValaszto{
+    background-color: grey;
+}
+
+.opcio:hover{
+    background-color: rgb(80, 80, 80);
+    p.adat{
+        color:white;
+    }
+}
+
+.temaElem:hover{
+    background-color: rgb(80, 80, 80);
+}
+
+.aktivTema{
+    background-color: rgb(80, 80, 80);
+}
