@@ -35,6 +35,7 @@ export default {
                 success: true,
                 token,
                 username: user.username,
+                pfp: user.pfp,
                 message: "Sikeres bejelentkezés!",
             });
         } catch (error) {
