@@ -39,17 +39,16 @@ body{
     margin: 0;
 }
 
-input {
+input, textarea {
     width: 60%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 16px;
+    font-family: Arial, sans-serif;
 }
 
-input[id="uzenet"]{
-    height: 150px;
-}
+
 
 input[type="button"] {
     width: 40%;

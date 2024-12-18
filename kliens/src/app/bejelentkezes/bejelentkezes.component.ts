@@ -40,7 +40,8 @@ export class BejelentkezesComponent {
         this.sikerUzenet = "Sikeres bejelentkezés!";
         console.log('Bejelentkezés sikeres', response);
         localStorage.setItem('token', response.token);
-        this.authService.setPfpId(response.pfp_id);
+        this.authService.setFelhasznaloNev(response.username);
+        this.authService.setPfpId(response.pfp);
         this.authService.setBejelentkezettE(true);
         setTimeout(() => {
           this.router.navigate(['/']);

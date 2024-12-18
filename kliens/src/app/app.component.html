@@ -56,7 +56,7 @@
       <div class="nav-bejel" *ngIf="profilMegjelenites">
         <ul>
         <li>
-          <p>Felhasználónév</p>
+          <p>{{felhasznaloNev}}</p>
           <img [src]= "'../assets/pfp/' + randomKep" id="felhasznalo-kep" (click)="profilMenu()">
         </li>
         </ul>
@@ -67,15 +67,18 @@
 
 <div class="bejel-lenyilo" [ngStyle]="{display: profilMenuMegjelenites ? 'flex' : 'none'}">
   <ul>
-  <li (click)="profilMenu()"><img [src]= "'../assets/pfp/' + randomKep" width="39px" height="39px">
+  <li (click)="profilMenu()">
+    <img [src]= "'../assets/pfp/' + randomKep" width="39px" height="39px">
     <a routerLink="/profil">
      Fórum profil</a>
   </li>
-  <li (click)="profilMenu()"><img src="../assets/icons/setting-white.png" width="35px" height="35px">
+  <li (click)="profilMenu()">
+    <img src="../assets/icons/setting-white.png" width="35px" height="35px">
     <a routerLink="/beallitasok">
     Beállítások</a>
   </li>
-  <li (click)="kijelentkezes()" (click)="profilMenu()"><img src="../assets/icons/logout-white.png" width="35px" height="35px">
+  <li (click)="kijelentkezes()" (click)="profilMenu()">
+    <img src="../assets/icons/logout-white.png" width="35px" height="35px">
     <a id="kijelentkezes">
     Kijelentkezés</a>
   </li>

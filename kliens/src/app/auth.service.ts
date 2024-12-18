@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 
 interface AuthResponse {
   token: string;
-  pfp_id: number;
+  pfp: number;
+  username: string;
 }
 
 @Injectable({
@@ -18,6 +19,9 @@ export class AuthService {
 
   private randomKep = new BehaviorSubject<string>("");
   randomKep$ = this.randomKep.asObservable();
+
+  private felhasznaloNev = new BehaviorSubject<string>("");
+  felhasznaloNev$ = this.felhasznaloNev.asObservable();
 
   private pfp_id: number = 0;
 
@@ -46,26 +50,11 @@ export class AuthService {
     "pfp_dark-red.png"
   ];
 
-  getKepEleresLength(): number {
-    return this.kepEleres.length;
-  }
-
   constructor(private http: HttpClient, private router: Router) {}
-  
-  setPfpId(pfpId: number) {
-    this.pfp_id = pfpId;
-    this.randomKep.next(this.kepEleres[this.pfp_id]);
-  }
 
-  getPfpId() {
-    return this.pfp_id;
-  }
-
-  setBejelentkezettE(allapot: boolean) {
-    this.felhBejelentkezettE.next(allapot);
-  }
-
-  regisztracio(regisztracioData: { first_name: string, last_name: string, username: string, email: string, password: string, confirmPassword: string, pfp_id: number}) {
+  regisztracio(regisztracioData: { first_name: string, last_name: string,
+    username: string, email: string, password: string, confirmPassword: string}) 
+    {
     return this.http.post(`${this.apiUrl}/register`, regisztracioData).pipe(
       catchError((error) => {
         return throwError(() => error);
@@ -80,6 +69,18 @@ export class AuthService {
         return throwError(() => error);
       })
     );
+  }
+
+  setBejelentkezettE(allapot: boolean) {
+    this.felhBejelentkezettE.next(allapot);
+  }
+
+  setPfpId(pfpId: number) {
+    this.randomKep.next(this.kepEleres[pfpId]);
+  }
+
+  setFelhasznaloNev(nev: string) {
+    this.felhasznaloNev.next(nev);
   }
 
   kijelentkezes() {

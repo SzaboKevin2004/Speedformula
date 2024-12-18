@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   profilMenuMegjelenites: boolean = false;
 
   randomKep: string = "";
+  felhasznaloNev: string = "";
 
   constructor(private router: Router, private authservice: AuthService) {}
 
@@ -27,7 +28,10 @@ export class AppComponent implements OnInit {
       filter(vizsgal => vizsgal instanceof NavigationEnd)
     ).subscribe(() => {
       const jelenlegiUrl = this.router.url;
-      this.navMegjelenites = !(jelenlegiUrl.includes('bejelentkezes') || jelenlegiUrl.includes('regisztracio') || jelenlegiUrl.includes('hiba') || jelenlegiUrl.includes('visszajelzes'));
+      this.navMegjelenites = !(jelenlegiUrl.includes('bejelentkezes') || 
+      jelenlegiUrl.includes('regisztracio') || 
+      jelenlegiUrl.includes('hiba') || 
+      jelenlegiUrl.includes('visszajelzes'));
     });
 
     this.authservice.felhBejelentkezettE$.subscribe(bejelentkezettE => {
@@ -38,6 +42,10 @@ export class AppComponent implements OnInit {
     this.authservice.randomKep$.subscribe(kep => {
       this.randomKep = kep;
       console.log(kep);
+    });
+
+    this.authservice.felhasznaloNev$.subscribe(nev => {
+      this.felhasznaloNev = nev;
     });
 
   }

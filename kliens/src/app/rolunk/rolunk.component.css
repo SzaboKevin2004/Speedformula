@@ -1,0 +1,51 @@
+.keret {
+    width: 40%;
+    margin: 50px auto;
+    font-family: var(--betutipus-alap);
+    font-size: var(--betumeret-fo);
+    color: white;
+}
+
+h1 {
+    margin-bottom: 80px;
+    text-align: left;
+    font-weight: normal;
+}
+
+.rolunk-tartalom {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    color: white;
+}
+
+.sor {
+    display: flex;
+    align-items: flex-start;
+    gap: 100px;
+}
+
+.kep {
+    text-align: center;
+    flex: 0 0 150px;
+}
+
+.kep img {
+    width: 175px;
+    height: 180px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+}
+
+.kep p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.szoveg {
+    padding: 25px;
+    text-align: justify;
+    font-size: var(--betumeret-fo);
+    border-radius: 30px;
+    background-color: var(--szin-keret);
+}

@@ -31,9 +31,6 @@ export class RegisztracioComponent {
     this.hiba = false;
     this.hibaUzenet = '';
 
-    const randomSzam = Math.floor(Math.random() * this.authService.getKepEleresLength());
-    console.log(randomSzam)
-
     const regisztracioData = {
       first_name: this.first_name,
       last_name: this.last_name,
@@ -41,7 +38,6 @@ export class RegisztracioComponent {
       email: this.email,
       password: this.password,
       confirmPassword: this.confirmPassword,
-      pfp_id: randomSzam
     };
 
     this.authService.regisztracio(regisztracioData).subscribe({

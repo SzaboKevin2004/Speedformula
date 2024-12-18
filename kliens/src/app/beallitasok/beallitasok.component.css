@@ -1,7 +1,6 @@
 .tartalom{
     display: flex;
     height: 100vh;
-    margin: 0;
     justify-content: center;
     align-items: center;
 }
@@ -9,6 +8,7 @@
 .keret{
     height: 60vh;
     width: 45vw;
+    margin-top: -88px;
     margin-bottom: 40px;
     border-radius: 70px;
     background-color: var(--szin-keret);
