@@ -1,25 +1,21 @@
+import { tokenBlacklist } from "../tokenBlacklist.js";
+
 export default {
     LogoutPostController: (req, res) => {
-        if (!req.session) {
+        
+        const authHeader = req.headers['authorization'];
+        const token = authHeader && authHeader.split(' ')[1];
+        tokenBlacklist.add(token);
+        if (!token) {
             return res.status(400).json({
                 error: true,
-                message: "Nem található aktív session!",
+                message: "Nem található aktív token!",
             });
         }
 
-        req.session.destroy(err => {
-            if (err) {
-                console.error("Kijelentkezés hiba:", err);
-                return res.status(500).json({
-                    error: true,
-                    message: "Hiba jelentkezett a kijelentkezés során!",
-                });
-            }
-
-            res.status(200).json({
-                success: true,
-                message: "Sikeres kijelentkezés!",
-            });
+        res.status(200).json({
+            success: true,
+            message: "Sikeres kijelentkezés!",
         });
     },
 };

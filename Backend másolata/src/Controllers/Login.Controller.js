@@ -28,8 +28,14 @@ export default {
                 return res.status(401).json({ error: true, message: "Helytelen jelszó!" });
             }
 
-            const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1d' });
-            req.session.userId = user.id;
+            const token = jwt.sign(
+                { 
+                    id: user.id,
+                    username: user.username
+                }, 
+                process.env.JWT_SECRET, 
+                { expiresIn: '1h' }
+            );
 
             res.status(200).json({
                 success: true,
@@ -39,7 +45,7 @@ export default {
                 message: "Sikeres bejelentkezés!",
             });
         } catch (error) {
-            console.error("Sikeretelen bejelentkezés:", error);
+            console.error("Sikertelen bejelentkezés:", error);
             res.status(500).json({ error: true, message: "Hiba a bejelentkezés során" });
         }
     },
