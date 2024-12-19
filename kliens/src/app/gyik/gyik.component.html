@@ -1,3 +1,16 @@
 <div class="tartalom">
+    <div class="keret">
+        <h1>Gyakori kérdések</h1>
+        <div *ngFor="let elem of elemek; let i = index">
+            <div class="kerdes" (click)="valaszMegjelenites(i)">
+              {{ elem.kerdes }}
+              <img src="../../assets/icons/arrow_down-white.png" *ngIf="!valasztottIndexek.includes(i)">
+              <img src="../../assets/icons/arrow_up-white.png" *ngIf="valasztottIndexek.includes(i)">
+            </div>
+            <div class="valasz" *ngIf="valasztottIndexek.includes(i)">
+              {{ elem.valasz }}
+            </div>
+          </div>
+    </div>
     <app-footer></app-footer>
 </div>

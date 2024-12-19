@@ -13,7 +13,7 @@ interface AuthResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl= 'http://localhost:6969/regist';
+  private apiUrl = 'http://localhost:6969/regist';
   private felhBejelentkezettE = new BehaviorSubject<boolean>(false);
   felhBejelentkezettE$ = this.felhBejelentkezettE.asObservable();
 
@@ -22,8 +22,6 @@ export class AuthService {
 
   private felhasznaloNev = new BehaviorSubject<string>("");
   felhasznaloNev$ = this.felhasznaloNev.asObservable();
-
-  private pfp_id: number = 0;
 
   private kepEleres = [
     "pfp_black.png",
@@ -50,18 +48,33 @@ export class AuthService {
     "pfp_dark-red.png"
   ];
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const token = localStorage.getItem('token');
+      const pfpId = localStorage.getItem('pfpId');
+      const username = localStorage.getItem('username');
+      
+      if (token) {
+        this.felhBejelentkezettE.next(true);
+      }
 
-  regisztracio(regisztracioData: { first_name: string, last_name: string,
-    username: string, email: string, password: string, confirmPassword: string}) 
-    {
+      if (pfpId) {
+        this.randomKep.next(this.kepEleres[parseInt(pfpId)]);
+      }
+
+      if (username) {
+        this.felhasznaloNev.next(username);
+      }
+    }
+  }
+
+  regisztracio(regisztracioData: { first_name: string, last_name: string, username: string, email: string, password: string, confirmPassword: string }) {
     return this.http.post(`${this.apiUrl}/register`, regisztracioData).pipe(
       catchError((error) => {
         return throwError(() => error);
       })
     );
   }
-  
 
   bejelentkezes(loginData: { identifier: string, password: string }) {
     return this.http.post<AuthResponse>(`${this.apiUrl}/login`, loginData).pipe(
@@ -73,18 +86,31 @@ export class AuthService {
 
   setBejelentkezettE(allapot: boolean) {
     this.felhBejelentkezettE.next(allapot);
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.setItem('token', allapot ? 'meglevoToken' : '');
+    }
   }
 
   setPfpId(pfpId: number) {
     this.randomKep.next(this.kepEleres[pfpId]);
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.setItem('pfpId', pfpId.toString());
+    }
   }
 
   setFelhasznaloNev(nev: string) {
     this.felhasznaloNev.next(nev);
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.setItem('username', nev);
+    }
   }
 
   kijelentkezes() {
-    localStorage.removeItem('token');
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('pfpId');
+      localStorage.removeItem('username');
+    }
     this.felhBejelentkezettE.next(false);
     this.router.navigate(['/']);
   }

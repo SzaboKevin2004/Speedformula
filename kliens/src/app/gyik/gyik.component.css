@@ -1,0 +1,48 @@
+.keret{
+    width: 40%;
+    margin: 50px auto;
+    font-family: var(--betutipus-alap);
+    font-size: var(--betumeret-fo);
+    color: white;
+}
+
+h1 {
+    text-align: left;
+    font-weight: normal;
+}
+
+.kerdes{
+    display: flex;
+    width: 35vw;
+    height: fit-content;
+    margin: 3vh auto 0 auto;
+    padding: 15px 15px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px;
+    cursor: pointer;
+    user-select: none;
+    z-index: 1;
+    background-color: var(--szin-keret);
+}
+
+img{
+    width: 15px;
+    height: auto;
+    margin-right: 5px;
+    padding-left: 30px;
+    cursor: pointer;
+}
+
+.valasz{
+    display: flex;
+    width: 34vw;
+    height: fit-content;
+    margin: 0 auto;
+    padding: 15px;
+    align-items: center;
+    text-align: justify;
+    border-radius: 10px;
+    z-index: 0;
+    background-color: rgb(59, 59, 59);
+}

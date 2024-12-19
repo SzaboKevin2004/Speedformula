@@ -73,6 +73,7 @@ body {
     top: 0;
     background-color: var(--szin-navsav);
     z-index: 2;
+    user-select: none;
 }
 
 .nav-keret {
