@@ -19,12 +19,13 @@ import { ForumPosztComponent } from './forum-poszt/forum-poszt.component';
 import { ForumPosztReszletComponent } from './forum-poszt-reszlet/forum-poszt-reszlet.component';
 import { ProfilComponent } from './profil/profil.component';
 import { HibaComponent } from './hiba/hiba.component';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
     {path: '', component: KezdolapComponent},
-    {path: 'regisztracio', component: RegisztracioComponent}, 
-    {path: 'bejelentkezes', component: BejelentkezesComponent},
-    {path:'beallitasok', component: BeallitasokComponent},
+    {path: 'regisztracio', component: RegisztracioComponent, canActivate: [authGuard]}, 
+    {path: 'bejelentkezes', component: BejelentkezesComponent, canActivate: [authGuard]},
+    {path:'beallitasok', component: BeallitasokComponent, canActivate: [authGuard]},
     {path: 'visszajelzes', component: VisszajelzesComponent},
     {path: 'rolunk', component: RolunkComponent},
     {path:'gyik', component: GyikComponent},

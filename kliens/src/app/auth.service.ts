@@ -23,6 +23,10 @@ export class AuthService {
   private felhasznaloNev = new BehaviorSubject<string>("");
   felhasznaloNev$ = this.felhasznaloNev.asObservable();
 
+  hitelesitettE(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
   private kepEleres = [
     "pfp_black.png",
     "pfp_grey.png",
@@ -49,6 +53,7 @@ export class AuthService {
   ];
 
   constructor(private http: HttpClient, private router: Router) {
+
     if (typeof window !== 'undefined' && window.localStorage) {
       const token = localStorage.getItem('token');
       const pfpId = localStorage.getItem('pfpId');
