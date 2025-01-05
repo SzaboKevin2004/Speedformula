@@ -1,4 +1,158 @@
-.nav-tortenet{
+.nav-tortenet {
     border-radius: 4px;
     background-color: rgb(146, 146, 146);
+}
+
+.keret {
+    width: 50%;
+    margin: 50px auto 0 auto;
+    font-family: var(--betutipus-alap);
+    font-size: var(--betumeret-fo);
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    font-weight: normal;
+}
+
+h2 {
+    font-family: var(--betutipus-alap);
+}
+
+.kozep p {
+    display: inline-block;
+    position: relative;
+    margin: 0 auto;
+    margin-left: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-family: var(--betutipus-alap);
+    font-size: var(--betumeret-fo);
+    color: white;
+    cursor: pointer;
+}
+
+.kozep {
+    text-align: center;
+    user-select: none;
+}
+
+.keret p.aktiv.egyszeru::after , .keret p.aktiv.reszletes::after {
+    position: absolute;
+    width: 80%;
+    height: 4px;
+    left: 50%;
+    bottom: -6px;
+    content: "";
+    border-radius: 8px;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+}
+
+.kozep p:hover::after {
+    position: absolute;
+    width: 80%;
+    height: 4px;
+    left: 50%;
+    bottom: -6px;
+    content: "";
+    border-radius: 8px;
+    transform: translateX(-50%);
+    background-color: #7a7979;
+}
+
+#kezdoszoveg{
+    margin-left: 20px;
+    margin-bottom: 60px;
+    text-align: justify;
+}
+
+.buborek{
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px 20px 20px 20px;
+    border-radius: 60px;
+    background-color: var(--szin-keret);
+}
+
+.buborek h2 {
+    margin-left: 20px;
+}
+
+.btartalom {
+    display: flex;
+    margin: 20px 0 0 0;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.btartalom img {
+    height: 300px;
+    max-width: 40%;
+    border: 3px solid #ffffff;
+    
+}
+
+.btartalom p {
+    max-width: 50%;
+    text-align: justify;
+    flex: 2;
+}
+
+.tobb {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+}
+
+.tobb img {
+    height: 250px;
+    max-width: 90%;
+}
+
+#tobbszoveg{
+    margin-left: 30px;
+}
+
+#btartalomzaro {
+    justify-content: center;
+    align-items: center;
+}
+
+.btartalomzaro p {
+    margin-left: 30px;
+    margin-right: 30px;
+    text-align: justify;
+}
+
+.reszletes-t {
+    width: 100%;
+    margin: 20px 0 60px 0;
+    border-collapse: collapse;
+}
+  
+.reszletes-t th, .reszletes-t td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.reszletes-t #ev {
+    text-align: center;
+}
+  
+.reszletes-t th {
+    background-color: rgb(37, 37, 37);
+}
+
+.reszletes-t td {
+    text-align: justify;
+    background-color: rgb(46, 46, 46);
+}
+
+.reszletes-t th:nth-child(1),
+.reszletes-t td:nth-child(1) {
+  width: 120px;
 }

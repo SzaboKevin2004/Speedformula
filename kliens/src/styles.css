@@ -108,7 +108,7 @@ body {
 }
 
 .nav-cim {
-    display: none;
+    display: flex;
     align-items: center;
     text-decoration: none;
     font-size: var(--betumeret-logoszoveg);
