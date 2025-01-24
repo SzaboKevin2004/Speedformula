@@ -1,7 +1,0 @@
-{
-    "restartable": "u",
-    "ext": "js,json",
-    "watch": [
-    "src/"
-    ]
-}

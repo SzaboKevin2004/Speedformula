@@ -1,0 +1,95 @@
+{
+	"info": {
+		"_postman_id": "c480ca94-6922-4b61-b991-7321e295b6b4",
+		"name": "speedformula",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41471976"
+	},
+	"item": [
+		{
+			"name": "Regisztráció",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"felhasználónév\":\"kevin\",\r\n    \"email\":\"17davidhorvath@gmail.com\",\r\n    \"password\":\"Admin123\",\r\n    \"confirm_password\":\"Admin123\",\r\n    \"képId\":21,\r\n    \"kép\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/regist",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"regist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "hírek",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/hirek",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hirek"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "versenyzők lekérése",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/versenyzok",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"versenyzok"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "csapatok",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/csapatok",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"csapatok"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
