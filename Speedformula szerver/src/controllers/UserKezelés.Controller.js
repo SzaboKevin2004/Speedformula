@@ -2,9 +2,14 @@ import Felhasználó from "../models/Felhasználó.Modell.js";
 import Szerep from "../models/Szerep.Modell.js";
 import isEmail from "validator/lib/isEmail.js";
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken'; 
+import jwt from 'jsonwebtoken';
+
+import dotenv from 'dotenv';
+
+
+dotenv.config({ path:"C:\Users\david\Documents\szerver\src\.env"});
+
 const ADMIN_PASSWORD = "Admin123";
-const JWT_SECRET = process.env.JWT_SECRET;
 const Midleware = async (req, res, next) => {
     const midleHeader=req.header('Authorization');
     if(!midleHeader){
@@ -12,7 +17,7 @@ const Midleware = async (req, res, next) => {
     }
     const token =midleHeader.replace('Bearer ', '');
     try {
-        const dekódolt=jwt.verify(token, JWT_SECRET);
+        const dekódolt=jwt.verify(token, process.env.JWT_SECRET);
         const fh=await Felhasználó.findByPk(dekódolt.id);
         if(!fh){
             return res.status(401).json({error: true, message: "Érvénytelen JWT token!"});
@@ -33,16 +38,16 @@ export default {
         try {
             console.log(req.body);
 
-            if (!req.body.felhasználónév || !req.body.email || !req.body.password || !req.body.confirm_password || !req.body.téma_id|| !req.body.kép) {
+            if (!req.body.felhasznalonev || !req.body.email || !req.body.password || !req.body.confirm_password) {
                     return res.status(400).json({ error: true, message: "Minden mező kitöltése kötelező!" });
                 }
                
 
-            const létezőFelhasználónév = await Felhasználó.findOne({where:{felhasználónév:req.body.felhasználónév}});
-            if(létezőFelhasználónév){
+            const létezőfelhasznalonev = await Felhasználó.findOne({where:{felhasznalonev:req.body.felhasznalonev}});
+            if(létezőfelhasznalonev){
             res.status(409).json({
                 error: true,
-                message:"A felhasználónév már foglalt!"
+                message:"A felhasznalonev már foglalt!"
             });
             return;
             }
@@ -72,11 +77,11 @@ export default {
             
             let titkosPassword;
             try {
-                titkosPassword = await bcrypt.hash(req.body.password, 8);
+                titkosPassword = await bcrypt.hash(req.body.password, 10);
             
             } catch (error) {
                 console.log(error);
-                res.status(500).json({ error: true, message: "Jelszó feladolgozási hiba!" });
+                res.status(500).json({ error: true, message: "Jelszó feldolgozási hiba!" });
             }
 
             let szerepNeve = "felhasználó";
@@ -95,11 +100,11 @@ export default {
             
             const felhasználó = Felhasználó.build(
                 {
-                    felhasználónév: req.body.felhasználónév,
+                    felhasznalonev: req.body.felhasznalonev,
                     email: req.body.email,
                     password: titkosPassword,
                     szerep_id: szerep.id,
-                    téma_id:req.body.téma_id,
+                    téma_id:1,
                     kép:req.body.kép
                 }
             );
@@ -113,41 +118,49 @@ export default {
     },
     LoginPostController: async (req, res) =>{  
         try{
-            const{felhasználónév,email,password}=req.body;
+           const{felhasznalonev,email}=req.body;
 
-            if (!password){
+            if (!req.body.password){
                 return res.status(400).json({
                     error: true,
                     message: "Jelszó megadása kötelező!"
                 });
             }
-            if (!felhasználónév &&!email){
+            if(!req.body.felhasznalonev&& !req.body.email){
                 return res.status(400).json({
-                    error: true,
-                    message: "Felhasználónév/email és jelszó kötelező!"
-                });
+                    error:true,
+                    message:"Felhasználónév/email megadása kötelező!"
+                })
             }
-            let felhasználó;
-            if (felhasználónév){
-                felhasználó = await Felhasználó.findOne({where:{felhasználónév}});
+            
+            let felhasználó
+            if (req.body.felhasznalonev){
+                felhasználó = await Felhasználó.findOne({where:{felhasznalonev}});
             }else{
                 felhasználó = await Felhasználó.findOne({where:{email}});
             }
             if (!felhasználó){
                 return res.status(401).json({
                     error: true,
-                    message: "Nem található ilyen felhasználónév/email!"
+                    message: "Nem található ilyen felhasznalonev/email!"
                 });
             }
-            const jó=await bcrypt.compare(password, Felhasználó.password);
+
+            
+
+            console.log("Beírt jelszó:", req.body.password);
+            console.log("Adatbázisban tárolt jelszó hash:", felhasználó.password);
+            const jó=await bcrypt.compare(req.body.password, felhasználó.password);
               if(!jó){
                 return res.status(401).json({
                     error: true,
                     message: "Hibás jelszó!"
                 });
               }  
-            const token=jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '6h' });
-            await Token.create({ token, felhasználó_id: felhasználó.id });
+              console.log(process.env.JWT_SECRET);
+            const token=jwt.sign({ id: felhasználó.id,felhasznalonev:felhasználó.felhasznalonev},process.env.JWT_SECRET, { expiresIn: '6h' });
+            //await Token.create({ token, felhasználó_id: felhasználó.id });
+           // const token1=Token.build({ token:token, felhasználó_id: felhasználó.id });
             res.status(200).json({
                 success: true,
                 token,
@@ -188,8 +201,8 @@ export default {
                 res.status(404).json({ error: true, message: "Felhasználó nem található!" });
                 return;
             }else{
-                if(req.body.felhasználónév!==undefined){
-                    felhasználó.felhasználónév=req.body.felhasználónév;
+                if(req.body.felhasznalonev!==undefined){
+                    felhasználó.felhasznalonev=req.body.felhasznalonev;
                 }
                 if(req.body.email!==undefined){
                     felhasználó.email=req.body.email;
