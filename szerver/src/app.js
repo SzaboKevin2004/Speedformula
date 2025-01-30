@@ -1,12 +1,12 @@
 import express from "express";
 import cors from "cors";
 import router from "./router/speedformula.router.js";
-
+import dotenv from "dotenv";
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-
+dotenv.config();
 app.use("/", router);
 
 app.get("/",(req,res)=>{

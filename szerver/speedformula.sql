@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Jan 24. 16:10
+-- Létrehozás ideje: 2025. Jan 29. 13:45
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -29,13 +29,20 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `felhasználó` (
   `id` int(11) NOT NULL,
-  `felhasználónév` varchar(40) NOT NULL,
+  `felhasznalonev` varchar(40) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(80) NOT NULL,
   `szerep_id` int(11) DEFAULT NULL,
-  `téma_id` int(11) NOT NULL,
-  `kép` blob DEFAULT NULL
+  `tema_id` int(11) NOT NULL,
+  `kep` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `felhasználó`
+--
+
+INSERT INTO `felhasználó` (`id`, `felhasznalonev`, `email`, `password`, `szerep_id`, `tema_id`, `kep`) VALUES
+(3, 'kevin', '17davidhorvath@gmail.com', '$2b$10$gO.8z.SxDn1D9PwjpSElwe7qD1jq44HHk/9D21sBRxyyKGx96iLOS', 1, 1, 21);
 
 -- --------------------------------------------------------
 
@@ -79,7 +86,7 @@ CREATE TABLE `token` (
 --
 ALTER TABLE `felhasználó`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `felhasználónév` (`felhasználónév`),
+  ADD UNIQUE KEY `felhasználónév` (`felhasznalonev`),
   ADD UNIQUE KEY `email` (`email`),
   ADD KEY `szerep_id` (`szerep_id`);
 
@@ -105,7 +112,7 @@ ALTER TABLE `token`
 -- AUTO_INCREMENT a táblához `felhasználó`
 --
 ALTER TABLE `felhasználó`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT a táblához `szerep`

@@ -11,7 +11,7 @@ const Felhasználó =  db.define(
             primaryKey: true,
             autoIncrement: true,
         },
-        felhasználónév: {
+        felhasznalonev: {
             type: DataTypes.STRING(40),
             allowNull: false,
             unique: true,
@@ -22,7 +22,7 @@ const Felhasználó =  db.define(
             unique: true,
         },
         password: {
-            type: DataTypes.STRING(30),
+            type: DataTypes.STRING(80),
             allowNull: false,
         },
         szerep_id: {
@@ -32,13 +32,13 @@ const Felhasználó =  db.define(
                 key:"id",
             },
         },
-        téma_id:{
+        tema_id:{
             type: DataTypes.INTEGER,
             allowNull: false,
             
         },
-        kép:{
-            type: DataTypes.BLOB,
+        kep:{
+            type: DataTypes.INTEGER,
         }
     },
     {
