@@ -133,7 +133,7 @@ export default {
             if (!felhasználó){
                 return res.status(401).json({
                     error: true,
-                    message: "Nem található ilyen felhasznalonev/email!"
+                    message: "Nem található ilyen felhasznalónév/email!"
                 });
             }
             console.log("Beírt jelszó:", req.body.password);
@@ -184,9 +184,9 @@ export default {
             const dekódolt=jwt.verify(token, process.env.JWT_SECRET);
             Felhasználó.findByPk(dekódolt.id).then(async(felhasználó)=>{
                 if(!felhasználó){
-                    res.status(404).json({ error: true, message: "Felhasználó nem található!" });
-                    return;
-                }else{
+                    return res.status(404).json({ error: true, message: "Felhasználó nem található!" });
+             }else       
+                {
                     if(req.body.felhasznalonev!==""){
                         felhasználó.felhasznalonev=req.body.felhasznalonev;
                     }
@@ -235,23 +235,39 @@ export default {
         }
 },
     ProfilDeleteController: async (req, res) => {
-        try{
-            const felhasználóId=req.user.id;
-
-            const törlés=await Felhasználó.destroy({ where: { id: felhasználóId } });
+        const token = req.headers.authorization?.split(' ')[1];
+        try {
+            const dekódolt=jwt.verify(token, process.env.JWT_SECRET);
+            Felhasználó.findByPk(dekódolt.id)
+            .then(async(felhasználó)=>{
+                if(!felhasználó){
+                  return  res.status(404).json({ error: true, message: "Felhasználó nem található!" });
+             }else       
+                {
+                const törlés=await Felhasználó.destroy({ where: { id: dekódolt.id } });
             
-            if(törlés===0){
-                res.status(404).json({ error: true, message: "Felhasználó nem található!" });
-            }
-             res.status(200).json({
-                error: false,
-                message: "Profil sikeresen törölve!"
+                if(törlés===0){
+                    res.status(404).json({ error: true, message: "Felhasználó nem található!" });
+                }else{
+                    res.status(200).json({
+                    error: false,
+                    message: "Profil sikeresen törölve!"
+                    });
+                };   
+                }   
+            }).catch((err)=>{
+                console.error( err);
+                res.status(500).json({ error: true, message: "Adatbázis hiba történt!" });
             });
-        }catch{
-            console.error("Felhasználó törlés sikertelen!", err);
-            res.status(500).json({ error: true, message: "Adatbázis hiba történt!" });
+        } catch (error) {
+            if(error instanceof jwt.TokenExpiredError){
+                return res.status(401).json({error: true, message: "Lejárt a token!"});
+            }else if(error instanceof jwt.JsonWebTokenError){
+                return res.status(401).json({error: true, message: "Érvénytelen a token!"});
+            }else{
+                return res.status(500).json({ error: true, message: "Szerver hiba!"});
+            }
         }
-        
     }
+}
 
-};
