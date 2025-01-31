@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 
-dotenv.config({ path:"C:\Users\david\Documents\szerver\src\.env"});
+dotenv.config({ path:"C:/Users/david/Documents/szerver/src/.env"});
 
 const ADMIN_PASSWORD = "Admin123";
 /*const Midleware = async (req, res, next) => {
@@ -148,7 +148,7 @@ export default {
             console.log(process.env.JWT_SECRET);
             const token=jwt.sign({ id: felhasználó.id,felhasznalonev:felhasználó.felhasznalonev},process.env.JWT_SECRET, { expiresIn: '6h' });
             //await Token.create({ token, felhasználó_id: felhasználó.id });
-           // const token1=Token.build({ token:token, felhasználó_id: felhasználó.id });
+            //const token1=Token.build({ token:token, felhasználó_id: felhasználó.id });
             console.log(token);
             res.status(200).json({
                 success: true,
@@ -268,6 +268,6 @@ export default {
                 return res.status(500).json({ error: true, message: "Szerver hiba!"});
             }
         }
-    }
+    },
 }
 

@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"felhasznalonev\":\"kevin\",\r\n    \"email\":\"17davidhorvath@gmail.com\",\r\n    \"password\":\"Admin123\",\r\n    \"confirm_password\":\"Admin123\",\r\n    \"kep\":21 \r\n\r\n}",
+					"raw": "{\r\n    \"felhasznalonev\":\"teszt1234\",\r\n    \"email\":\"1tesztdavidhorvath@gmail.com\",\r\n    \"password\":\"Admin123\",\r\n    \"confirm_password\":\"Admin123\",\r\n    \"kep\":3\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -35,8 +35,231 @@
 			"response": []
 		},
 		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"felhasznalonev\":\"teszt1234\",\r\n    \"email\":\"\",\r\n    \"password\":\"Admin123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fríssités",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZmVsaGFzem5hbG9uZXYiOiJ0ZXN6dDEyMyIsImlhdCI6MTczODIzNTQ1MCwiZXhwIjoxNzM4MjU3MDUwfQ.nrbu7I6izagsgkAY_-uSwqxpPWUgkumf_vnh-3Cq3Eg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmVsaGFzem5hbG9uZXYiOiJrZXZpbiIsImlhdCI6MTczODE1MzQzNywiZXhwIjoxNzM4MTc1MDM3fQ.kEHsOAzVT1-BtI1-5_SdbD_t0IFiYWgKpDUAbkSrV-Y",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"felhasznalonev\":\"\",\r\n    \"email\":\"\",\r\n    \"password\":\"\",\r\n    \"tema_id\":\"\",\r\n    \"kep\":3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/profil",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"profil"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "törlés",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZmVsaGFzem5hbG9uZXYiOiJ0ZXN6dDEyMyIsImlhdCI6MTczODIzNTQ1MCwiZXhwIjoxNzM4MjU3MDUwfQ.nrbu7I6izagsgkAY_-uSwqxpPWUgkumf_vnh-3Cq3Eg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/profil",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"profil"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chatlétrehozás",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmVsaGFzem5hbG9uZXYiOiJ0ZXN6dDEyMyIsImlhdCI6MTczODMxMzg2NywiZXhwIjoxNzM4MzM1NDY3fQ.9NhFcG12td49zcHB3b5WixxK6n4N0ZQdgUHR-2RLYlE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"uzenet\":\"Fasszopó Hamilton!!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/chat",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"chat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chatlekérés",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/chat",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"chat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Összes chat lekérése",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/chat",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"chat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "hírek",
 			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": [
+						{
+							"key": "algorithm",
+							"value": "HS256",
+							"type": "string"
+						},
+						{
+							"key": "isSecretBase64Encoded",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "payload",
+							"value": "{}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "queryParamKey",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "header",
+							"value": "{}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -86,84 +309,6 @@
 					"port": "3000",
 					"path": [
 						"csapatok"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"felhasznalonev\":\"\",\r\n    \"email\":\"\",\r\n    \"password\":\"Admin123\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "fríssités",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmVsaGFzem5hbG9uZXYiOiJrZXZpbiIsImlhdCI6MTczODE1MzQzNywiZXhwIjoxNzM4MTc1MDM3fQ.kEHsOAzVT1-BtI1-5_SdbD_t0IFiYWgKpDUAbkSrV-Y",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmVsaGFzem5hbG9uZXYiOiJrZXZpbiIsImlhdCI6MTczODE1MzQzNywiZXhwIjoxNzM4MTc1MDM3fQ.kEHsOAzVT1-BtI1-5_SdbD_t0IFiYWgKpDUAbkSrV-Y",
-						"type": "text",
-						"disabled": true
-					},
-					{
-						"key": "",
-						"value": "",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"kép\":19\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/profil",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"profil"
 					]
 				}
 			},

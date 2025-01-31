@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Jan 29. 13:45
+-- Létrehozás ideje: 2025. Jan 31. 11:13
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `speedformula`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `chat`
+--
+
+CREATE TABLE `chat` (
+  `id` int(11) NOT NULL,
+  `felhasznalo_id` int(11) DEFAULT NULL,
+  `uzenet` text NOT NULL,
+  `createdAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -42,7 +55,8 @@ CREATE TABLE `felhasználó` (
 --
 
 INSERT INTO `felhasználó` (`id`, `felhasznalonev`, `email`, `password`, `szerep_id`, `tema_id`, `kep`) VALUES
-(3, 'kevin', '17davidhorvath@gmail.com', '$2b$10$gO.8z.SxDn1D9PwjpSElwe7qD1jq44HHk/9D21sBRxyyKGx96iLOS', 1, 1, 21);
+(1, 'teszt123', 'tesztdavidhorvath@gmail.com', '$2b$10$TRz5lv0hNcVVj2VbaNGIdeiHOvbISssME3nK3xzWZAJGrmQ32.Sde', 2, 1, 1),
+(2, 'teszt1234', '1tesztdavidhorvath@gmail.com', '$2b$10$TpW6qD6Pf4SpoMfPwSGCaeZkhlEntqiEYftmz.zNPqAjwDh0/cSjC', 1, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -82,11 +96,18 @@ CREATE TABLE `token` (
 --
 
 --
+-- A tábla indexei `chat`
+--
+ALTER TABLE `chat`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `felhasznalo_id` (`felhasznalo_id`);
+
+--
 -- A tábla indexei `felhasználó`
 --
 ALTER TABLE `felhasználó`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `felhasználónév` (`felhasznalonev`),
+  ADD UNIQUE KEY `felhasznalonev` (`felhasznalonev`),
   ADD UNIQUE KEY `email` (`email`),
   ADD KEY `szerep_id` (`szerep_id`);
 
@@ -109,10 +130,16 @@ ALTER TABLE `token`
 --
 
 --
+-- AUTO_INCREMENT a táblához `chat`
+--
+ALTER TABLE `chat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT a táblához `felhasználó`
 --
 ALTER TABLE `felhasználó`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT a táblához `szerep`
@@ -129,6 +156,12 @@ ALTER TABLE `token`
 --
 -- Megkötések a kiírt táblákhoz
 --
+
+--
+-- Megkötések a táblához `chat`
+--
+ALTER TABLE `chat`
+  ADD CONSTRAINT `chat_ibfk_1` FOREIGN KEY (`felhasznalo_id`) REFERENCES `felhasználó` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Megkötések a táblához `felhasználó`

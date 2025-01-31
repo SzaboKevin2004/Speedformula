@@ -1,6 +1,7 @@
 import { Router } from "express";
 import UserKezelésController from "../controllers/UserKezelés.Controller.js";
 import ApikController from "../controllers/Apik.Controller.js";
+import ChatController from "../controllers/Chat.Controller.js";
 
 const router = Router();
 
@@ -19,6 +20,8 @@ router.get("/profil", UserKezelésController.ProfilGetController);
 router.patch("/profil", UserKezelésController.ProfilePatchController);
 router.delete("/profil", UserKezelésController.ProfilDeleteController);
 
-
+router.put("/chat", ChatController.ChatPut);
+router.get("/chat", ChatController.ChatGet);
+router.delete("/chat", ChatController.ChatDeleteAll);
 
 export default router;
