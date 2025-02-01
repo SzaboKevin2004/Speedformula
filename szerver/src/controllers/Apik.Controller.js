@@ -5,11 +5,19 @@ export default{
     HírekGetController:async (req, res) => {
         try{
             const válasz =await newsapi.v2.everything({
-                q: 'Formula 1',
+                q: 'F1',
                 language: 'hu',
-                sortBy: 'relevancy'
-              })
+                sortBy: 'publishedAt'
+              });
+              //if()
             if(válasz.status === 'ok'){
+                const alapKep = 'https://pcdn.hu/articles/images-xl/f/o/r/forma1-709165.jpg';
+
+                válasz.articles.forEach(article => {
+                    if(!article.urlToImage){
+                        article.urlToImage = alapKep;
+                    }
+                 });
                 return res.status(200).json(válasz.articles);
             }
             else{
@@ -20,6 +28,14 @@ export default{
             console.error('Hiba: ', error);
             return res.status(500).json({ error: true, message: "Hiba a hír lekérésénél!" });
         }
+    },
+    SessionsGetController:async (req,res)=>{
+            try{
+                const alapSessions= await fetch('https://api.openf1.org/v1/session');
+                return res.status(200).json(alapSessions);
+            }catch{
+                return res.status(500).json({ error: true, err });
+            }
     },
     CsapatokGetController:async (req, res) => {
         try {

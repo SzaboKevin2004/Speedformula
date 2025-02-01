@@ -39,6 +39,9 @@ const Felhasználó =  db.define(
         },
         kep:{
             type: DataTypes.INTEGER,
+        },
+        magamról:{
+            type: DataTypes.STRING(150)
         }
     },
     {

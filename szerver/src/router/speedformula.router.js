@@ -17,11 +17,14 @@ router.get("/versenyzok", ApikController.VersenyzőkGetController);
 
 
 router.get("/profil", UserKezelésController.ProfilGetController);
+router.get("/profil/:id", UserKezelésController.MásikProfilGetControler);
 router.patch("/profil", UserKezelésController.ProfilePatchController);
 router.delete("/profil", UserKezelésController.ProfilDeleteController);
 
+router.get("/chat",ApikController.SessionsGetController);
 router.put("/chat", ChatController.ChatPut);
 router.get("/chat", ChatController.ChatGet);
+router.delete("/chat/:id",ChatController.ChatIdDelete);
 router.delete("/chat", ChatController.ChatDeleteAll);
 
 export default router;

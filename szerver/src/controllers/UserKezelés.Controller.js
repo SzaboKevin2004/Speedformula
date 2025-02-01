@@ -34,6 +34,7 @@ const ADMIN_PASSWORD = "Admin123";
     }
 }*/
 export default {
+    //Regisztráció
     RegisztracioPostController: async (req, res) => {
         try {
             console.log(req.body);
@@ -45,7 +46,7 @@ export default {
             if(létezőfelhasznalonev){
             res.status(409).json({
                 error: true,
-                message:"A felhasznalonev már foglalt!"
+                message:"A felhasznalonév már foglalt!"
             });
             return;
             }
@@ -108,6 +109,7 @@ export default {
             res.status(500).json({ error: true, message: "Adatbázis hiba történt!" });
         }
     },
+    //Bejelentkezés
     LoginPostController: async (req, res) =>{  
         try{
         const{felhasznalonev,email}=req.body;
@@ -136,8 +138,8 @@ export default {
                     message: "Nem található ilyen felhasznalónév/email!"
                 });
             }
-            console.log("Beírt jelszó:", req.body.password);
-            console.log("Adatbázisban tárolt jelszó hash:", felhasználó.password);
+            //console.log("Beírt jelszó:", req.body.password);
+            //console.log("Adatbázisban tárolt jelszó hash:", felhasználó.password);
             const jó=await bcrypt.compare(req.body.password, felhasználó.password);
             if(!jó){
                 return res.status(401).json({
@@ -167,17 +169,71 @@ export default {
         }
         
     },
+    //Kijelentkezés
     LogoutPostController: (req, res) =>{
         res.status(200).json({
             success: true,
             message: "Sikeres kijelentkezés!"
         });
     },
+    //Profil lekérés
     ProfilGetController: async (req, res) => {
-    return res.status(501).json({
-        message:"Not implemented yet!"
-    });
+        const token = req.headers.authorization?.split(' ')[1];
+        try{
+            const dekódolt=jwt.verify(token, process.env.JWT_SECRET);
+            const felhasználó= await Felhasználó.findOne({
+                where: { id: dekódolt.id },
+                include:[{
+                    model: Szerep,
+                    attributes: ['szerep_neve']
+              }],
+              attributes:{exclude:['password']}
+            })
+            if(!felhasználó){
+                return res.status(404).json({ error: true, message: "Felhasználó nem található!" });
+            }
+            res.status(200).json({ error: false, message: "Sikeres profil lekérés!", felhasználó });
+
+        }catch (error) {
+                    if(error instanceof jwt.TokenExpiredError){
+                        return res.status(401).json({error: true, message: "Lejárt a token!"});
+                    }else if(error instanceof jwt.JsonWebTokenError){
+                        return res.status(401).json({error: true, message: "Érvénytelen a token!"});
+                    }else{
+                        return res.status(500).json({ error: true, message: "Szerver hiba!"});
+                    }
+                }
 },
+//Más prfoil lekérése
+MásikProfilGetControler: async(req,res)=>{
+    const{id}=req.params;
+    const token = req.headers.authorization?.split(' ')[1];
+        try{
+            const dekódolt=jwt.verify(token, process.env.JWT_SECRET);
+            const másikfelhasználó= await Felhasználó.findOne({
+                where: {id},
+                include:[{
+                    model: Szerep,
+                    attributes: ['szerep_neve']
+              }],
+              attributes:{exclude:['password']}
+            })
+            if(!másikfelhasználó){
+                return res.status(404).json({ error: true, message: "Felhasználó nem található!" });
+            }
+            res.status(200).json({ error: false, message: "Sikeres profil lekérés!", másikfelhasználó });
+
+        }catch (error) {
+                    if(error instanceof jwt.TokenExpiredError){
+                        return res.status(401).json({error: true, message: "Lejárt a token!"});
+                    }else if(error instanceof jwt.JsonWebTokenError){
+                        return res.status(401).json({error: true, message: "Érvénytelen a token!"});
+                    }else{
+                        return res.status(500).json({ error: true, message: "Szerver hiba!"});
+                    }
+                }
+},
+    //Profil módosítás
     ProfilePatchController: async (req, res) => {
         const token = req.headers.authorization?.split(' ')[1];
         try {
@@ -234,6 +290,7 @@ export default {
             }
         }
 },
+    //Profil törlés
     ProfilDeleteController: async (req, res) => {
         const token = req.headers.authorization?.split(' ')[1];
         try {
