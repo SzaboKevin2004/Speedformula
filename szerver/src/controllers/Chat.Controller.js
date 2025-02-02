@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config({ path:"C:/Users/david/Documents/szerver/src/.env"});
 export default{
-    ChatPut:async(req,res)=>{
+    ChatPost:async(req,res)=>{
         const token = req.headers.authorization?.split(' ')[1];
         try {
             const dekódolt=jwt.verify(token, process.env.JWT_SECRET);
@@ -43,7 +43,8 @@ export default{
         }
     },
     ChatGet:async(req,res)=>{
-          const cht=Chat.findAll({order:[['createdAt','ASC']],include:[{model:Felhasználó,attributes:['felhasznalonev','kep']}]}).then((chat)=>{
+        try{
+            const chat=await Chat.findAll({order:[['createdAt','ASC']],include:[{model:Felhasználó,attributes:['felhasznalonev','kep']}]});
             const formazottChat=chat.map(message=>({
                 id:message.id,
                 uzenet:message.uzenet,
@@ -52,14 +53,11 @@ export default{
                 kep:message.felhasználó.kep
 
             }))
-            res.status(200).json(formazottChat);
-          }).catch((err)=>{
+            return res.status(200).json(formazottChat);
+        }catch(err){
             console.error(err);
-            res.status(500).json({ 
-                error: true, 
-                message: "Adatbázis hiba történt!" });
-          });
-                
+            return res.status(500).json({ error: true, message: "Adatbázis hiba történt!" });
+        };        
     },
     ChatIdDelete:async(req,res)=>{
         const {id}=req.params;
