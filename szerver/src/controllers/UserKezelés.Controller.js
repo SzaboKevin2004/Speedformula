@@ -246,18 +246,15 @@ MásikProfilGetControler: async(req,res)=>{
     
             // Csak nem üres mezők feldolgozása
             const változás = {};
-            
+    
             // Felhasználónév
             if (req.body.felhasznalonev !== undefined && req.body.felhasznalonev.trim() !== "") {
-             változás.felhasznalonev = req.body.felhasznalonev.trim();
+                változás.felhasznalonev = req.body.felhasznalonev.trim();
             }
     
             // Email
-            if (req.body.email !== undefined&&req.body.email.trim()!=="") {
-
-                if (email === "") {
-                    return res.status(400).json({ error: true, message: "Email nem lehet üres!" });
-                }
+            if (req.body.email !== undefined && req.body.email.trim() !== "") {
+                const email = req.body.email.trim();
                 if (!isEmail(email)) {
                     return res.status(400).json({ error: true, message: "Érvénytelen email cím!" });
                 }
@@ -265,7 +262,7 @@ MásikProfilGetControler: async(req,res)=>{
                 if (létezőEmail && létezőEmail.id !== felhasználó.id) {
                     return res.status(409).json({ error: true, message: "Az email cím már foglalt!" });
                 }
-             változás.email = email;
+                változás.email = email;
             }
     
             // Jelszó
@@ -286,22 +283,22 @@ MásikProfilGetControler: async(req,res)=>{
                 if (!szerep) {
                     console.error(`A '${szerepNeve}' szerep nem található!`);
                     return res.status(500).json({ error: true, message: `Hiba történt a regisztráció során (a '${szerepNeve}' szerep nem található). Ellenőrizd az adatbázist és a modellek szinkronizációját!` });
-                };  
-                változás.szerep_id=szerep.id;
+                }
+                változás.szerep_id = szerep.id;
             }
     
             // Téma
-            if (req.body.tema_id !== undefined && req.body.kep.trim() !== "") {
-             változás.tema_id = req.body.tema_id;
+            if (req.body.tema_id !== undefined && req.body.tema_id !== null) {
+                változás.tema_id = req.body.tema_id;
             }
     
             // Profilkép
-            if (req.body.kep !== undefined && req.body.kep.trim() !== "") {
-             változás.kep = req.body.kep.trim();
+            if (req.body.kep !== undefined && req.body.kep !== null && req.body.kep.trim() !== "") {
+                változás.kep = req.body.kep.trim();
             }
     
             // Frissítés végrehajtása
-            await felhasználó.update (változás);
+            await felhasználó.update(változás);
             
             return res.status(200).json({
                 error: false,
