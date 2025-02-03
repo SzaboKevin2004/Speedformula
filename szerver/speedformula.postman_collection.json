@@ -63,6 +63,35 @@
 			"response": []
 		},
 		{
+			"name": "Profil lekérés",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZmVsaGFzem5hbG9uZXYiOiJ0ZXN6dDEyMzQiLCJpYXQiOjE3Mzg1NzEyNTksImV4cCI6MTczODU5Mjg1OX0.gjt7QpwqObcq6chQ7XrwPco5rYNoqzWLkWkvB4IPRI8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/profil",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"profil"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "fríssités",
 			"request": {
 				"auth": {
@@ -70,7 +99,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZmVsaGFzem5hbG9uZXYiOiJ0ZXN6dDEyMyIsImlhdCI6MTczODIzNTQ1MCwiZXhwIjoxNzM4MjU3MDUwfQ.nrbu7I6izagsgkAY_-uSwqxpPWUgkumf_vnh-3Cq3Eg",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZmVsaGFzem5hbG9uZXYiOiJ0ZXN6dDEyMzQiLCJpYXQiOjE3Mzg1NzEyNTksImV4cCI6MTczODU5Mjg1OX0.gjt7QpwqObcq6chQ7XrwPco5rYNoqzWLkWkvB4IPRI8",
 							"type": "string"
 						}
 					]
@@ -91,7 +120,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"felhasznalonev\":\"\",\r\n    \"email\":\"\",\r\n    \"password\":\"\",\r\n    \"tema_id\":\"\",\r\n    \"kep\":3\r\n}",
+					"raw": "{\r\n    \"felhasznalonev\":\"\",\r\n    \"email\":\"\",\r\n    \"password\":\"MacskaGyökér123\",\r\n    \"tema_id\":\"\",\r\n    \"kep\":\"\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -149,16 +178,16 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmVsaGFzem5hbG9uZXYiOiJ0ZXN6dDEyMyIsImlhdCI6MTczODMxMzg2NywiZXhwIjoxNzM4MzM1NDY3fQ.9NhFcG12td49zcHB3b5WixxK6n4N0ZQdgUHR-2RLYlE",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZmVsaGFzem5hbG9uZXYiOiJ0ZXN6dDEyMzQiLCJpYXQiOjE3Mzg1NjcyOTIsImV4cCI6MTczODU4ODg5Mn0.WzGrr0QtzGORQjLWvdLltf2yX-6SvmylvXuIZp-dOts",
 							"type": "string"
 						}
 					]
 				},
-				"method": "PUT",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"uzenet\":\"Fasszopó Hamilton!!\"\r\n}",
+					"raw": "{\r\n    \"uzenet\":\"just yoke \"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -199,7 +228,7 @@
 			"response": []
 		},
 		{
-			"name": "Összes chat lekérése",
+			"name": "Összes chat törlése",
 			"request": {
 				"method": "DELETE",
 				"header": [],

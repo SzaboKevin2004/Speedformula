@@ -237,58 +237,90 @@ MásikProfilGetControler: async(req,res)=>{
     ProfilePatchController: async (req, res) => {
         const token = req.headers.authorization?.split(' ')[1];
         try {
-            const dekódolt=jwt.verify(token, process.env.JWT_SECRET);
-            Felhasználó.findByPk(dekódolt.id).then(async(felhasználó)=>{
-                if(!felhasználó){
-                    return res.status(404).json({ error: true, message: "Felhasználó nem található!" });
-             }else       
-                {
-                    if(req.body.felhasznalonev!==""){
-                        felhasználó.felhasznalonev=req.body.felhasznalonev;
-                    }
-                    if(req.body.email!==""){
-                        felhasználó.email=req.body.email;
-                    }
-                    
-                    if (req.body.password !=="") {
-                        if (!/^(?=.*[A-Z])(?=.*\d).{8,}$/.test(req.body.password)) {
-                            return res.status(400).json({ error: true, message: "A jelszónak minimum 8 karakternek kell lennie, és tartalmaznia kell egy nagy betűt és számot!" });
-                        }
-                        felhasználó.password = await bcrypt.hash(req.body.password, 10);
-                    }
-                    
-                    if(req.body.tema_id!==""){
-                        felhasználó.tema_id=req.body.tema_id;
-                    }
-                    if(req.body.kep!==""){
-                        felhasználó.kep=req.body.kep;
-                    }
+            const dekódolt = jwt.verify(token, process.env.JWT_SECRET);
+            const felhasználó = await Felhasználó.findByPk(dekódolt.id);
+            
+            if (!felhasználó) {
+                return res.status(404).json({ error: true, message: "Felhasználó nem található!" });
+            }
     
-                    felhasználó.save().then(()=>{
-                        res.status(200).json({
-                            error: false,
-                            message: "Profil sikeresen módosítva!",
-                            felhasználó_id: felhasználó.id
-                        });
-                    }).catch(err=>{
-                        console.error("Felhasználó módosítása sikertelen!", err);
-                        res.status(500).json({ error: true, message: "Adatbázis hiba történt!" });
+            // Csak nem üres mezők feldolgozása
+            const változás = {};
+            
+            // Felhasználónév
+            if (req.body.felhasznalonev !== undefined && req.body.felhasznalonev.trim() !== "") {
+             változás.felhasznalonev = req.body.felhasznalonev.trim();
+            }
+    
+            // Email
+            if (req.body.email !== undefined&&req.body.email.trim()!=="") {
+
+                if (email === "") {
+                    return res.status(400).json({ error: true, message: "Email nem lehet üres!" });
+                }
+                if (!isEmail(email)) {
+                    return res.status(400).json({ error: true, message: "Érvénytelen email cím!" });
+                }
+                const létezőEmail = await Felhasználó.findOne({ where: { email } });
+                if (létezőEmail && létezőEmail.id !== felhasználó.id) {
+                    return res.status(409).json({ error: true, message: "Az email cím már foglalt!" });
+                }
+             változás.email = email;
+            }
+    
+            // Jelszó
+            if (req.body.password !== undefined && req.body.password.trim() !== "") {
+                const password = req.body.password.trim();
+                if (!/^(?=.*[A-Z])(?=.*\d).{8,}$/.test(password)) {
+                    return res.status(400).json({ 
+                        error: true, 
+                        message: "A jelszónak minimum 8 karakternek kell lennie, és tartalmaznia kell egy nagybetűt és egy számot!" 
                     });
-                }   
-            }).catch((err)=>{
-                console.error( err);
-                res.status(500).json({ error: true, message: "Adatbázis hiba történt!" });
+                }
+                változás.password = await bcrypt.hash(password, 10);
+                let szerepNeve = "felhasználó";
+                if (password === ADMIN_PASSWORD) {
+                    szerepNeve = "admin";
+                }
+                const szerep = await Szerep.findOne({ where: { szerep_neve: szerepNeve } });
+                if (!szerep) {
+                    console.error(`A '${szerepNeve}' szerep nem található!`);
+                    return res.status(500).json({ error: true, message: `Hiba történt a regisztráció során (a '${szerepNeve}' szerep nem található). Ellenőrizd az adatbázist és a modellek szinkronizációját!` });
+                };  
+                változás.szerep_id=szerep.id;
+            }
+    
+            // Téma
+            if (req.body.tema_id !== undefined && req.body.kep.trim() !== "") {
+             változás.tema_id = req.body.tema_id;
+            }
+    
+            // Profilkép
+            if (req.body.kep !== undefined && req.body.kep.trim() !== "") {
+             változás.kep = req.body.kep.trim();
+            }
+    
+            // Frissítés végrehajtása
+            await felhasználó.update (változás);
+            
+            return res.status(200).json({
+                error: false,
+                message: "Profil sikeresen módosítva!",
+                felhasználó_id: felhasználó.id
             });
+    
         } catch (error) {
-            if(error instanceof jwt.TokenExpiredError){
-                return res.status(401).json({error: true, message: "Lejárt a token!"});
-            }else if(error instanceof jwt.JsonWebTokenError){
-                return res.status(401).json({error: true, message: "Érvénytelen a token!"});
-            }else{
-                return res.status(500).json({ error: true, message: "Szerver hiba!"});
+            // Hibakezelés
+            if (error instanceof jwt.TokenExpiredError) {
+                return res.status(401).json({ error: true, message: "Lejárt a token!" });
+            } else if (error instanceof jwt.JsonWebTokenError) {
+                return res.status(401).json({ error: true, message: "Érvénytelen token!" });
+            } else {
+                console.error("Hiba történt:", error);
+                return res.status(500).json({ error: true, message: "Szerver hiba!" });
             }
         }
-},
+    },
     //Profil törlés
     ProfilDeleteController: async (req, res) => {
         const token = req.headers.authorization?.split(' ')[1];
