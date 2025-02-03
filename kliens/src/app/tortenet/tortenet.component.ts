@@ -1,19 +1,77 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../footer/footer.component';
+import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-tortenet',
-  standalone: true,
-  imports: [ FooterComponent, CommonModule],
-  templateUrl: './tortenet.component.html',
-  styleUrl: './tortenet.component.css',
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-tortenet',
+    imports: [FooterComponent, CommonModule],
+    templateUrl: './tortenet.component.html',
+    styleUrl: './tortenet.component.css',
+    encapsulation: ViewEncapsulation.None
 })
 export class TortenetComponent {
   egyszeru: boolean = true;
   reszletes: boolean = false;
+  temaSzin: string = '';
+  temaSzin2: string = '';
+  temaSzinN: string = '';
+  temaSzinBetu: string = '';
+  temaSzinHover: string = '';
+  temaSzinGordulo: string = '';
+  sotet: boolean = true;
+  vilagos: boolean = false;
+  voros: boolean = false;
 
+  constructor(private authservice: AuthService) {}
+
+  ngOnInit(): void {
+    this.authservice.szamSzin$.subscribe( szam => {
+      if(szam === 1){
+        this.temaSzin = 'feketeK';
+        this.temaSzin2 = 'feketeK2';
+        this.temaSzinN = 'feketeN';
+        this.temaSzinBetu = 'feketeBetu';
+        this.temaSzinHover = 'feketeH';
+        this.temaSzinGordulo = 'feketeG';
+        this.sotet = true;
+        this.vilagos = false;
+        this.voros = false;
+      }
+      else if(szam === 2){
+        this.temaSzin = 'feherK';
+        this.temaSzin2 = 'feherK2';
+        this.temaSzinN = 'feherN';
+        this.temaSzinBetu = 'feherBetu';
+        this.temaSzinHover = 'feherH'
+        this.temaSzinGordulo = 'feherG';
+        this.sotet = false;
+        this.vilagos = true;
+        this.voros = false;
+      }
+      else if(szam === 3){
+        this.temaSzin = 'vorosK';
+        this.temaSzin2 = 'vorosK2';
+        this.temaSzinN = 'vorosN';
+        this.temaSzinBetu = 'vorosBetu';
+        this.temaSzinHover = 'vorosH';
+        this.temaSzinGordulo = 'vorosG';
+        this.sotet = false;
+        this.vilagos = false;
+        this.voros = true;
+      }else{
+        this.temaSzin = 'feketeK';
+        this.temaSzin2 = 'feketeK2';
+        this.temaSzinN = 'feketeN';
+        this.temaSzinBetu = 'feketeBetu';
+        this.temaSzinHover = 'feketeH';
+        this.temaSzinGordulo = 'feketeG';
+        this.sotet = true;
+        this.vilagos = false;
+        this.voros = false;
+      };
+    });
+  }
 
   egyszeruClick(){
     this.egyszeru = true;
@@ -116,5 +174,4 @@ export class TortenetComponent {
     { ev: 2020, esemenyek: 'A COVID-19 világjárvány miatt a 2020-as Forma-1-es szezon elindulása kétségessé vált, és a versenynaptárat teljesen újra kellett tervezni. Az ausztrál nagydíjat törölték, és számos versenyt helyszínt is módosítottak. Az eredeti 22 futamos szezon helyett csupán 17 versenyt rendeztek, többek között új helyszíneken, mint a Mugello és Imola. Az év legnagyobb eseménye a már-már hihetetlen csodálatos teljesítménye volt Lewis Hamiltonnak, aki történelmi hetedik világbajnoki címét szerezte meg, ezzel beállítva Michael Schumacher rekordját. Az újoncok közül több fontos szereplő is kiemelkedett, például Pierre Gasly, aki szintén megnyerte első Forma-1-es futamát. A szezon egyik drámai eseménye Romain Grosjean brutális balesete volt a bahreini versenyen, amelyben csodával határos módon megúszta a versenyző sérülés nélkül. A McLaren csapata és a Williams is komoly változásokon ment keresztül, az újoncok között pedig George Russell szerepelt kiemelkedően.' },
     { ev: 2021, esemenyek: 'A 2021-es év az eredetileg tervezett szabályváltoztatások halasztásával kezdődött, melyek végül csak 2022-ben léptek életbe. A szezon egyik legnagyobb meglepetése volt, hogy Daniel Ricciardo átigazolt a McLaren csapathoz, míg a Renault, immár Alpine néven, szerződtette vissza Fernando Alonsót. A Red Bull és a Mercedes közötti verseny az év elején kiéleződött, és a világbajnoki címért folyó küzdelem Lewis Hamilton és Max Verstappen között zajlott. A szezon során történt néhány fontos csapatformálás, például Stroll és a Racing Point átnevezése Aston Martinra, valamint a Red Bull motorfejlesztésének folytatása a Honda támogatásával, de már gyári támogatás nélkül. Az év végén egyesek szerint a Verstappen-Hamilton párharc végleg eldöntötte, hogy a következő évtizedekben ki uralja majd a Forma-1-et.' }
   ];
-  
 }

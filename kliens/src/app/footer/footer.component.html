@@ -1,27 +1,27 @@
-<footer>
+<footer [ngClass]="temaSzinN">
     <div class="footer-keret">
         <div class="footer-oszlop">
             <h3>KAPCSOLAT</h3>
             <ul>
-                <li><a routerLink="/visszajelzes">Visszajelzés</a></li>
-                <li><a href= "mailto: speedformulahun@gmail.com">speedformulahun&#64;gmail.com</a></li>
-                <li><a href="tel: +36308141606">+36308141606</a></li>
+                <li><a [ngClass]="temaSzinBetu" routerLink="/visszajelzes">Visszajelzés</a></li>
+                <li><a [ngClass]="temaSzinBetu" href= "mailto: speedformulahun@gmail.com">speedformulahun&#64;gmail.com</a></li>
+                <li><a [ngClass]="temaSzinBetu" href="tel: +36308141606">+36308141606</a></li>
             </ul>
         </div>
         <div class="footer-oszlop">
             <h3>INFORMÁCIÓ</h3>
             <ul>
-                <li><a routerLink="/rolunk">Rólunk</a></li>
-                <li><a routerLink="/gyik">GYIK</a></li>
-                <li><a routerLink="/adatvedelem">Adatvédelem</a></li>
+                <li><a [ngClass]="temaSzinBetu" routerLink="/rolunk">Rólunk</a></li>
+                <li><a [ngClass]="temaSzinBetu" routerLink="/gyik">GYIK</a></li>
+                <li><a [ngClass]="temaSzinBetu" routerLink="/adatvedelem">Adatvédelem</a></li>
             </ul>
         </div>
         <div class="footer-oszlop">
             <h3>KÖZÖSSÉGI MÉDIA</h3>
             <ul>
-                <li><a href="#"><img src="../../assets/img/logo_facebook.png">facebook</a></li>
-                <li><a href="#"><img src="../../assets/img/logo_instagram.png">instagram</a></li>
-                <li><a href="#"><img src="../../assets/img/logo_youtube.png">youtube</a></li>
+                <li><a href="#" [ngClass]="temaSzinBetu" id="bal"><img src="../../assets/img/logo_facebook.png" id="nagy"></a></li>
+                <li><a href="#" [ngClass]="temaSzinBetu" id="bal"><img src="../../assets/img/logo_instagram.png"></a></li>
+                <li><a href="#" [ngClass]="temaSzinBetu" id="bal"><img src="../../assets/img/logo_youtube.png"></a></li>
             </ul>
         </div>
     </div>

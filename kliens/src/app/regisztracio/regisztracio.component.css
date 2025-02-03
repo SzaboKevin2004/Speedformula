@@ -1,11 +1,10 @@
-
 body{
     display: flex;
     height: 100vh;
     margin: 0;
     justify-content: center;
     align-items: center;
-    background-color: #f0f0f0;
+    background-color: #e0e0e0;
 }
 
 .reg-keret {

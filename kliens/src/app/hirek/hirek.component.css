@@ -1,4 +1,63 @@
 .nav-hirek{
     border-radius: 4px;
-    background-color: rgb(146, 146, 146);
 }
+
+.nav-hirek.feketeH {
+    background-color: var(--szin-hover-sotet);
+}
+
+.nav-hirek.feketeH:active {
+    background-color: var(--szin-active-sotet);
+}
+
+.nav-hirek.feherH {
+    background-color: var(--szin-hover-vilagos);
+}
+
+.nav-hirek.feherH:active {
+    background-color: var(--szin-active-vilagos);
+}
+
+.nav-hirek.vorosH {
+    background-color: var(--szin-hover-voros);
+}
+
+.nav-hirek.vorosH:active {
+    background-color: var(--szin-active-voros);
+}
+
+.keret {
+    width: 70%;
+}
+  
+.hirek {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+  
+.hir {
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+  
+.hir img {
+    height: 250px;
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.feketeK:hover {
+    background-color: var(--szin-hover-sotet);
+}
+
+.feherK:hover {
+    background-color: var(--szin-hover-vilagos);
+}
+
+.vorosK:hover {
+    background-color: var(--szin-hover-voros);
+}
+  

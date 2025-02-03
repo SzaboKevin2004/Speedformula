@@ -10,23 +10,268 @@
     --betutipus-alap: Helvetica;
 
     /* SZÍNEK */
-    --szin-navsav: rgba(48, 48, 48, 0.75);
-    --szin-footersav: rgb(39, 39, 39);
-    --szin-keret: rgb(39, 39, 39);
-    --szin-hover: grey;
+
+        /* sötét */
+    --szin-navsav-sotet: rgba(32, 32, 32, 0.75);
+    --szin-footersav-sotet: rgb(39, 39, 39);
+    --szin-keret-sotet: rgb(37, 37, 37);
+    --szin-keret2-sotet: rgb(56, 56, 56);
+    --szin-background-sotet: rgb(20, 20, 20);
+    --szin-betu-sotet: white;
+    --szin-hover-sotet: rgb(105, 105, 105);
+    --szin-active-sotet: rgb(73, 73, 73);
+    --szin-gorduloSav-sotet: rgb(39, 39, 39);
+    --szin-gorduloGomb-sotet: rgb(224, 224, 224);
+    --szin-gorduloGombH-sotet: rgb(255, 255, 255);
+
+        /* világos */
+    --szin-navsav-vilagos: rgba(255, 255, 255, 0.75);
+    --szin-footersav-vilagos: rgb(39, 39, 39);
+    --szin-keret-vilagos: rgb(245, 245, 245);
+    --szin-keret2-vilagos: rgb(238, 236, 236);
+    --szin-background-vilagos: #e0e0e0;
+    --szin-betu-vilagos: black;
+    --szin-hover-vilagos: rgb(219, 219, 219);
+    --szin-active-vilagos: rgb(189, 189, 189);
+    --szin-gorduloSav-vilagos: rgb(185, 185, 185);
+    --szin-gorduloGomb-vilagos: rgb(59, 59, 59);
+    --szin-gorduloGombH-vilagos: rgb(31, 31, 31);
+
+        /* vörös */
+    --szin-navsav-voros: rgba(143, 0, 0, 0.75);
+    --szin-footersav-voros: rgb(39, 39, 39);
+    --szin-keret-voros: rgb(145, 0, 0);
+    --szin-keret2-voros: rgb(182, 0, 0);
+    --szin-background-voros: rgb(117, 13, 13);
+    --szin-betu-voros: white;
+    --szin-hover-voros: rgb(216, 17, 17);
+    --szin-active-voros: rgb(161, 30, 30);
+    --szin-gorduloSav-voros: rgb(153, 0, 0);
+    --szin-gorduloGomb-voros: rgb(224, 224, 224);
+    --szin-gorduloGombH-voros: rgb(255, 255, 255);
 }
 
-body::-webkit-scrollbar {
-    display: none;
+/* TÉMÁK */
+.feketeN {
+    background-color: var(--szin-navsav-sotet);
+    color: white;
+}
+
+.feketeK {
+    background-color: var(--szin-keret-sotet);
+    color: white;
+}
+
+.feketeK2 {
+    background-color: var(--szin-keret2-sotet);
+    color: white;
+}
+
+.feketeH {
+    .aktivValaszto {
+        background-color: var(--szin-hover-sotet);
+    }
+    .aktivTema {
+        background-color: var(--szin-hover-sotet);
+    }
+}
+
+.feketeH:hover {
+    background-color: var(--szin-hover-sotet);
+    p.adat{
+        color: white;
+    }
+}
+
+.feketeH:active {
+    background-color: var(--szin-active-sotet);
+}
+
+.feketeBg {
+    background-color: var(--szin-background-sotet);
+    color: white;
+}
+
+.feketeBetu {
+    color: var(--szin-betu-sotet);
+    h1,h2,p{
+        color: var(--szin-betu-sotet);
+    }
+    p.aktiv.egyszeru::after , p.aktiv.reszletes::after {
+        background-color: #ffffff;
+    }
+    .kozep p:hover::after {
+        background-color: #7a7979;
+    }
+}
+
+.feketeG::-webkit-scrollbar-track {
+    background-color: var(--szin-gorduloSav-sotet);
+}
+
+.feketeG::-webkit-scrollbar-thumb {
+    background-color: var(--szin-gorduloGomb-sotet);
+    min-height: 100px;
+}
+
+.feketeG::-webkit-scrollbar-thumb:hover {
+    background-color: var(--szin-gorduloGombH-sotet); 
+}
+
+.feketeHr {
+    border: 0.5px solid rgb(143, 143, 143);
+}
+
+.feherN {
+    background-color: var(--szin-navsav-vilagos);
+    color: black;
+}
+
+.feherK {
+    background-color: var(--szin-keret-vilagos);
+    color: black;
+}
+
+.feherK2 {
+    background-color: var(--szin-keret2-vilagos);
+    color: black;
+}
+
+.feherH{
+    .aktivValaszto {
+        background-color: var(--szin-hover-vilagos);
+    }
+    .aktivTema{
+        background-color: var(--szin-hover-vilagos);
+    }
+}
+
+.feherH:hover {
+    background-color: var(--szin-hover-vilagos);
+    p.adat{
+        color: black;
+    }
+}
+
+.feherH:active {
+    background-color: var(--szin-active-vilagos);
+}
+
+.feherBg {
+    background-color: var(--szin-background-vilagos);
+    color: black;
+}
+
+.feherBetu {
+    color: var(--szin-betu-vilagos);
+    h1,h2,p{
+        color: var(--szin-betu-vilagos);
+    }
+    p.aktiv.egyszeru::after , p.aktiv.reszletes::after {
+        background-color: #1a1a1a;
+    }
+    .kozep p:hover::after {
+        background-color: #5e5e5e;
+    }
+}
+
+.feherG::-webkit-scrollbar-track {
+    background-color: var(--szin-gorduloSav-vilagos);
+}
+
+.feherG::-webkit-scrollbar-thumb {
+    background-color: var(--szin-gorduloGomb-vilagos);
+    min-height: 100px;
+}
+
+.feherG::-webkit-scrollbar-thumb:hover {
+    background-color: var(--szin-gorduloGombH-vilagos); 
+}
+
+.feherHr {
+    border: 0.5px solid rgb(63, 63, 63);
+}
+
+.vorosN {
+    background-color: var(--szin-navsav-voros);
+    color: white;
+}
+
+.vorosK {
+    background-color: var(--szin-keret-voros);
+    color: white;
+}
+
+.vorosK2 {
+    background-color: var(--szin-keret2-voros);
+    color: white;
+}
+
+.vorosH{
+    .aktivValaszto {
+        background-color: var(--szin-hover-voros);
+    }
+    .aktivTema{
+        background-color: var(--szin-hover-voros);
+    }
+}
+
+.vorosH:hover {
+    background-color: var(--szin-hover-voros);
+    p.adat{
+        color:white;
+    }
+}
+
+.vorosH:active {
+    background-color: var(--szin-active-voros);
+}
+
+.vorosBg {
+    background-color: var(--szin-background-voros);
+}
+
+.vorosBetu {
+    color: var(--szin-betu-voros);
+    h1,h2,p{
+        color: var(--szin-betu-voros);
+    }
+    p.aktiv.egyszeru::after , p.aktiv.reszletes::after {
+        background-color: #ffffff;
+    }
+    .kozep p:hover::after {
+        background-color: #7a7979;
+    }
+}
+
+.vorosG::-webkit-scrollbar-track {
+    background-color: var(--szin-gorduloSav-voros);
+}
+
+.vorosG::-webkit-scrollbar-thumb {
+    background-color: var(--szin-gorduloGomb-voros);
+    min-height: 100px;
+}
+
+.vorosG::-webkit-scrollbar-thumb:hover {
+    background-color: var(--szin-gorduloGombH-voros); 
+}
+
+.vorosHr {
+    border: 0.5px solid white;
 }
 
 
+/* BODY */
 body {
     box-sizing: border-box;
     margin: auto;
     padding: auto;
-    background-color: rgb(29, 29, 29);
     overflow: hidden;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 .tartalom {
@@ -41,17 +286,8 @@ body {
     width: 10px;
 }
 
-.tartalom::-webkit-scrollbar-track {
-    background-color: rgb(48, 48, 48);
-}
-
 .tartalom::-webkit-scrollbar-thumb {
-    background: #888;
     border-radius: 32px;
-}
-
-.tartalom::-webkit-scrollbar-thumb:hover {
-    background: #555; 
 }
 
 .tartalom-nelkul{
@@ -66,12 +302,12 @@ body {
     display: none;
 }
 
+/* NAVIGÁCIÓ */
 .nav-sav {
     position: fixed;
     width: 100%;
     height: 5.5rem;
     top: 0;
-    background-color: var(--szin-navsav);
     z-index: 2;
     user-select: none;
 }
@@ -98,7 +334,6 @@ body {
 .nav-link {
     text-decoration: none;
     font-family: var(--betutipus-alap);
-    color: white;
 }
 
 .nav-link img {
@@ -114,7 +349,6 @@ body {
     font-size: var(--betumeret-logoszoveg);
     font-family: Lilita One;
     font-style: italic;
-    color: white;
 }
 
 .nav-cim>img {
@@ -156,7 +390,6 @@ body {
     font-size: var(--betumeret-regjel);
     font-family: var(--betutipus-alap);
     cursor: default;
-    color: white;
 }
 
 .bejel-lenyilo {
@@ -166,7 +399,6 @@ body {
     margin-left: calc(100vw - 200px);
     border-radius: 10px;
     z-index: 1;
-    background-color: var(--szin-navsav);
 }
 
 
@@ -180,12 +412,14 @@ body {
 
 .bejel-lenyilo ul li {
     display: flex;
+    margin: 0;
+    padding: 0;
     width: 100%;
     align-items: center;
     cursor: pointer;
     transition: background-color 0.1s;
+    border-radius: 7px;
     gap: 5px;
-
 }
 
 .bejel-lenyilo a {
@@ -196,7 +430,6 @@ body {
     text-decoration: none;
     font-size: var(--betumeret-alap);
     font-family: var(--betutipus-alap);
-    color: white;
 }
 
 .bejel-lenyilo img {
@@ -204,11 +437,9 @@ body {
     padding: 10px;
 }
 
-
 .nav-fo li:hover, .nav-regjel li:hover {
     transform: scale(1.1);
     border-radius: 4px;
-    background-color: var(--szin-hover);
 }
 
 .nav-fo li:hover img, .nav-regjel li:hover img {
@@ -219,30 +450,30 @@ body {
 .nav-fo li:active, .nav-regjel li:active {
     transform: scale(1);
     border-radius: 4px;
-    background-color: rgb(65, 65, 65);
 }
 
-.nav-bejel img:active {
+.nav-bejel img:hover, .nav-bejel img:active {
     border-radius: 32px;
-    background-color: var(--szin-hover);
 }
 
 .bejel-lenyilo li:hover {
-    border-radius: 4px;
-    background-color: var(--szin-hover);
+    border-radius: 7px;
+}
+
+/* FOOTER */
+.tartalom-nelkul footer{
+    margin-top: 100vh;
 }
 
 footer {
     width: 100%;
-    height: 150px;
+    height: 180px;
     display: flex;
     margin-top: 50px;
     align-items: center;
     text-align: center;
     font-size: var(--betumeret-regjel);
     font-family: var(--betutipus-alap);
-    color: white;
-    background-color: var(--szin-footersav);
 }
 
 .tartalom-nelkul footer{
@@ -252,7 +483,6 @@ footer {
 .footer-keret {
     width: 100%;
     display: flex;
-    justify-content: space-between;
     gap: 10vw;
 }
 
@@ -272,19 +502,36 @@ footer ul {
 
 footer a {
     display: block;
-    margin-top: 5px;
+    margin-top: 15px;
     text-decoration: none;
-    color: white;
+}
+
+footer #bal {
+    display: inline;
+}
+
+footer #nagy {
+    width: 27px;
+    height: 27px;
+    margin-top: -5px;
+    margin-bottom: 5px;
 }
 
 footer img {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
+    width: 35px;
+    height: 35px;
     vertical-align: middle;
-
+    gap: 20px;
 }
 
 footer a:hover {
     text-decoration: underline;
+}
+
+/* EGYÉB */
+.keret {
+    width: 40%;
+    margin: 50px auto 125px auto;
+    font-family: var(--betutipus-alap);
+    font-size: var(--betumeret-fo);
 }

@@ -11,7 +11,6 @@
     margin-top: -88px;
     margin-bottom: 40px;
     border-radius: 70px;
-    background-color: var(--szin-keret);
 }
 
 h1, h2{
@@ -19,7 +18,6 @@ h1, h2{
     font-family: var(--betutipus-alap);
     font-weight: normal;
     user-select: none;
-    color: white;
 }
 
 h2{
@@ -32,7 +30,6 @@ p{
     font-family: var(--betutipus-alap);
     font-weight: normal;
     user-select: none;
-    color: white;
 }
 
 p.adat{
@@ -91,7 +88,6 @@ p.adat{
     user-select: none;
 }
 
-
 ul.valaszto{
     display: flex;
     margin: 0;
@@ -101,36 +97,19 @@ ul.valaszto{
 }
 
 .valaszto li{
-    margin: 0 10px;
     padding: 5px 10px;
     font-family: var(--betutipus-alap);
     font-size:  var(--betumeret-fo);
     border-radius: 5px;
     cursor: pointer;
     user-select: none;
-    color: white;
     transition: background-color 0.2s;
 }
-
-.valaszto li:hover{
-    background-color: var(--szin-hover);
+.valaszto>div{
+    margin: 0 5px 0 5px;
+    border-radius: 5px;
 }
 
-.aktivValaszto{
-    background-color: grey;
-}
-
-.opcio:hover{
-    background-color: rgb(80, 80, 80);
-    p.adat{
-        color:white;
-    }
-}
-
-.temaElem:hover{
-    background-color: rgb(80, 80, 80);
-}
-
-.aktivTema{
-    background-color: rgb(80, 80, 80);
+.opcioTema>div{
+    border-radius: 15px;
 }

@@ -1,11 +1,3 @@
-.keret{
-    width: 40%;
-    margin: 50px auto;
-    font-family: var(--betutipus-alap);
-    font-size: var(--betumeret-fo);
-    color: white;
-}
-
 h1 {
     text-align: left;
     font-weight: normal;
@@ -23,7 +15,6 @@ h1 {
     cursor: pointer;
     user-select: none;
     z-index: 1;
-    background-color: var(--szin-keret);
 }
 
 img{
@@ -44,5 +35,4 @@ img{
     text-align: justify;
     border-radius: 10px;
     z-index: 0;
-    background-color: rgb(59, 59, 59);
 }

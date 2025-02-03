@@ -1,4 +1,27 @@
 .nav-versenyzok{
     border-radius: 4px;
-    background-color: rgb(146, 146, 146);
+}
+
+.nav-versenyzok.feketeH {
+    background-color: var(--szin-hover-sotet);
+}
+
+.nav-versenyzok.feketeH:active {
+    background-color: var(--szin-active-sotet);
+}
+
+.nav-versenyzok.feherH {
+    background-color: var(--szin-hover-vilagos);
+}
+
+.nav-versenyzok.feherH:active {
+    background-color: var(--szin-active-vilagos);
+}
+
+.nav-versenyzok.vorosH {
+    background-color: var(--szin-hover-voros);
+}
+
+.nav-versenyzok.vorosH:active {
+    background-color: var(--szin-active-voros);
 }

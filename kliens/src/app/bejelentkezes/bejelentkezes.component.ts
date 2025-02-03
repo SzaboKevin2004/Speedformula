@@ -5,15 +5,16 @@ import { AuthService } from '../auth.service';
 import { Router, RouterModule} from '@angular/router';
 
 @Component({
-  selector: 'app-bejelentkezes',
-  standalone: true,
-  imports: [RouterModule, FormsModule, CommonModule],
-  templateUrl: './bejelentkezes.component.html',
-  styleUrl: './bejelentkezes.component.css',
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-bejelentkezes',
+    imports: [RouterModule, FormsModule, CommonModule],
+    templateUrl: './bejelentkezes.component.html',
+    styleUrl: './bejelentkezes.component.css',
+    encapsulation: ViewEncapsulation.None
 })
 export class BejelentkezesComponent {
-  identifier: string = '';
+  identifier: string =  '';
+  felhasznalonev: string = '';
+  email: string = '';
   password: string = '';
   hiba: boolean = false;
   hibaUzenet: string = '';
@@ -26,10 +27,18 @@ export class BejelentkezesComponent {
   bejelentkezes() {
     this.hiba = false;
     this.hibaUzenet = '';
-    
+
+    if(this.identifier.includes('@')){
+      this.email = this.identifier;
+      this.felhasznalonev = '';
+    } else {
+      this.felhasznalonev = this.identifier;
+      this.email = '';
+    }
 
     const loginData = {
-      identifier: this.identifier,
+      felhasznalonev: this.felhasznalonev,
+      email: this.email,
       password: this.password
     };
 
@@ -43,9 +52,7 @@ export class BejelentkezesComponent {
         this.authService.setFelhasznaloNev(response.username);
         this.authService.setPfpId(response.pfp);
         this.authService.setBejelentkezettE(true);
-        setTimeout(() => {
-          this.router.navigate(['/']);
-        }, 1500);
+        this.router.navigate(['/']);
       },
       error: (err) => {
         this.hiba = true;

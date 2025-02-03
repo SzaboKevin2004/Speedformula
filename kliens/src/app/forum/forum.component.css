@@ -1,4 +1,27 @@
 .nav-forum{
     border-radius: 4px;
-    background-color: rgb(146, 146, 146);
+}
+
+.nav-forum.feketeH {
+    background-color: var(--szin-hover-sotet);
+}
+
+.nav-forum.feketeH:active {
+    background-color: var(--szin-active-sotet);
+}
+
+.nav-forum.feherH {
+    background-color: var(--szin-hover-vilagos);
+}
+
+.nav-forum.feherH:active {
+    background-color: var(--szin-active-vilagos);
+}
+
+.nav-forum.vorosH {
+    background-color: var(--szin-hover-voros);
+}
+
+.nav-forum.vorosH:active {
+    background-color: var(--szin-active-voros);
 }

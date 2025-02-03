@@ -1,24 +1,24 @@
-<div class="tartalom">
-    <div class="keret">
+<div class="tartalom" [ngClass]="temaSzinGordulo">
+    <div class="keret" [ngClass]="temaSzinBetu">
         <h1>Rólunk</h1>
         <div class="rolunk-tartalom">
             <div class="sor">
                 <div class="kep">
                     <img src="../../assets/img/pfp_david.png">
-                    Horváth Dávid
+                    <p>Horváth Dávid</p>
                 </div>
-                <div class="szoveg">
+                <div class="szoveg" [ngClass]="temaSzin">
                 </div>
             </div>
             <div class="sor">
-                <div class="szoveg">
+                <div class="szoveg" [ngClass]="temaSzin">
                     A Forma 1 iránti szenvedélyem a Mercedes versenyeinek követésével kezdődött, különösen Lewis Hamilton teljesítménye miatt.
                     Az izgalom és a technológiai innováció folyamatosan inspirál, és mindig új részleteket fedezek fel a sportágban.
                     Az oldalon szeretném megteremteni a lehetőséget, hogy a rajongók összegyűljenek és egy közösséget alkossanak, ahol közösen élhetik át a sport izgalmait és örömeit.
                 </div>
                 <div class="kep">
                     <img src="../../assets/img/pfp_kevin.jpg">
-                    Szabó Kevin
+                    <p>Szabó Kevin</p>
                 </div>
             </div>
         </div>

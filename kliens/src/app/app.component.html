@@ -1,53 +1,61 @@
 <div *ngIf="navMegjelenites">
-<nav class="nav-sav">
+<nav class="nav-sav" [ngClass]="temaSzinN">
   <div class="nav-keret">
-    <a class="nav-cim" routerLink="/" (click)="profilMenuHA()">
+    <a class="nav-cim" [ngClass]="temaSzinBetu" routerLink="/" (click)="profilMenuHA()">
       <img src="../assets/img/logo.png">SpeedFormula
       </a>
 
       <ul class="nav-fo">
-        <li class="nav-elo" (click)="profilMenuHA()">
-          <a class="nav-link" routerLink="/elo">
-            <img src="../assets/icons/camera-white.png">
+        <li [ngClass]="temaSzinHover" class="nav-elo" (click)="profilMenuHA()">
+          <a class="nav-link" [ngClass]="temaSzinBetu" routerLink="/elo">
+            <img src="../assets/icons/camera-white.png" *ngIf="sotet || voros">
+            <img src="../assets/icons/camera.png" *ngIf="vilagos">
             ÉLŐ</a>
         </li>
-        <li class="nav-hirek" (click)="profilMenuHA()">
-          <a class="nav-link" routerLink="/hirek">
-            <img src="../assets/icons/news-white.png">
+        <li [ngClass]="temaSzinHover" class="nav-hirek" (click)="profilMenuHA()">
+          <a class="nav-link" [ngClass]="temaSzinBetu" routerLink="/hirek">
+            <img src="../assets/icons/news-white.png" *ngIf="sotet || voros">
+            <img src="../assets/icons/news.png" *ngIf="vilagos">
             Hírek</a>
         </li>
-        <li class="nav-versenyzok" (click)="profilMenuHA()">
-          <a class="nav-link" routerLink="/versenyzok">
-            <img src="../assets/icons/pilot-white.png">
+        <li [ngClass]="temaSzinHover" class="nav-versenyzok" (click)="profilMenuHA()">
+          <a class="nav-link" [ngClass]="temaSzinBetu" routerLink="/versenyzok">
+            <img src="../assets/icons/pilot-white.png" *ngIf="sotet || voros">
+            <img src="../assets/icons/pilot.png" *ngIf="vilagos">
             Versenyzők</a>
         </li>
-        <li class="nav-csapatok" (click)="profilMenuHA()">
-          <a class="nav-link" routerLink="/csapatok">
-            <img src="../assets/icons/teams-white.png">
+        <li [ngClass]="temaSzinHover" class="nav-csapatok" (click)="profilMenuHA()">
+          <a class="nav-link" [ngClass]="temaSzinBetu" routerLink="/csapatok">
+            <img src="../assets/icons/teams-white.png" *ngIf="sotet || voros">
+            <img src="../assets/icons/teams.png" *ngIf="vilagos">
             Csapatok</a>
         </li>
-        <li class="nav-tortenet" (click)="profilMenuHA()">
-          <a class="nav-link" routerLink="/tortenet">
-            <img src="../assets/icons/history-white.png">
+        <li [ngClass]="temaSzinHover" class="nav-tortenet" (click)="profilMenuHA()">
+          <a class="nav-link" [ngClass]="temaSzinBetu" routerLink="/tortenet">
+            <img src="../assets/icons/history-white.png" *ngIf="sotet || voros">
+            <img src="../assets/icons/history.png" *ngIf="vilagos">
             Történet</a>
         </li>
-        <li class="nav-forum" (click)="profilMenuHA()">
-          <a class="nav-link" routerLink="/forum">
-            <img src="../assets/icons/forum-white.png">
+        <li [ngClass]="temaSzinHover" class="nav-forum" (click)="profilMenuHA()">
+          <a class="nav-link" [ngClass]="temaSzinBetu" routerLink="/forum">
+            <img src="../assets/icons/forum-white.png" *ngIf="sotet || voros">
+            <img src="../assets/icons/forum.png" *ngIf="vilagos">
             Fórum</a>
         </li>
       </ul>
 
-      <div *ngIf="bejelentkezesMegjelenites">
+      <div [ngStyle]="{display: bejelentkezesMegjelenites ? 'flex' : 'none'}">
         <ul class="nav-regjel">
-        <li>
-          <a class="nav-link" routerLink="/regisztracio">
-            <img src="../assets/icons/register-white.png">
+        <li [ngClass]="temaSzinHover">
+          <a class="nav-link" [ngClass]="temaSzinBetu" routerLink="/regisztracio">
+            <img src="../assets/icons/register-white.png" *ngIf="sotet || voros">
+            <img src="../assets/icons/register-black.png" *ngIf="vilagos">
             Regisztráció</a>
         </li>
-        <li>
-          <a class="nav-link" routerLink="/bejelentkezes">
-            <img src="../assets/icons/login-white.png">
+        <li [ngClass]="temaSzinHover">
+          <a class="nav-link" [ngClass]="temaSzinBetu" routerLink="/bejelentkezes">
+            <img src="../assets/icons/login-white.png" *ngIf="sotet || voros">
+            <img src="../assets/icons/login-black.png" *ngIf="vilagos">
             Bejelentkezés</a>
         </li>
         </ul>
@@ -56,8 +64,8 @@
       <div class="nav-bejel" *ngIf="profilMegjelenites">
         <ul>
         <li>
-          <p>{{felhasznaloNev}}</p>
-          <img [src]= "'../assets/pfp/' + randomKep" id="felhasznalo-kep" (click)="profilMenu()">
+          <p [ngClass]="temaSzinBetu">{{felhasznaloNev}}</p>
+          <img [ngClass]="temaSzinHover" [src]= "randomKep" id="felhasznalo-kep" (click)="profilMenu()">
         </li>
         </ul>
       </div>
@@ -65,21 +73,23 @@
     </div>
 </nav>
 
-<div class="bejel-lenyilo" [ngStyle]="{display: profilMenuMegjelenites ? 'flex' : 'none'}">
+<div class="bejel-lenyilo" [ngClass]="temaSzinN" [ngStyle]="{display: profilMenuMegjelenites ? 'flex' : 'none'}">
   <ul>
-  <li (click)="profilMenu()">
-    <img [src]= "'../assets/pfp/' + randomKep" width="39px" height="39px">
-    <a routerLink="/profil">
+  <li [ngClass]="temaSzinHover" (click)="profilMenu()">
+    <img [src]= "randomKep" width="39px" height="39px" routerLink="/profil">
+    <a [ngClass]="temaSzinBetu" routerLink="/profil">
      Fórum profil</a>
   </li>
-  <li (click)="profilMenu()">
-    <img src="../assets/icons/setting-white.png" width="35px" height="35px">
-    <a routerLink="/beallitasok">
+  <li [ngClass]="temaSzinHover" (click)="profilMenu()">
+    <img src="../assets/icons/setting-white.png" width="35px" height="35px" routerLink="/beallitasok" *ngIf="sotet || voros">
+    <img src="../assets/icons/setting.png" width="35px" height="35px" routerLink="/beallitasok" *ngIf="vilagos">
+    <a [ngClass]="temaSzinBetu" routerLink="/beallitasok">
     Beállítások</a>
   </li>
-  <li (click)="kijelentkezes()" (click)="profilMenu()">
-    <img src="../assets/icons/logout-white.png" width="35px" height="35px">
-    <a id="kijelentkezes">
+  <li [ngClass]="temaSzinHover" (click)="kijelentkezes()" (click)="profilMenu()">
+    <img src="../assets/icons/logout-white.png" width="35px" height="35px" id="kijelentkezes" *ngIf="sotet || voros">
+    <img src="../assets/icons/logout.png" width="35px" height="35px" id="kijelentkezes" *ngIf="vilagos">
+    <a [ngClass]="temaSzinBetu" id="kijelentkezes">
     Kijelentkezés</a>
   </li>
   </ul>

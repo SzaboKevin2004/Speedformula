@@ -1,14 +1,33 @@
 .nav-tortenet {
     border-radius: 4px;
-    background-color: rgb(146, 146, 146);
+}
+
+.nav-tortenet.feketeH {
+    background-color: var(--szin-hover-sotet);
+}
+
+.nav-tortenet.feketeH:active {
+    background-color: var(--szin-active-sotet);
+}
+
+.nav-tortenet.feherH {
+    background-color: var(--szin-hover-vilagos);
+}
+
+.nav-tortenet.feherH:active {
+    background-color: var(--szin-active-vilagos);
+}
+
+.nav-tortenet.vorosH {
+    background-color: var(--szin-hover-voros);
+}
+
+.nav-tortenet.vorosH:active {
+    background-color: var(--szin-active-voros);
 }
 
 .keret {
     width: 50%;
-    margin: 50px auto 0 auto;
-    font-family: var(--betutipus-alap);
-    font-size: var(--betumeret-fo);
-    color: white;
 }
 
 h1 {
@@ -29,7 +48,6 @@ h2 {
     text-decoration: none;
     font-family: var(--betutipus-alap);
     font-size: var(--betumeret-fo);
-    color: white;
     cursor: pointer;
 }
 
@@ -47,7 +65,6 @@ h2 {
     content: "";
     border-radius: 8px;
     transform: translateX(-50%);
-    background-color: #ffffff;
 }
 
 .kozep p:hover::after {
@@ -59,7 +76,6 @@ h2 {
     content: "";
     border-radius: 8px;
     transform: translateX(-50%);
-    background-color: #7a7979;
 }
 
 #kezdoszoveg{
@@ -73,7 +89,7 @@ h2 {
     margin-top: 20px;
     padding: 20px 20px 20px 20px;
     border-radius: 60px;
-    background-color: var(--szin-keret);
+    
 }
 
 .buborek h2 {
@@ -142,14 +158,10 @@ h2 {
 .reszletes-t #ev {
     text-align: center;
 }
-  
-.reszletes-t th {
-    background-color: rgb(37, 37, 37);
-}
 
 .reszletes-t td {
     text-align: justify;
-    background-color: rgb(46, 46, 46);
+    
 }
 
 .reszletes-t th:nth-child(1),

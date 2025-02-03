@@ -1,12 +1,12 @@
-<div class="tartalom">
-    <div class="keret">
-        <h1>Történet</h1>
+<div class="tartalom" [ngClass]="temaSzinGordulo">
+    <div class="keret" [ngClass]="temaSzinBetu">
+        <h1 [ngClass]="temaSzinBetu">Történet</h1>
         <div class="kozep">
             <p class="egyszeru" [ngClass]="{ 'aktiv': egyszeru }" (click)="egyszeruClick()">Egyszerű</p>
             <p class="reszletes" [ngClass]="{ 'aktiv': reszletes }" (click)="reszletesClick()">Részletes</p>
         </div>
         <div *ngIf="egyszeru" class="egyszeru-tartalom" >
-            <h2>Kialakulása</h2>
+            <h2 >Kialakulása</h2>
             <p id="kezdoszoveg">Miután megszülettek az új technikai csodák, az autók, az emberek hamar felfedezték az autóversenyzés örömeit.
                 Az első verseny után nem sokkal, 1906-ban, az első nagydíjat is megrendezték. Nyertese a Renault gyár alkalmazottja, a magyar származású Szisz Ferenc volt. Egy évvel később megnyílt az első versenypálya, a Brooklands.
                 1911-ben a másik földrészen először rendezték meg a legendás Indy 500-at. Az autóversenyzési láz az I. világháború miatt egy darabig szünetelt. 1919-ben újraéledtek a versenypályák, majd 1925-ben megnyílt Belgiumban Spa-Francorchamps.
@@ -17,7 +17,7 @@
                 A szövetség új keretbe foglalta az autóversenyzést, és az új szabálynak, vagyis formulának az 1-es számot adták.
                 Eleinte csupán egymástól független Grand Prix-k kerültek megrendezésre, majd 1950-ben elindult a világ legnagyobb, legismertebb szériája, a Formula-1. Az első versenynek egy második világháborús repülőtér, Silverstone adott otthont.
             </p>
-            <div class="buborek">
+            <div class="buborek" [ngClass]="temaSzin">
                 <h2>Az 1950-es évek</h2>
                 <div class="btartalom">
                     <img src="../../assets/img/tortenet1.jpg" alt="">
@@ -26,7 +26,7 @@
                     </p>
                 </div>
             </div>
-            <div class="buborek">
+            <div class="buborek" [ngClass]="temaSzin">
                 <h2>Az 1960-as évek</h2>
                 <div class="btartalom">
                     <p>
@@ -35,7 +35,7 @@
                     <img src="../../assets/img/tortenet2.jpg" alt="">
                 </div>
             </div>
-            <div class="buborek">
+            <div class="buborek" [ngClass]="temaSzin">
                 <h2>Az 1970-es évek</h2>
                 <div class="btartalom">
                     <img src="../../assets/img/tortenet3.jpg" alt="">
@@ -44,7 +44,7 @@
                     </p>
                 </div>
             </div>
-            <div class="buborek">
+            <div class="buborek" [ngClass]="temaSzin">
                 <h2>Az 1980-as évek</h2>
                 <div class="btartalom">
                     <p>
@@ -53,7 +53,7 @@
                     <img src="../../assets/img/tortenet4.jpg" alt="">
                 </div>
             </div>
-            <div class="buborek">
+            <div class="buborek" [ngClass]="temaSzin">
                 <h2>Az 1990-es évek</h2>
                 <div class="btartalom">
                     <img src="../../assets/img/tortenet5.jpg" alt="">
@@ -62,7 +62,7 @@
                     </p>
                 </div>
             </div>
-            <div class="buborek">
+            <div class="buborek" [ngClass]="temaSzin">
                 <h2>A 2000-es évek</h2>
                 <div class="btartalom">
                     <p id="tobbszoveg">
@@ -74,7 +74,7 @@
                     </div>
                 </div>
             </div>
-            <div class="buborek">
+            <div class="buborek" [ngClass]="temaSzin">
                 <h2>A 2010-es évek</h2>
                 <div class="btartalomzaro">
                     <p>
@@ -101,33 +101,33 @@
         </div>
 
         <div *ngIf="reszletes" class="reszletes-tartalom">
-            <h2>Előzmények</h2>
+            <h2 [ngClass]="temaSzinBetu">Előzmények</h2>
             <table class="reszletes-t">
                 <thead>
                     <tr>
-                        <th id="ev">Év</th>
-                        <th>Események</th>
+                        <th id="ev" [ngClass]="temaSzin">Év</th>
+                        <th [ngClass]="temaSzin">Események</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let el of elozmenyek">
-                        <td id="ev">{{ el.ev }}</td>
-                        <td>{{ el.esemenyek }}</td>
+                        <td id="ev" [ngClass]="temaSzin2">{{ el.ev }}</td>
+                        <td [ngClass]="temaSzin2">{{ el.esemenyek }}</td>
                     </tr>
                 </tbody>
             </table>
-            <h2>1950-es évek</h2>
+            <h2 [ngClass]="temaSzinBetu">1950-es évek</h2>
             <table class="reszletes-t">
                 <thead>
                     <tr>
-                        <th id="ev">Év</th>
-                        <th>Események</th>
+                        <th id="ev" [ngClass]="temaSzin">Év</th>
+                        <th [ngClass]="temaSzin">Események</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let el of ev50">
-                        <td id="ev">{{ el.ev }}</td>
-                        <td>{{ el.esemenyek }}</td>
+                        <td id="ev" [ngClass]="temaSzin2">{{ el.ev }}</td>
+                        <td [ngClass]="temaSzin2">{{ el.esemenyek }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -135,14 +135,14 @@
             <table class="reszletes-t">
                 <thead>
                     <tr>
-                        <th id="ev">Év</th>
-                        <th>Események</th>
+                        <th id="ev" [ngClass]="temaSzin">Év</th>
+                        <th [ngClass]="temaSzin">Események</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let el of ev60">
-                        <td id="ev">{{ el.ev }}</td>
-                        <td>{{ el.esemenyek }}</td>
+                        <td id="ev" [ngClass]="temaSzin2">{{ el.ev }}</td>
+                        <td [ngClass]="temaSzin2">{{ el.esemenyek }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -150,14 +150,14 @@
             <table class="reszletes-t">
                 <thead>
                     <tr>
-                        <th id="ev">Év</th>
-                        <th>Események</th>
+                        <th id="ev" [ngClass]="temaSzin">Év</th>
+                        <th [ngClass]="temaSzin">Események</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let el of ev70">
-                        <td id="ev">{{ el.ev }}</td>
-                        <td>{{ el.esemenyek }}</td>
+                        <td id="ev" [ngClass]="temaSzin2">{{ el.ev }}</td>
+                        <td [ngClass]="temaSzin2">{{ el.esemenyek }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -165,14 +165,14 @@
             <table class="reszletes-t">
                 <thead>
                     <tr>
-                        <th id="ev">Év</th>
-                        <th>Események</th>
+                        <th id="ev" [ngClass]="temaSzin">Év</th>
+                        <th [ngClass]="temaSzin">Események</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let el of ev80">
-                        <td id="ev">{{ el.ev }}</td>
-                        <td>{{ el.esemenyek }}</td>
+                        <td id="ev" [ngClass]="temaSzin2">{{ el.ev }}</td>
+                        <td [ngClass]="temaSzin2">{{ el.esemenyek }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -180,14 +180,14 @@
             <table class="reszletes-t">
                 <thead>
                     <tr>
-                        <th id="ev">Év</th>
-                        <th>Események</th>
+                        <th id="ev" [ngClass]="temaSzin">Év</th>
+                        <th [ngClass]="temaSzin">Események</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let el of ev90">
-                        <td id="ev">{{ el.ev }}</td>
-                        <td>{{ el.esemenyek }}</td>
+                        <td id="ev" [ngClass]="temaSzin2">{{ el.ev }}</td>
+                        <td [ngClass]="temaSzin2">{{ el.esemenyek }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -195,14 +195,14 @@
             <table class="reszletes-t">
                 <thead>
                     <tr>
-                        <th id="ev">Év</th>
-                        <th>Események</th>
+                        <th id="ev" [ngClass]="temaSzin">Év</th>
+                        <th [ngClass]="temaSzin">Események</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let el of ev2000">
-                        <td id="ev">{{ el.ev }}</td>
-                        <td>{{ el.esemenyek }}</td>
+                        <td id="ev" [ngClass]="temaSzin2">{{ el.ev }}</td>
+                        <td [ngClass]="temaSzin2">{{ el.esemenyek }}</td>
                     </tr>
                 </tbody>
             </table>

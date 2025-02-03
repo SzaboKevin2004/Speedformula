@@ -5,20 +5,17 @@ import { AuthService } from '../auth.service';
 import { Router, RouterModule} from '@angular/router';
 
 @Component({
-  selector: 'app-regisztracio',
-  standalone: true,
-  imports: [RouterModule, FormsModule, CommonModule],
-  templateUrl: './regisztracio.component.html',
-  styleUrls: ['./regisztracio.component.css'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-regisztracio',
+    imports: [RouterModule, FormsModule, CommonModule],
+    templateUrl: './regisztracio.component.html',
+    styleUrls: ['./regisztracio.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class RegisztracioComponent {
-  first_name: string = '';
-  last_name: string = '';
-  username: string = '';
+  felhasznalonev: string = '';
   email: string = '';
   password: string = '';
-  confirmPassword: string = '';
+  confirm_password: string = '';
   hiba: boolean = false;
   hibaUzenet: string = '';
   siker: boolean = false;
@@ -32,12 +29,11 @@ export class RegisztracioComponent {
     this.hibaUzenet = '';
 
     const regisztracioData = {
-      first_name: this.first_name,
-      last_name: this.last_name,
-      username: this.username,
+      felhasznalonev: this.felhasznalonev,
       email: this.email,
       password: this.password,
-      confirmPassword: this.confirmPassword,
+      confirm_password: this.confirm_password,
+      kep: Math.floor(Math.random() * 23)
     };
 
     this.authService.regisztracio(regisztracioData).subscribe({
@@ -47,7 +43,7 @@ export class RegisztracioComponent {
         this.sikerUzenet = "Sikeres regisztráció!";
         console.log('Regisztráció sikeres');
         setTimeout(() => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/bejelentkezes']);
         }, 1500);
       },
       error: (err) => {

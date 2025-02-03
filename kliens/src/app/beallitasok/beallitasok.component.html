@@ -1,66 +1,63 @@
-<div class="tartalom">
-    <div class="keret">
+<div class="tartalom" [ngClass]="temaSzinBetu">
+    <div class="keret" [ngClass]="temaSzin">
             <h1>Beállítások</h1>
-            <ul class="valaszto">
-                <li (click)="fiokMegjelenites()" [ngClass]="{'aktivValaszto' : fiok}">Fiók</li>
-                <li (click)="profilMegjelenites()" [ngClass]="{'aktivValaszto' : profil}">Profil</li>
-                <li (click)="temaMegjelenites()"  [ngClass]="{'aktivValaszto' : tema}">Téma</li>
+            <ul class="valaszto" [ngClass]="temaSzin">
+                <div [ngClass]="temaSzinHover"><li (click)="fiokMegjelenites()" [ngClass]="{'aktivValaszto' : fiok}">Fiók</li></div>
+                <div [ngClass]="temaSzinHover"><li (click)="profilMegjelenites()" [ngClass]="{'aktivValaszto' : profil}">Profil</li></div>
+                <div [ngClass]="temaSzinHover"><li (click)="temaMegjelenites()"  [ngClass]="{'aktivValaszto' : tema}">Téma</li></div>
             </ul>
         <div class="fiok" *ngIf="fiok">
             <h2>Általános</h2>
-            <div class="opcio">
-                <p>Vezetéknév</p>
-                <p class="adat">Szabó</p>
-            </div>
-            <div class="opcio">
-                <p>Keresztnév</p>
-                <p class="adat">Kevin</p>
-            </div>
-            <div class="opcio">
+            <div class="opcio" [ngClass]="temaSzinHover">
                 <p>E-mail-cím</p>
                 <p class="adat">szabokevin&#64;gmail.com</p>
             </div>
-            <div class="opcio">
+            <div class="opcio" [ngClass]="temaSzinHover">
                 <p>Jelszó</p>
                 <p class="adat">* * * * * * * * * *</p>
             </div>
             <h2>Haladó</h2>
-            <div class="opcio" id="opcioTorles">
+            <div class="opcio" [ngClass]="temaSzinHover" id="opcioTorles">
                 <p id="fiokTorles">Fiók törlése</p>
             </div>
         </div>
         <div class="profil" *ngIf="profil">
             <h2>Általános</h2>
-            <div class="opcio">
+            <div class="opcio" [ngClass]="temaSzinHover">
                 <p>Felhasználónév</p>
                 <p class="adat">Nevem_senki</p>
             </div>
             <h2>Fórum</h2>
-            <div class="opcio">
+            <div class="opcio" [ngClass]="temaSzinHover">
                 <p>Bemutatkozás</p>
                 <p class="adat">..Huss, olyan vagyok, mint a ...</p>
-            </div>
-            <div class="opcio" (click)="teljesNevMegjelenites()">
-                <p>Teljes név megjelenítése</p>
-                <img class="gomb" *ngIf="!teljesNev" src="../../assets/icons/switch_off-white.png" draggable="false">
-                <img class="gomb" *ngIf="teljesNev" src="../../assets/icons/switch_on-white.png" draggable="false">
             </div>
         </div>
         <div class="tema" *ngIf="tema">
             <div class="opcioTema">
-                <div class="temaElem" (click)="vilagosMegjelenites()" [ngClass]="{'aktivTema': vilagos}">
-                    <img src="../../assets/icons/theme-vilagos-black.png" class="temaIkon" draggable="false">
-                    <p>Világos</p>
+                <div [ngClass]="temaSzinHover">
+                    <div class="temaElem" (click)="vilagosMegjelenites()" [ngClass]="{'aktivTema': vilagos}">
+                        <img src="../../assets/icons/theme-vilagos-black.png" *ngIf="sotet || voros" class="temaIkon" draggable="false">
+                        <img src="../../assets/icons/theme-vilagos.png" *ngIf="vilagos" class="temaIkon" draggable="false">
+                        <p>Világos</p>
+                    </div>
                 </div>
-                <div class="temaElem" (click)="sotetMegjelenites()" [ngClass]="{'aktivTema': sotet}">
-                    <img src="../../assets/icons/theme-sotet-black.png" class="temaIkon" draggable="false">
-                    <p>Sötét</p>
+                <div [ngClass]="temaSzinHover">
+                    <div class="temaElem" (click)="sotetMegjelenites()" [ngClass]="{'aktivTema': sotet}">
+                        <img src="../../assets/icons/theme-sotet-black.png" *ngIf="sotet || voros" class="temaIkon" draggable="false">
+                        <img src="../../assets/icons/theme-sotet.png" *ngIf="vilagos" class="temaIkon" draggable="false">
+                        <p>Sötét</p>
+                    </div>
                 </div>
-                <div class="temaElem" (click)="vorosMegjelenites()" [ngClass]="{'aktivTema': voros}">
-                    <img src="../../assets/icons/theme-voros-black.png" class="temaIkon" draggable="false">
-                    <p>Vörös</p>
+                <div [ngClass]="temaSzinHover">
+                    <div class="temaElem" (click)="vorosMegjelenites()" [ngClass]="{'aktivTema': voros}">
+                        <img src="../../assets/icons/theme-voros-black.png" *ngIf="sotet || voros" class="temaIkon" draggable="false">
+                        <img src="../../assets/icons/theme-voros.png" *ngIf="vilagos" class="temaIkon" draggable="false">
+                        <p>Vörös</p>
+                    </div>
                 </div>
             </div>
+            <input type="button" (click)="temaModositas()">
         </div>
     </div>
 </div>

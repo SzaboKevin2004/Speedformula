@@ -1,0 +1,24 @@
+.keret h1 {
+    font-weight: normal;
+}
+
+.keret #bevezetes {
+    font-weight: normal;
+}
+
+.keret h2{
+    margin-top: 40px;
+}
+
+.keret p {
+    text-align: justify;
+}
+
+.keret li {
+    margin-bottom: 5px;
+}
+
+.keret-belso {
+    padding: 1px 30px 30px 30px;
+    border-radius: 30px;
+}

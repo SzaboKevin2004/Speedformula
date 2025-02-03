@@ -1,15 +1,75 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-gyik',
-  standalone: true,
-  imports: [ FooterComponent, CommonModule ],
-  templateUrl: './gyik.component.html',
-  styleUrl: './gyik.component.css'
+    selector: 'app-gyik',
+    imports: [FooterComponent, CommonModule],
+    templateUrl: './gyik.component.html',
+    styleUrl: './gyik.component.css'
 })
-export class GyikComponent {
+export class GyikComponent implements OnInit {
+  temaSzin: string = '';
+  temaSzin2: string = '';
+  temaSzinN: string = '';
+  temaSzinBetu: string = '';
+  temaSzinHover: string = '';
+  temaSzinGordulo: string = '';
+  sotet: boolean = true;
+  vilagos: boolean = false;
+  voros: boolean = false;
+
+  constructor(private authservice: AuthService) {}
+
+  ngOnInit() {
+    this.authservice.szamSzin$.subscribe( szam => {
+      if(szam === 1){
+        this.temaSzin = 'feketeK';
+        this.temaSzin2 = 'feketeK2';
+        this.temaSzinN = 'feketeN';
+        this.temaSzinBetu = 'feketeBetu';
+        this.temaSzinHover = 'feketeH';
+        this.temaSzinGordulo = 'feketeG';
+        this.sotet = true;
+        this.vilagos = false;
+        this.voros = false;
+      }
+      else if(szam === 2){
+        this.temaSzin = 'feherK';
+        this.temaSzin2 = 'feherK2';
+        this.temaSzinN = 'feherN';
+        this.temaSzinBetu = 'feherBetu';
+        this.temaSzinHover = 'feherH'
+        this.temaSzinGordulo = 'feherG';
+        this.sotet = false;
+        this.vilagos = true;
+        this.voros = false;
+      }
+      else if(szam === 3){
+        this.temaSzin = 'vorosK';
+        this.temaSzin2 = 'vorosK2';
+        this.temaSzinN = 'vorosN';
+        this.temaSzinBetu = 'vorosBetu';
+        this.temaSzinHover = 'vorosH';
+        this.temaSzinGordulo = 'vorosG';
+        this.sotet = false;
+        this.vilagos = false;
+        this.voros = true;
+      }else{
+        this.temaSzin = 'feketeK';
+        this.temaSzin2 = 'feketeK2';
+        this.temaSzinN = 'feketeN';
+        this.temaSzinBetu = 'feketeBetu';
+        this.temaSzinHover = 'feketeH';
+        this.temaSzinGordulo = 'feketeG';
+        this.sotet = true;
+        this.vilagos = false;
+        this.voros = false;
+      };
+    });
+  }
+
   elemek = [
     { 
       kerdes: 'Miért szikráznak az F1-es autók?',
