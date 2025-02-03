@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Jan 31. 11:13
+-- Létrehozás ideje: 2025. Feb 03. 08:41
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -34,6 +34,13 @@ CREATE TABLE `chat` (
   `createdAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- A tábla adatainak kiíratása `chat`
+--
+
+INSERT INTO `chat` (`id`, `felhasznalo_id`, `uzenet`, `createdAt`) VALUES
+(1, 5, 'just yoke ', '2025-02-03 07:39:25');
+
 -- --------------------------------------------------------
 
 --
@@ -55,8 +62,9 @@ CREATE TABLE `felhasználó` (
 --
 
 INSERT INTO `felhasználó` (`id`, `felhasznalonev`, `email`, `password`, `szerep_id`, `tema_id`, `kep`) VALUES
-(1, 'teszt123', 'tesztdavidhorvath@gmail.com', '$2b$10$TRz5lv0hNcVVj2VbaNGIdeiHOvbISssME3nK3xzWZAJGrmQ32.Sde', 2, 1, 1),
-(2, 'teszt1234', '1tesztdavidhorvath@gmail.com', '$2b$10$TpW6qD6Pf4SpoMfPwSGCaeZkhlEntqiEYftmz.zNPqAjwDh0/cSjC', 1, 1, 3);
+(3, 'szabvin', 'szabvink@gmail.com', '$2b$10$1HsX015BgJGujbdPHCxYjOrAXDmyT64j402XxlZZAFIkqLWZXd2BO', 2, 2, 2),
+(4, 'csokiskeksz', 'csoki@gmail.com', '$2b$10$QUyXCpF6n1w69WohUmqODerWDizYETlTg69rIfTL2fwC.XWNMaH7W', 2, 1, 0),
+(5, 'teszt1234', '1tesztdavidhorvath@gmail.com', '$2b$10$AaZ1mOOgzEUaOJ72FCextefKFk/fcCSj0NRcKRGMt4/KNDjlaH5jK', 1, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -107,7 +115,7 @@ ALTER TABLE `chat`
 --
 ALTER TABLE `felhasználó`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `felhasznalonev` (`felhasznalonev`),
+  ADD UNIQUE KEY `felhasználónév` (`felhasznalonev`),
   ADD UNIQUE KEY `email` (`email`),
   ADD KEY `szerep_id` (`szerep_id`);
 
@@ -133,13 +141,13 @@ ALTER TABLE `token`
 -- AUTO_INCREMENT a táblához `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT a táblához `felhasználó`
 --
 ALTER TABLE `felhasználó`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT a táblához `szerep`

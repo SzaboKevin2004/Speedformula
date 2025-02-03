@@ -40,9 +40,9 @@ const Felhasználó =  db.define(
         kep:{
             type: DataTypes.INTEGER,
         },
-        magamról:{
+        /*magamról:{
             type: DataTypes.STRING(150)
-        }
+        }*/
     },
     {
         tableName: "felhasználó",

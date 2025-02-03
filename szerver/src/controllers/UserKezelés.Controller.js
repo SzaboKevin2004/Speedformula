@@ -257,7 +257,6 @@ MásikProfilGetControler: async(req,res)=>{
                         felhasználó.password = await bcrypt.hash(req.body.password, 10);
                     }
                     
-                    
                     if(req.body.tema_id!==""){
                         felhasználó.tema_id=req.body.tema_id;
                     }

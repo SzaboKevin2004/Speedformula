@@ -97,7 +97,7 @@ export default{
     },
     ChatDeleteAll:async(req,res)=>{
         try{
-            await Chat.destroy({where: {}});
+            await Chat.truncate();
             res.status(200).json({
                 error: false,
                 message: "Összes üzenet sikeresen törölve!"
