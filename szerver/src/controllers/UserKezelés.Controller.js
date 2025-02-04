@@ -187,12 +187,15 @@ export default {
                     model: Szerep,
                     attributes: ['szerep_neve']
               }],
-              attributes:{exclude:['password']}
+              //attributes:{exclude:['password']}
             })
             if(!felhasználó){
                 return res.status(404).json({ error: true, message: "Felhasználó nem található!" });
             }
-            res.status(200).json({ error: false, message: "Sikeres profil lekérés!", felhasználó });
+            if(felhasználó.password){
+                felhasználó.password='*'.repeat(felhasználó.password.length);
+            }
+            return res.status(200).json({ error: false, message: "Sikeres profil lekérés!", felhasználó });
 
         }catch (error) {
                     if(error instanceof jwt.TokenExpiredError){
