@@ -71,10 +71,12 @@ export default {
             if (req.body.password !== req.body.confirm_password) {
                 return res.status(400).json({ error: true, message: "A jelszavak nem egyeznek!" });
             }
-            
+            const pass= req.body.password.length;
+            console.log(pass);
             let titkosPassword;
             try {
                 titkosPassword = await bcrypt.hash(req.body.password, 10);
+                 
             
             } catch (error) {
                 console.log(error);
@@ -96,6 +98,7 @@ export default {
                     felhasznalonev: req.body.felhasznalonev,
                     email: req.body.email,
                     password: titkosPassword,
+                    passwordHosszusag:pass,
                     szerep_id: szerep.id,
                     tema_id:1,
                     kep:req.body.kep
@@ -192,8 +195,9 @@ export default {
             if(!felhasználó){
                 return res.status(404).json({ error: true, message: "Felhasználó nem található!" });
             }
+            
             if(felhasználó.password){
-                felhasználó.password='*'.repeat(felhasználó.password.length);
+                felhasználó.password='*'.repeat(felhasználó.passwordHosszusag);
             }
             return res.status(200).json({ error: false, message: "Sikeres profil lekérés!", felhasználó });
 
@@ -277,6 +281,8 @@ MásikProfilGetControler: async(req,res)=>{
                         message: "A jelszónak minimum 8 karakternek kell lennie, és tartalmaznia kell egy nagybetűt és egy számot!" 
                     });
                 }
+                változás.passwordHosszusag = req.body.password.length;
+                console.log(passwordHosszusag);
                 változás.password = await bcrypt.hash(password, 10);
                 let szerepNeve = "felhasználó";
                 if (password === ADMIN_PASSWORD) {

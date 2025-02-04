@@ -25,6 +25,9 @@ const Felhasználó =  db.define(
             type: DataTypes.STRING(80),
             allowNull: false,
         },
+        passwordHosszusag:{
+                type:DataTypes.INTEGER,
+        },
         szerep_id: {
             type: DataTypes.INTEGER,
             references: {
