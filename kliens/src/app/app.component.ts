@@ -27,6 +27,12 @@ export class AppComponent implements OnInit {
   temaSzinHover: string = '';
   temaSzinGordulo: string = '';
   temaSzinHr: string = '';
+
+  lekertFelhasznalonev: string = '';
+  lekertEmail: string = '';
+  lekertPassword: string = '';
+  lekertTema_id: number = -1;
+  lekertKep: number = -1;
   
   constructor(private router: Router, private authservice: AuthService) {}
 
@@ -114,7 +120,6 @@ export class AppComponent implements OnInit {
 
     this.authservice.randomKep$.subscribe(kep => {
       this.randomKep = kep;
-      console.log(kep);
     });
 
     this.authservice.felhasznaloNev$.subscribe(nev => {

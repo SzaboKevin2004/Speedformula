@@ -26,7 +26,7 @@ export class AuthService {
   private felhasznaloNev = new BehaviorSubject<string>(""); 
   felhasznaloNev$ = this.felhasznaloNev.asObservable();
 
-  private szamSzin = new BehaviorSubject<number>(1); 
+  private szamSzin = new BehaviorSubject<number>(2); 
   szamSzin$ = this.szamSzin.asObservable();
 
   private uzenetekSubject = new BehaviorSubject<any[]>([]);
@@ -57,6 +57,37 @@ export class AuthService {
     }
   }
 
+  setToken(token: string) {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.setItem('token', token);
+    }
+  }
+
+  setBejelentkezettE(allapot: boolean) {
+    this.felhBejelentkezettE.next(allapot);
+  }
+
+  setPfpId(pfp: number) {
+    this.randomKep.next(this.kepEleres[pfp]);
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.setItem('pfp', pfp.toString());
+    }
+  }
+
+  setFelhasznaloNev(nev: string | undefined = '' ) {
+    this.felhasznaloNev.next(nev);
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.setItem('username', nev);
+    }
+  }
+
+  setTheme(tema: number) {
+    this.szamSzin.next(tema);
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.setItem('tema', tema.toString());
+    }
+  }
+
   regisztracio(regisztracioData: { felhasznalonev: string, email: string, password: string, confirm_password: string, kep: number }) {
     return this.http.post(`${this.url}/regist`, regisztracioData).pipe(
       catchError((error) => {
@@ -79,6 +110,22 @@ export class AuthService {
     );
   }
 
+  profilLekeres() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('Nincs bejelentkezett felhasználó!');
+    }
+    return this.http.get<any>(`${this.url}/profil`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      }
+    }).pipe(
+      catchError((error) => {
+        return throwError(() => error);
+      })
+    );
+  }
   profilModositas(
     felhasznalonev: string | undefined = undefined,
     email: string | undefined = undefined,
@@ -105,10 +152,22 @@ export class AuthService {
       );
   }
 
-  setToken(token: string) {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      localStorage.setItem('token', token);
+  profilTorles(){
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('Nincs bejelentkezett felhasználó!');
     }
+  
+    return this.http.delete(`${this.url}/profil`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      }
+    }).pipe(
+      catchError((error) => {
+        return throwError(() => error);
+      })
+    );
   }
 
   sendChatMessage(uzenet: string) {
@@ -152,31 +211,6 @@ export class AuthService {
     );
   }
 
-  setBejelentkezettE(allapot: boolean) {
-    this.felhBejelentkezettE.next(allapot);
-  }
-
-  setPfpId(pfp: number) {
-    this.randomKep.next(this.kepEleres[pfp]);
-    if (typeof window !== 'undefined' && window.localStorage) {
-      localStorage.setItem('pfp', pfp.toString());
-    }
-  }
-
-  setFelhasznaloNev(nev: string) {
-    this.felhasznaloNev.next(nev);
-    if (typeof window !== 'undefined' && window.localStorage) {
-      localStorage.setItem('username', nev);
-    }
-  }
-
-  setTheme(tema: number) {
-    this.szamSzin.next(tema);
-    if (typeof window !== 'undefined' && window.localStorage) {
-      localStorage.setItem('tema', tema.toString());
-    }
-  }
-
   kijelentkezes() {
     if (typeof window !== 'undefined' && window.localStorage) {
       localStorage.removeItem('token');
@@ -191,6 +225,10 @@ export class AuthService {
 
   hitelesitettE(): boolean {
     return !!localStorage.getItem('token');
+  }
+
+  getKepEleres() {
+    return this.kepEleres;
   }
 
   private kepEleres = [
@@ -217,8 +255,4 @@ export class AuthService {
     "../assets/pfp/pfp_red.png",
     "../assets/pfp/pfp_dark-red.png"
   ];
-
-  getKepEleres() {
-    return this.kepEleres;
-  }
 }

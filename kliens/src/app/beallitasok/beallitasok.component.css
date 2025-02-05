@@ -5,6 +5,11 @@
     align-items: center;
 }
 
+.tartalom:focus {
+    outline: none;
+    background-color: transparent;
+}
+
 .keret{
     height: 60vh;
     width: 45vw;
@@ -113,3 +118,179 @@ ul.valaszto{
 .opcioTema>div{
     border-radius: 15px;
 }
+
+#password {
+    display: flex;
+    margin: 0;
+    align-items: center;
+    margin-right: 15px;
+    margin-top: 10px;
+    font-size: 30px;
+}
+
+.modositas {
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modositas-cim {
+    display: flex;
+    margin: 0;
+    justify-content: center;
+}
+
+.modositas-tartalom {
+    width: 80%;
+    max-width: 500px;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 15px;
+}
+
+.bezar {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+}
+
+.bezar:hover,
+.bezar:focus {
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+
+input {
+    width: 95%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #888;
+}
+
+input:focus {
+    outline: none;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 10px;
+    
+}
+
+.gombok {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#torloGombok {
+    margin-top: 15px;
+}
+
+button.mentes {
+    background-color: #4CAF50;
+}
+
+button.megse {
+    background-color: #ad4949;
+}
+
+button.mentes:hover {
+    background-color: #45a049;
+}
+
+button.megse:hover {
+    background-color: #a04545;
+}
+
+.sikerHatter {
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.ertesitessav {
+    display: flex;
+    position: fixed;
+    width: 450px;
+    height: 50px;
+    border-radius: 35px;
+    z-index: 2;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.ertesitessav#siker {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ertesitessav#hiba {
+    margin-top: 150px;
+}
+
+.hibaSzin {
+    background-color: rgb(255, 158, 158);
+}
+
+.sikerSzin{
+    background-color: rgb(110, 204, 123);
+}
+
+#uzenet {
+    margin: auto;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    font-family: var(--betutipus-alap);
+    cursor: default;
+    color: white;
+}
+
+@keyframes hibaVillan {
+    0%, 100% {
+        background-color: rgb(255, 158, 158);
+    }
+    50% {
+        background-color: rgb(255, 87, 87);
+    }
+}
+
+@keyframes sikerVillan {
+    0%, 100% {
+        background-color: rgb(110, 204, 123);
+    }
+    50% {
+        background-color: rgb(46, 216, 54);
+    }
+}
+
+.ertesitessav.hibaVillan {
+    animation: hibaVillan 0.5s ease-in-out;
+}
+
+.ertesitessav.sikerVillan {
+    animation: sikerVillan 0.5s ease-in-out;
+}
+
