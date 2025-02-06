@@ -27,4 +27,6 @@ router.get("/chat", ChatController.ChatGet);
 router.delete("/chat/:id",ChatController.ChatIdDelete);
 router.delete("/chat", ChatController.ChatDeleteAll);
 
+router.post("/visszajelzes", VisszajelzesController.VisszajelzesPostController);
+
 export default router;
