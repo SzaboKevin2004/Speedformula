@@ -52,6 +52,14 @@ input {
     font-size: 16px;
 }
 
+input[type="password"] {
+    width: 100%;
+}
+
+input[type="text"] {
+    width: 100%;
+}
+
 input[type="button"] {
     width: 40%;
     margin-top: 10px;

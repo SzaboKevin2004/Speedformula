@@ -1,10 +1,20 @@
-<div class="visszajelzes-keret">
+<div class="keret" *ngIf="hiba || siker">
+    <div *ngIf="hiba" class="ertesitessav" id="hiba" [ngClass]="{ 'hibaSzin': hiba , 'hibaVillan': hiba}"> 
+        <p *ngIf="hibaUzenet" id="ertesitesuzenet" >{{ hibaUzenet }}</p>
+    </div>
+    <div *ngIf="siker" class="ertesitessav" id="siker" [ngClass]="{ 'sikerSzin': siker , 'sikerVillan': siker }"> 
+        <p *ngIf="sikerUzenet" id="ertesitesuzenet" >{{ sikerUzenet }}</p>
+    </div>
+</div>
+<div class="visszajelzes-keret" *ngIf="keretMegjelenites">
     <a class="nav-cim" routerLink="/">
-        <img src="../assets/img/logo.png">
-        SpeedFormula</a>
-        <form class="visszajelzes-form" action="">
-        <input type="text" id="emailcim" placeholder="E-mail-cím">
-        <textarea id="uzenet" rows="8" placeholder="Üzenet"></textarea>
-        <input type="button" value="ÜZENET KÜLDÉSE" >
-        </form>
+        <img src="../assets/img/logo.png" alt="logo">
+        SpeedFormula
+    </a>
+    <form class="visszajelzes-form" (ngSubmit)="uzenetKuldes()">
+        <input *ngIf="emailBeiras" type="email" id="emailcim" [(ngModel)]="email" name="email" placeholder="E-mail-cím" required>
+        
+        <textarea id="uzenet" [(ngModel)]="message" name="message" rows="8" placeholder="Üzenet" required></textarea>
+        <input type="submit" value="ÜZENET KÜLDÉSE">
+    </form>
 </div>

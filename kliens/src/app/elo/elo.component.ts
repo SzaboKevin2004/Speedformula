@@ -3,12 +3,13 @@ import { isPlatformBrowser } from '@angular/common';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../auth.service';
 import { SafeUrlPipe } from '../safe-url.pipe';
 import { Router } from '@angular/router';
 import { interval } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
+import { ElochatService } from '../services/elochat.service';
 
 @Component({
   selector: 'app-elo',
@@ -31,7 +32,7 @@ export class EloComponent implements OnInit {
   sotet: boolean = true;
   voros: boolean = false;
 
-  videoUrl: string = 'https://www.youtube.com/embed/URNFJHmxUxk?autoplay=1&modestbranding=1&controls=1&showinfo=0&rel=0&iv_load_policy=3&fs=1';
+  videoUrl: string = 'https://www.youtube.com/watch?v=WDnkv0X8H3g';
   liveMegyE: boolean = false;
 
   felhasznaloNev: string = '';
@@ -43,10 +44,11 @@ export class EloComponent implements OnInit {
   felgorgetettE: boolean = false;
 
   constructor(
-    private authservice: AuthService, 
     @Inject(PLATFORM_ID) private platformId: Object, 
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private authservice: AuthService, 
+    private elochatservice: ElochatService
   ) {}
 
   gorgetes() {
@@ -72,10 +74,10 @@ export class EloComponent implements OnInit {
         text: this.ujUzenet,
       };
 
-      this.authservice.sendChatMessage(uzenet.text).subscribe(
+      this.elochatservice.sendChatMessage(uzenet.text).subscribe(
         (response) => {
           console.log('Üzenet sikeresen elküldve:', response);
-          this.authservice.getMessages().subscribe();
+          this.elochatservice.getMessages().subscribe();
         },
         (error) => {
           console.error('Hiba történt az üzenet küldése során:', error);
@@ -92,7 +94,7 @@ export class EloComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       interval(500)
         .pipe(
-          switchMap(() => this.authservice.getMessages())
+          switchMap(() => this.elochatservice.getMessages())
         )
         .subscribe(
           (uzenetek) => {
@@ -126,31 +128,23 @@ export class EloComponent implements OnInit {
         this.setTheme(szam);
       });
 
-      this.authservice.getMessages().subscribe();
-
       this.liveEllenorzes();
     }
   }
 
   liveEllenorzes() {
     const videoId = this.getVideoIdFromUrl(this.videoUrl);
-    const apiKulcs = 'YOUR_YOUTUBE_API_KEY';
-    const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=liveStreamingDetails&key=${apiKulcs}`;
-
-    this.http.get(url).subscribe((response: any) => {
-      if (response.items && response.items.length > 0) {
-        const liveReszlet = response.items[0].liveStreamingDetails;
-        if (liveReszlet && liveReszlet.actualStartTime) {
-          this.liveMegyE = true;
-        } else {
-          this.liveMegyE = false;
-        }
-      } else {
+    const url = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`;
+  
+    this.http.get(url).subscribe({
+      next: (response) => {
+        console.log('Élő adás aktív:', response);
+        this.liveMegyE = true;
+      },
+      error: (error) => {
+        console.log('Nincs élő adás:', error);
         this.liveMegyE = false;
       }
-    }, (error) => {
-      console.error('Hiba történt az élő adás állapotának lekérdezésekor:', error);
-      this.liveMegyE = false;
     });
   }
 

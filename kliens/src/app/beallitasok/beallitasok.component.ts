@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewChecked } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
@@ -44,6 +44,8 @@ export class BeallitasokComponent implements OnInit {
   modositasCim: string = '';
   modositasPlaceHolder: string = '';
   fiokTorlesNyitvaE: boolean = false;
+  jelszoLathatoE: boolean = false;
+  jelszoLathatoE2: boolean = false;
 
   hiba: boolean = false;
   hibaUzenet: string = '';
@@ -52,6 +54,12 @@ export class BeallitasokComponent implements OnInit {
 
   constructor(private authservice: AuthService, private router: Router) {}
 
+  jelszoLathatosag() {
+    this.jelszoLathatoE = !this.jelszoLathatoE;
+  }
+  jelszoLathatosag2() {
+    this.jelszoLathatoE2 =!this.jelszoLathatoE2;
+  }
 
   megnyitModositas(modositasTipus: string) {
     this.modositasNyitvaE = true;
@@ -207,12 +215,15 @@ export class BeallitasokComponent implements OnInit {
   }
 
   profilLekeres() {
+    const randomSzam = Math.floor(Math.random() * (14 - 8 + 1)) +8;
+    const csillagok = '*'.repeat(randomSzam);
+
     this.authservice.profilLekeres().subscribe({
       next: (response) => {
         const profilAdatok = response.felhasználó;
         this.lekertFelhasznalonev = profilAdatok.felhasznalonev;
         this.lekertEmail = profilAdatok.email;
-        this.lekertPassword = profilAdatok.password;
+        this.lekertPassword = csillagok;
         this.lekertTema_id = profilAdatok.tema_id;
         this.lekertKep = profilAdatok.kep;
         console.log(profilAdatok)

@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { Router, RouterModule} from '@angular/router';
 
 @Component({
@@ -21,9 +21,13 @@ export class BejelentkezesComponent {
   siker: boolean = false;
   sikerUzenet: string = '';
   keretMegjelenites: boolean = true;
+  jelszoLathatoE: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {}
-
+  
+  jelszoLathatosag(){
+    this.jelszoLathatoE =!this.jelszoLathatoE;
+  }
   bejelentkezes() {
     this.hiba = false;
     this.hibaUzenet = '';

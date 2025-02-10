@@ -1,7 +1,7 @@
 <div *ngIf="navMegjelenites">
 <nav class="nav-sav" [ngClass]="temaSzinN">
   <div class="nav-keret">
-    <a class="nav-cim" [ngClass]="temaSzinBetu" routerLink="/" (click)="profilMenuHA()">
+      <a class="nav-cim" [ngClass]="temaSzinBetu" routerLink="/" (click)="profilMenuHA()">
       <img src="../assets/img/logo.png">SpeedFormula
       </a>
 
@@ -61,7 +61,7 @@
         </ul>
       </div>
 
-      <div class="nav-bejel" *ngIf="profilMegjelenites">
+      <div class="nav-bejel" [ngStyle]="{display: profilMegjelenites ? 'flex' : 'none'}">
         <ul>
         <li>
           <p [ngClass]="temaSzinBetu">{{felhasznaloNev}}</p>

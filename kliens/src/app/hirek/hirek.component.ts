@@ -1,9 +1,9 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { ApiService } from '../api.service';
+import { ApiService } from '../services/api.service';
 
 interface Article {
   title: string;

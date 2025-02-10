@@ -360,6 +360,7 @@ body::-webkit-scrollbar {
     display: flex;
     list-style-type: none;
     gap: 3rem;
+
 }
 
 .nav-fo a{
@@ -379,6 +380,7 @@ body::-webkit-scrollbar {
     width: 50px;
     height: 50px;
     cursor: pointer;
+    z-index: 3;
 }
 
 .nav-bejel li{
@@ -398,7 +400,7 @@ body::-webkit-scrollbar {
     height: max-content;
     margin-left: calc(100vw - 200px);
     border-radius: 10px;
-    z-index: 1;
+    z-index: 2;
 }
 
 
@@ -534,4 +536,18 @@ footer a:hover {
     margin: 50px auto 125px auto;
     font-family: var(--betutipus-alap);
     font-size: var(--betumeret-fo);
+}
+
+.jelszo-keret {
+    display: flex;
+    position: relative;
+    width: 65%;
+    align-items: center;
+}
+
+.jelszoIkon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    user-select: none;
 }

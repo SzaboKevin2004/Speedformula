@@ -51,8 +51,15 @@
                 
                 <input *ngIf="modositasCim.includes('E-mail')" [(ngModel)]="ujEmail" [placeholder]="modositasPlaceHolder" (keyup.enter)="mentesModositas()">
 
-                <input *ngIf="modositasCim.includes('Jelszó')" [(ngModel)]="ujPassword" [placeholder]="modositasPlaceHolder" >
-                <input *ngIf="modositasCim.includes('Jelszó')" [(ngModel)]="ujraPassword" [placeholder]="'Jelszó ismét'" (keyup.enter)="mentesModositas()">
+                <div class="jelszo-keret">
+                    <input type="password" *ngIf="modositasCim.includes('Jelszó')" [(ngModel)]="ujPassword" [placeholder]="modositasPlaceHolder" [type]="jelszoLathatoE ? 'text' : 'password'" />
+                    <span *ngIf="modositasCim.includes('Jelszó')" (click)="jelszoLathatosag()" class="jelszoIkon" draggable="false">👁️</span>
+                </div>
+                  
+                <div class="jelszo-keret">
+                    <input type="password" *ngIf="modositasCim.includes('Jelszó')" [(ngModel)]="ujraPassword" [placeholder]="'Jelszó ismét'" [type]="jelszoLathatoE2 ? 'text' : 'password'" (keyup.enter)="mentesModositas()"/>
+                    <span *ngIf="modositasCim.includes('Jelszó')" (click)="jelszoLathatosag2()" class="jelszoIkon" draggable="false">👁️</span>
+                </div>
 
                 <input *ngIf="modositasCim.includes('Felhasználónév')" [(ngModel)]="ujFelhasznalonev" [placeholder]="modositasPlaceHolder" (keyup.enter)="mentesModositas()">
                 

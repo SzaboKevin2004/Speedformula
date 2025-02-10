@@ -7,8 +7,11 @@
         <img src="../assets/img/logo.png">
         SpeedFormula</a>
         <form class="be-form" action="">
-        <input type="text" id="emailcim" placeholder="Felhasználónév / E-mail-cím" [(ngModel)]="identifier" name="identifier" >
-        <input type="password" id="jelszo" placeholder="Jelszó" [(ngModel)]="password" name="password">
+        <input id="emailcim" placeholder="Felhasználónév / E-mail-cím" [(ngModel)]="identifier" name="identifier" >
+        <div class="jelszo-keret">
+            <input type="password" id="jelszo" placeholder="Jelszó" [(ngModel)]="password" name="password" [type]="jelszoLathatoE ? 'text' : 'password' ">
+            <span class="jelszoIkon" (click)="jelszoLathatosag()" draggable="false">👁️</span>
+        </div>
         <input type="button" value="BEJELENTKEZÉS" (click)="bejelentkezes()">
         <a routerLink="/regisztracio">Még nincs fiókod?</a>
         </form>

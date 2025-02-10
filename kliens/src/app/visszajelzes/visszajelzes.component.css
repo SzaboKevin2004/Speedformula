@@ -4,13 +4,24 @@ body{
     margin: 0;
     justify-content: center;
     align-items: center;
+    font-family: var(--betutipus-alap);
     background-color: #e0e0e0;
+}
+
+.keret {
+    display: flex;
+    width: 450px;
+    height: auto;
+    margin: 0 auto;
+    margin-left : 25px;
+    margin-bottom: 80px;
 }
 
 .visszajelzes-keret {
     display: flex;
     width: 450px;
     height: auto;
+    margin-bottom: 100px;
     padding: 25px;
     border-radius: 64px;
     flex-direction: column;
@@ -47,9 +58,7 @@ input, textarea {
     font-family: Arial, sans-serif;
 }
 
-
-
-input[type="button"] {
+input[type="submit"] {
     width: 40%;
     margin-top: 10px;
     cursor: pointer;
@@ -59,6 +68,78 @@ input[type="button"] {
     background-color: #414141;
 }
 
-input[type="button"]:hover {
+input[type="submit"]:hover {
     background-color: #222222;
+}
+
+.sikerHatter {
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.ertesitessav {
+    display: flex;
+    position: fixed;
+    width: 450px;
+    height: 50px;
+    border-radius: 35px;
+    z-index: 2;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.ertesitessav#siker {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hibaSzin {
+    background-color: rgb(255, 158, 158);
+}
+
+.sikerSzin{
+    background-color: rgb(110, 204, 123);
+}
+
+#ertesitesuzenet {
+    margin: auto;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    font-family: var(--betutipus-alap);
+    cursor: default;
+    color: white;
+}
+
+@keyframes hibaVillan {
+    0%, 100% {
+        background-color: rgb(255, 158, 158);
+    }
+    50% {
+        background-color: rgb(255, 87, 87);
+    }
+}
+
+@keyframes sikerVillan {
+    0%, 100% {
+        background-color: rgb(110, 204, 123);
+    }
+    50% {
+        background-color: rgb(46, 216, 54);
+    }
+}
+
+.ertesitessav.hibaVillan {
+    animation: hibaVillan 0.5s ease-in-out;
+}
+
+.ertesitessav.sikerVillan {
+    animation: sikerVillan 0.5s ease-in-out;
 }

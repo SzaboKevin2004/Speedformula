@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { Router, RouterModule} from '@angular/router';
 
 @Component({
@@ -21,9 +21,18 @@ export class RegisztracioComponent {
   siker: boolean = false;
   sikerUzenet: string = '';
   keretMegjelenites: boolean = true;
+  jelszoLathatoE: boolean = false;
+  jelszoLathatoE2: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
+  jelszoLathatosag(){
+    this.jelszoLathatoE =!this.jelszoLathatoE;
+  }
+  jelszoLathatosag2(){
+    this.jelszoLathatoE2 =!this.jelszoLathatoE2;
+  }
+  
   regisztracio() {
     this.hiba = false;
     this.hibaUzenet = '';
