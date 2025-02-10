@@ -24,6 +24,7 @@
     "mariadb": "^3.4.0",
     "newsapi": "^2.4.1",
     "node-fetch": "^3.3.2",
+    "nodemailer": "^6.10.0",
     "sequelize": "^6.37.5",
     "validator": "^13.12.0"
   },

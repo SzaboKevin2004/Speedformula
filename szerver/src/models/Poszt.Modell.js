@@ -33,6 +33,7 @@ const poszt  = db.define("poszt",
     timestamps:true
 });
 
-
+//created_at is kéne
+//like szám, komment szám
 
 export default poszt;*/

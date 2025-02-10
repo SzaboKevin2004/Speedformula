@@ -2,6 +2,7 @@ import { Router } from "express";
 import UserKezelésController from "../controllers/UserKezelés.Controller.js";
 import ApikController from "../controllers/Apik.Controller.js";
 import ChatController from "../controllers/Chat.Controller.js";
+import VisszajelzesController from "../controllers/Visszajelzes.Controller.js";
 
 const router = Router();
 
