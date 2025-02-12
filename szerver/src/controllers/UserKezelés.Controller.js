@@ -3,8 +3,30 @@ import Szerep from "../models/Szerep.Modell.js";
 import isEmail from "validator/lib/isEmail.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import multer from'multer';
+import path  from 'path';
 
 import dotenv from 'dotenv';
+ // Profilkép
+ if (req.body.kep !== undefined && req.body.kep !== null && req.body.kep.trim() !== "")
+    {
+        const tárhely=multer.diskStorage({
+            destination: (req, file, cb) => {
+                cb(null, "szerver/src/pfp");
+            },
+            filename: (req, file, cb) => {
+                cb(null,file.originalname);
+            }
+        })
+        const upload= multer({storage:tárhely}).single('kep');
+        await upload(req,res,(err)=>{
+            if(err){
+                console.log(err);
+                return res.status(500).json({error: true, message: "Hiba a kép feltöltésénél!"});
+            }
+            valtozas.kep=req.file.path;
+        })
+    }
 
 
 dotenv.config({ path:"C:/Users/david/Documents/szerver/src/.env"});
@@ -92,7 +114,32 @@ export default {
             if (!szerep) {
                 console.error(`A '${szerepNeve}' szerep nem található!`);
                 return res.status(500).json({ error: true, message: `Hiba történt a regisztráció során (a '${szerepNeve}' szerep nem található). Ellenőrizd az adatbázist és a modellek szinkronizációját!` });
-            }     
+            } 
+            const kepEleres = [
+                "szerver/src/pfp/pfp_black.png",//
+                "szerver/src/pfp/pfp_blue.png",//
+                "szerver/src/pfp/pfp_brown.png",//
+                "szerver/src/pfp/pfp_cyan.png",//
+                "szerver/src/pfp/pfp_dark-cyan.png",//
+                "szerver/src/pfp/pfp_dark-brown.png",//
+                "szerver/src/pfp/pfp_green.png",//
+                "szerver/src/pfp/pfp_dark-green.png",//
+                "szerver/src/pfp/pfp_dark-blue.png",//
+                "szerver/src/pfp/pfp_pink.png",//
+                "szerver/src/pfp/pfp_dark-pink.png",//
+                "szerver/src/pfp/pfp_magenta.png",//
+                "szerver/src/pfp/pfp_dark-magenta.png",//
+                "szerver/src/pfp/pfp_yellow.png",//
+                "szerver/src/pfp/pfp_dark-yellow.png",//
+                "szerver/src/pfp/pfp_orange.png",//
+                "szerver/src/pfp/pfp_dark-orange.png",
+                "szerver/src/pfp/pfp_purple.png",//
+                "szerver/src/pfp/pfp_dark-purple.png",//
+                "szerver/src/pfp/pfp_red.png",//
+                "szerver/src/pfp/pfp_dark-red.png",//
+              ];
+            
+            const randomKep = kepEleres[Math.floor(Math.random() * kepEleres.length)];    
             const felhasználó = Felhasználó.build(
                 {
                     felhasznalonev: req.body.felhasznalonev,
@@ -101,9 +148,9 @@ export default {
                     passwordHosszusag:pass,
                     szerep_id: szerep.id,
                     tema_id:1,
-                    kep:req.body.kep,
-                    magamrol:"",
-                    reftoken:""
+                    kep:kepEleres[randomKep],
+                    magamrol:""
+
                 }
             );
             felhasználó.save();  
@@ -156,7 +203,7 @@ export default {
             const token=jwt.sign({ id: felhasználó.id,felhasznalonev:felhasználó.felhasznalonev},process.env.JWT_SECRET, { expiresIn: '12h' });
             //const reftoken=jwt.sign({ id: felhasználó.id,felhasznalonev:felhasználó.felhasznalonev},process.env.JWT_SECRET, { expiresIn: '7d' });
             
-            
+          
             console.log(token);
             //console.log(reftoken);
             res.status(200).json({
@@ -299,15 +346,23 @@ MásikProfilGetControler: async(req,res)=>{
                 }
                 változás.szerep_id = szerep.id;
             }
-    
             // Téma
             if (req.body.tema_id !== undefined && req.body.tema_id !== null) {
                 változás.tema_id = req.body.tema_id;
             }
     
             // Profilkép
-            if (req.body.kep !== undefined && req.body.kep !== null && req.body.kep.trim() !== "") {
-                változás.kep = req.body.kep.trim();
+            if (req.file){
+                 await new Promise((resolve, reject) => {
+                    upload(req,res,(err)=>{
+                        if(err){
+                            reject(err);
+                        } else{
+                            resolve();
+                        }
+                    })
+                 });
+                 valtozas.kep=req.file.path;   
             }
             //magamról
             if(req.body.magamrol !== undefined && req.body.magamrol.trim()!== "")
