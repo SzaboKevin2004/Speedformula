@@ -4,12 +4,10 @@ import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SafeUrlPipe } from '../safe-url.pipe';
-import { Router } from '@angular/router';
 import { interval } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { switchMap, catchError  } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
-import { ElochatService } from '../services/elochat.service';
+import { EloService } from '../services/elo.service';
 
 @Component({
   selector: 'app-elo',
@@ -32,8 +30,9 @@ export class EloComponent implements OnInit {
   sotet: boolean = true;
   voros: boolean = false;
 
-  videoUrl: string = 'https://www.youtube.com/watch?v=WDnkv0X8H3g';
+  videoUrl: string = '';
   liveMegyE: boolean = false;
+  chatTorlesE: boolean = false;
 
   felhasznaloNev: string = '';
   randomKep: string = '';
@@ -45,10 +44,8 @@ export class EloComponent implements OnInit {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object, 
-    private router: Router,
-    private http: HttpClient,
     private authservice: AuthService, 
-    private elochatservice: ElochatService
+    private eloservice: EloService
   ) {}
 
   gorgetes() {
@@ -74,10 +71,10 @@ export class EloComponent implements OnInit {
         text: this.ujUzenet,
       };
 
-      this.elochatservice.sendChatMessage(uzenet.text).subscribe(
+      this.eloservice.sendChatMessage(uzenet.text).subscribe(
         (response) => {
           console.log('Üzenet sikeresen elküldve:', response);
-          this.elochatservice.getMessages().subscribe();
+          this.eloservice.getMessages().subscribe();
         },
         (error) => {
           console.error('Hiba történt az üzenet küldése során:', error);
@@ -94,7 +91,7 @@ export class EloComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       interval(500)
         .pipe(
-          switchMap(() => this.elochatservice.getMessages())
+          switchMap(() => this.eloservice.getMessages())
         )
         .subscribe(
           (uzenetek) => {
@@ -127,31 +124,41 @@ export class EloComponent implements OnInit {
       this.authservice.szamSzin$.subscribe(szam => {
         this.setTheme(szam);
       });
-
-      this.liveEllenorzes();
+      this.chatTorles();
     }
+    this.liveEllenorzes();
   }
 
   liveEllenorzes() {
-    const videoId = this.getVideoIdFromUrl(this.videoUrl);
-    const url = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`;
-  
-    this.http.get(url).subscribe({
-      next: (response) => {
-        console.log('Élő adás aktív:', response);
+    this.eloservice.getElo().subscribe((response: any) => {
+      if (response.items && response.items.length > 0) {
+        const liveVideo = response.items[0];
+        const videoId = liveVideo.id.videoId;
+        this.videoUrl = this.eloservice.getVideoUrl(videoId);
         this.liveMegyE = true;
-      },
-      error: (error) => {
-        console.log('Nincs élő adás:', error);
+      } else {
         this.liveMegyE = false;
+        this.chatTorlesE = true;
+        this.videoUrl = '';
       }
+    }, (error) => {
+      console.error('Hiba történt az élő adás lekérdezésekor:', error);
+      this.liveMegyE = false;
+      this.chatTorlesE = true;
+      this.videoUrl = '';
     });
   }
 
-  getVideoIdFromUrl(url: string): string {
-    const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|\S*?[?&]v=)|(?:youtu\.be\/))([a-zA-Z0-9_-]{11})/;
-    const match = url.match(regex);
-    return match ? match[1] : '';
+  chatTorles() {
+    if (this.chatTorlesE)
+    this.eloservice.deleteMessages().subscribe(
+      () => {
+        console.log('A chat üzenetek törlésre kerültek');
+      },
+      (error) => {
+        console.error('Hiba történt a chat üzenetek törlésében:', error);
+      }
+    );
   }
 
   leGorgetes() {

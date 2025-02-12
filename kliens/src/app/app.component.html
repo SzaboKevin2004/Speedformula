@@ -44,7 +44,7 @@
         </li>
       </ul>
 
-      <div *ngIf="bejelentkezesMegjelenites">
+      <div [ngStyle]="{display: bejelentkezesMegjelenites ? 'flex' : 'none'}">
         <ul class="nav-regjel">
         <li [ngClass]="temaSzinHover">
           <a class="nav-link" [ngClass]="temaSzinBetu" routerLink="/regisztracio">
