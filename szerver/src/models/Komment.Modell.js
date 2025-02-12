@@ -1,41 +1,48 @@
-/*import { DataTypes } from "sequelize";
+import { DataTypes } from "sequelize";
 import db from "../db.js";
+import Felhasználó from "./Felhasználó.Modell.js";
+import ForumTipus from "./KommentVagyPosztModell.js";
 
-
-const komment = db.define("komment",
+const Komment = db.define("komment",
      
     {
+    szülő_type:{
+        type: DataTypes.INTEGER,
+        references:{
+            model: ForumTipus,
+            key: "id"
+        }
+    },
+    szülő_id:{
+        type:DataTypes.INTEGER,
+    },
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    comment: {
+
+    komment: {
         type: DataTypes.TEXT,
         allowNull: false
     },
     user_id:{
         type: DataTypes.INTEGER.UNSIGNED,
         references: {
-            model: "felhasználó",
+            model: Felhasználó,
             key: "id"
         },
-        allowNull: false
-    },
-    poszt_id:{
-        type: DataTypes.INTEGER.UNSIGNED,
-        references: {
-            model: "poszt",
-            key: "id"
-        },
-        allowNull: false
+        onDelete: "CASCADE" 
     }
  }, 
  {
     tableName: "komment",
-    timestamps:true
-});*/
+    createdAt:true,
+    updatedAt:false
+});
 
 
+Komment.belongsTo(Felhasználó, { foreignKey: "user_id"});
+Felhasználó.hasMany(Komment, { foreignKey: "user_id", onDelete: "CASCADE" });
 
-export default komment;
+export default Komment;

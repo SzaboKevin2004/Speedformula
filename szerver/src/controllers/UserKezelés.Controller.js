@@ -101,7 +101,9 @@ export default {
                     passwordHosszusag:pass,
                     szerep_id: szerep.id,
                     tema_id:1,
-                    kep:req.body.kep
+                    kep:req.body.kep,
+                    magamrol:"",
+                    reftoken:""
                 }
             );
             felhasználó.save();  
@@ -151,10 +153,12 @@ export default {
                 });
             }  
             console.log(process.env.JWT_SECRET);
-            const token=jwt.sign({ id: felhasználó.id,felhasznalonev:felhasználó.felhasznalonev},process.env.JWT_SECRET, { expiresIn: '6h' });
-            //await Token.create({ token, felhasználó_id: felhasználó.id });
-            //const token1=Token.build({ token:token, felhasználó_id: felhasználó.id });
+            const token=jwt.sign({ id: felhasználó.id,felhasznalonev:felhasználó.felhasznalonev},process.env.JWT_SECRET, { expiresIn: '12h' });
+            //const reftoken=jwt.sign({ id: felhasználó.id,felhasznalonev:felhasználó.felhasznalonev},process.env.JWT_SECRET, { expiresIn: '7d' });
+            
+            
             console.log(token);
+            //console.log(reftoken);
             res.status(200).json({
                 success: true,
                 token,
@@ -305,7 +309,11 @@ MásikProfilGetControler: async(req,res)=>{
             if (req.body.kep !== undefined && req.body.kep !== null && req.body.kep.trim() !== "") {
                 változás.kep = req.body.kep.trim();
             }
-    
+            //magamról
+            if(req.body.magamrol !== undefined && req.body.magamrol.trim()!== "")
+                {
+                    változás.magamrol = req.body.magamrol.trim();
+                }
             // Frissítés végrehajtása
             await felhasználó.update(változás);
             

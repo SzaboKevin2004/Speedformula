@@ -9,7 +9,6 @@ export default{
                 language: 'hu',
                 sortBy: 'publishedAt'
               });
-              //if()
             if(válasz.status === 'ok'){
                 const alapKep = 'https://pcdn.hu/articles/images-xl/f/o/r/forma1-709165.jpg';
 

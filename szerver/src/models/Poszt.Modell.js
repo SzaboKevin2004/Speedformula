@@ -1,9 +1,9 @@
-/*import { DataTypes } from "sequelize";
+import { DataTypes } from "sequelize";
 import db from "../db.js";
+import Felhasználó from "./Felhasználó.Modell.js";
 
 
-
-const poszt  = db.define("poszt",
+const Poszt  = db.define("poszt",
      
     {
     id: {
@@ -11,7 +11,7 @@ const poszt  = db.define("poszt",
         primaryKey: true,
         autoIncrement: true
     },
-    title:{
+    cim:{
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -22,18 +22,24 @@ const poszt  = db.define("poszt",
     user_id:{
         type: DataTypes.INTEGER.UNSIGNED,
         references: {
-            model: "felhasználó",
+            model: Felhasználó,
             key: "id"
         },
-        allowNull: false
+        onDelete: "CASCADE"
     }
  }, 
  {
     tableName: "poszt",
-    timestamps:true
-});
+    createdAt:true,
+    updatedAt:false
+})
+
+Poszt.belongsTo(Felhasználó, {foreignKey: 'user_id'});
+Felhasználó.hasMany(Poszt, { foreignKey: "user_id", onDelete: "CASCADE" });
+
+
 
 //created_at is kéne
 //like szám, komment szám
 
-export default poszt;*/
+export default Poszt;
