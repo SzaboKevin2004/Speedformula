@@ -19,14 +19,24 @@ const Poszt  = db.define("poszt",
         type: DataTypes.TEXT,
         allowNull: false
     },
+    milyenposzt:{
+        type: DataTypes.INTEGER,
+        /*references:{
+            model: Milyenposzt,
+            key: "id"
+        }*/
+    },
     user_id:{
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         references: {
             model: Felhasználó,
             key: "id"
         },
         onDelete: "CASCADE"
-    }
+    },
+    kep:{
+        type: DataTypes.STRING,
+    },
  }, 
  {
     tableName: "poszt",
