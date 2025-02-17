@@ -3,6 +3,7 @@ import UserKezelésController from "../controllers/UserKezelés.Controller.js";
 import ApikController from "../controllers/Apik.Controller.js";
 import ChatController from "../controllers/Chat.Controller.js";
 import VisszajelzesController from "../controllers/Visszajelzes.Controller.js";
+import EloController from "../controllers/Elo.Controller.js";
 
 const router = Router();
 
@@ -22,7 +23,7 @@ router.get("/profil/:id", UserKezelésController.MásikProfilGetControler);
 router.patch("/profil", UserKezelésController.ProfilePatchController);
 router.delete("/profil", UserKezelésController.ProfilDeleteController);
 
-//router.get("/chat",ApikController.SessionsGetController);
+router.get("/elo",EloController.EloGet);
 router.post("/chat", ChatController.ChatPost);
 router.get("/chat", ChatController.ChatGet);
 router.delete("/chat/:id",ChatController.ChatIdDelete);

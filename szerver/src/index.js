@@ -4,9 +4,8 @@ import Szerep from "./models/Szerep.Modell.js";
 import Felhasználó from "./models/Felhasználó.Modell.js";
 import Poszt from "./models/Poszt.Modell.js";
 //import Komment from "./models/Komment.Modell.js";
-import ForumTipus from "./models/KommentVagyPosztModell.js";
 import Chat from "./models/Chat.Modell.js";
-import Kedvelesek from "./models/Kedvelések.Modell.js";
+//import Kedvelesek from "./models/Kedvelések.Modell.js";
 
 db.authenticate()
     .then(()=>{
@@ -15,17 +14,16 @@ db.authenticate()
       db.modelManager.addModel(Szerep);
       
       db.modelManager.addModel(Felhasználó);
-
+      //db.modelManager.addModel(Kedvelesek);
       //db.modelManager.addModel(Poszt);
       //db.modelManager.addModel(Komment);
-      //db.modelManager.addModel(ForumTipus);
       db.modelManager.addModel(Chat);
       
       //db.modelManager.addModel(Kedvelesek);
       db.sync({
         //force: true //Kényszerítjük , hogy a modellek alapján az adatbázisban megjelenjenek a táblák. minden indításkor teljesen felülírja az adatbázisban lévő táblát.
       
-        //alter: true, A modellek alapján a már meglévő táblák módosításra kerülnek.
+        //alter: true, //A modellek alapján a már meglévő táblák módosításra kerülnek.
       })
       .then(()=>{
         console.log("A modellek szinkronízációja sikeres!");
