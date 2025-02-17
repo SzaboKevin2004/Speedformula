@@ -1,4 +1,4 @@
-import { DataTypes } from "sequelize";
+/*import { DataTypes } from "sequelize";
 import db from "../db.js";
 import Felhasználó from "./Felhasználó.Modell.js";
 
@@ -15,28 +15,23 @@ const Poszt  = db.define("poszt",
         type: DataTypes.STRING,
         allowNull: false
     },
-    body: {
-        type: DataTypes.TEXT,
-        allowNull: false
-    },
-    milyenposzt:{
-        type: DataTypes.INTEGER,
-        /*references:{
-            model: Milyenposzt,
-            key: "id"
-        }*/
-    },
     user_id:{
         type: DataTypes.INTEGER,
         references: {
             model: Felhasználó,
             key: "id"
         },
-        onDelete: "CASCADE"
+    },
+    body: {
+        type: DataTypes.TEXT,
+        allowNull: false
     },
     kep:{
         type: DataTypes.STRING,
     },
+    video:{
+        type:DataTypes.STRING
+    }
  }, 
  {
     tableName: "poszt",
@@ -44,12 +39,7 @@ const Poszt  = db.define("poszt",
     updatedAt:false
 })
 
-//Poszt.belongsTo(Felhasználó, {foreignKey: 'user_id'});
-//Felhasználó.hasMany(Poszt, { foreignKey: "user_id", onDelete: "CASCADE" });
+Poszt.belongsTo(Felhasználó, {foreignKey: 'id'});
+Felhasználó.hasMany(Poszt, { foreignKey: "id"});
 
-
-
-//created_at is kéne
-//like szám, komment szám
-
-export default Poszt;
+export default Poszt;*/

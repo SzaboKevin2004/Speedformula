@@ -330,7 +330,7 @@ MásikProfilGetControler: async(req,res)=>{
             if (req.body.tema_id !== undefined && req.body.tema_id !== null) {
                 változás.tema_id = req.body.tema_id;
             }
-    
+            /*
             // Profilkép
             if (req.file){
                  await new Promise((resolve, reject) => {
@@ -343,7 +343,7 @@ MásikProfilGetControler: async(req,res)=>{
                     })
                  });
                  valtozas.kep=req.file.path;   
-            }
+            }*/
             //magamról
             if(req.body.magamrol !== undefined && req.body.magamrol.trim()!== "")
                 {

@@ -2,10 +2,11 @@ import app from "./app.js";
 import db from "./db.js";
 import Szerep from "./models/Szerep.Modell.js";
 import Felhasználó from "./models/Felhasználó.Modell.js";
-import Poszt from "./models/Poszt.Modell.js";
+//import Poszt from "./models/Poszt.Modell.js";
 //import Komment from "./models/Komment.Modell.js";
 import Chat from "./models/Chat.Modell.js";
-//import Kedvelesek from "./models/Kedvelések.Modell.js";
+//import KedvencPoszt from "./models/PosztKedvelések.js";
+//import KedvencKomment from "./models/KommentKedvelések.Modell.js";
 
 db.authenticate()
     .then(()=>{
@@ -14,12 +15,15 @@ db.authenticate()
       db.modelManager.addModel(Szerep);
       
       db.modelManager.addModel(Felhasználó);
-      //db.modelManager.addModel(Kedvelesek);
       //db.modelManager.addModel(Poszt);
-      //db.modelManager.addModel(Komment);
+
       db.modelManager.addModel(Chat);
+      //db.modelManager.addModel(Komment);
       
-      //db.modelManager.addModel(Kedvelesek);
+      //db.modelManager.addModel(KedvencPoszt);
+      //db.modelManager.addModel(KedvencKomment);
+      
+
       db.sync({
         //force: true //Kényszerítjük , hogy a modellek alapján az adatbázisban megjelenjenek a táblák. minden indításkor teljesen felülírja az adatbázisban lévő táblát.
       
