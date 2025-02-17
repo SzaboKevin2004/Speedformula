@@ -1,4 +1,4 @@
-import { DataTypes } from "sequelize";
+/*import { DataTypes } from "sequelize";
 import db from "../db.js";
 import Felhasználó from "./Felhasználó.Modell.js";
 import ForumTipus from "./KommentVagyPosztModell.js";
@@ -42,7 +42,7 @@ const Komment = db.define("komment",
 });
 
 
-Komment.belongsTo(Felhasználó, { foreignKey: "user_id"});
-Felhasználó.hasMany(Komment, { foreignKey: "user_id", onDelete: "CASCADE" });
+//Komment.belongsTo(Felhasználó, { foreignKey: "user_id"});
+//Felhasználó.hasMany(Komment, { foreignKey: "user_id", onDelete: "CASCADE" });
 
-export default Komment;
+export default Komment;*/

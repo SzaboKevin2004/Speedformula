@@ -44,8 +44,8 @@ const Poszt  = db.define("poszt",
     updatedAt:false
 })
 
-Poszt.belongsTo(Felhasználó, {foreignKey: 'user_id'});
-Felhasználó.hasMany(Poszt, { foreignKey: "user_id", onDelete: "CASCADE" });
+//Poszt.belongsTo(Felhasználó, {foreignKey: 'user_id'});
+//Felhasználó.hasMany(Poszt, { foreignKey: "user_id", onDelete: "CASCADE" });
 
 
 

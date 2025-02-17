@@ -26,7 +26,7 @@ const Kedvelesek=db.define(
     }
 );
 
-Kedvelesek.belongsTo(ForumTipus, { foreignKey: "szulo_type" });
-ForumTipus.hasMany(Kedvelesek, { foreignKey: "szulo_type", as: "kedvelesek" });
+//Kedvelesek.belongsTo(ForumTipus, { foreignKey: "szulo_type" });
+//ForumTipus.hasMany(Kedvelesek, { foreignKey: "szulo_type", as: "kedvelesek" });
 
 export default Kedvelesek;
