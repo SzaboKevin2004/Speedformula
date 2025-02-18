@@ -32,6 +32,8 @@ router.delete("/chat", ChatController.ChatDeleteAll);
 
 router.post("/visszajelzes", VisszajelzesController.VisszajelzesPostController);
 
-router.put("/forum", ForumController.PosztPut);
+router.put("/forum/cikk", ForumController.CikkPut);
+router.put("/forum/kepes", ForumController.KepesPut);
+router.get("/forum", ForumController.PosztGet);
 
 export default router;
