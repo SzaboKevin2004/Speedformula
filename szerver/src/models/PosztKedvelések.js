@@ -1,4 +1,4 @@
-/*import { DataTypes } from "sequelize";
+import { DataTypes } from "sequelize";
 import db from "../db.js";
 import Poszt from "./Poszt.Modell.js";
 
@@ -10,7 +10,9 @@ const KedvencPoszt=db.define(
         references: {
             model: Poszt,
             key: "id"
-        }
+        },
+        primaryKey: true,
+        autoIncrement: true
     },
     kedveles:{
         type: DataTypes.INTEGER
@@ -20,13 +22,12 @@ const KedvencPoszt=db.define(
     }
 },{
     tableName: "kedvencposzt",
-    createdAt: true,
-    updatedAt: false
+    timestamps: false
 }
 )
 
 
-KedvencPoszt.belongsTo(Poszt, {foreignKey: 'id'});
+Poszt.belongsTo(KedvencPoszt, {foreignKey: 'poszt_id'});
 
 
-export  default KedvencPoszt;*/
+export  default KedvencPoszt;

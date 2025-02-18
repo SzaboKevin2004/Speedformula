@@ -1,4 +1,4 @@
-/*import { DataTypes } from "sequelize";
+import { DataTypes } from "sequelize";
 import db from "../db.js";
 import Komment from "./Komment.Modell.js";
 
@@ -25,8 +25,8 @@ const KedvencKomment=db.define(
  }
 );
 
-KedvencKomment.belongsTo(Komment, {foreignKey: 'komment_id'});
+Komment.belongsTo(KedvencKomment, {foreignKey: 'komment_id'});
 
 
 
-export default KedvencKomment;*/
+export default KedvencKomment;

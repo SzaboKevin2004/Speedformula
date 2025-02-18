@@ -5,29 +5,29 @@ import Poszt from "./Poszt.Modell.js";
 
 
 const Komment = db.define(
-    "komment",{
-        poszt_id:{
-            type:DataTypes.INTEGER,
-            references:{
-                model: Poszt,
-                key:"poszt_id"
-            }
-        },
-        szulo_id:{
-            type:DataTypes.INTEGER,
-        },
+    "komment",{ 
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
+        poszt_id:{
+            type: DataTypes.INTEGER,
+            references:{
+                model: Poszt,
+                key:"id"
+            }
+        },
+        /*szulo_id:{
+            type:DataTypes.INTEGER,
+        },*/
     
         komment: {
-            type: DataTypes.TEXT,
+            type: DataTypes.STRING,
             allowNull: false
         },
         user_id:{
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER,
             references: {
                 model: Felhasználó,
                 key: "id"
@@ -41,10 +41,10 @@ const Komment = db.define(
 });
 
 
-Komment.belongsTo(Felhasználó, { foreignKey: "felhasználó_id"});
-Felhasználó.hasMany(Komment, { foreignKey: "felhasználó_id" });
+Komment.belongsTo(Felhasználó, { foreignKey: "user_id"});
+Felhasználó.hasMany(Komment, { foreignKey: "user_id" });
 
-Komment.belongsTo(Poszt, { foreignKey: "id"});
-
+Komment.belongsTo(Poszt, { foreignKey: "poszt_id"});
+Poszt.hasMany(Komment, { foreignKey: "poszt_id" });
 
 export default Komment;

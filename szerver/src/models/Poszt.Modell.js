@@ -1,4 +1,4 @@
-/*import { DataTypes } from "sequelize";
+import { DataTypes } from "sequelize";
 import db from "../db.js";
 import Felhasználó from "./Felhasználó.Modell.js";
 
@@ -7,7 +7,7 @@ const Poszt  = db.define("poszt",
      
     {
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
@@ -24,13 +24,15 @@ const Poszt  = db.define("poszt",
     },
     body: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
     },
     kep:{
         type: DataTypes.STRING,
+        allowNull: true
     },
     video:{
-        type:DataTypes.STRING
+        type:DataTypes.STRING,
+        allowNull: true
     }
  }, 
  {
@@ -39,7 +41,7 @@ const Poszt  = db.define("poszt",
     updatedAt:false
 })
 
-Poszt.belongsTo(Felhasználó, {foreignKey: 'id'});
-Felhasználó.hasMany(Poszt, { foreignKey: "id"});
+Poszt.belongsTo(Felhasználó, {foreignKey: "user_id"});
+Felhasználó.hasMany(Poszt, { foreignKey: "user_id"});
 
-export default Poszt;*/
+export default Poszt;
