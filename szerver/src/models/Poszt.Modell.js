@@ -23,7 +23,7 @@ const Poszt  = db.define("poszt",
         },
     },
     body: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: true
     },
     kep:{

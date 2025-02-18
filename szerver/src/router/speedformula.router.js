@@ -4,6 +4,7 @@ import ApikController from "../controllers/Apik.Controller.js";
 import ChatController from "../controllers/Chat.Controller.js";
 import VisszajelzesController from "../controllers/Visszajelzes.Controller.js";
 import EloController from "../controllers/Elo.Controller.js";
+import ForumController from "../controllers/Forum.Controller.js";
 
 const router = Router();
 
@@ -30,5 +31,7 @@ router.delete("/chat/:id",ChatController.ChatIdDelete);
 router.delete("/chat", ChatController.ChatDeleteAll);
 
 router.post("/visszajelzes", VisszajelzesController.VisszajelzesPostController);
+
+router.put("/forum", ForumController.PosztPut);
 
 export default router;
