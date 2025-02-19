@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
 
 interface AuthResponse {
   token: string;
-  pfp: number;
+  pfp: string;
   username: string;
   tema: number;
 }
@@ -40,7 +40,7 @@ export class AuthService {
       }
 
       if (pfp) {
-        this.randomKep.next(this.kepEleres[parseInt(pfp)]);
+        this.randomKep.next(pfp);
       }
 
       if (username) {
@@ -67,10 +67,10 @@ export class AuthService {
     this.felhBejelentkezettE;
   }
 
-  setPfpId(pfp: number) {
-    this.randomKep.next(this.kepEleres[pfp]);
+  setPfpId(pfp: string) {
+    this.randomKep.next(pfp);
     if (typeof window !== 'undefined' && window.localStorage) {
-      localStorage.setItem('pfp', pfp.toString());
+      localStorage.setItem('pfp', pfp);
     }
   }
 
@@ -95,7 +95,11 @@ export class AuthService {
     }
   }
 
-  regisztracio(regisztracioData: { felhasznalonev: string, email: string, password: string, confirm_password: string, kep: number }) {
+  regisztracio(regisztracioData: {
+    felhasznalonev: string,
+    email: string,password: string,
+    confirm_password: string,
+  }) {
     return this.http.post(`${this.url}/regist`, regisztracioData).pipe(
       catchError((error) => {
         return throwError(() => error);
@@ -103,7 +107,11 @@ export class AuthService {
     );
   }
 
-  bejelentkezes(loginData: { felhasznalonev: string, email: string, password: string }) {
+  bejelentkezes(loginData: {
+    felhasznalonev: string,
+    email: string,
+    password: string 
+  }) {
     return this.http.post<AuthResponse>(`${this.url}/login`, loginData).pipe(
       catchError((error) => {
         return throwError(() => error);

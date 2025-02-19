@@ -16,6 +16,9 @@ export class FooterComponent implements OnInit {
   profilMenuMegjelenites: boolean = false;
   randomKep: string = "";
   felhasznaloNev: string = "";
+  sotet: boolean = true;
+  vilagos: boolean = false;
+  voros: boolean = false;
   temaSzin: string = '';
   temaSzin2: string = '';
   temaSzinN: string = '';
@@ -27,6 +30,9 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
     this.authservice.szamSzin$.subscribe( szam => {
       if(szam === 1){
+        this.sotet = true;
+        this.vilagos = false;
+        this.voros = false;
         this.temaSzin = 'feketeK';
         this.temaSzin2 = 'feketeK2';
         this.temaSzinN = 'feketeN';
@@ -35,6 +41,9 @@ export class FooterComponent implements OnInit {
         this.temaSzinGordulo = 'feketeG';
       }
       else if(szam === 2){
+        this.sotet = false;
+        this.vilagos = true;
+        this.voros = false;
         this.temaSzin = 'feherK';
         this.temaSzin2 = 'feherK2';
         this.temaSzinN = 'feherN';
@@ -43,6 +52,9 @@ export class FooterComponent implements OnInit {
         this.temaSzinGordulo = 'feherG';
       }
       else if(szam === 3){
+        this.sotet = false;
+        this.vilagos = false;
+        this.voros = true;
         this.temaSzin = 'vorosK';
         this.temaSzin2 = 'vorosK2';
         this.temaSzinN = 'vorosN';
@@ -50,6 +62,9 @@ export class FooterComponent implements OnInit {
         this.temaSzinHover = 'vorosH';
         this.temaSzinGordulo = 'vorosG';
       }else{
+        this.sotet = true;
+        this.vilagos = false;
+        this.voros = false;
         this.temaSzin = 'feketeK';
         this.temaSzin2 = 'feketeK2';
         this.temaSzinN = 'feketeN';

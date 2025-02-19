@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   bejelentkezesMegjelenites: boolean = true;
   profilMegjelenites: boolean = false;
   profilMenuMegjelenites: boolean = false;
+  menuMegjelenites: boolean = false;
   randomKep: string = "";
   felhasznaloNev: string = "";
   sotet: boolean = true;
@@ -136,12 +137,31 @@ export class AppComponent implements OnInit {
 
   profilMenu() {
     this.profilMenuMegjelenites = !this.profilMenuMegjelenites;
+
+    if (this.menuMegjelenites) {
+      this.menuMegjelenites = false;
+    }
   }
 
   profilMenuHA() {
     if (this.profilMenuMegjelenites) {
       this.profilMenuMegjelenites = false;
     }
+  }
+
+  menu() {
+    this.menuMegjelenites =!this.menuMegjelenites;
+  }
+
+  menuHA() {
+    if (this.menuMegjelenites) {
+      this.menuMegjelenites = false;
+    }
+  }
+
+  menuESProfilMenuHA() {
+    this.profilMenuHA();
+    this.menuHA();
   }
 
   kijelentkezes() {

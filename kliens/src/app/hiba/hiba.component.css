@@ -1,31 +1,77 @@
-
-body{
-    display: flex;
-    height: 100vh;
-    margin: 0;
-    justify-content: center;
-    align-items: center;
-    background-color: #f0f0f0;
-}
-
-.nav-title {
-    width: 0;
-    color: black;
-    
-}
-
 .nav-sav{
     display: none;
 }
 
 .hiba-keret {
-    display: flex;
-    width: 450px;
-    height: 255px;
-    padding: 25px;
-    border-radius: 64px;
-    flex-direction: column;
-    gap: 20px;
-    background-color: #ffffff;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    width: 100%;
+    height: 100vh;
+    background-color: #F4B52E;
 }
+
+.kozep {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.kozepy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+}
+
+.nav-title {
+    display: flex;
+    width: auto;
+    align-items: center;
+    text-decoration: none;
+    font-size: 36px;
+    color: black;
+}
+
+.nav-title img {
+    height: 80px;
+    margin-top: 20px;
+}
+
+.kozep h1 {
+    font-family: 'Krona One';
+    font-weight: lighter;
+    font-size: 34px;
+    color: white;
+}
+
+.hibakep {
+    height: 350px;
+    border-radius: 25px;
+    z-index: 1;
+}
+
+.blur {
+    height: 455px;
+    width: 625px;
+    position: absolute;
+    background-image: radial-gradient(closest-side, #ffe135, rgba(190, 201, 37, 0));
+    z-index: 0;
+}
+
+.hiba-keret button {
+    margin-top: 20px;
+    padding: 30px 30px;
+    border-radius: 64px;
+    font-family: Lexend Zetta;
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    background-color: #393939;
+    color: white;
+    cursor: pointer;
+}
+
+.hiba-keret button:hover {
+    background-color: #212121;
+}
+

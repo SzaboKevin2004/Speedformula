@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
-
 .tartalom-nelkul {
     position: relative;
 }
@@ -19,15 +17,16 @@ video {
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
-    top: 250px;
+    top: 35%;
     z-index: 1;
+    align-items: center;
 }
 
 .kezdo-szoveg2 {
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
-    top: 310px;
+    top: 40%;
     z-index: 1;
 }
 
@@ -35,38 +34,47 @@ video {
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
-    top: 400px;
+    top: 50%;
     z-index: 1;
+    align-items: center;
 }
 
 h1, h2, h3 {
     font-family: 'Krona One';
-    text-shadow:
-    3px 3px 4px black,
-    -3px -3px 4px black,
-    3px -3px 4px black,
-    -3px 3px 4px black;
-    color: #eeeeee;
-    overflow: hidden;
     white-space: nowrap;
     opacity: 0;
-    display: inline-block;
+    overflow: hidden;
+    color: #eeeeee;
+    text-shadow:
+    3px 3px 3px black,
+    -3px -3px 3px black,
+    3px -3px 3px black,
+    -3px 3px 3px black;
 }
 
 h1 {
-    margin: 0;
-    font-size: 42px;
-    text-align: center;
+    height: 13vh;
     width: 0;
+    margin: 0;
+    line-height: 11vh;
+    font-size: clamp(1.3rem, 2vw, 3.5rem);
+    text-align: center;
 }
 
 h2 {
-    margin: 0;
-    font-size: 28px;
+    height: 42px;
     width: 0;
+    margin: 0;
+    line-height: 42px;
+    font-size: 28px;
+    text-align: center;
 }
 
 h3 {
+    height: 38px;
+    width: 0;
+    margin: 0;
+    line-height: 38px;
     font-size: 22px;
     text-align: center;
 }

@@ -49,15 +49,15 @@
     margin-top: 10px;
 }
 
-.feketeK:hover {
+.hirek .feketeK:hover {
     background-color: var(--szin-hover-sotet);
 }
 
-.feherK:hover {
+.hirek .feherK:hover {
     background-color: var(--szin-hover-vilagos);
 }
 
-.vorosK:hover {
+.hirek .vorosK:hover {
     background-color: var(--szin-hover-voros);
 }
   

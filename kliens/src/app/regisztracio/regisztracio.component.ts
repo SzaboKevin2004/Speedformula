@@ -41,8 +41,7 @@ export class RegisztracioComponent {
       felhasznalonev: this.felhasznalonev,
       email: this.email,
       password: this.password,
-      confirm_password: this.confirm_password,
-      kep: Math.floor(Math.random() * 23)
+      confirm_password: this.confirm_password
     };
 
     this.authService.regisztracio(regisztracioData).subscribe({

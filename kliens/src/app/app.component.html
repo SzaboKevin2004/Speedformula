@@ -1,62 +1,121 @@
 <div *ngIf="navMegjelenites">
 <nav class="nav-sav" [ngClass]="temaSzinN">
+  <div class="menu" [ngClass]="temaSzin" *ngIf="menuMegjelenites">
+    <div (click)="menuHA()">
+      <img class="bezar" src="../assets/icons/cross-white.png" [ngStyle]="{ display: (voros || sotet) ? 'inline' : 'none' }">
+      <img class="bezar" src="../assets/icons/cross.png" [ngStyle]="{ display: vilagos ? 'inline' : 'none' }">
+    </div>
+    <div (click)="menuHA()">
+      <a class="nav-cim" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" routerLink="/" (click)="profilMenuHA()">
+        <img src="../assets/img/logo.png"><p>SpeedFormula</p>
+        </a>
+    </div>
+    <div class="menu-links">
+      <ul class="nav-fo-menu">
+        <li [ngClass]="temaSzinHover" class="nav-elo" (click)="menuESProfilMenuHA()" routerLink="/elo">
+          <a class="nav-link" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }">
+            <img src="../assets/icons/camera-white.png" [ngStyle]="{ display: (voros || sotet) ? 'inline' : 'none' }">
+            <img src="../assets/icons/camera.png" [ngStyle]="{ display: vilagos ? 'inline' : 'none' }">
+            ÉLŐ</a>
+        </li>
+        <li [ngClass]="temaSzinHover" class="nav-hirek" (click)="menuESProfilMenuHA()" routerLink="/hirek">
+          <a class="nav-link" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }">
+            <img src="../assets/icons/news-white.png" [ngStyle]="{ display: (voros || sotet) ? 'inline' : 'none' }">
+            <img src="../assets/icons/news.png" [ngStyle]="{ display: vilagos ? 'inline' : 'none' }">
+            Hírek</a>
+        </li>
+        <li [ngClass]="temaSzinHover" class="nav-versenyzok" (click)="menuESProfilMenuHA()" routerLink="/versenyzok">
+          <a class="nav-link" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }">
+            <img src="../assets/icons/pilot-white.png" [ngStyle]="{ display: (voros || sotet) ? 'inline' : 'none' }">
+            <img src="../assets/icons/pilot.png" [ngStyle]="{ display: vilagos ? 'inline' : 'none' }">
+            Versenyzők</a>
+        </li>
+        <li [ngClass]="temaSzinHover" class="nav-csapatok" (click)="menuESProfilMenuHA()" routerLink="/csapatok">
+          <a class="nav-link" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }">
+            <img src="../assets/icons/teams-white.png" [ngStyle]="{ display: (voros || sotet) ? 'inline' : 'none' }">
+            <img src="../assets/icons/teams.png" [ngStyle]="{ display: vilagos ? 'inline' : 'none' }">
+            Csapatok</a>
+        </li>
+        <li [ngClass]="temaSzinHover" class="nav-tortenet" (click)="menuESProfilMenuHA()" routerLink="/tortenet">
+          <a class="nav-link" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }">
+            <img src="../assets/icons/history-white.png" [ngStyle]="{ display: (voros || sotet) ? 'inline' : 'none' }">
+            <img src="../assets/icons/history.png" [ngStyle]="{ display: vilagos ? 'inline' : 'none' }">
+            Történet</a>
+        </li>
+        <li [ngClass]="temaSzinHover" class="nav-forum" (click)="menuESProfilMenuHA()"  routerLink="/forum">
+          <a class="nav-link" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }">
+            <img src="../assets/icons/forum-white.png" [ngStyle]="{ display: (voros || sotet) ? 'inline' : 'none' }">
+            <img src="../assets/icons/forum.png" [ngStyle]="{ display: vilagos ? 'inline' : 'none' }">
+            Fórum</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
   <div class="nav-keret">
-      <a class="nav-cim" [ngClass]="temaSzinBetu" routerLink="/" (click)="profilMenuHA()">
-      <img src="../assets/img/logo.png">SpeedFormula
-      </a>
+    <div class="menu-gomb" (click)="menu()">
+      <a class="nav-link" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" (click)="profilMenuHA()">
+        <img class= "menu-img" src="../assets/icons/menu-white.png" [ngStyle]="{ display: (voros || sotet) ? 'inline' : 'none' }">
+        <img class= "menu-img" src="../assets/icons/menu.png" [ngStyle]="{ display: vilagos ? 'inline' : 'none' }">
+        </a>
+    </div>
+
+      <a class="nav-cim" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" routerLink="/" (click)="profilMenuHA()">
+        <img src="../assets/img/logo.png"><p>SpeedFormula</p>
+        </a>
 
       <ul class="nav-fo">
         <li [ngClass]="temaSzinHover" class="nav-elo" (click)="profilMenuHA()">
-          <a class="nav-link" [ngClass]="temaSzinBetu" routerLink="/elo">
-            <img src="../assets/icons/camera-white.png" *ngIf="sotet || voros">
-            <img src="../assets/icons/camera.png" *ngIf="vilagos">
+          <a class="nav-link" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" routerLink="/elo">
+            <img src="../assets/icons/camera-white.png" [ngStyle]="{ display: (voros || sotet) ? 'inline' : 'none' }">
+            <img src="../assets/icons/camera.png" [ngStyle]="{ display: vilagos ? 'inline' : 'none' }">
             ÉLŐ</a>
         </li>
         <li [ngClass]="temaSzinHover" class="nav-hirek" (click)="profilMenuHA()">
-          <a class="nav-link" [ngClass]="temaSzinBetu" routerLink="/hirek">
-            <img src="../assets/icons/news-white.png" *ngIf="sotet || voros">
-            <img src="../assets/icons/news.png" *ngIf="vilagos">
+          <a class="nav-link" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" routerLink="/hirek">
+            <img src="../assets/icons/news-white.png" [ngStyle]="{ display: (voros || sotet) ? 'inline' : 'none' }">
+            <img src="../assets/icons/news.png" [ngStyle]="{ display: vilagos ? 'inline' : 'none' }">
             Hírek</a>
         </li>
         <li [ngClass]="temaSzinHover" class="nav-versenyzok" (click)="profilMenuHA()">
-          <a class="nav-link" [ngClass]="temaSzinBetu" routerLink="/versenyzok">
-            <img src="../assets/icons/pilot-white.png" *ngIf="sotet || voros">
-            <img src="../assets/icons/pilot.png" *ngIf="vilagos">
+          <a class="nav-link" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" routerLink="/versenyzok">
+            <img src="../assets/icons/pilot-white.png" [ngStyle]="{ display: (voros || sotet) ? 'inline' : 'none' }">
+            <img src="../assets/icons/pilot.png" [ngStyle]="{ display: vilagos ? 'inline' : 'none' }">
             Versenyzők</a>
         </li>
         <li [ngClass]="temaSzinHover" class="nav-csapatok" (click)="profilMenuHA()">
-          <a class="nav-link" [ngClass]="temaSzinBetu" routerLink="/csapatok">
-            <img src="../assets/icons/teams-white.png" *ngIf="sotet || voros">
-            <img src="../assets/icons/teams.png" *ngIf="vilagos">
+          <a class="nav-link" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" routerLink="/csapatok">
+            <img src="../assets/icons/teams-white.png" [ngStyle]="{ display: (voros || sotet) ? 'inline' : 'none' }">
+            <img src="../assets/icons/teams.png" [ngStyle]="{ display: vilagos ? 'inline' : 'none' }">
             Csapatok</a>
         </li>
         <li [ngClass]="temaSzinHover" class="nav-tortenet" (click)="profilMenuHA()">
-          <a class="nav-link" [ngClass]="temaSzinBetu" routerLink="/tortenet">
-            <img src="../assets/icons/history-white.png" *ngIf="sotet || voros">
-            <img src="../assets/icons/history.png" *ngIf="vilagos">
+          <a class="nav-link" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" routerLink="/tortenet">
+            <img src="../assets/icons/history-white.png" [ngStyle]="{ display: (voros || sotet) ? 'inline' : 'none' }">
+            <img src="../assets/icons/history.png" [ngStyle]="{ display: vilagos ? 'inline' : 'none' }">
             Történet</a>
         </li>
         <li [ngClass]="temaSzinHover" class="nav-forum" (click)="profilMenuHA()">
-          <a class="nav-link" [ngClass]="temaSzinBetu" routerLink="/forum">
-            <img src="../assets/icons/forum-white.png" *ngIf="sotet || voros">
-            <img src="../assets/icons/forum.png" *ngIf="vilagos">
+          <a class="nav-link" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" routerLink="/forum">
+            <img src="../assets/icons/forum-white.png" [ngStyle]="{ display: (voros || sotet) ? 'inline' : 'none' }">
+            <img src="../assets/icons/forum.png" [ngStyle]="{ display: vilagos ? 'inline' : 'none' }">
             Fórum</a>
         </li>
       </ul>
 
-      <div [ngStyle]="{display: bejelentkezesMegjelenites ? 'flex' : 'none'}">
+      <div [ngStyle]="{display: bejelentkezesMegjelenites ? 'flex' : 'none'}" class="nav-regjel-keret">
         <ul class="nav-regjel">
-        <li [ngClass]="temaSzinHover">
-          <a class="nav-link" [ngClass]="temaSzinBetu" routerLink="/regisztracio">
-            <img src="../assets/icons/register-white.png" *ngIf="sotet || voros">
-            <img src="../assets/icons/register-black.png" *ngIf="vilagos">
-            Regisztráció</a>
+        <li [ngClass]="temaSzinHover" (click)="menuHA()">
+          <a class="nav-link" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" routerLink="/regisztracio">
+            <img src="../assets/icons/register-white.png" [ngStyle]="{ display: (voros || sotet) ? 'inline' : 'none' }">
+            <img src="../assets/icons/register-black.png" [ngStyle]="{ display: vilagos ? 'inline' : 'none' }">
+            <p>Regisztráció</p></a>
         </li>
-        <li [ngClass]="temaSzinHover">
-          <a class="nav-link" [ngClass]="temaSzinBetu" routerLink="/bejelentkezes">
-            <img src="../assets/icons/login-white.png" *ngIf="sotet || voros">
-            <img src="../assets/icons/login-black.png" *ngIf="vilagos">
-            Bejelentkezés</a>
+        <li [ngClass]="temaSzinHover" (click)="menuHA()">
+          <a class="nav-link" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" routerLink="/bejelentkezes">
+            <img src="../assets/icons/login-white.png" [ngStyle]="{ display: (voros || sotet) ? 'inline' : 'none' }">
+            <img src="../assets/icons/login-black.png" [ngStyle]="{ display: vilagos ? 'inline' : 'none' }">
+            <p>Bejelentkezés</p></a>
         </li>
         </ul>
       </div>
@@ -64,7 +123,7 @@
       <div class="nav-bejel" [ngStyle]="{display: profilMegjelenites ? 'flex' : 'none'}">
         <ul>
         <li>
-          <p [ngClass]="temaSzinBetu">{{felhasznaloNev}}</p>
+          <p [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }">{{felhasznaloNev}}</p>
           <img [ngClass]="temaSzinHover" [src]= "randomKep" id="felhasznalo-kep" (click)="profilMenu()">
         </li>
         </ul>
@@ -76,20 +135,20 @@
 <div class="bejel-lenyilo" [ngClass]="temaSzinN" [ngStyle]="{display: profilMenuMegjelenites ? 'flex' : 'none'}">
   <ul>
   <li [ngClass]="temaSzinHover" (click)="profilMenu()">
-    <img [src]= "randomKep" width="39px" height="39px" routerLink="/profil">
-    <a [ngClass]="temaSzinBetu" routerLink="/profil">
+    <img [src]="randomKep" width="39px" height="39px" routerLink="/profil">
+    <a [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" routerLink="/profil">
      Fórum profil</a>
   </li>
   <li [ngClass]="temaSzinHover" (click)="profilMenu()">
-    <img src="../assets/icons/setting-white.png" width="35px" height="35px" routerLink="/beallitasok" *ngIf="sotet || voros">
-    <img src="../assets/icons/setting.png" width="35px" height="35px" routerLink="/beallitasok" *ngIf="vilagos">
-    <a [ngClass]="temaSzinBetu" routerLink="/beallitasok">
+    <img src="../assets/icons/setting-white.png" width="35px" height="35px" routerLink="/beallitasok" [ngStyle]="{ display: (voros || sotet) ? 'flex' : 'none' }">
+    <img src="../assets/icons/setting.png" width="35px" height="35px" routerLink="/beallitasok" [ngStyle]="{ display: (vilagos) ? 'flex' : 'none' }">
+    <a [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" routerLink="/beallitasok">
     Beállítások</a>
   </li>
   <li [ngClass]="temaSzinHover" (click)="kijelentkezes()" (click)="profilMenu()">
-    <img src="../assets/icons/logout-white.png" width="35px" height="35px" id="kijelentkezes" *ngIf="sotet || voros">
-    <img src="../assets/icons/logout.png" width="35px" height="35px" id="kijelentkezes" *ngIf="vilagos">
-    <a [ngClass]="temaSzinBetu" id="kijelentkezes">
+    <img src="../assets/icons/logout-white.png" width="35px" height="35px" id="kijelentkezes" [ngStyle]="{ display: (voros || sotet) ? 'flex' : 'none' }">
+    <img src="../assets/icons/logout.png" width="35px" height="35px" id="kijelentkezes" [ngStyle]="{ display: (vilagos) ? 'flex' : 'none' }">
+    <a [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" id="kijelentkezes">
     Kijelentkezés</a>
   </li>
   </ul>

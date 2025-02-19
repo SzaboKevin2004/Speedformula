@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 
 
 @Injectable({
@@ -15,14 +14,32 @@ export class EloService {
   private uzenetekSubject = new BehaviorSubject<any[]>([]);
   uzenetek$ = this.uzenetekSubject.asObservable();
 
-  private apiKey = 'AIzaSyD399Pb6YebmjeW7lJcUSM_rG3fA2pjgXE';
-  private channelId = 'UCtpmd1UDP0W9MOwtsClRBkw';
+  private apiKey = '';
+  private channelId = '';
   
-  constructor( private http: HttpClient, private router: Router ) {}
+  constructor(private http: HttpClient) {}
+
+  getEloApi(): Observable<any> {
+    return this.http.get(`${this.url}/elo`).pipe(
+      tap((response: any) => {
+        this.apiKey = response.apikey;
+        this.channelId = response.channelId;
+      })
+    );
+  }
 
   getElo(): Observable<any> {
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${this.channelId}&type=video&eventType=live&key=${this.apiKey}`;
-    return this.http.get(url);
+    if (!this.apiKey || !this.channelId) {
+      return this.getEloApi().pipe(
+        switchMap(() => {
+          const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${this.channelId}&type=video&eventType=live&key=${this.apiKey}`;
+          return this.http.get(url);
+        })
+      );
+    } else {
+      const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${this.channelId}&type=video&eventType=live&key=${this.apiKey}`;
+      return this.http.get(url);
+    }
   }
 
   getVideoUrl(videoId: string): string {
