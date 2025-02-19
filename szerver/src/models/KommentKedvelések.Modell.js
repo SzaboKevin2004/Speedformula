@@ -10,7 +10,9 @@ const KedvencKomment=db.define(
         references: {
             model: Komment,
             key: "id"
-        }
+        },
+        primaryKey: true,
+        autoIncrement: true
     },
     kedveles:{
         type: DataTypes.INTEGER

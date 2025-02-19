@@ -35,5 +35,9 @@ router.post("/visszajelzes", VisszajelzesController.VisszajelzesPostController);
 router.put("/forum/cikk", ForumController.CikkPut);
 router.put("/forum/kepes", ForumController.KepesPut);
 router.get("/forum", ForumController.PosztGet);
-
+router.put("/forum/komment/poszt", ForumController.PosztKommentPut);
+router.put("/forum/komment/komment", ForumController.KommentKommentPut);
+router.get("/forum/komment", ForumController.KommentGet);
+router.delete("/forum/kommenttorles", ForumController.KommentDelete);
+router.delete("/forum/poszttorles", ForumController.PosztDelete);
 export default router;

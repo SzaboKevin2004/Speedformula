@@ -6,10 +6,10 @@ import Poszt from "./Poszt.Modell.js";
 
 const Komment = db.define(
     "komment",{ 
-        id: {
+        id:{
             type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
         },
         poszt_id:{
             type: DataTypes.INTEGER,
@@ -18,9 +18,12 @@ const Komment = db.define(
                 key:"id"
             }
         },
-        /*szulo_id:{
-            type:DataTypes.INTEGER,
-        },*/
+        szint:{
+            type: DataTypes.INTEGER,
+        },
+        kommentszulo_id:{
+            type:DataTypes.INTEGER
+        },
     
         komment: {
             type: DataTypes.STRING,
