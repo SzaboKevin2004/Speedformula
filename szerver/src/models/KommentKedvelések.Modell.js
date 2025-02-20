@@ -12,7 +12,8 @@ const KedvencKomment=db.define(
             key: "id"
         },
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        onDelete:"CASCADE"
     },
     kedveles:{
         type: DataTypes.INTEGER
@@ -27,7 +28,7 @@ const KedvencKomment=db.define(
  }
 );
 
-Komment.belongsTo(KedvencKomment, {foreignKey: 'komment_id'});
+Komment.belongsTo(KedvencKomment, {foreignKey: 'komment_id',onDelete: 'CASCADE'  });
 
 
 

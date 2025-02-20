@@ -9,7 +9,7 @@ export default{
         const token = req.headers.authorization?.split(' ')[1];
         try {
             const dekódolt=jwt.verify(token, process.env.JWT_SECRET);
-            console.log(dekódolt.id);
+            //console.log(dekódolt.id);
             Felhasználó.findByPk(dekódolt.id).then(async(felhasználó)=>{
                 if(!felhasználó){
                     return res.status(404).json({ error: true, message: "Felhasználó nem található!" });
@@ -18,7 +18,7 @@ export default{
                     if(!req.body.uzenet){
                         return res.status(400).json({ error: true, message: "Üzenet megadása kötelező!" });
                     }
-                    console.log(req.body.uzenet);
+                    //console.log(req.body.uzenet);
                     const chat=Chat.build(
                         {
                             felhasznalo_id:dekódolt.id,
@@ -64,7 +64,7 @@ export default{
         const token = req.headers.authorization?.split(' ')[1];
         try {
             const dekódolt=jwt.verify(token, process.env.JWT_SECRET);
-            console.log(dekódolt.id);
+            //console.log(dekódolt.id);
             const chat=await Chat.findOne({
                 where:{id}
             });

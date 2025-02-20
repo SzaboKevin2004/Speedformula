@@ -16,7 +16,9 @@ const Komment = db.define(
             references:{
                 model: Poszt,
                 key:"id"
-            }
+            },
+            onDelete: "CASCADE",
+            hooks: true
         },
         szint:{
             type: DataTypes.INTEGER,
@@ -35,6 +37,8 @@ const Komment = db.define(
                 model: Felhasználó,
                 key: "id"
             }, 
+            onDelete: "CASCADE",
+            hooks: true 
         }
     }, 
  {
@@ -45,9 +49,9 @@ const Komment = db.define(
 
 
 Komment.belongsTo(Felhasználó, { foreignKey: "user_id"});
-Felhasználó.hasMany(Komment, { foreignKey: "user_id" });
+Felhasználó.hasMany(Komment, { foreignKey: "user_id",onDelete: "CASCADE",hooks:true });
 
 Komment.belongsTo(Poszt, { foreignKey: "poszt_id"});
-Poszt.hasMany(Komment, { foreignKey: "poszt_id" });
+Poszt.hasMany(Komment, { foreignKey: "poszt_id",onDelete: "CASCADE",hooks: true });
 
 export default Komment;

@@ -24,12 +24,16 @@ export default{
                 body:req.body.szoveg||null,
                 kep:null,
                 video:null
-            })
+            });
+            
             poszt.save();
             return res.status(201).json({
                 error: false,
                 message: "Poszt sikeresen hozzáadva!",
-            }); 
+                
+            })
+            
+
         } catch (error) {
             // Hibakezelés
             if (error instanceof jwt.TokenExpiredError) {

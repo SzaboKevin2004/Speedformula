@@ -12,7 +12,8 @@ const KedvencPoszt=db.define(
             key: "id"
         },
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        onDelete: "CASCADE"
     },
     kedveles:{
         type: DataTypes.INTEGER
@@ -27,7 +28,7 @@ const KedvencPoszt=db.define(
 )
 
 
-Poszt.belongsTo(KedvencPoszt, {foreignKey: 'poszt_id'});
+Poszt.belongsTo(KedvencPoszt, {foreignKey: 'poszt_id', onDelete: 'CASCADE'  });
 
 
 export  default KedvencPoszt;

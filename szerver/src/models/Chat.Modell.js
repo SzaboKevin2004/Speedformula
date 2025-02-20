@@ -29,7 +29,7 @@ const Chat=db.define(
     }
 );
 
-Felhasználó.hasMany(Chat, { foreignKey: "felhasznalo_id" });
+Felhasználó.hasMany(Chat, { foreignKey: "felhasznalo_id",onDelete: "CASCADE" });
 Chat.belongsTo(Felhasználó, { foreignKey: "felhasznalo_id"});
 
 

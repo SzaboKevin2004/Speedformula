@@ -38,7 +38,7 @@ export default {
     //Regisztráció
     RegisztracioPostController: async (req, res) => {
         try {
-            console.log(req.body);
+            //console.log(req.body);
 
             if (!req.body.felhasznalonev || !req.body.email || !req.body.password || !req.body.confirm_password) {
                     return res.status(400).json({ error: true, message: "Minden mező kitöltése kötelező!" });
@@ -73,7 +73,7 @@ export default {
                 return res.status(400).json({ error: true, message: "A jelszavak nem egyeznek!" });
             }
             const pass= req.body.password.length;
-            console.log(pass);
+            //console.log(pass);
             let titkosPassword;
             try {
                 titkosPassword = await bcrypt.hash(req.body.password, 10);
@@ -119,7 +119,7 @@ export default {
               ];
             
             const randomKep = kepEleres[Math.floor(Math.random() * kepEleres.length)];    
-            console.log(kepEleres);
+            //console.log(kepEleres);
             const felhasználó = Felhasználó.build(
                 {
                     felhasznalonev: req.body.felhasznalonev,
@@ -179,12 +179,12 @@ export default {
                     message: "Hibás jelszó!"
                 });
             }  
-            console.log(process.env.JWT_SECRET);
+            //console.log(process.env.JWT_SECRET);
             const token=jwt.sign({ id: felhasználó.id,felhasznalonev:felhasználó.felhasznalonev},process.env.JWT_SECRET, { expiresIn: '12h' });
             //const reftoken=jwt.sign({ id: felhasználó.id,felhasznalonev:felhasználó.felhasznalonev},process.env.JWT_SECRET, { expiresIn: '7d' });
             
           
-            console.log(token);
+            //console.log(token);
             //console.log(reftoken);
             res.status(200).json({
                 success: true,
@@ -313,7 +313,7 @@ MásikProfilGetControler: async(req,res)=>{
                     });
                 }
                 változás.passwordHosszusag = req.body.password.length;
-                console.log(passwordHosszusag);
+                //console.log(passwordHosszusag);
                 változás.password = await bcrypt.hash(password, 10);
                 let szerepNeve = "felhasználó";
                 if (password === ADMIN_PASSWORD) {

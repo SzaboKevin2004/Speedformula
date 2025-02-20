@@ -21,6 +21,8 @@ const Poszt  = db.define("poszt",
             model: Felhasználó,
             key: "id"
         },
+        onDelete: "CASCADE", 
+        hooks: true
     },
     body: {
         type: DataTypes.STRING,
@@ -42,6 +44,6 @@ const Poszt  = db.define("poszt",
 })
 
 Poszt.belongsTo(Felhasználó, {foreignKey: "user_id"});
-Felhasználó.hasMany(Poszt, { foreignKey: "user_id"});
+Felhasználó.hasMany(Poszt, { foreignKey: "user_id",onDelete: "CASCADE", hooks: true  });
 
 export default Poszt;
