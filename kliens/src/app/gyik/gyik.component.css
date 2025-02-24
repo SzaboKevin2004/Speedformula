@@ -36,3 +36,37 @@ img{
     border-radius: 10px;
     z-index: 0;
 }
+
+@media only screen and (max-width: 1023px) {
+    .kerdes{
+        width: 100%;
+    }
+
+    .valasz{
+        width: 100%;
+    }
+
+    .keret {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 819px) {
+    .keret {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .keret {
+        width: 100%;
+    }
+
+    .kerdes {
+        width: 80%;
+    }
+
+    h1 {
+        text-align: center;
+    }
+}

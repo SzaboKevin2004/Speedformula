@@ -1,14 +1,21 @@
-body {
+
+
+.tartalom {
     display: flex;
-    height: 100vh;
-    margin: 0;
-    justify-content: center;
+    flex: 1;
+    flex-direction: column;
+}
+
+.keret {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
     align-items: center;
 }
 
 h1 {
+    margin-right: 700px;
     margin-bottom: 80px;
-    text-align: left;
     font-weight: normal;
 }
 
@@ -20,10 +27,11 @@ h1 {
 
 .sor {
     display: flex;
-    height: fit-content;
-    width: 800px;
     align-items: center;
-    gap: 100px;
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+    justify-content: center;
 }
 
 .kep {
@@ -40,12 +48,103 @@ h1 {
 
 .kep p {
     margin: 0;
+    font-size: clamp(0.8rem, 0.931rem + 0.37vw, 1.375rem);
 }
 
 .szoveg {
+    max-width: 70%;
+    min-width: 0px;
     height: fit-content;
     padding: 25px;
     text-align: justify;
-    font-size: var(--betumeret-fo);
+    font-size: clamp(0.5rem, 0.931rem + 0.37vw, 1.375rem);
     border-radius: 30px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.szoveg p {
+    margin: 0;
+}
+
+@media only screen and (max-width: 819px) {
+    h1 {
+        margin-left: 10px;
+        margin-right: auto;   
+    }
+
+    .kep img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .szoveg {
+        margin-bottom: 15px;
+    }
+
+    .rolunk-tartalom {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    .kep img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .sor{
+        gap: 10px;
+        margin-bottom: 25px;
+    }
+
+    .szoveg {
+        width: 70%;
+        padding: 10px;
+    }
+
+    .rolunk-tartalom {
+        margin-left: 15px;
+        margin-right: 15px;
+        gap: 50px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+
+    h1 {
+        margin-right: 0;
+    }
+
+    .kep img {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 0;
+    }
+
+    .sor {
+        gap: 5px;
+        align-items: flex-end;
+        margin-bottom: 0;
+    }
+
+    .szoveg {
+        text-align: left;
+    }
+
+    .kep p {
+        display: none;
+    }
+
+    .kep {
+        flex: none;
+    }
+
+    .rolunk-tartalom {
+        margin-left: 0;
+        margin-right: 0;
+        gap: 25px;
+    }
 }

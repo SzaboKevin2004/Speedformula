@@ -277,6 +277,9 @@ body::-webkit-scrollbar {
 }
 
 .tartalom {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     height: calc(100vh - 87px);
     width: 100%;
     position: relative;
@@ -563,28 +566,27 @@ body::-webkit-scrollbar {
 }
 
 /* FOOTER */
-.tartalom-nelkul footer{
-    margin-top: 100vh;
+app-footer {
+    margin-top: auto;
+}
+
+.tartalom-nelkul footer {
+    margin-top: 50vh;
 }
 
 footer {
-    width: 100%;
-    height: 180px;
     display: flex;
-    margin-top: 50px;
     align-items: center;
     text-align: center;
     font-size: var(--betumeret-regjel);
     font-family: var(--betutipus-alap);
 }
 
-.tartalom-nelkul footer{
-    margin-top: 100vh;
-}
-
 .footer-keret {
     width: 100%;
     display: flex;
+    margin-top: 25px;
+    margin-bottom: 25px;
     gap: 10vw;
 }
 
@@ -604,7 +606,7 @@ footer ul {
 
 footer a {
     display: block;
-    margin-top: 15px;
+    margin-top: 25px;
     text-decoration: none;
 }
 
@@ -615,15 +617,16 @@ footer #bal {
 footer #nagy {
     width: 27px;
     height: 27px;
-    margin-top: -5px;
+    margin-top: auto;
     margin-bottom: 5px;
 }
+
 
 footer img {
     width: 35px;
     height: 35px;
     vertical-align: middle;
-    gap: 20px;
+    margin-top: 9px;
 }
 
 footer a:hover {
@@ -681,10 +684,10 @@ footer a:hover {
     .menu-gomb {
         display: block;
     }
-}
 
-.nav-keret .nav-cim>img {
-    margin-left: 20px;
+    .nav-keret .nav-cim>img {
+        margin-left: 20px;
+    }
 }
 
 @media only screen and (max-width: 1279px) {
@@ -709,5 +712,31 @@ footer a:hover {
 
     .nav-regjel li {
         border-radius: 16px !important;
+    }
+
+}
+
+@media only screen and (max-width: 819px) {
+    .footer-keret {
+        flex-direction: column;
+    }
+    .footer-oszlop {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+@media only screen and (max-width: 767px) {
+    .menu {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .menu {
+        width: 100%;
+        border: none;
     }
 }

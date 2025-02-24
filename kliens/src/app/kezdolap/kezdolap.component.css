@@ -14,33 +14,20 @@ video {
 }
 
 .kezdo-szoveg {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    top: 35%;
     z-index: 1;
-    align-items: center;
 }
 
 .kezdo-szoveg2 {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    top: 40%;
     z-index: 1;
 }
 
 .kezdo-szoveg3 {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    top: 50%;
     z-index: 1;
-    align-items: center;
 }
 
 h1, h2, h3 {
     font-family: 'Krona One';
+    line-height: 1.5;
     white-space: nowrap;
     opacity: 0;
     overflow: hidden;
@@ -52,31 +39,39 @@ h1, h2, h3 {
     -3px 3px 3px black;
 }
 
+.osszes-animacio {
+    height: fit-content;
+    width: fit-content;
+    margin: auto auto;
+    margin-top: 30vh;
+   text-align: center;
+}
+
 h1 {
-    height: 13vh;
     width: 0;
     margin: 0;
-    line-height: 11vh;
-    font-size: clamp(1.3rem, 2vw, 3.5rem);
-    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(0.75rem, calc(3vw + .2rem), 3rem);
 }
 
 h2 {
-    height: 42px;
     width: 0;
     margin: 0;
-    line-height: 42px;
-    font-size: 28px;
-    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(0.5rem, calc(2.5vw + .2rem), 2.5rem);
+    
 }
 
 h3 {
-    height: 38px;
     width: 0;
     margin: 0;
-    line-height: 38px;
-    font-size: 22px;
-    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 45px;
+    font-size: clamp(0.4rem, calc(1.8vw + .2rem), 2.3rem);
+    
 }
 
 .animacio {
@@ -96,7 +91,7 @@ h3 {
 
 @keyframes iras {
     from {
-        width: 0;
+        width: 0%;
         opacity: 0;
     }
     to {
@@ -105,6 +100,20 @@ h3 {
     }
 }
 
-footer {
-    margin-top: 90vh;
+@media only screen and (max-width: 768px) {
+    h3 {
+        margin-top: 35px;
+    }
+
+    .osszes-animacio {
+        margin-top: 35vh;
+    }
+
+    h1, h2, h3 {
+        text-shadow:
+        2px 2px 2px black,
+        -2px -2px 2px black,
+        2px -2px 2px black,
+        -2px 2px 2px black;
+    }
 }
