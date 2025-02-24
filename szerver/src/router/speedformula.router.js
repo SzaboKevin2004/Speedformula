@@ -40,4 +40,8 @@ router.put("/forum/komment/komment", ForumController.KommentKommentPut);
 router.get("/forum/komment", ForumController.KommentGet);
 router.delete("/forum/kommenttorles", ForumController.KommentDelete);
 router.delete("/forum/poszttorles", ForumController.PosztDelete);
+router.patch("/forum/posztkedveles/:id", ForumController.kedvelésPosztPatch);
+router.patch("/forum/posztmegosztas/:id", ForumController.megosztasPosztPatch);
+router.patch("/forum/kommentkedveles/:id", ForumController.kedvelésKommentPatch);
+router.patch("/forum/kommentmegosztas/:id", ForumController.megosztasKommentPatch);
 export default router;

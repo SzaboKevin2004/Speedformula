@@ -2,8 +2,10 @@ import jwt from 'jsonwebtoken';
 import Poszt from "../models/Poszt.Modell.js";
 import Felhasználó from "../models/Felhasználó.Modell.js";
 import Komment from '../models/Komment.Modell.js';
+import KedvencKomment from '../models/KommentKedvelések.Modell.js';
 import { where } from 'sequelize';
 import { Where } from 'sequelize/lib/utils';
+import KedvencPoszt from '../models/PosztKedvelések.js';
 
 export default{
     CikkPut:async function (req, res) {
@@ -18,15 +20,19 @@ export default{
             if(!req.body.szoveg){
                 return res.status(400).json({ error: true, message: "Minden mező kötelező!" });
             }
-            const poszt = await Poszt.build({
+            const poszt = await Poszt.create({
                 user_id:felhasználó.id,
                 cim:req.body.cim||"",
                 body:req.body.szoveg||null,
                 kep:null,
                 video:null
             });
-            
-            poszt.save();
+            await poszt.reload();
+            await KedvencPoszt.create({
+                poszt_id:poszt.id,
+                kedveles:0,
+                Megosztas:0
+            })
             return res.status(201).json({
                 error: false,
                 message: "Poszt sikeresen hozzáadva!",
@@ -58,14 +64,19 @@ export default{
             if(!req.body.kep && !req.body.video){
                 return res.status(400).json({ error: true, message: "Minden mező kötelező!" });
             }
-            const poszt = await Poszt.build({
+            const poszt = await Poszt.create({
                 user_id:felhasználó.id,
                 cim:req.body.cim||"",
                 body:null,
                 kep:req.body.kep||null,
                 video:req.body.video||null
+            });
+            await poszt.reload();
+            await KedvencPoszt.create({
+                poszt_id:poszt.id,
+                kedveles:0,
+                Megosztas:0
             })
-            poszt.save();
             return res.status(201).json({
                 error: false,
                 message: "Poszt sikeresen hozzáadva!",
@@ -84,7 +95,7 @@ export default{
     },
     PosztGet:async function (req, res){
         try{
-            const forumposzt=await Poszt.findAll({order:[['createdAt','ASC']],include:[{model:Felhasználó,attributes:['felhasznalonev','kep']}]});
+            const forumposzt=await Poszt.findAll({order:[['createdAt','ASC']],include:[{model:Felhasználó,attributes:['felhasznalonev','kep']},{model:KedvencPoszt,attributes:['kedveles','Megosztas']}]});
             const formazottPoszt=forumposzt.map(message=>({
                 id:message.id,
                 cim:message.cim,
@@ -93,9 +104,10 @@ export default{
                 video:message.video,
                 elkuldve:message.createdAt,
                 felhasznalo:message.felhasználó.felhasznalonev,
-                fkep:message.felhasználó.kep
-
-            }))
+                fkep:message.felhasználó.kep,
+                kedveles:message.kedvencposzt.kedveles,
+                megosztas:message.kedvencposzt.Megosztas
+            }));
             return res.status(200).json(formazottPoszt);
         }catch(err){
             console.error(err);
@@ -119,14 +131,19 @@ export default{
             if(!req.body.szoveg){
                 return res.status(400).json({ error: true, message: "Minden mező kötelező!" });
             }
-            const Posztkomment=await Komment.build({
+            const Posztkomment=await Komment.create({
                 szint:0,
                 poszt_id:posztid,
                 user_id:felhasználó.id,
                 komment:req.body.szoveg,
                 kommentszulo_id:null
             });
-            await Posztkomment.save();
+            await Posztkomment.reload();
+            await KedvencKomment.create({
+                komment_id:Posztkomment.id,
+                kedveles:0,
+                Megosztas:0
+            })
             return res.status(201).json({
                 error: false,
                 message: "Komment sikeresen hozzáadva!",
@@ -160,14 +177,19 @@ export default{
             }
             const előzőkomment=await Komment.findByPk(kommentid);
             const újszint= előzőkomment !==null ? előzőkomment.szint+1 : 0;
-            const Kommentkomment=await Komment.build({
+            const Kommentkomment=await Komment.create({
                 szint:újszint,
                 poszt_id:előzőkomment.poszt_id,
                 user_id:felhasználó.id,
                 komment:req.body.szoveg,
                 kommentszulo_id:kommentid
             });
-            await Kommentkomment.save();
+            await Kommentkomment.reload();
+            await KedvencKomment.create({
+                komment_id:Posztkomment.id,
+                kedveles:0,
+                Megosztas:0
+            })
             return res.status(201).json({
                 error: false,
                 message: "Komment sikeresen hozzáadva!",
@@ -195,7 +217,7 @@ export default{
             const formazottKomment=await Komment.findAll({
                 where:{poszt_id:posztid},
                 order:[['createdAt','ASC']],
-                include:[{model:Felhasználó,attributes:['felhasznalonev','kep']}]
+                include:[{model:Felhasználó,attributes:['felhasznalonev','kep']},{model:KedvencKomment,attributes:['kedveles','Megosztas']}]
             });
             const kommentek=formazottKomment.map(komment=>({
                 id:komment.id,
@@ -204,7 +226,9 @@ export default{
                 felhasznalo:komment.felhasználó.felhasznalonev,
                 fkep:komment.felhasználó.kep,
                 szint:komment.szint,
-                kommentszulo:komment.kommentszulo_id
+                kommentszulo:komment.kommentszulo_id,
+                kedveles:komment.kedvenckomment.kedveles,
+                megosztas:komment.kedvenckomment.Megosztas,
             }))
             return res.status(200).json(kommentek);
         } catch (error) {
@@ -364,6 +388,98 @@ export default{
                 console.error("Hiba történt:", error);
                 return res.status(500).json({ error: true, message: "Szerver hiba!" });
             }
+        }
+    },
+    kedvelésPosztPatch:async function (req, res){
+        const id=req.params.id;
+        const komment=await KedvencPoszt.findByPk(id);
+        if(!komment){
+            return res.status(404).json({ error: true, message: "A  poszt nem található!" });
+        }
+        try {
+            const újKevdelés=komment.kedveles+1;
+
+            await KedvencPoszt.update(
+                {kedveles:újKevdelés},
+                {where:{poszt_id:id}}
+            );
+            return res.status(200).json({
+                error: false,
+                message: "A poszt kedvelése megtörtént!",
+            });
+
+        } catch (error) {
+            console.error("Hiba történt:", error);
+            return res.status(500).json({ error: true, message: "Szerver hiba!" });
+        }
+    },
+    megosztasPosztPatch:async function (req, res){
+        const id=req.params.id;
+        const komment=await KedvencPoszt.findByPk(id);
+        if(!komment){
+            return res.status(404).json({ error: true, message: "A poszt nem található!" });
+        }
+        try {
+            const újMegosztas=komment.Megosztas+1;
+
+            await KedvencPoszt.update(
+                {Megosztas:újMegosztas},
+                {where:{poszt_id:id}}
+            );
+            return res.status(200).json({
+                error: false,
+                message: "A poszt megosztása megtörtént!",
+            });
+
+        } catch (error) {
+            console.error("Hiba történt:", error);
+            return res.status(500).json({ error: true, message: "Szerver hiba!" });
+        }
+    },
+    kedvelésKommentPatch:async function (req, res){
+        const id=req.params.id;
+        const komment=await KedvencKomment.findByPk(id);
+        if(!komment){
+            return res.status(404).json({ error: true, message: "A komment nem található!" });
+        }
+        try {
+            const újKevdelés=komment.kedveles+1;
+
+            await KedvencKomment.update(
+                {kedveles:újKevdelés},
+                {where:{poszt_id:id}}
+            );
+            return res.status(200).json({
+                error: false,
+                message: "A Komment kedvelése megtörtént!",
+            });
+
+        } catch (error) {
+            console.error("Hiba történt:", error);
+            return res.status(500).json({ error: true, message: "Szerver hiba!" });
+        }
+    },
+    megosztasKommentPatch:async function (req, res){
+        const id=req.params.id;
+        const komment=await KedvencKomment.findByPk(id);
+        if(!komment){
+            return res.status(404).json({ error: true, message: "A komment nem található!" });
+        }
+        try {
+            const újMegosztas=komment.Megosztas+1;
+
+            await KedvencKomment.update(
+                {Megosztas:újMegosztas},
+                {where:{poszt_id:id}}
+            );
+            return res.status(200).json({
+                error: false,
+                message: "A komment megosztása megtörtént!",
+            });
+
+        } catch (error) {
+            console.error("Hiba történt:", error);
+            return res.status(500).json({ error: true, message: "Szerver hiba!" });
         }
     },
 };

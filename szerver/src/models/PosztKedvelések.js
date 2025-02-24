@@ -16,10 +16,12 @@ const KedvencPoszt=db.define(
         onDelete: "CASCADE"
     },
     kedveles:{
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        defaultValue: 0
     },
     Megosztas:{
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        defaultValue: 0
     }
 },{
     tableName: "kedvencposzt",
@@ -27,8 +29,8 @@ const KedvencPoszt=db.define(
 }
 )
 
-
-Poszt.belongsTo(KedvencPoszt, {foreignKey: 'poszt_id', onDelete: 'CASCADE'  });
+Poszt.hasOne(KedvencPoszt, {foreignKey: 'poszt_id', onDelete: 'CASCADE'  });
+KedvencPoszt.belongsTo(Poszt, {foreignKey: 'poszt_id', onDelete: 'CASCADE'  });
 
 
 export  default KedvencPoszt;

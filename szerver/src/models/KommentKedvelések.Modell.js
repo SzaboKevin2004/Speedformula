@@ -16,10 +16,12 @@ const KedvencKomment=db.define(
         onDelete:"CASCADE"
     },
     kedveles:{
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        defaultValue: 0
     },
     Megosztas:{
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        defaultValue: 0
     }
  },
  {
@@ -28,7 +30,8 @@ const KedvencKomment=db.define(
  }
 );
 
-Komment.belongsTo(KedvencKomment, {foreignKey: 'komment_id',onDelete: 'CASCADE'  });
+Komment.hasOne(KedvencKomment, {foreignKey: 'komment_id', onDelete: 'CASCADE'  });
+KedvencKomment.belongsTo(Komment, {foreignKey: 'komment_id',onDelete: 'CASCADE'  });
 
 
 
