@@ -11,7 +11,7 @@ import { EloService } from '../services/elo.service';
 
 @Component({
   selector: 'app-elo',
-  imports: [FooterComponent, CommonModule, SafeUrlPipe, FormsModule],
+  imports: [ CommonModule, SafeUrlPipe, FormsModule],
   templateUrl: './elo.component.html',
   styleUrls: ['./elo.component.css'],
   encapsulation: ViewEncapsulation.None
@@ -98,7 +98,7 @@ export class EloComponent implements OnInit {
             const uzenet = uzenetek.filter((msg) => !this.uzenetek.some(meglevoUzenet => meglevoUzenet.id === msg.id));
             if (uzenet.length > 0) {
               const ujUzenetek = uzenet.map(message => {
-                const kepUrl = this.authservice.getKepEleres()[message.kep];
+                const kepUrl = message.kep;
                 return { ...message, kep: kepUrl };
               });
 

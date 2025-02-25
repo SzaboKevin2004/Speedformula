@@ -75,3 +75,61 @@
     background-color: #212121;
 }
 
+@media only screen and (max-width: 1024px) {
+    .hibakep {
+        height: 250px;
+    }
+
+    .blur {
+        height: 355px;
+        width: 450px;
+    }
+
+    .kozep h1 {
+        font-size: 28px;
+    }
+
+    .hiba-keret button {
+        font-size: 14px;
+        padding: 25px 25px;
+        border-radius: 32px;
+    }
+}
+
+@media only screen and (max-width: 468px) {
+    .blur {
+        height: 285px;
+        width: 350px;
+    }
+
+    .kozep h1 {
+        font-size: 24px;
+    }
+
+    .hiba-keret button {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 374px) {
+    .hibakep {
+        height: 180px;
+    }
+
+    .blur {
+        height: 245px;
+        width: 300px;
+    }
+
+    .kozep h1 {
+        font-size: 20px;
+    }
+
+    .hiba-keret button {
+        font-size: 11px;
+        padding: 15px 15px;
+        border-radius: 32px;
+        margin-top: 10px;
+    }
+}
+

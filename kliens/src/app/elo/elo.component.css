@@ -33,21 +33,24 @@
 
 .video-chat-container {
     display: flex;
-    margin: 15px 70px 20px 70px;
-    gap: 3%;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 25px;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .video-keret {
-    display: grid;
-    width: fit-content;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
     border-radius: 5px;
 }
   
 .video-keret iframe {
-    height: 675px;
-    width: 1200px;
-    margin: 25px 25px;
+    height: calc((100vw - 760px) * 9 / 16);
+    width: calc(100vw - 760px);
+    aspect-ratio: 16 / 9;
+    margin: 25px;
     border-radius: 5px;
 }
 
@@ -59,20 +62,26 @@
 
 .chat-container {
     display: flex;
+    width: 100%;
+    height: calc((100vw - 760px + 150px) * 9 / 16);
+    max-width: 450px;
     flex-direction: column;
-    height: auto;
-    width: 25%;
+    overflow: hidden;
+    border-radius: 5px;
     padding: 10px;
+    box-sizing: border-box;
 }
   
 .chat-box {
-    max-height: 700px;
+    flex-grow: 1;
+    min-height: 0;
+    max-width: 100%;
     overflow-y: auto;
     padding: 10px;
 }
 
 .chat-message {
-    width: 400px;
+    width: 100%;
     margin-bottom: 15px;
 }
 
@@ -82,9 +91,10 @@
 
 .message {
     display: block;
-    width: 80%;
+    width: 90%;
     gap: 10px;
     word-wrap: break-word;
+    word-break: break-all;
     white-space: pre-wrap;
 }
 
@@ -149,6 +159,38 @@ input {
     align-items: center;
 }
 
-footer {
-    margin-top: 10vh;
+@media (max-width: 1359px) {
+    .video-chat-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .video-keret {
+        border-radius: 0;
+    }
+
+    .video-keret iframe {
+        width: 100vw;
+        height: calc(100vw * 9 / 16);
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .chat-container {
+        width: 100%;
+        height: calc(100vh - calc(100vw * 9 / 16) - 150px);
+        max-width: 100%;
+        border-radius: 0;
+    }
+
+    .video-chat-container {
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        gap: 0;
+    }
+
+    .video-keret h2 {
+        display: none;
+    }
 }

@@ -732,6 +732,11 @@ footer a:hover {
     .menu {
         width: 50%;
     }
+
+    .tartalom::-webkit-scrollbar {
+        display: none;
+    }
+
 }
 
 @media only screen and (max-width: 600px) {
