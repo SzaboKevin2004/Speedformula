@@ -43,7 +43,7 @@
 }
   
 .hir img {
-    height: 250px;
+    height: auto;
     width: 100%;
     border-radius: 8px;
     margin-top: 10px;
@@ -60,4 +60,35 @@
 .hirek .vorosK:hover {
     background-color: var(--szin-hover-voros);
 }
-  
+
+@media only screen and (max-width: 1599px ) {
+    .keret {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 1279px ) {
+    .keret {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 1023px ) {
+    .keret {
+        width: 100%;
+    }
+
+    h1 {
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 819px ) {
+    .hirek {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media only screen and (max-width: 480px ) {}
+
+@media only screen and (max-width: 600px ) {}

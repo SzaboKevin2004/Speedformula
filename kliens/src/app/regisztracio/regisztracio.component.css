@@ -141,3 +141,43 @@ a[routerLink="/bejelentkezes"]:active {
 .ertesitessav.sikerVillan {
     animation: sikerVillan 0.5s ease-in-out;
 }
+
+@media only screen and (max-width: 560px) {
+    .reg-keret {
+        width: 80vw;
+    }
+
+    input[type="button"] {
+        width: 45%;
+    }
+
+    .ertesitessav {
+        width: 80vw;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    input {
+        width: 80%;
+    }
+
+    .jelszo-keret {
+        width: 85%;
+    }
+
+    input[type="button"] {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 390px) {
+    input[type='button'] {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 330px) {
+    input[type='button'] {
+        width: 70%;
+    }
+}

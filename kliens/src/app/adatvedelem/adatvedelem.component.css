@@ -22,3 +22,67 @@
     padding: 1px 30px 30px 30px;
     border-radius: 30px;
 }
+
+@media only screen and (max-width: 1599px) {
+    .keret {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 1023px) {
+    .keret {
+        width: 60%;
+    }
+
+    .keret p {
+        text-align: left;
+    }
+}
+
+@media only screen and (max-width: 819px) {
+    .keret {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .keret {
+        width: 80%;
+    }
+
+    .keret h1 {
+        text-align: center;
+    }
+
+    .keret ul {
+        padding-left: 0;
+        list-style-position: inside;
+    }
+
+    .keret li {
+        margin-left: 0;
+        padding-left: 0;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .keret {
+        width: 100%;
+    }
+
+    .keret ul {
+        list-style: none;
+    }
+
+    .keret li::before {
+        content: "•";
+        display: inline-block;
+        width: 0.8em;
+    }
+
+    .keret li {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
+}

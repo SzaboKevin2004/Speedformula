@@ -1,4 +1,4 @@
-.tartalom{
+.tartalom {
     display: flex;
     height: 100vh;
     justify-content: center;
@@ -10,55 +10,65 @@
     background-color: transparent;
 }
 
-.keret{
-    height: 60vh;
-    width: 45vw;
-    margin-top: -88px;
-    margin-bottom: 40px;
+.tartalom::-webkit-scrollbar {
+    display: none;
+}
+
+.keret {
+    min-height: 500px;
+    max-width: 900px;
+    width: 45%;
     border-radius: 70px;
 }
 
-h1, h2{
-    text-align: center;
+h1, h2 {
     font-family: var(--betutipus-alap);
     font-weight: normal;
     user-select: none;
 }
 
-h2{
-    margin-right: 30vw;
+h1 {
+    text-align: center;
+}
+
+h2 {
+    margin-left: 5vw;
     margin-top: 2vh;
 }
 
-p{
+p {
     margin-left: 1vw;
     font-family: var(--betutipus-alap);
     font-weight: normal;
     user-select: none;
 }
 
-p.adat{
+p.adat {
+    max-height: 22px;
     margin-right: 1vw;
     user-select: none;
     color: grey;
+    overflow: hidden;
 }
 
-.gomb{
+.gomb {
     height: 45px;
     width: 45px;
     margin-right: 1vw;
     user-select: none;
 }
 
-.opcio{
+.opcio {
     display: flex;
-    width: 35vw;
+    max-width: 650px;
+    width: 80%;
     margin-left: 6vw;
     margin-top: -0.5vh;
     text-align: center;
     justify-content: space-between;
     border-radius: 15px;
     cursor: pointer;
+    gap: 15px;
 }
 
 .opcioTema {
@@ -73,6 +83,7 @@ p.adat{
     padding: 10px 20px 10px 20px;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     text-align: center;
     border-radius: 15px;
     cursor: pointer;
@@ -89,7 +100,7 @@ p.adat{
     margin: 0;
     margin-top: 1vh;
     font-family: var(--betutipus-alap);
-    font-size:  var(--betumeret-fo);
+    font-size: var(--betumeret-fo);
     user-select: none;
 }
 
@@ -101,7 +112,7 @@ ul.valaszto{
     list-style-type: none;
 }
 
-.valaszto li{
+.valaszto li {
     padding: 5px 10px;
     font-family: var(--betutipus-alap);
     font-size:  var(--betumeret-fo);
@@ -110,17 +121,18 @@ ul.valaszto{
     user-select: none;
     transition: background-color 0.2s;
 }
-.valaszto>div{
+.valaszto>div {
     margin: 0 5px 0 5px;
     border-radius: 5px;
 }
 
-.opcioTema>div{
+.opcioTema>div {
     border-radius: 15px;
 }
 
 #password {
     display: flex;
+    max-height: 48px;
     margin: 0;
     align-items: center;
     margin-right: 15px;
@@ -299,3 +311,114 @@ button.megse:hover {
     animation: sikerVillan 0.5s ease-in-out;
 }
 
+@media only screen and (max-width: 1599px) {
+    .keret {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 1279px) {
+    .keret {
+        width: 60%;
+    }
+
+    .opcioTema {
+        margin-top: 5vh;
+    }
+
+    .temaIkon {
+        height: 100px;
+        width: 100px;
+    }
+
+}
+
+@media only screen and (max-width: 1023px) {
+    .keret {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 819px) {
+    .keret {
+        width: 80%;
+    }
+
+    .opcio {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .keret {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .keret {
+        width: 100%;
+    }
+
+    .opcio {
+        width: 90%;
+    }
+
+    ul.valaszto {
+        margin-bottom: 32px;
+    }
+}
+
+@media only screen and (max-width: 516px) {
+    .temaIkon {
+        height: 80px;
+        width: 80px;
+    }
+}
+
+@media only screen and (max-width: 413px) {
+    .opcioTema {
+        margin-top: 6vh;
+    }
+
+    .temaIkon {
+        height: 60px;
+        width: 60px;
+    }
+}
+
+@media only screen and (max-width: 374px) {
+    .temaIkon {
+        height: 50px;
+        width: 50px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    p.adat {
+        max-height: 16px;
+    }
+
+    #password {
+        max-height: 34px;
+        font-size: 25px;
+    }
+}
+
+@media only screen and (max-height: 623px) {
+    .tartalom {
+        justify-content: start;
+    }
+}
+
+@media only screen and (min-width: 1921px) {
+    .opcio {
+        margin-left: 125px;
+    }
+
+    h2 {
+        margin-left: 120px;
+    }
+}

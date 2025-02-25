@@ -10,7 +10,6 @@ body{
 
 .keret {
     display: flex;
-    width: 450px;
     height: auto;
     margin: 0 auto;
     margin-left : 25px;
@@ -100,6 +99,7 @@ input[type="submit"]:hover {
     transform: translate(-50%, -50%);
 }
 
+
 .hibaSzin {
     background-color: rgb(255, 158, 158);
 }
@@ -142,4 +142,40 @@ input[type="submit"]:hover {
 
 .ertesitessav.sikerVillan {
     animation: sikerVillan 0.5s ease-in-out;
+}
+
+@media only screen and (max-width: 560px) {
+    .visszajelzes-keret {
+        width: 80vw;
+    }
+
+    input[type="submit"] {
+        width: 45%;
+    }
+
+    .ertesitessav {
+        width: 80vw;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    input, textarea {
+        width: 80%;
+    }
+
+    input[type="submit"] {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 390px) {
+    input[type='submit'] {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 330px) {
+    input[type='submit'] {
+        width: 70%;
+    }
 }
