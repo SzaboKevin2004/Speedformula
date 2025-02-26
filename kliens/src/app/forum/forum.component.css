@@ -26,10 +26,15 @@
     background-color: var(--szin-active-voros);
 }
 
+.tartalom {
+    font-family: var(--betutipus-alap);
+    font-size: var(--betumeret-fo);
+}
+
 .poszt {
     display: flex;
     flex-direction: column;
-    margin-bottom: 55px;
+    margin-bottom: 25px;
 }
 
 .posztAdatok {
@@ -39,7 +44,7 @@
 
 .felhasznaloNev {
     margin-left: 10px;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .felhasznaloKep {
@@ -47,3 +52,94 @@
     height: 40px;
     border-radius: 50%;
 }
+
+.elteltIdo {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.cim {
+    margin: 5px 0 20px 0;
+    font-size: 20px;
+}
+
+.szoveg {
+    margin: 0;
+    font-size: 18px;
+}
+
+.letrehozas-gomb {
+    position: fixed;
+    margin-top: 25px;
+    right: 32px;
+    padding: 0px 10px 0px 10px;
+}
+
+.letrehozas-kep {
+    margin-right: 10px;
+}
+
+.letrehozas-gomb, .kedveles-gomb, .komment-gomb, 
+.megosztas-gomb, .mentes-gomb{
+    display: flex;
+    border-radius: 15px;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+}
+
+
+.letrehozas-kep, .kedveles-kep, .komment-kep, .megosztas-kep, .mentes-kep {
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+.megosztas-szoveg, .mentes-szoveg {
+    margin-left: -5px;
+}
+
+.posztGombok {
+    display: flex;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.kedveles-gomb, .komment-gomb, 
+.megosztas-gomb, .mentes-gomb{
+    padding: 0px 10px 0px 10px;
+}
+
+
+
+
+
+
+@media only screen and (max-width: 1200px) {
+    .keret {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 867px) {
+    .keret {
+        width: 60%;
+    }
+
+    .letrehozas-gomb {
+        right: 5px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .keret {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .keret {
+        width: 80%;
+    }
+}
+

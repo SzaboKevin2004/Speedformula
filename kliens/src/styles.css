@@ -99,11 +99,19 @@
     h1,h2,p{
         color: var(--szin-betu-sotet);
     }
-    p.aktiv.egyszeru::after , p.aktiv.reszletes::after {
+    p.aktiv.egyszeru::after , p.aktiv.reszletes::after, .valaszto p.aktiv.cikk::after, .valaszto p.aktiv.media::after {
         background-color: #ffffff;
     }
-    .kozep p:hover::after {
+    .kozep p:hover::after, .valaszto p:hover::after {
         background-color: #7a7979;
+    }
+
+    .feltolto-doboz {
+        border: 2px dashed #555;
+    }
+
+    .feltolto-doboz:hover, .feltolto-doboz.huzas-folytatodik {
+        border-color: #ccc;
     }
 }
 
@@ -169,11 +177,19 @@
     h1,h2,p{
         color: var(--szin-betu-vilagos);
     }
-    p.aktiv.egyszeru::after , p.aktiv.reszletes::after {
+    p.aktiv.egyszeru::after , p.aktiv.reszletes::after, .valaszto p.aktiv.cikk::after, .valaszto p.aktiv.media::after {
         background-color: #1a1a1a;
     }
-    .kozep p:hover::after {
+    .kozep p:hover::after, .valaszto p:hover::after {
         background-color: #5e5e5e;
+    }
+
+    .feltolto-doboz{
+        border: 2px dashed #ccc;
+    }
+
+    .feltolto-doboz:hover, .feltolto-doboz.huzas-folytatodik {
+        border-color: #444;
     }
 }
 
@@ -238,11 +254,19 @@
     h1,h2,p{
         color: var(--szin-betu-voros);
     }
-    p.aktiv.egyszeru::after , p.aktiv.reszletes::after {
+    p.aktiv.egyszeru::after , p.aktiv.reszletes::after, .valaszto p.aktiv.cikk::after, .valaszto p.aktiv.media::after {
         background-color: #ffffff;
     }
-    .kozep p:hover::after {
+    .kozep p:hover::after, .valaszto p:hover::after {
         background-color: #7a7979;
+    }
+
+    .feltolto-doboz {
+        border: 2px dashed #555;
+    }
+
+    .feltolto-doboz:hover, .feltolto-doboz.huzas-folytatodik {
+        border-color: #ccc;
     }
 }
 
@@ -425,6 +449,10 @@ body::-webkit-scrollbar {
 .nav-fo-menu img {
     width: 20px;
     height: 20px;
+}
+
+.nav-fo-menu li{
+    border-radius: 4px;
 }
 
 .nav-keret .nav-cim, .reg-keret .nav-cim, .be-keret .nav-cim, .visszajelzes-keret .nav-cim {

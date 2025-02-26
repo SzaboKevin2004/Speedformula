@@ -1,5 +1,5 @@
 <footer [ngStyle]="{ 'background-color': voros ? 'var(--szin-navsav-voros)' : sotet ? 'var(--szin-navsav-sotet)' : vilagos ? 'var(--szin-navsav-vilagos)' : 'var(--szin-navsav-sotet)' }">
-    <div class="footer-keret">
+    <div class="footer-keret" [ngClass]="temaSzinBetu">
         <div class="footer-oszlop">
             <h3>KAPCSOLAT</h3>
             <ul>
