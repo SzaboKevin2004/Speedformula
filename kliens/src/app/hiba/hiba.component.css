@@ -75,6 +75,18 @@
     background-color: #212121;
 }
 
+@media only screen and (max-width: 1366px) {
+    .hibakep {
+        height: 300px;
+    }
+
+    .blur {
+        height: 280px;
+        width: 380px;
+    }
+
+}
+
 @media only screen and (max-width: 1024px) {
     .hibakep {
         height: 250px;
