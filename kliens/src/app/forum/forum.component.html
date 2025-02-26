@@ -1,1 +1,24 @@
-<div class="tartalom"></div>
+<div class="tartalom">
+    <div class="keret">
+        <div class="forum-container">
+          
+            <div *ngIf="posztok.length === 0">
+              <p>Nincsenek elérhető poszt.</p>
+            </div>
+          
+            <div class="posztok" *ngFor="let poszt of posztok">
+                <div class="poszt">
+                    <div class="posztAdatok">
+                        <img class="felhasznaloKep" [src]="poszt.fkep">
+                        <p class="felhasznaloNev">{{ poszt.felhasznalo }}</p>
+                    </div>
+                    <h2 class="cim">{{ poszt.cim }}</h2>
+                    <p class="szoveg" *ngIf="poszt.szoveg != null">{{ poszt.szoveg }}</p>
+                    <img class="kep" [src]="poszt.kep" *ngIf="poszt.kep != null">
+                    <img class="video" [src]="poszt.video" *ngIf="poszt.video != null" >
+                </div>
+            </div>
+        </div>
+    </div>
+      
+</div>

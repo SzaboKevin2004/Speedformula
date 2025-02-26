@@ -25,3 +25,25 @@
 .nav-forum.vorosH:active {
     background-color: var(--szin-active-voros);
 }
+
+.poszt {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 55px;
+}
+
+.posztAdatok {
+    display: flex;
+    align-items: center;
+}
+
+.felhasznaloNev {
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.felhasznaloKep {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}

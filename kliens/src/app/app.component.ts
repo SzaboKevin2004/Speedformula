@@ -61,7 +61,7 @@ export class AppComponent implements OnInit {
             this.temaSzinGordulo = 'feketeG';
             this.temaSzinHr = 'feketeHr';
             if (typeof document !== 'undefined') {
-              document.body.className = 'feketeBg';
+            document.body.className = 'feketeBg';
             }
           } else if (szam === 2) {
             this.sotet = false;

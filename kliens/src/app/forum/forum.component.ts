@@ -1,10 +1,11 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { ForumService } from '../services/forum.service';
 
 @Component({
     selector: 'app-forum',
-    imports: [CommonModule],
+    imports: [CommonModule ],
     templateUrl: './forum.component.html',
     styleUrl: './forum.component.css',
     encapsulation: ViewEncapsulation.None
@@ -17,9 +18,25 @@ export class ForumComponent implements OnInit {
   temaSzinHover: string = '';
   temaSzinGordulo: string = '';
 
-  constructor(private authservice: AuthService) {}
+  posztok: any[] = [];
+
+  constructor(private authservice: AuthService, private forumService: ForumService) {}
+
+  posztBetoltes(): void {
+    this.forumService.getPosts().subscribe(
+      (response) => {
+        this.posztok = response;
+      },
+      (error) => {
+        console.error('Hiba történt a posztok betöltésekor:', error);
+      }
+    );
+    console.log('Posztok:', this.posztok);
+  }
 
   ngOnInit() {
+    this.posztBetoltes();
+
     this.authservice.szamSzin$.subscribe( szam => {
       if(szam === 1){
         this.temaSzin = 'feketeK';
