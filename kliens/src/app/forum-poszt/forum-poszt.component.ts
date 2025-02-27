@@ -32,7 +32,7 @@ export class ForumPosztComponent implements OnInit {
   siker: boolean = false;
   sikerUzenet: string = '';
 
-  cim: string = '';
+  cim: string = "";
   szoveg: string | null = null;
   kep: string | null = null;
   video: string | null = null;

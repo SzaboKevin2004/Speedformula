@@ -28,7 +28,12 @@
 
 .tartalom {
     font-family: var(--betutipus-alap);
-    font-size: var(--betumeret-fo);
+    font-size: 16px;
+}
+
+.keret {
+    font-family: var(--betutipus-alap);
+    font-size: 16px;
 }
 
 .poszt {
@@ -60,12 +65,14 @@
 
 .cim {
     margin: 5px 0 20px 0;
-    font-size: 20px;
+    font-size: 22px;
+    word-break: break-all;
 }
 
 .szoveg {
     margin: 0;
     font-size: 18px;
+    word-break: break-all;
 }
 
 .letrehozas-gomb {
@@ -109,10 +116,6 @@
 .megosztas-gomb, .mentes-gomb{
     padding: 0px 10px 0px 10px;
 }
-
-
-
-
 
 
 @media only screen and (max-width: 1200px) {

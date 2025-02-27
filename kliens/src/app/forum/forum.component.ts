@@ -25,6 +25,8 @@ export class ForumComponent implements OnInit {
   posztok: any[] = [];
 
   haBejelentkezett: boolean = false;
+  kedveles: boolean = true;
+  kikedveles: boolean = false;
 
   constructor(private authservice: AuthService, private forumService: ForumService) {}
 
@@ -33,7 +35,8 @@ export class ForumComponent implements OnInit {
       (response ) => {
         this.posztok = response.map((poszt: any) => ({
           ...poszt,
-          elteltIdo: this.elteltIdoSzamitasa(poszt.elkuldve)
+          elteltIdo: this.elteltIdoSzamitasa(poszt.elkuldve),
+          kedvelteE: poszt.kedvelteE
         }));
       },
       (error) => {
@@ -66,6 +69,53 @@ export class ForumComponent implements OnInit {
     } else {
       return `${Math.floor(masodpercekben / 31536000)} éve`;
     }
+  }
+
+  kedvelesClick(postId: number) {
+    const poszt = this.posztok.find(p => p.id === postId);
+    if (!poszt) return;
+
+    poszt.kedvelteE = true;
+    poszt.kedveles += 1;
+
+    this.forumService.likePost(postId).subscribe(
+      (response) => {
+        console.log('Kedvelés sikeresen megtörtént:', response);
+      },
+      (error) => {
+        console.error('Hiba történt a kedvelés megerősítésénél:', error);
+        poszt.kedvelteE = false;
+        poszt.kedveles -= 1;
+      }
+    );
+  }
+
+  kikedvelesClick(postId: number) {
+    const poszt = this.posztok.find(p => p.id === postId);
+    if (!poszt) return;
+
+    poszt.kedvelteE = false;
+    poszt.kedveles -= 1;
+
+    this.forumService.dislikePost(postId).subscribe(
+      (response) => {
+        console.log('Kikedvelés sikeresen megtörtént:', response);
+      },
+      (error) => {
+        console.error('Hiba történt a kikedvelés megerősítésénél:', error);
+        poszt.kedvelteE = true;
+        poszt.kedveles += 1;
+      }
+    );
+  }
+
+  urlMasolas(postId: number) {
+    const url = `${window.location.origin}/forum/${postId}`;
+    navigator.clipboard.writeText(url).then(() => {
+      alert('A poszt linkje kimásolva! 📋');
+    }).catch(err => {
+      console.error('Hiba történt a másolás során:', err);
+    });
   }
 
   ngOnInit() {

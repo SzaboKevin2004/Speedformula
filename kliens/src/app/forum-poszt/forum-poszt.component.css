@@ -6,6 +6,10 @@
     user-select: none;
 }
 
+.tartalom-siker {
+    margin-top: 88px;
+}
+
 .valaszto {
     display: flex;
     gap: 25px;
@@ -118,9 +122,8 @@ button {
 }
 
 #siker {
-    width: 50%;
-    align-items: center;
-    justify-content: center;
+    width: 40%;
+    margin-top: 50vh;
 }
 
 .hibaSzin{

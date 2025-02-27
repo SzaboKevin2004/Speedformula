@@ -1,3 +1,61 @@
 <div class="tartalom" [ngClass]="temaSzinGordulo">
-    <app-footer></app-footer>
+    <div class="keret" [ngClass]="temaSzinBetu">
+        <div *ngIf="poszt">
+            
+            <div class="poszt">
+                <div class="posztAdatok">
+                    <img class="felhasznaloKep" [src]="poszt.fkep">
+                    <p class="felhasznaloNev">{{ poszt.felhasznalo }}</p>
+                    <p class="elteltIdo"> • {{poszt.elteltIdo}}</p>
+                </div>
+                <h2 class="cim">{{ poszt.cim }}</h2>
+                <p class="szoveg" *ngIf="poszt.szoveg != null">{{ poszt.szoveg }}</p>
+                <img class="kep" [src]="poszt.kep" *ngIf="poszt.kep != null">
+                <img class="video" [src]="poszt.video" *ngIf="poszt.video != null" >
+            </div>
+
+            <div class="posztGombok" *ngIf="haBejelentkezett">
+
+                <div class="kedveles-gomb" *ngIf="!poszt.kedvelteE" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kedvelesClick(poszt?.id)">
+                    <img class="kedveles-kep" src="../../assets/icons/favorite.png" *ngIf="vilagos">
+                    <img class="kedveles-kep" src="../../assets/icons/favorite-white.png" *ngIf="sotet || voros">
+                    <p class="kedveles-szoveg">{{ poszt.kedveles }}</p>
+                </div>
+                <div class="kedveles-gomb" *ngIf="poszt.kedvelteE" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kikedvelesClick(poszt?.id)">
+                    <img class="kedveles-kep" src="../../assets/icons/favorite-full.png" *ngIf="vilagos">
+                    <img class="kedveles-kep" src="../../assets/icons/favorite-white-full.png" *ngIf="sotet || voros">
+                    <p class="kedveles-szoveg">{{ poszt.kedveles }}</p>
+                </div>
+
+                <div class="komment-gomb" [ngClass]="[temaSzin2, temaSzinHover]" >
+                    <img class="komment-kep" src="../../assets/icons/message.png" *ngIf="vilagos">
+                    <img class="komment-kep" src="../../assets/icons/message-white.png" *ngIf="sotet || voros">
+                    <p class="komment-szoveg">{{ poszt.kommentek }}</p>
+                </div>
+
+                <div class="megosztas-gomb" [ngClass]="[temaSzin2, temaSzinHover]" (click)="urlMasolas(poszt?.id)" >
+                    <img class="megosztas-kep" src="../../assets/icons/share.png" *ngIf="vilagos">
+                    <img class="megosztas-kep" src="../../assets/icons/share-white.png" *ngIf="sotet || voros">
+                    <p class="megosztas-szoveg">Megosztás</p>
+                </div>
+
+                <div class="mentes-gomb" [ngClass]="[temaSzin2, temaSzinHover]">
+                    <img class="mentes-kep" src="../../assets/icons/bookmark.png" *ngIf="vilagos">
+                    <img class="mentes-kep" src="../../assets/icons/bookmark-white.png" *ngIf="sotet || voros">
+                    <p class="mentes-szoveg">Mentés</p>
+                </div>
+            </div>
+            <hr *ngIf="!haBejelentkezett">
+            <div *ngIf="haBejelentkezett">
+                <button class="uzenetGomb" [ngClass]="temaSzin2" (click)="uzenetKuldes()">Komment írása...</button>
+            </div>
+            
+            <div class="kommentek">
+                <div class="komment" *ngFor="let komment of poszt.kommentek">
+                    <p class="kommentFelhasznalo">{{ komment.felhasznalo }}</p>
+                    <p class="kommentSzoveg">{{ komment.szoveg }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

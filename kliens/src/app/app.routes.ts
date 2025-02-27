@@ -39,7 +39,7 @@ export const routes: Routes = [
     {path:'tortenet', component: TortenetComponent},
     {path:'forum', component: ForumComponent},
     {path:'forum-poszt-letrehozas', component: ForumPosztComponent, canActivate: [authGuard]},
-    {path:'forum-poszt.reszlet,', component: ForumPosztReszletComponent},
+    {path:'forum/:id,', component: ForumPosztReszletComponent},
     {path:'profil', component: ProfilComponent},
     {path: '**', component: HibaComponent}
 

@@ -1,6 +1,6 @@
-<div class="tartalom">
+<div class="tartalom" *ngIf="letrehoz">
     <div class="keret" [ngClass]="temaSzinBetu">
-        <div *ngIf="letrehoz">
+        <div>
             <h1>Poszt létrehozás</h1>
             <div class="valaszto">
                 <p class="cikk" [ngClass]="{ 'aktiv': cikk }" (click)="cikkClick()">Cikk</p>
@@ -29,6 +29,8 @@
                 <p *ngIf="hibaUzenet" id="uzenet" >{{ hibaUzenet }}</p>
             </div>
     </div>
+</div>
+<div class="tartalom-siker">
     <div *ngIf="siker" class="ertesitessav" id="siker" [ngClass]="{ 'sikerSzin': siker, 'sikerVillan': siker }"> 
         <p *ngIf="sikerUzenet" id="uzenet" >{{ sikerUzenet }}</p>
     </div>

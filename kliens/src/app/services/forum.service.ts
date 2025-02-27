@@ -17,7 +17,7 @@ export class ForumService {
 
   // Új poszt létrehozása
   createPost( adatok: {
-    cim: string,
+    cim: string | null,
     szoveg: string | null,
     kep: string | null,
     video: string | null
@@ -30,11 +30,11 @@ export class ForumService {
   }
 
   // Kép/videó poszt létrehozása
-  createImagePost(data: any): Observable<any> {
+  createImagePost(adatok: any): Observable<any> {
     const token = localStorage.getItem('token'); 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     
-    return this.http.put<any>(`${this.url}/kepes`, data, { headers });
+    return this.http.put<any>(`${this.url}/kepes`, adatok, { headers });
   }
 
   // Komment hozzáadása egy poszthoz
@@ -42,12 +42,12 @@ export class ForumService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    const data = {
+    const adatok = {
       poszt_id: postId,
       szoveg: commentText
     };
 
-    return this.http.put<any>(`${this.url}/komment/poszt`, data, { headers });
+    return this.http.put<any>(`${this.url}/komment/poszt`, adatok, { headers });
   }
 
   // Kommentek lekérése
@@ -60,7 +60,12 @@ export class ForumService {
 
   // Poszt kedvelés
   likePost(postId: number): Observable<any> {
-    return this.http.patch<any>(`${this.url}/kedvelesposzt/${postId}`, {});
+    return this.http.patch<any>(`${this.url}/posztkedveles/${postId}`, {});
+  }
+
+   // Poszt kikedvelése
+  dislikePost(postId: number): Observable<any> {
+    return this.http.patch<any>(`${this.url}/posztkikedveles/${postId}`, {});
   }
 
   // Poszt megosztása
@@ -83,8 +88,8 @@ export class ForumService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    const data = { posztid: postId };
-    return this.http.delete<any>(`${this.url}/poszt`, { body: data, headers });
+    const adatok = { posztid: postId };
+    return this.http.delete<any>(`${this.url}/poszt`, { body: adatok, headers });
   }
 
   // Komment törlése
@@ -92,7 +97,7 @@ export class ForumService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    const data = { kommentid: commentId };
-    return this.http.delete<any>(`${this.url}/komment`, { body: data, headers });
+    const adatok = { kommentid: commentId };
+    return this.http.delete<any>(`${this.url}/komment`, { body: adatok, headers });
   }
 }
