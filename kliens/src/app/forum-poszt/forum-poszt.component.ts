@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { ForumService } from '../services/forum.service';
 import { FormsModule } from '@angular/forms';
 
@@ -22,17 +22,22 @@ export class ForumPosztComponent implements OnInit {
   vilagos: boolean = false;
   voros: boolean = false;
 
+  letrehoz: boolean = true;
   cikk: boolean = true;
   media: boolean = false;
-
   fajlNev: string | undefined = undefined;
+
+  hiba: boolean = false;
+  hibaUzenet: string = '';
+  siker: boolean = false;
+  sikerUzenet: string = '';
 
   cim: string = '';
   szoveg: string | null = null;
   kep: string | null = null;
   video: string | null = null;
 
-  constructor(private authservice: AuthService, private forumservice: ForumService) {}
+  constructor(private authservice: AuthService, private forumservice: ForumService, private router: Router) {}
 
   fajlKivalasztva(esemeny: any) {
     const fajl = esemeny.target.files[0];
@@ -117,6 +122,9 @@ export class ForumPosztComponent implements OnInit {
   bezar() {}
 
   mentes() {
+    this.hiba = false;
+    this.hibaUzenet = '';
+    
     const adatok = {
       cim: this.cim,
       szoveg: this.szoveg,
@@ -127,9 +135,20 @@ export class ForumPosztComponent implements OnInit {
     ).subscribe({
       next: (response) => {
         console.log('Sikeres poszt létrehozás:', response);
+        this.letrehoz = false;
+        this.siker = true;
+        this.sikerUzenet = "Poszt létrehozva!";
+        setTimeout(() => {
+          this.router.navigate(['/forum']);
+        }, 1500);
       },
-      error: (error) => {
-        console.error('Hiba történt a poszt létrehozásakor:', error);
+      error: (err) => {
+        this.hiba = true;
+        if (err.error?.message) {
+          this.hibaUzenet = err.error.message;
+        } else {
+          this.hibaUzenet = "Ismeretlen hiba történt a poszt létrehozása során!";
+        }
       }
     });
   }
