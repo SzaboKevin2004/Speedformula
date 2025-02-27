@@ -1,5 +1,5 @@
 <div class="tartalom" [ngClass]="temaSzinGordulo">
-    <div class="letrehozas-gomb" [ngClass]="[temaSzin2, temaSzinHover]" routerLink="/forum-poszt">
+    <div class="letrehozas-gomb" *ngIf="haBejelentkezett" [ngClass]="[temaSzin2, temaSzinHover]" routerLink="/forum-poszt-letrehozas">
         <img class="letrehozas-kep" src="../../assets/icons/create.png" *ngIf="vilagos">
         <img class="letrehozas-kep" src="../../assets/icons/create-white.png" *ngIf="sotet || voros">
         <p class="letrehozas-szoveg">Létrehozás</p>

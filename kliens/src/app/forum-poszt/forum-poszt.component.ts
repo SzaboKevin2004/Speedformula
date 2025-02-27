@@ -3,10 +3,11 @@ import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ForumService } from '../services/forum.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-forum-poszt',
-    imports: [CommonModule, RouterModule],
+    imports: [CommonModule, RouterModule, FormsModule],
     templateUrl: './forum-poszt.component.html',
     styleUrl: './forum-poszt.component.css'
 })
@@ -116,10 +117,25 @@ export class ForumPosztComponent implements OnInit {
   bezar() {}
 
   mentes() {
-    this.forumservice
+    const adatok = {
+      cim: this.cim,
+      szoveg: this.szoveg,
+      kep: this.kep,
+      video: this.video
+    }
+    this.forumservice.createPost( adatok
+    ).subscribe({
+      next: (response) => {
+        console.log('Sikeres poszt létrehozás:', response);
+      },
+      error: (error) => {
+        console.error('Hiba történt a poszt létrehozásakor:', error);
+      }
+    });
   }
 
   ngOnInit() {
+
     this.authservice.szamSzin$.subscribe( szam => {
       if(szam === 1){
         this.sotet = true;

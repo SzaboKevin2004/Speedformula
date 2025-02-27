@@ -24,6 +24,8 @@ export class ForumComponent implements OnInit {
 
   posztok: any[] = [];
 
+  haBejelentkezett: boolean = false;
+
   constructor(private authservice: AuthService, private forumService: ForumService) {}
 
   posztBetoltes(): void {
@@ -68,6 +70,10 @@ export class ForumComponent implements OnInit {
 
   ngOnInit() {
     this.posztBetoltes();
+
+    this.authservice.felhBejelentkezettE$.subscribe(bejelentkezettE => {
+      this.haBejelentkezett = bejelentkezettE;
+    });
 
     this.authservice.szamSzin$.subscribe( szam => {
       if(szam === 1){

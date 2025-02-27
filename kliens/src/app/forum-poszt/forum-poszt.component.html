@@ -6,9 +6,9 @@
             <p class="media" [ngClass]="{ 'aktiv': media }" (click)="mediaClick()">Képek/Videó</p>
         </div>
         <div class="letrehozas-tartalom">
-            <input type="text" name="" id="" placeholder="Cím" [ngClass]="temaSzin">
+            <input type="text" [(ngModel)]="cim" name="" id="" placeholder="Cím" [ngClass]="temaSzin">
 
-            <textarea name="" id=""  placeholder="Szöveg" [ngClass]="temaSzin" *ngIf="cikk"></textarea>
+            <textarea name="" id="" [(ngModel)]="szoveg" placeholder="Szöveg" [ngClass]="temaSzin" *ngIf="cikk"></textarea>
 
             <div class="feltolto-doboz" (click)="fileInput.click()" (dragover)="huzEsTart($event)" (dragleave)="huzasVege()" (drop)="fajlLedobva($event)" *ngIf="media" [ngClass]="temaSzin">
                 <p>{{ fajlNev || 'Fogd és húzd, vagy töltsd fel a tartalmat!' }}</p>

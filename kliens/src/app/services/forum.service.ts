@@ -16,11 +16,17 @@ export class ForumService {
   }
 
   // Új poszt létrehozása
-  createPost(data: any): Observable<any> {
+  createPost( adatok: {
+    cim: string,
+    szoveg: string | null,
+    kep: string | null,
+    video: string | null
+  }
+  ): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     
-    return this.http.put<any>(`${this.url}/cikk`, data, { headers });
+    return this.http.put<any>(`${this.url}/cikk`, adatok, { headers });
   }
 
   // Kép/videó poszt létrehozása

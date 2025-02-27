@@ -14,7 +14,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     return false;
   }
 
-  if (!hitelesitettE && state.url === '/beallitasok') {
+  if (!hitelesitettE && (state.url === '/beallitasok' || state.url === '/forum-poszt-letrehozas')) {
     router.navigate(['/bejelentkezes']);
     return false;
   }
