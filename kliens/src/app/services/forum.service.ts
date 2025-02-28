@@ -38,24 +38,22 @@ export class ForumService {
   }
 
   // Komment hozzáadása egy poszthoz
-  addCommentToPost(postId: number, commentText: string): Observable<any> {
+  addCommentToPost(
+    adatok: {
+      posztid: number,
+      szoveg: string 
+    }
+  ): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    const adatok = {
-      poszt_id: postId,
-      szoveg: commentText
-    };
 
     return this.http.put<any>(`${this.url}/komment/poszt`, adatok, { headers });
   }
 
   // Kommentek lekérése
   getComments(postId: number): Observable<any> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    return this.http.get<any>(`${this.url}/komment/${postId}`, { headers });
+    const adatok = { posztid: postId };
+    return this.http.get<any>(`${this.url}/komment`, adatok,);
   }
 
   // Poszt kedvelés

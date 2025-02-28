@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ForumService } from '../services/forum.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-forum-poszt-reszlet',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './forum-poszt-reszlet.component.html',
   styleUrl: './forum-poszt-reszlet.component.css'
 })
 export class ForumPosztReszletComponent implements OnInit {
+  @ViewChild('textarea') textarea!: ElementRef;
   temaSzin: string = '';
   temaSzin2: string = '';
   temaSzinN: string = '';
@@ -24,6 +26,14 @@ export class ForumPosztReszletComponent implements OnInit {
   haBejelentkezett: boolean = false;
   posztok: any[] = [];
   poszt: any;
+  
+  uzenetGombMegjelenites: boolean = true;
+  uzenetKuldesMegjelenites: boolean = false;
+
+  uzenet: string = '';
+
+  hiba: boolean = false;
+  hibaUzenet: string = '';
 
   constructor(private authservice: AuthService, private route: ActivatedRoute, private forumService: ForumService) {}
 
@@ -136,13 +146,47 @@ export class ForumPosztReszletComponent implements OnInit {
     });
   }
 
-  uzenetKuldes(){
+  uzenetKuldesMegjelenitesClick(){
+    this.uzenetKuldesMegjelenites =!this.uzenetKuldesMegjelenites;
+    this.uzenetGombMegjelenites = false;
 
+    setTimeout(() => {
+      this.textarea.nativeElement.focus();
+    }, 50);
   }
 
-  mentes(){}
+  mentes(postId: number){
 
-  bezar(){}
+    const adatok = {
+      posztid: postId,
+      szoveg: this.uzenet
+    }
+
+    this.forumService.addCommentToPost( adatok
+    ).subscribe({
+      next: (response) => {
+        console.log('Sikeres komment létrehozás:', response);
+        setTimeout(() => {
+          this.uzenetKuldesMegjelenites = false;
+          this.uzenetGombMegjelenites = true;
+          this.uzenet = '';
+        }, 50);
+      },
+      error: (err) => {
+        this.hiba = true;
+        if (err.error?.message) {
+          this.hibaUzenet = err.error.message;
+        } else {
+          this.hibaUzenet = "Ismeretlen hiba történt a komment létrehozása során!";
+        }
+      }
+    });
+  }
+
+  bezar(){
+    this.uzenetKuldesMegjelenites = false;
+    this.uzenetGombMegjelenites = true;
+  }
 
   ngOnInit() {
     this.posztBetoltes();

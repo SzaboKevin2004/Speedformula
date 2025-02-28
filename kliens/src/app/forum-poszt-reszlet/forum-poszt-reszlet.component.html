@@ -47,24 +47,19 @@
             </div>
             <hr *ngIf="!haBejelentkezett">
             <div *ngIf="haBejelentkezett">
-                <button class="uzenetGomb" [ngClass]="temaSzin2" (click)="uzenetKuldes()">Komment írása...</button>
+                <button class="uzenetGomb" [ngClass]="temaSzin2" *ngIf="uzenetGombMegjelenites" (click)="uzenetKuldesMegjelenitesClick()">Komment írása...</button>
                 
-                <div class="uzenetGombok-keret" [ngClass]="temaSzin2">
-                    <div class="uzenet-keret" [ngClass]="temaSzin2">
-                        <textarea ></textarea>
-                    </div>
+                <div class="uzenetGombok-keret" [ngClass]="temaSzin2" *ngIf="uzenetKuldesMegjelenites">
+                    <textarea #textarea class="uzenet-keret" [(ngModel)]="uzenet" [ngClass]="temaSzin2"></textarea>
+         
                     <div class="gombok">
-                        <button class="mentes" (click)="mentes()" [ngClass]="[temaSzin, temaSzinHover]">Komment</button>
+                        <button class="mentes" (click)="mentes(poszt?.id)" [ngClass]="[temaSzin, temaSzinHover]">Komment</button>
                         <button class="megse" (click)="bezar()" [ngClass]="[temaSzin, temaSzinHover]">Mégse</button>
                     </div>
                 </div>
             </div>
             
             <div class="kommentek">
-                <div class="komment" *ngFor="let komment of poszt.kommentek">
-                    <p class="kommentFelhasznalo">{{ komment.felhasznalo }}</p>
-                    <p class="kommentSzoveg">{{ komment.szoveg }}</p>
-                </div>
             </div>
         </div>
     </div>
