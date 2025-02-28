@@ -140,6 +140,10 @@ export class ForumPosztReszletComponent implements OnInit {
 
   }
 
+  mentes(){}
+
+  bezar(){}
+
   ngOnInit() {
     this.posztBetoltes();
     this.authservice.felhBejelentkezettE$.subscribe(bejelentkezettE => {

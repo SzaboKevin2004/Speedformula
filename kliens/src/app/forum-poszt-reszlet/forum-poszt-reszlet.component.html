@@ -48,6 +48,12 @@
             <hr *ngIf="!haBejelentkezett">
             <div *ngIf="haBejelentkezett">
                 <button class="uzenetGomb" [ngClass]="temaSzin2" (click)="uzenetKuldes()">Komment írása...</button>
+                <div class="uzenetGombok-keret" [ngClass]="temaSzin2">
+                    <div class="gombok">
+                        <button class="mentes" (click)="mentes()" [ngClass]="[temaSzin, temaSzinHover]">Komment</button>
+                        <button class="megse" (click)="bezar()" [ngClass]="[temaSzin, temaSzinHover]">Mégse</button>
+                    </div>
+                </div>
             </div>
             
             <div class="kommentek">
