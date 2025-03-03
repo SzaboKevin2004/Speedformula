@@ -36,7 +36,6 @@ export class ForumComponent implements OnInit {
         this.posztok = response.map((poszt: any) => ({
           ...poszt,
           elteltIdo: this.elteltIdoSzamitasa(poszt.elkuldve),
-          kedvelteE: poszt.kedvelteE
         }));
       },
       (error) => {
@@ -75,7 +74,7 @@ export class ForumComponent implements OnInit {
     const poszt = this.posztok.find(p => p.id === postId);
     if (!poszt) return;
 
-    poszt.kedvelteE = true;
+    poszt.kedvelte = true;
     poszt.kedveles += 1;
 
     this.forumService.likePost(postId).subscribe(
@@ -84,7 +83,7 @@ export class ForumComponent implements OnInit {
       },
       (error) => {
         console.error('Hiba történt a kedvelés megerősítésénél:', error);
-        poszt.kedvelteE = false;
+        poszt.kedvelte = false;
         poszt.kedveles -= 1;
       }
     );
@@ -94,7 +93,7 @@ export class ForumComponent implements OnInit {
     const poszt = this.posztok.find(p => p.id === postId);
     if (!poszt) return;
 
-    poszt.kedvelteE = false;
+    poszt.kedvelte = false;
     poszt.kedveles -= 1;
 
     this.forumService.dislikePost(postId).subscribe(
@@ -103,7 +102,7 @@ export class ForumComponent implements OnInit {
       },
       (error) => {
         console.error('Hiba történt a kikedvelés megerősítésénél:', error);
-        poszt.kedvelteE = true;
+        poszt.kedvelte = true;
         poszt.kedveles += 1;
       }
     );

@@ -26,6 +26,7 @@ export class ForumPosztReszletComponent implements OnInit {
   haBejelentkezett: boolean = false;
   posztok: any[] = [];
   poszt: any;
+  komment: any;
   postId: number = -1;
   
   uzenetGombMegjelenites: boolean = true;
@@ -38,6 +39,9 @@ export class ForumPosztReszletComponent implements OnInit {
 
   kommentek: any[] = [];
 
+  uzenetek: { [key: number]: string } = {};  
+  megnyitottKommentId: number | null = null;
+
   constructor(private authservice: AuthService, private route: ActivatedRoute, private forumService: ForumService, private router: Router) {}
 
   posztBetoltes(): void {
@@ -46,7 +50,6 @@ export class ForumPosztReszletComponent implements OnInit {
         this.posztok = response.map((poszt: any) => ({
           ...poszt,
           elteltIdo: this.elteltIdoSzamitasa(poszt.elkuldve),
-          kedvelteE: poszt.kedvelteE
         }));
 
         const url = window.location.href;
@@ -58,7 +61,6 @@ export class ForumPosztReszletComponent implements OnInit {
               ...komment,
               
               elteltIdo: this.elteltIdoSzamitasa(komment.elkuldve),
-              kedvelteE: komment.kedvelteE
             }));
             console.log('Kommentek:', this.kommentek)
           }
@@ -78,8 +80,6 @@ export class ForumPosztReszletComponent implements OnInit {
       }
     );
   }
-
-
 
   posztIdUrlbol(url: string): number {
     const regex = /forum\/(\d+)/;
@@ -121,7 +121,7 @@ export class ForumPosztReszletComponent implements OnInit {
     const poszt = this.posztok.find(p => p.id === postId);
     if (!poszt) return;
 
-    poszt.kedvelteE = true;
+    poszt.kedvelte = true;
     poszt.kedveles += 1;
 
     this.forumService.likePost(postId).subscribe(
@@ -130,7 +130,7 @@ export class ForumPosztReszletComponent implements OnInit {
       },
       (error) => {
         console.error('Hiba történt a kedvelés megerősítésénél:', error);
-        poszt.kedvelteE = false;
+        poszt.kedvelte = false;
         poszt.kedveles -= 1;
       }
     );
@@ -140,7 +140,7 @@ export class ForumPosztReszletComponent implements OnInit {
     const poszt = this.posztok.find(p => p.id === postId);
     if (!poszt) return;
 
-    poszt.kedvelteE = false;
+    poszt.kedvelte = false;
     poszt.kedveles -= 1;
 
     this.forumService.dislikePost(postId).subscribe(
@@ -149,7 +149,7 @@ export class ForumPosztReszletComponent implements OnInit {
       },
       (error) => {
         console.error('Hiba történt a kikedvelés megerősítésénél:', error);
-        poszt.kedvelteE = true;
+        poszt.kedvelte = true;
         poszt.kedveles += 1;
       }
     );
@@ -166,6 +166,11 @@ export class ForumPosztReszletComponent implements OnInit {
 
   uzenetKuldesMegjelenitesClick(){
     this.uzenetKuldesMegjelenites =!this.uzenetKuldesMegjelenites;
+
+    if (this.uzenetKuldesMegjelenites) {
+      this.uzenet = '';
+    }
+
     this.uzenetGombMegjelenites = false;
 
     setTimeout(() => {
@@ -189,18 +194,18 @@ export class ForumPosztReszletComponent implements OnInit {
     ).subscribe({
       next: (response) => {
         console.log('Sikeres komment létrehozás:', response);
-        setTimeout(() => {
+        setTimeout(async () => {
           this.uzenetKuldesMegjelenites = false;
           this.uzenetGombMegjelenites = true;
           this.uzenet = '';
-          this.router.navigate([`/forum/${poszt.id}`], {
-            queryParams: { refresh: new Date().getTime() } // Random paraméter
-          });
+          const jelenlegiUrl = this.router.url;
+          await this.router.navigate(['forum']);
+          await this.router.navigate([jelenlegiUrl]);
         }, 50);
       },
       error: (err) => {
         this.hiba = true;
-        this.poszt.kommentek -= 1
+        poszt.kommentek -= 1
         if (err.error?.message) {
           this.hibaUzenet = err.error.message;
         } else {
@@ -212,6 +217,7 @@ export class ForumPosztReszletComponent implements OnInit {
 
   bezar(){
     this.uzenetKuldesMegjelenites = false;
+    this.uzenet = '';
     this.uzenetGombMegjelenites = true;
   }
 
@@ -219,7 +225,7 @@ export class ForumPosztReszletComponent implements OnInit {
     const komment = this.kommentek.find(c => c.id === commentId);
     if (!komment) return;
 
-    komment.kedvelteE = true;
+    komment.kedvelte = true;
     komment.kedveles += 1;
 
     this.forumService.likeComment(commentId).subscribe(
@@ -228,7 +234,7 @@ export class ForumPosztReszletComponent implements OnInit {
       },
       (error) => {
         console.error('Hiba történt a komment kedvelés megerősítésénél:', error);
-        komment.kedvelteE = false;
+        komment.kedvelte = false;
         komment.kedveles -= 1;
       }
     );
@@ -239,7 +245,7 @@ export class ForumPosztReszletComponent implements OnInit {
     const komment = this.kommentek.find(c => c.id === commentId);
     if (!komment) return;
 
-    komment.kedvelteE = false;
+    komment.kedvelte = false;
     komment.kedveles -= 1;
 
     this.forumService.dislikeComment(commentId).subscribe(
@@ -248,10 +254,62 @@ export class ForumPosztReszletComponent implements OnInit {
       },
       (error) => {
         console.error('Hiba történt a komment kikedvelés megerősítésénél:', error);
-        komment.kedvelteE = true;
+        komment.kedvelte = true;
         komment.kedveles += 1;
       }
     );
+  }
+
+  kommentUzenetKuldesMegjelenitesClick(commentId: number) {
+    this.uzenetek[commentId] = '';
+    if (this.megnyitottKommentId === commentId) {
+      this.megnyitottKommentId = null;
+    } else {
+      this.megnyitottKommentId = commentId;
+      if (!this.uzenetek[commentId]) {
+        this.uzenetek[commentId] = '';
+      }
+    }
+  }
+
+  mentesKomment(commentId: number){
+    const komment = this.kommentek.find(k => k.id === commentId);
+    if (!komment) return;
+
+    const adatok = {
+      kommentid: commentId,
+      szoveg: this.uzenetek[commentId]
+    }
+
+    komment.alkommentek += 1
+
+
+    this.forumService.addCommentToComment( adatok
+    ).subscribe({
+      next: (response) => {
+        console.log('Sikeres komment létrehozás:', response);
+        setTimeout(async () => {
+          this.uzenetek[commentId] = '';
+          const jelenlegiUrl = this.router.url;
+          await this.router.navigate(['forum']);
+          await this.router.navigate([jelenlegiUrl]);
+        }, 50);
+      },
+      error: (err) => {
+        this.hiba = true;
+        komment.alkommentek -= 1
+        if (err.error?.message) {
+          this.hibaUzenet = err.error.message;
+        } else {
+          this.hibaUzenet = "Ismeretlen hiba történt a komment létrehozása során!";
+        }
+      }
+    });
+  }
+
+  bezarKomment(commentId: number){
+    this.megnyitottKommentId = null;
+    this.uzenetek[commentId] = '';
   }
 
   ngOnInit() {

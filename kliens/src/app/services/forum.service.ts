@@ -12,7 +12,9 @@ export class ForumService {
 
   // Posztok lekérése
   getPosts(): Observable<any> {
-    return this.http.get<any>(this.url);
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(this.url, { headers });
   }
 
   // Új poszt létrehozása
@@ -52,27 +54,49 @@ export class ForumService {
 
   // Kommentek lekérése
   getComments(posztid: number): Observable<any> {
-    return this.http.get<any>(`${this.url}/komment/${posztid}`, {});
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.url}/komment/${posztid}`, { headers });
+  }
+
+  addCommentToComment(
+    adatok: {
+      kommentid: number,
+      szoveg: string 
+    }
+  ): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.put<any>(`${this.url}/komment/komment`, adatok, { headers });
   }
 
   // Poszt kedvelés
   likePost(postId: number): Observable<any> {
-    return this.http.patch<any>(`${this.url}/posztkedveles/${postId}`, {});
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.patch<any>(`${this.url}/posztkedveles/${postId}`, {}, { headers });
   }
 
    // Poszt kikedvelése
   dislikePost(postId: number): Observable<any> {
-    return this.http.patch<any>(`${this.url}/posztkikedveles/${postId}`, {});
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.patch<any>(`${this.url}/posztkikedveles/${postId}`, {}, { headers });
   }
 
   // Komment kedvelés
   likeComment(commentId: number): Observable<any> {
-    return this.http.patch<any>(`${this.url}/kommentkedveles/${commentId}`, {});
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.patch<any>(`${this.url}/kommentkedveles/${commentId}`, {}, { headers });
   }
 
   // Komment kikedvelés
   dislikeComment(commentId: number): Observable<any> {
-    return this.http.patch<any>(`${this.url}/kommentkikedveles/${commentId}`, {});
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.patch<any>(`${this.url}/kommentkikedveles/${commentId}`, {}, { headers });
   }
 
   // Poszt törlése

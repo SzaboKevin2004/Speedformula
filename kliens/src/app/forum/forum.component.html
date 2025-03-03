@@ -29,12 +29,12 @@
                 </div>
                 <div class="posztGombok" *ngIf="haBejelentkezett">
 
-                    <div class="kedveles-gomb" *ngIf="!poszt.kedvelteE" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kedvelesClick(poszt?.id)">
+                    <div class="kedveles-gomb" *ngIf="!poszt.kedvelte" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kedvelesClick(poszt?.id)">
                         <img class="kedveles-kep" src="../../assets/icons/favorite.png" *ngIf="vilagos">
                         <img class="kedveles-kep" src="../../assets/icons/favorite-white.png" *ngIf="sotet || voros">
                         <p class="kedveles-szoveg">{{ poszt.kedveles }}</p>
                     </div>
-                    <div class="kedveles-gomb" *ngIf="poszt.kedvelteE" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kikedvelesClick(poszt?.id)">
+                    <div class="kedveles-gomb" *ngIf="poszt.kedvelte" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kikedvelesClick(poszt?.id)">
                         <img class="kedveles-kep" src="../../assets/icons/favorite-full.png" *ngIf="vilagos">
                         <img class="kedveles-kep" src="../../assets/icons/favorite-white-full.png" *ngIf="sotet || voros">
                         <p class="kedveles-szoveg">{{ poszt.kedveles }}</p>
