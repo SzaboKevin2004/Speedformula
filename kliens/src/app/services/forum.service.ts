@@ -51,9 +51,8 @@ export class ForumService {
   }
 
   // Kommentek lekérése
-  getComments(postId: number): Observable<any> {
-    const adatok = { posztid: postId };
-    return this.http.get<any>(`${this.url}/komment`, adatok,);
+  getComments(posztid: number): Observable<any> {
+    return this.http.get<any>(`${this.url}/komment/${posztid}`, {});
   }
 
   // Poszt kedvelés
@@ -66,19 +65,14 @@ export class ForumService {
     return this.http.patch<any>(`${this.url}/posztkikedveles/${postId}`, {});
   }
 
-  // Poszt megosztása
-  sharePost(postId: number): Observable<any> {
-    return this.http.patch<any>(`${this.url}/posztmegosztas/${postId}`, {});
-  }
-
   // Komment kedvelés
   likeComment(commentId: number): Observable<any> {
-    return this.http.patch<any>(`${this.url}/kedveleskomment/${commentId}`, {});
+    return this.http.patch<any>(`${this.url}/kommentkedveles/${commentId}`, {});
   }
 
-  // Komment megosztása
-  shareComment(commentId: number): Observable<any> {
-    return this.http.patch<any>(`${this.url}/megosztaskomment/${commentId}`, {});
+  // Komment kikedvelés
+  dislikeComment(commentId: number): Observable<any> {
+    return this.http.patch<any>(`${this.url}/kommentkikedveles/${commentId}`, {});
   }
 
   // Poszt törlése

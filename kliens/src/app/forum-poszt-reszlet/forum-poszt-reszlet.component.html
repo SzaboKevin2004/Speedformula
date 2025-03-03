@@ -59,7 +59,35 @@
                 </div>
             </div>
             
-            <div class="kommentek">
+            <div class="kommentek" *ngFor="let komment of kommentek">
+                <div class="komment">
+                    <div class="kommentAdatok">
+                        <img class="felhasznaloKep" [src]="komment.fkep">
+                        <p class="felhasznaloNev">{{ komment.felhasznalo }}</p>
+                        <p class="elteltIdo"> • {{ komment.elteltIdo }}</p>
+                    </div>
+                    <p class="szoveg" *ngIf="komment.szoveg != null">{{ komment.szoveg }}</p>
+                </div>
+
+                <div class="kommentGombok" *ngIf="haBejelentkezett">
+                    <div class="kedveles-gomb" *ngIf="!komment.kedvelteE" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kedvelesKommentClick(komment?.id)">
+                        <img class="kedveles-kep" src="../../assets/icons/favorite.png" *ngIf="vilagos">
+                        <img class="kedveles-kep" src="../../assets/icons/favorite-white.png" *ngIf="sotet || voros">
+                        <p class="kedveles-szoveg">{{ komment.kedveles }}</p>
+                    </div>
+                    <div class="kedveles-gomb" *ngIf="komment.kedvelteE" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kikedvelesKommentClick(komment?.id)">
+                        <img class="kedveles-kep" src="../../assets/icons/favorite-full.png" *ngIf="vilagos">
+                        <img class="kedveles-kep" src="../../assets/icons/favorite-white-full.png" *ngIf="sotet || voros">
+                        <p class="kedveles-szoveg">{{ komment.kedveles }}</p>
+                    </div>
+
+                    <div class="komment-gomb" [ngClass]="[temaSzin2, temaSzinHover]">
+                        <img class="komment-kep" src="../../assets/icons/message.png" *ngIf="vilagos">
+                        <img class="komment-kep" src="../../assets/icons/message-white.png" *ngIf="sotet || voros">
+                        <p class="komment-szoveg">{{ komment.alkommentek }}</p>
+                    </div>
+                    <p>Válaszok megnyitása</p>
+                </div>
             </div>
         </div>
     </div>

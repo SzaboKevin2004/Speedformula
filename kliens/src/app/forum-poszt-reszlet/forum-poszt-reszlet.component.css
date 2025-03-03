@@ -37,7 +37,18 @@
     margin-bottom: 25px;
 }
 
+.komment {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
 .posztAdatok {
+    display: flex;
+    align-items: center;
+}
+
+.kommentAdatok {
     display: flex;
     align-items: center;
 }
@@ -107,6 +118,12 @@
     gap: 10px;
 }
 
+.kommentGombok {
+    display: flex;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
 .kedveles-gomb, .komment-gomb, 
 .megosztas-gomb, .mentes-gomb{
     padding: 0px 10px 0px 10px;
@@ -161,6 +178,14 @@ button {
     gap: 10px;
     justify-content: flex-end;
     
+}
+
+.kommentek {
+    margin-top: 20px;
+}
+
+.kommentek .szoveg {
+    margin-left: 10px;
 }
 
 

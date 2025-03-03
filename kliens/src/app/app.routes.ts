@@ -37,9 +37,9 @@ export const routes: Routes = [
     {path:'csapatok', component: CsapatokComponent},
     {path:'csapat', component: CsapatComponent},
     {path:'tortenet', component: TortenetComponent},
-    {path:'forum', component: ForumComponent},
+    {path:'forum', component: ForumComponent, canActivate: [authGuard]},
     {path:'forum-poszt-letrehozas', component: ForumPosztComponent, canActivate: [authGuard]},
-    {path:'forum/:id,', component: ForumPosztReszletComponent},
+    {path:'forum/:id,', component: ForumPosztReszletComponent, canActivate: [authGuard]},
     {path:'profil', component: ProfilComponent},
     {path: '**', component: HibaComponent}
 
