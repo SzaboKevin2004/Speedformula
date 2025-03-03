@@ -42,32 +42,60 @@ export class ForumPosztReszletComponent implements OnInit {
   uzenetek: { [key: number]: string } = {};  
   megnyitottKommentId: number | null = null;
 
+  kommentKommentMegjelenites: boolean = false;
+  megnyitottKommentIdAlkomment: number | null = null;
+
   constructor(private authservice: AuthService, private route: ActivatedRoute, private forumService: ForumService, private router: Router) {}
 
   posztBetoltes(): void {
     this.forumService.getPosts().subscribe(
-      (response ) => {
+      (response) => {
         this.posztok = response.map((poszt: any) => ({
           ...poszt,
           elteltIdo: this.elteltIdoSzamitasa(poszt.elkuldve),
         }));
-
+  
         const url = window.location.href;
         const posztId = this.posztIdUrlbol(url);
-
+  
         this.forumService.getComments(posztId).subscribe(
-          (response ) => {
-            this.kommentek = response.map((komment: any) => ({
-              ...komment,
-              
-              elteltIdo: this.elteltIdoSzamitasa(komment.elkuldve),
-            }));
-            console.log('Kommentek:', this.kommentek)
+          (response) => {
+            const kommentMap = new Map<number, any>();
+            const foKommentek: any[] = [];
+  
+            response.forEach((komment: any) => {
+              komment.elteltIdo = this.elteltIdoSzamitasa(komment.elkuldve);
+              komment.alKommmentek = [];
+  
+              kommentMap.set(komment.id, komment);
+            });
+  
+            response.forEach((komment: any) => {
+              if (komment.kommentszulo === null) {
+                foKommentek.push(komment);
+              } else {
+                const szuloKomment = kommentMap.get(komment.kommentszulo);
+                if (szuloKomment) {
+                  szuloKomment.alKommmentek.push(komment);
+                } else {
+                  console.warn('Szülő komment nem található:', komment);
+                }
+              }
+            });
+  
+            this.kommentek = foKommentek;
+            console.log('Főkommentek:', this.kommentek);
+            this.kommentek.forEach(komment => {
+              console.log('Alkommentek:', komment.alKommmentek);
+            });
+          },
+          (error) => {
+            console.error('Hiba történt a kommentek betöltésekor:', error);
           }
         );
-
+  
         this.poszt = this.posztok.find(poszt => poszt.id === posztId);
-
+  
         if (!this.poszt) {
           console.error('Poszt nem található');
         } else {
@@ -311,6 +339,54 @@ export class ForumPosztReszletComponent implements OnInit {
     this.megnyitottKommentId = null;
     this.uzenetek[commentId] = '';
   }
+
+  kommentKommentMegjelenitesClick(commentId: number) {
+    if (this.megnyitottKommentIdAlkomment === commentId) {
+      this.megnyitottKommentIdAlkomment = null;
+    } else {
+      this.megnyitottKommentIdAlkomment = commentId;
+    }
+  }
+
+  kedvelesAlkommentClick(commentId: number) {
+    const komment = this.kommentek.find(c => c.id === commentId);
+    if (!komment) return;
+
+    komment.kedvelte = true;
+    komment.kedveles += 1;
+
+    this.forumService.likeComment(commentId).subscribe(
+      (response) => {
+        console.log('Komment kedvelés sikeresen megtörtént:', response);
+      },
+      (error) => {
+        console.error('Hiba történt a komment kedvelés megerősítésénél:', error);
+        komment.kedvelte = false;
+        komment.kedveles -= 1;
+      }
+    );
+  }
+
+  
+  kikedvelesAlkommentClick(commentId: number) {
+    const komment = this.kommentek.find(c => c.id === commentId);
+    if (!komment) return;
+
+    komment.kedvelte = false;
+    komment.kedveles -= 1;
+
+    this.forumService.dislikeComment(commentId).subscribe(
+      (response) => {
+        console.log('Komment Kikedvelés sikeresen megtörtént:', response);
+      },
+      (error) => {
+        console.error('Hiba történt a komment kikedvelés megerősítésénél:', error);
+        komment.kedvelte = true;
+        komment.kedveles += 1;
+      }
+    );
+  }
+
 
   ngOnInit() {
     this.posztBetoltes();

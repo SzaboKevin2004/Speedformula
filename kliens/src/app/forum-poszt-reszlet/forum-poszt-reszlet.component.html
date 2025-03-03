@@ -86,7 +86,7 @@
                         <img class="komment-kep" src="../../assets/icons/message-white.png" *ngIf="sotet || voros">
                         <p class="komment-szoveg">{{ komment.alkommentek }}</p>
                     </div>
-                    <p>Válaszok megnyitása</p>
+                    <p class="valasz-megnyitas" (click)="kommentKommentMegjelenitesClick(komment?.id)" *ngIf="komment?.alkommentek > 0">Válaszok megnyitása</p>
                 </div>
                 <div class="uzenetGombok-keret" [ngClass]="temaSzin2" *ngIf="megnyitottKommentId === komment.id">
                     <textarea #textarea class="uzenet-keret" [(ngModel)]="uzenetek[komment.id]" [ngClass]="temaSzin2"></textarea>
@@ -96,7 +96,47 @@
                         <button class="megse" (click)="bezarKomment(komment?.id)" [ngClass]="[temaSzin, temaSzinHover]">Mégse</button>
                     </div>
                 </div>
-            </div>
+
+                <div *ngIf="megnyitottKommentIdAlkomment === komment?.id">
+                    <div class="alkommentek" *ngFor="let alkomment of komment.alKommmentek">
+                        <div class="komment">
+                            <div class="kommentAdatok">
+                                <img class="felhasznaloKep" [src]="alkomment.fkep">
+                                <p class="felhasznaloNev">{{ alkomment.felhasznalo }}</p>
+                                <p class="elteltIdo"> • {{ alkomment.elteltIdo }}</p>
+                            </div>
+                            <p class="szoveg">{{ alkomment.szoveg }}</p>
+                        </div>
+                        <div class="kommentGombok" *ngIf="haBejelentkezett">
+                            <div class="kedveles-gomb" *ngIf="!alkomment.kedvelte" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kedvelesAlkommentClick(alkomment.id)">
+                                <img class="kedveles-kep" src="../../assets/icons/favorite.png" *ngIf="vilagos">
+                                <img class="kedveles-kep" src="../../assets/icons/favorite-white.png" *ngIf="sotet || voros">
+                                <p class="kedveles-szoveg">{{ alkomment.kedveles }}</p>
+                            </div>
+                            <div class="kedveles-gomb" *ngIf="alkomment.kedvelte" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kikedvelesAlkommentClick(alkomment.id)">
+                                <img class="kedveles-kep" src="../../assets/icons/favorite-full.png" *ngIf="vilagos">
+                                <img class="kedveles-kep" src="../../assets/icons/favorite-white-full.png" *ngIf="sotet || voros">
+                                <p class="kedveles-szoveg">{{ alkomment.kedveles }}</p>
+                            </div>
+        
+                            <div class="komment-gomb" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kommentUzenetKuldesMegjelenitesClick(komment?.id)">
+                                <img class="komment-kep" src="../../assets/icons/message.png" *ngIf="vilagos">
+                                <img class="komment-kep" src="../../assets/icons/message-white.png" *ngIf="sotet || voros">
+                                <p class="komment-szoveg">{{ alkomment.alkommentek }}</p>
+                            </div>
+                            <p class="valasz-megnyitas" (click)="kommentKommentMegjelenitesClick(komment?.id)" *ngIf="alkomment?.alkommentek > 0">Válaszok megnyitása</p>
+                        
+                        <div class="uzenetGombok-keret" [ngClass]="temaSzin2" *ngIf="megnyitottKommentId === komment.id">
+                            <textarea #textarea class="uzenet-keret" [(ngModel)]="uzenetek[komment.id]" [ngClass]="temaSzin2"></textarea>
+                 
+                            <div class="gombok">
+                                <button class="mentes" (click)="mentesKomment(komment?.id)" [ngClass]="[temaSzin, temaSzinHover]">Komment</button>
+                                <button class="megse" (click)="bezarKomment(komment?.id)" [ngClass]="[temaSzin, temaSzinHover]">Mégse</button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
         </div>
     </div>
 </div>

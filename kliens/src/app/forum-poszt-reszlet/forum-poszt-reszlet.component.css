@@ -188,6 +188,15 @@ button {
     margin-left: 10px;
 }
 
+.valasz-megnyitas {
+    user-select: none;
+    cursor: pointer;
+}
+
+.alkommentek {
+    margin-left: 20px;
+}
+
 
 @media only screen and (max-width: 1200px) {
     .keret {
