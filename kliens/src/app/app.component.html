@@ -135,8 +135,8 @@
 <div class="bejel-lenyilo" [ngClass]="temaSzinN" [ngStyle]="{display: profilMenuMegjelenites ? 'flex' : 'none'}">
   <ul>
   <li [ngClass]="temaSzinHover" (click)="profilMenu()">
-    <img [src]="randomKep" width="39px" height="39px" routerLink="/profil">
-    <a [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" routerLink="/profil">
+    <img [src]="randomKep" width="39px" height="39px" [routerLink]="['/forum/profil', felhasznaloNev]">
+    <a [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" [routerLink]="['/forum/profil', felhasznaloNev]">
      Fórum profil</a>
   </li>
   <li [ngClass]="temaSzinHover" (click)="profilMenu()">

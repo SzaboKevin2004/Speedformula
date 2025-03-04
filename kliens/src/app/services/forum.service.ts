@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ForumService {
   private url = 'http://localhost:3000/forum';
+  private alapUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 
@@ -105,7 +106,7 @@ export class ForumService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     const adatok = { posztid: postId };
-    return this.http.delete<any>(`${this.url}/poszt`, { body: adatok, headers });
+    return this.http.delete<any>(`${this.url}/poszttorles`, { body: adatok, headers });
   }
 
   // Komment törlése
@@ -114,6 +115,12 @@ export class ForumService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     const adatok = { kommentid: commentId };
-    return this.http.delete<any>(`${this.url}/komment`, { body: adatok, headers });
+    return this.http.delete<any>(`${this.url}/kommenttorles`, { body: adatok, headers });
+  }
+
+  profilLekeresMasik(felhasznalonev: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.alapUrl}/profil/${felhasznalonev}`, { headers });
   }
 }

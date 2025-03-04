@@ -683,6 +683,15 @@ footer a:hover {
     user-select: none;
 }
 
+.felhasznalo-link {
+    color: #2b91ff;
+    text-decoration: none;
+}
+  
+.felhasznalo-link:hover {
+    text-decoration: underline;
+}
+
 @media only screen and (max-width: 1599px) {
     .nav-fo .nav-link img {
         display: none !important;

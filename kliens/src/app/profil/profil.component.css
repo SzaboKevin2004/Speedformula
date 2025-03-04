@@ -1,0 +1,19 @@
+.keret {
+    font-family: Helvetica;
+}
+
+.felhasznaloAdatok {
+    display: flex;
+    align-items: center;
+}
+
+.felhasznaloKep {
+    height: 150px;
+    width: 150px;
+}
+
+.felhasznaloNev {
+    margin-left: 20px;
+    font-size: 32px;
+    font-weight: bold;
+}

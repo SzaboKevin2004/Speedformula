@@ -108,7 +108,7 @@ export class AuthService {
         this.setFelhasznaloNev(response.username);
       })
     );
-  }
+  };
 
   profilLekeres() {
     const token = localStorage.getItem('token');
@@ -126,6 +126,7 @@ export class AuthService {
       })
     );
   }
+
   profilModositas(
     felhasznalonev: string | undefined = undefined,
     email: string | undefined = undefined,
@@ -150,7 +151,7 @@ export class AuthService {
           return throwError(() => error);
         })
       );
-  }
+    }
 
   profilTorles(){
     const token = localStorage.getItem('token');

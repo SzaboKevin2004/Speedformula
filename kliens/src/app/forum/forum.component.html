@@ -18,6 +18,10 @@
                         <img class="felhasznaloKep" [src]="poszt.fkep">
                         <p class="felhasznaloNev">{{ poszt.felhasznalo }}</p>
                         <p class="elteltIdo"> • {{poszt.elteltIdo}}</p>
+                        <div class="torles-kep" *ngIf="poszt.sajatFelhasznalo" (click)="posztTorles(poszt.id)">
+                            <img class="torles-kep" src="../../assets/icons/trash.png" *ngIf="vilagos">
+                            <img class="torles-kep" src="../../assets/icons/trash-white.png" *ngIf="sotet || voros">
+                        </div>
                     </div>
                     <div [routerLink]="['/forum',poszt.id]">
                         <h2 class="cim">{{ poszt.cim }}</h2>

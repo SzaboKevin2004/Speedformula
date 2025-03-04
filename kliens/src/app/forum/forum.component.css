@@ -58,6 +58,12 @@
     border-radius: 50%;
 }
 
+.torles-kep {
+    margin-left: auto;
+    width: 25px;
+    height: 25px;
+}
+
 .elteltIdo {
     margin-left: 10px;
     font-size: 14px;

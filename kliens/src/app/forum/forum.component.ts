@@ -28,6 +28,8 @@ export class ForumComponent implements OnInit {
   kedveles: boolean = true;
   kikedveles: boolean = false;
 
+  felhasznaloNev: string = '';
+
   constructor(private authservice: AuthService, private forumService: ForumService) {}
 
   posztBetoltes(): void {
@@ -36,13 +38,15 @@ export class ForumComponent implements OnInit {
         this.posztok = response.map((poszt: any) => ({
           ...poszt,
           elteltIdo: this.elteltIdoSzamitasa(poszt.elkuldve),
+          sajatFelhasznalo: poszt.felhasznalo === this.felhasznaloNev
+          
         }));
+        console.log(this.posztok);
       },
       (error) => {
         console.error('Hiba történt a posztok betöltésekor:', error);
       }
     );
-    console.log(this.posztok);
   }
 
   elteltIdoSzamitasa(datum: string): string {
@@ -117,12 +121,30 @@ export class ForumComponent implements OnInit {
     });
   }
 
+  posztTorles(postId: number){
+    console.log(postId);
+    this.forumService.deletePost(postId).subscribe(
+      (response) => {
+        console.log('Poszt sikeresen törölve:', response);
+        this.posztBetoltes();
+      },
+      (error) => {
+        console.error('Hiba történt a poszt törlésénél:', error);
+      }
+    );
+  }
+
   ngOnInit() {
+    this.authservice.felhasznaloNev$.subscribe(nev => {
+      this.felhasznaloNev = nev;
+    });
+
     this.posztBetoltes();
 
     this.authservice.felhBejelentkezettE$.subscribe(bejelentkezettE => {
       this.haBejelentkezett = bejelentkezettE;
     });
+
 
     this.authservice.szamSzin$.subscribe( szam => {
       if(szam === 1){

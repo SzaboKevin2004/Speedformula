@@ -92,6 +92,12 @@
     margin-right: 10px;
 }
 
+.torles-kep {
+    margin-left: auto;
+    width: 25px;
+    height: 25px;
+}
+
 .letrehozas-gomb, .kedveles-gomb, .komment-gomb, 
 .megosztas-gomb, .mentes-gomb{
     display: flex;
@@ -104,6 +110,11 @@
 
 .letrehozas-kep, .kedveles-kep, .komment-kep, .megosztas-kep, .mentes-kep {
     margin-right: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+.alkomment-kep {
     width: 25px;
     height: 25px;
 }

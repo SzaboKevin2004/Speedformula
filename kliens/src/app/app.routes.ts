@@ -40,7 +40,7 @@ export const routes: Routes = [
     {path:'forum', component: ForumComponent, canActivate: [authGuard]},
     {path:'forum-poszt-letrehozas', component: ForumPosztComponent, canActivate: [authGuard]},
     {path:'forum/:id,', component: ForumPosztReszletComponent, canActivate: [authGuard]},
-    {path:'profil', component: ProfilComponent},
+    {path:'forum/profil/:felhasznalonev', component: ProfilComponent},
     {path: '**', component: HibaComponent}
 
 ];
