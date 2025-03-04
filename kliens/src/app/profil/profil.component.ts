@@ -22,6 +22,7 @@ export class ProfilComponent implements OnInit {
   felhasznaloNev: string = '';
   felhasznaloKep: string = '';
   vanFelhasznalo: boolean = false;
+  bemutatkozas: string = '';
 
   constructor(
     private authservice: AuthService, 
@@ -38,8 +39,9 @@ export class ProfilComponent implements OnInit {
 
     this.forumservice.profilLekeresMasik(kuldottFelhasznalonev).subscribe(
       (profil) => {
-        this.felhasznaloNev = profil.másikfelhasználó.felhasznalonev
-        this.felhasznaloKep = profil.másikfelhasználó.kep
+        this.felhasznaloNev = profil.másikfelhasználó.felhasznalonev;
+        this.felhasznaloKep = profil.másikfelhasználó.kep;
+        this.bemutatkozas = profil.másikfelhasználó.magamrol;
         this.vanFelhasznalo = true;
       },
       (error) => {

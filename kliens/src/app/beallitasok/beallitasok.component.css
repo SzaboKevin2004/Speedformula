@@ -71,9 +71,23 @@ p.adat {
     gap: 15px;
 }
 
+.opcio-kep {
+    display: flex;
+    max-width: 650px;
+    width: fit-content;
+    margin-left: 7vw;
+    margin-top: 1vh;
+    text-align: center;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+}
+
 .opcioTema {
     display: flex;
     margin-top: 4vh;
+    align-items: center;
+    text-align: center;
     justify-content: center;
     gap: 3vw;
 }
@@ -83,8 +97,6 @@ p.adat {
     padding: 10px 20px 10px 20px;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    text-align: center;
     border-radius: 15px;
     cursor: pointer;
 }
@@ -138,6 +150,11 @@ ul.valaszto{
     margin-right: 15px;
     margin-top: 10px;
     font-size: 30px;
+}
+
+.profilkep {
+    height: 64px;
+    width: 64px;
 }
 
 .modositas {
@@ -404,6 +421,11 @@ button.megse:hover {
     #password {
         max-height: 34px;
         font-size: 25px;
+    }
+
+    .profilkep {
+        height: 40px;
+        width: 40px;
     }
 }
 

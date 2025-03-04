@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, throwError, timer, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
+import { tap, switchMap } from 'rxjs/operators';
 
 interface AuthResponse {
   token: string;
@@ -32,6 +32,8 @@ export class AuthService {
   private szerep = new BehaviorSubject<number>(2);
   szerep$ = this.szerep.asObservable();
 
+  private tokenFrissitoSub: Subscription | null = null;
+
   constructor(private http: HttpClient, private router: Router) {
     if (typeof window !== 'undefined' && window.localStorage) {
       const token = localStorage.getItem('token');
@@ -60,6 +62,7 @@ export class AuthService {
         this.szerep.next(parseInt(szerep));
       }
     }
+    this.autoTokenFrissites();
   }
 
   setToken(token: string) {
@@ -122,23 +125,48 @@ export class AuthService {
     );
   }
 
-  bejelentkezes(loginData: {
-    felhasznalonev: string,
-    email: string,
-    password: string 
-  }) {
+  bejelentkezes(loginData: { felhasznalonev: string, email: string, password: string }) {
     return this.http.post<AuthResponse>(`${this.url}/login`, loginData).pipe(
-      catchError((error) => {
-        return throwError(() => error);
-      }),
       tap((response) => {
         this.setTheme(response.tema);
         this.setToken(response.token);
         this.setPfpId(response.pfp);
         this.setFelhasznaloNev(response.username);
-        this.setSzerep(response.szerep);
+        this.setSzerep(response.szerep)
+        this.setBejelentkezettE(true);
+      }),
+      catchError((error) => {
+        console.error('Hiba történt a bejelentkezés során:', error);
+        return throwError(() => error);
       })
     );
+  }
+
+  autoTokenFrissites() {
+    if (typeof window!== 'undefined' && window.localStorage) {
+      if (!localStorage.getItem('token')) {
+        console.warn('Nincs token, nem indul az automatikus frissítés.');
+        return;
+      }
+      this.tokenFrissitoSub = timer(0, 12 * 60 * 60 * 1000)
+        .pipe(
+          switchMap(() => this.http.post<{ accessToken: string }>(`${this.url}/ujToken`, {}, {
+            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+          }).pipe(
+            catchError(err => {
+              console.error('Token frissítés sikertelen:', err);
+              this.kijelentkezes();
+              return throwError(() => err);
+            })
+          ))
+        )
+        .subscribe({
+          next: (response) => {
+            this.setToken(response.accessToken);
+            console.log('🔄 Token automatikusan frissítve.');
+          }
+        });
+    }
   }
 
   profilLekeres() {
@@ -162,7 +190,8 @@ export class AuthService {
     email: string | undefined = undefined,
     password: string | undefined = undefined,
     tema_id: number | undefined = undefined,
-    kep: number | undefined = undefined
+    kep: number | undefined = undefined,
+    magamrol: string | undefined = undefined
   ) {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -170,11 +199,30 @@ export class AuthService {
     }
 
     return this.http.patch(`${this.url}/profil`, 
-      { felhasznalonev, email, password, tema_id, kep }, 
+      { felhasznalonev, email, password, tema_id, kep, magamrol }, 
       {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
+        }
+      }).pipe(
+        catchError((error) => {
+          return throwError(() => error);
+        })
+      );
+  }
+
+  kepModositas(){
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('Nincs bejelentkezett felhasználó!');
+    }
+
+    return this.http.patch(`${this.url}/profil/profilkep`,
+      { 
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
         }
       }).pipe(
         catchError((error) => {
@@ -202,16 +250,24 @@ export class AuthService {
   }
 
   kijelentkezes() {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      localStorage.removeItem('szerep');
-      localStorage.removeItem('token');
-      localStorage.removeItem('pfp');
-      localStorage.removeItem('username');
-      localStorage.removeItem('tema');
+    if (this.tokenFrissitoSub) {
+      this.tokenFrissitoSub.unsubscribe();
+      this.tokenFrissitoSub = null;
     }
-    window.location.reload();
+  
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.clear();
+    }
+  
     this.felhBejelentkezettE.next(false);
-    this.router.navigate(['/']);
+    this.felhasznaloNev.next('');
+    this.szamSzin.next(2);
+    this.szerep.next(2);
+    this.randomKep.next('');
+  
+    this.router.navigate(['/']).then(() => {
+      window.location.reload();
+    });
   }
 
   hitelesitettE(): boolean {

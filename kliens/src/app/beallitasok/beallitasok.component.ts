@@ -29,17 +29,20 @@ export class BeallitasokComponent implements OnInit {
   lekertPassword: string = '';
   lekertTema_id: number = -1;
   lekertKep: number = -1;
+  lekertBemutatkozas: string = 'írj valamit ide!';
 
   felhasznalonev: string | undefined = undefined;
   email: string | undefined = undefined;
   password: string | undefined = undefined;
   tema_id: number | undefined = undefined;
   kep: number | undefined = undefined;
+  bemutatkozas: string | undefined = undefined;
 
   ujEmail: string | undefined = undefined;
   ujPassword: string | undefined = undefined;
   ujraPassword: string | undefined = undefined;
   ujFelhasznalonev: string | undefined = undefined;
+  ujBemutatkozas: string | undefined = undefined;
   modositasNyitvaE: boolean = false;
   modositasCim: string = '';
   modositasPlaceHolder: string = '';
@@ -75,6 +78,10 @@ export class BeallitasokComponent implements OnInit {
     } else if (modositasTipus === 'username') {
       this.modositasCim = 'Felhasználónév módosítása';
       this.modositasPlaceHolder = 'Új felhasználónév';
+
+    } else if (modositasTipus === 'bemutatkozas') {
+      this.modositasCim = 'Bemutatkozás módosítása';
+      this.modositasPlaceHolder = 'Új bemutatkozás';
     }
   }
 
@@ -117,6 +124,7 @@ export class BeallitasokComponent implements OnInit {
     this.ujPassword = undefined;
     this.ujraPassword = undefined;
     this.ujFelhasznalonev = undefined;
+    this.ujBemutatkozas = undefined;
     this.hiba = false;
     this.hibaUzenet = '';
   }
@@ -132,7 +140,8 @@ export class BeallitasokComponent implements OnInit {
       email : this.ujEmail,
       password : this.ujPassword,
       tema_id : undefined,
-      kep: undefined
+      kep: undefined,
+      bemutatkozas: this.ujBemutatkozas
     }
 
     if (this.modositasCim.includes('Jelszó')) {
@@ -152,7 +161,8 @@ export class BeallitasokComponent implements OnInit {
       profilData.email,
       profilData.password, 
       profilData.tema_id,
-      profilData.kep
+      profilData.kep,
+      profilData.bemutatkozas
     ).subscribe({
       next: () => {
         if( profilData.felhasznalonev !== undefined){
@@ -184,7 +194,17 @@ export class BeallitasokComponent implements OnInit {
       }
     });
     console.log(profilData)
-    
+  }
+
+  kepModositas(){
+    this.authservice.kepModositas().subscribe({
+      next: (response) => {
+        console.log('Sikeres kép módosítás:', response);
+      },
+      error: (error) => {
+        console.error('Hiba történt a kép módosításakor:', error);
+      }
+    });
   }
 
   temaModositas() {
@@ -226,7 +246,12 @@ export class BeallitasokComponent implements OnInit {
         this.lekertPassword = csillagok;
         this.lekertTema_id = profilAdatok.tema_id;
         this.lekertKep = profilAdatok.kep;
+        this.lekertBemutatkozas = profilAdatok.magamrol
         console.log(profilAdatok)
+        if(profilAdatok.magamrol === ''){
+          this.lekertBemutatkozas = 'Írj egy bemutatkozást...';
+        }
+
       },
       error: (error) => {
         console.error('Hiba történt a profil lekérésénél:', error);

@@ -4,7 +4,7 @@ body{
     margin: 0;
     justify-content: center;
     align-items: center;
-    background-color: #e0e0e0;
+    background-color: #e0e0e0 !important;
 }
 
 .be-keret {
@@ -15,7 +15,7 @@ body{
     border-radius: 64px;
     flex-direction: column;
     gap: 20px;
-    background-color: #ffffff;
+    background-color: #ffffff !important;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 

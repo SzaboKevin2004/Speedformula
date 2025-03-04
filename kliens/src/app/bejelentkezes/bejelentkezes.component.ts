@@ -56,7 +56,11 @@ export class BejelentkezesComponent {
         this.authService.setFelhasznaloNev(response.username);
         this.authService.setPfpId(response.pfp);
         this.authService.setBejelentkezettE(true);
-        this.router.navigate(['/']);
+        setTimeout(() => {
+          this.router.navigate(['/']).then(() => {
+            window.location.reload();
+          });
+        }, 1500);
       },
       error: (err) => {
         this.hiba = true;
