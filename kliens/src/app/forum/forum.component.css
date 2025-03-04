@@ -62,6 +62,8 @@
     margin-left: auto;
     width: 25px;
     height: 25px;
+    user-select: none;
+    cursor: pointer;
 }
 
 .elteltIdo {
@@ -149,6 +151,18 @@
 @media only screen and (max-width: 600px) {
     .keret {
         width: 80%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .keret {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .keret {
+        width: 99%;
     }
 }
 
