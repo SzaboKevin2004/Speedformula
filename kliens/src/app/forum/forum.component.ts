@@ -29,6 +29,7 @@ export class ForumComponent implements OnInit {
   kikedveles: boolean = false;
 
   felhasznaloNev: string = '';
+  szerep: number = 2;
 
   constructor(private authservice: AuthService, private forumService: ForumService) {}
 
@@ -45,6 +46,18 @@ export class ForumComponent implements OnInit {
       },
       (error) => {
         console.error('Hiba történt a posztok betöltésekor:', error);
+      }
+    );
+  }
+
+  profilLekeres(): void {
+    this.authservice.profilLekeres().subscribe(
+      (response) => {
+        this.szerep = response.felhasználó.szerep_id;
+        console.log(this.szerep);
+      },
+      (error) => {
+        console.error('Hiba történt a felhasználó lekérdezésekor:', error);
       }
     );
   }
@@ -137,6 +150,9 @@ export class ForumComponent implements OnInit {
   ngOnInit() {
     this.authservice.felhasznaloNev$.subscribe(nev => {
       this.felhasznaloNev = nev;
+    });
+    this.authservice.szerep$.subscribe(szerep => {
+      this.szerep = szerep;
     });
 
     this.posztBetoltes();

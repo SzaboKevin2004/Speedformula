@@ -48,6 +48,7 @@ export class ForumPosztReszletComponent implements OnInit {
   megnyitottAlkommentId: number | null = null;
 
   felhasznaloNev: string = '';
+  szerep: number = 2;
 
   constructor(private authservice: AuthService, private route: ActivatedRoute, private forumService: ForumService, private router: Router, private renderer: Renderer2) {}
   linkeles(szoveg: string): string {
@@ -517,6 +518,9 @@ export class ForumPosztReszletComponent implements OnInit {
   ngOnInit() {
     this.authservice.felhasznaloNev$.subscribe(nev => {
       this.felhasznaloNev = nev;
+    });
+    this.authservice.szerep$.subscribe(szerep => {
+      this.szerep = szerep;
     });
     this.posztBetoltes();
     this.authservice.felhBejelentkezettE$.subscribe(bejelentkezettE => {

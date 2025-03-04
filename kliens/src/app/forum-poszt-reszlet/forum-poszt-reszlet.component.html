@@ -6,7 +6,7 @@
                     <img class="felhasznaloKep" [src]="poszt.fkep">
                     <p class="felhasznaloNev">{{ poszt.felhasznalo }}</p>
                     <p class="elteltIdo"> • {{poszt.elteltIdo}}</p>
-                    <div class="torles-kep" *ngIf="poszt.sajatFelhasznalo" (click)="posztTorles(poszt.id)">
+                    <div class="torles-kep" *ngIf="poszt.sajatFelhasznalo || szerep === 1" (click)="posztTorles(poszt.id)">
                         <img class="torles-kep" src="../../assets/icons/trash.png" *ngIf="vilagos">
                         <img class="torles-kep" src="../../assets/icons/trash-white.png" *ngIf="sotet || voros">
                     </div>
@@ -67,7 +67,7 @@
                         <img class="felhasznaloKep" [src]="komment.fkep">
                         <p class="felhasznaloNev">{{ komment.felhasznalo }}</p>
                         <p class="elteltIdo"> • {{ komment.elteltIdo }}</p>
-                        <div class="torles-kep" *ngIf="komment.sajatFelhasznalo" (click)="kommentTorles(komment.id)">
+                        <div class="torles-kep" *ngIf="komment.sajatFelhasznalo || szerep === 1" (click)="kommentTorles(komment.id)">
                             <img class="torles-kep" src="../../assets/icons/trash.png" *ngIf="vilagos">
                             <img class="torles-kep" src="../../assets/icons/trash-white.png" *ngIf="sotet || voros">
                         </div>
@@ -111,7 +111,7 @@
                                 <img class="felhasznaloKep" [src]="alkomment.fkep">
                                 <p class="felhasznaloNev">{{ alkomment.felhasznalo }}</p>
                                 <p class="elteltIdo"> • {{ alkomment.elteltIdo }}</p>
-                                <div class="torles-kep" *ngIf="alkomment.sajatFelhasznalo" (click)="kommentTorles(alkomment.id)">
+                                <div class="torles-kep" *ngIf="alkomment.sajatFelhasznalo || szerep === 1" (click)="kommentTorles(alkomment.id)">
                                     <img class="torles-kep" src="../../assets/icons/trash.png" *ngIf="vilagos">
                                     <img class="torles-kep" src="../../assets/icons/trash-white.png" *ngIf="sotet || voros">
                                 </div>

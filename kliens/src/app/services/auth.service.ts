@@ -9,6 +9,7 @@ interface AuthResponse {
   pfp: string;
   username: string;
   tema: number;
+  szerep: number;
 }
 
 @Injectable({
@@ -28,12 +29,16 @@ export class AuthService {
   private szamSzin = new BehaviorSubject<number>(2); 
   szamSzin$ = this.szamSzin.asObservable();
 
+  private szerep = new BehaviorSubject<number>(2);
+  szerep$ = this.szerep.asObservable();
+
   constructor(private http: HttpClient, private router: Router) {
     if (typeof window !== 'undefined' && window.localStorage) {
       const token = localStorage.getItem('token');
       const pfp = localStorage.getItem('pfp');
       const username = localStorage.getItem('username');
       const tema = localStorage.getItem('tema');
+      const szerep = localStorage.getItem('szerep');
 
       if (token) {
         this.felhBejelentkezettE.next(true);
@@ -49,6 +54,10 @@ export class AuthService {
 
       if (tema) {
         this.szamSzin.next(parseInt(tema));
+      }
+
+      if (szerep) {
+        this.szerep.next(parseInt(szerep));
       }
     }
   }
@@ -82,7 +91,6 @@ export class AuthService {
   }
 
   setEmail(email: string) {
-    
     if (typeof window!== 'undefined' && window.localStorage) {
       localStorage.setItem('email', email);
     }
@@ -92,6 +100,13 @@ export class AuthService {
     this.szamSzin.next(tema);
     if (typeof window !== 'undefined' && window.localStorage) {
       localStorage.setItem('tema', tema.toString());
+    }
+  }
+
+  setSzerep(szerep: number) {
+    this.szerep.next(szerep);
+    if (typeof window!== 'undefined' && window.localStorage) {
+      localStorage.setItem('szerep', szerep.toString());
     }
   }
 
@@ -121,6 +136,7 @@ export class AuthService {
         this.setToken(response.token);
         this.setPfpId(response.pfp);
         this.setFelhasznaloNev(response.username);
+        this.setSzerep(response.szerep);
       })
     );
   }
@@ -187,6 +203,7 @@ export class AuthService {
 
   kijelentkezes() {
     if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.removeItem('szerep');
       localStorage.removeItem('token');
       localStorage.removeItem('pfp');
       localStorage.removeItem('username');
