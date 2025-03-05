@@ -10,7 +10,7 @@ import KedvencKomment from "./models/KommentKedvelések.Modell.js";
 import UjToken from "./models/újToken.Model.js";
 
 const ync=false;//Ha false akkor nem végzik teljes felülírást,csak ha true-ra van állítva
-const aync=false;//nem végzik részleges végrehajtást mikor false-ra van állítva.
+const aync=true;//nem végzik részleges végrehajtást mikor false-ra van állítva.
 
 db.authenticate()
     .then(()=>{
@@ -24,10 +24,7 @@ db.authenticate()
       db.modelManager.addModel(KedvencKomment);
       db.modelManager.addModel(UjToken);
       db.sync({
-        force: ync //Kényszerítjük , hogy a modellek alapján az adatbázisban megjelenjenek a táblák. minden indításkor teljesen felülírja az adatbázisban lévő táblát.
-      
-        
-        ,alter: aync //A modellek alapján a már meglévő táblák módosításra kerülnek.
+        force: ync,alter: aync 
       })
       .then(async ()=>{
         if(ync){

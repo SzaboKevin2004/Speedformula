@@ -16,14 +16,18 @@ const Kedveltposzt= db.define("posztkedveltek",
         references: {
             model: Felhasználó,
             key: "id"
-        }
+        },
+        onDelete:"Cascade", 
+        hooks:true
     },
     poszt_id: {
         type: DataTypes.INTEGER,
         references: {
                 model: Poszt,
                 key: "id"
-            }
+            },
+         onDelete:"Cascade",
+         hooks:true   
         }
     },
     {
