@@ -255,6 +255,24 @@ export class AuthService {
     );
   }
 
+  profilMasikTorles(felhasznalonev: string){
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('Nincs bejelentkezett felhasználó!');
+    }
+  
+    return this.http.delete(`${this.url}/profil/${felhasznalonev}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      }
+    }).pipe(
+      catchError((error) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
   kijelentkezes() {
     if (this.tokenFrissitoSub) {
       this.tokenFrissitoSub.unsubscribe();

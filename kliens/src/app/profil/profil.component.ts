@@ -38,6 +38,8 @@ export class ProfilComponent implements OnInit {
   kommentKepcim: boolean = false;
   mentveKepcim: boolean = false;
 
+  sajatFelhaznaloNev: string = '';
+
   constructor(
     private authservice: AuthService, 
     private forumservice: ForumService,
@@ -81,9 +83,9 @@ export class ProfilComponent implements OnInit {
         this.posztok = response.map((poszt: any) => ({
           ...poszt,
           elteltIdo: this.elteltIdoSzamitasa(poszt.elkuldve),
-          sajatFelhasznalo: poszt.felhasznalo === this.felhasznaloNev
+          sajatFelhasznalo: poszt.felhasznalo === this.sajatFelhaznaloNev
         }));
-        console.log(this.posztok);
+        console.log(this.felhasznaloNev);
       },
       (error) => {
         if (error.status === 404) {
@@ -94,6 +96,18 @@ export class ProfilComponent implements OnInit {
         }
       }
     )
+  }
+
+  profilLekeres() {
+    this.authservice.profilLekeres().subscribe({
+      next: (response) => {
+        this.sajatFelhaznaloNev = response.felhasználó.felhasznalonev;
+        this.szerep = response.felhasználó.szerep_id;
+      },
+      error: (error) => {
+        console.error('Hiba történt a profil lekérésénél:', error);
+      }
+    })
   }
 
   elteltIdoSzamitasa(datum: string): string {
@@ -123,7 +137,7 @@ export class ProfilComponent implements OnInit {
 
 
   felhasznalonevUrlbol(url: string): string {
-    const regex = /forum\/profil\/([a-zA-Z0-9áéíóöőúüÁÉÍÓÖŐÚÜ-]+)/;
+    const regex = /forum\/profil\/([a-zA-ZáÁéÉíÍóÓöÖőŐúÚüÜűŰa-zA-Z0-9_.-]+)/;
     const match = url.match(regex);
     
     if (match) {
@@ -136,6 +150,7 @@ export class ProfilComponent implements OnInit {
 
   posztTorles(postId: number){
     console.log(postId);
+    console.log(this.szerep);
     this.forumservice.deletePost(postId).subscribe(
       (response) => {
         console.log('Poszt sikeresen törölve:', response);
@@ -143,6 +158,19 @@ export class ProfilComponent implements OnInit {
       },
       (error) => {
         console.error('Hiba történt a poszt törlésénél:', error);
+      }
+    );
+  }
+
+  profilTorles(felhasznalonev: string){
+    console.log(felhasznalonev);
+    this.authservice.profilMasikTorles(felhasznalonev).subscribe(
+      (response) => {
+        console.log('Felhasználó sikeresen törölve:', response);
+        this.router.navigate(['/forum']);
+      },
+      (error) => {
+        console.error('Hiba történt a felhasználó törlésénél:', error);
       }
     );
   }
@@ -166,6 +194,7 @@ export class ProfilComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(() => {
+      this.profilLekeres()
       this.profilBetoltes();
       this.posztBetoltes();
     });

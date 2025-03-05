@@ -84,6 +84,7 @@
     align-items: center;
     gap: 3px;
     cursor: pointer;
+    user-select: none;
 }
 
 .valasztoElemek div {

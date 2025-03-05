@@ -57,7 +57,7 @@ export class ForumPosztReszletComponent implements OnInit {
     this.location.back();
   }
   linkeles(szoveg: string): string {
-    const regex = /@([a-zA-ZáÁéÉíÍóÓöÖőŐúÚüÜűŰa-zA-Z0-9_]+)/g;
+    const regex = /@([a-zA-ZáÁéÉíÍóÓöÖőŐúÚüÜűŰa-zA-Z0-9_.-]+)/g;
     return szoveg.replace(regex, (tartalom, felhasznalonev) => {
       return `<a href="/forum/profil/${felhasznalonev}" class="felhasznalo-link">${tartalom}</a>`;
     });
