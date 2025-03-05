@@ -18,6 +18,13 @@ export class ForumService {
     return this.http.get<any>(this.url, { headers });
   }
 
+  // Posztok lekérése felhasználónév alapján
+  getPostsId(felhasznalonev: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.url}/${felhasznalonev}`, { headers });
+  }
+
   // Új poszt létrehozása
   createPost( adatok: {
     cim: string | null,

@@ -174,15 +174,21 @@ export class AuthService {
     if (!token) {
       throw new Error('Nincs bejelentkezett felhasználó!');
     }
+  
     return this.http.get<any>(`${this.url}/profil`, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
       }
     }).pipe(
-      catchError((error) => {
-        return throwError(() => error);
-      })
+      tap((response) => {
+        if (response.felhasználó.kep) {
+          
+          this.randomKep.next(response.felhasználó.kep);
+          localStorage.setItem('pfp', response.felhasználó.kep);
+        }
+      }),
+      catchError((error) => throwError(() => error))
     );
   }
   profilModositas(
@@ -218,7 +224,7 @@ export class AuthService {
       throw new Error('Nincs bejelentkezett felhasználó!');
     }
 
-    return this.http.patch(`${this.url}/profil/profilkep`,
+    return this.http.patch(`${this.url}/profil/profilkep`, {},
       { 
         headers: {
           'Authorization': `Bearer ${token}`,

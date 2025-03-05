@@ -99,10 +99,10 @@
     h1,h2,p{
         color: var(--szin-betu-sotet);
     }
-    p.aktiv.egyszeru::after , p.aktiv.reszletes::after, .valaszto p.aktiv.cikk::after, .valaszto p.aktiv.media::after {
+    p.aktiv.egyszeru::after , p.aktiv.reszletes::after, .valaszto p.aktiv.cikk::after, .valaszto p.aktiv.media::after, .valasztoElemek div.aktiv.bejegyzesek::after, .valasztoElemek div.aktiv.kommentek::after, .valasztoElemek div.aktiv.mentve::after {
         background-color: #ffffff;
     }
-    .kozep p:hover::after, .valaszto p:hover::after {
+    .kozep p:hover::after, .valaszto p:hover::after, .valasztoElemek div:hover::after {
         background-color: #7a7979;
     }
 
@@ -177,10 +177,10 @@
     h1,h2,p{
         color: var(--szin-betu-vilagos);
     }
-    p.aktiv.egyszeru::after , p.aktiv.reszletes::after, .valaszto p.aktiv.cikk::after, .valaszto p.aktiv.media::after {
+    p.aktiv.egyszeru::after , p.aktiv.reszletes::after, .valaszto p.aktiv.cikk::after, .valaszto p.aktiv.media::after, .valasztoElemek div.aktiv.bejegyzesek::after, .valasztoElemek div.aktiv.kommentek::after, .valasztoElemek div.aktiv.mentve::after {
         background-color: #1a1a1a;
     }
-    .kozep p:hover::after, .valaszto p:hover::after {
+    .kozep p:hover::after, .valaszto p:hover::after, .valasztoElemek div:hover::after  {
         background-color: #5e5e5e;
     }
 
@@ -254,10 +254,10 @@
     h1,h2,p{
         color: var(--szin-betu-voros);
     }
-    p.aktiv.egyszeru::after , p.aktiv.reszletes::after, .valaszto p.aktiv.cikk::after, .valaszto p.aktiv.media::after {
+    p.aktiv.egyszeru::after , p.aktiv.reszletes::after, .valaszto p.aktiv.cikk::after, .valaszto p.aktiv.media::after, .valasztoElemek div.aktiv.bejegyzesek::after, .valasztoElemek div.aktiv.kommentek::after, .valasztoElemek div.aktiv.mentve::after {
         background-color: #ffffff;
     }
-    .kozep p:hover::after, .valaszto p:hover::after {
+    .kozep p:hover::after, .valaszto p:hover::after, .valasztoElemek div:hover::after {
         background-color: #7a7979;
     }
 

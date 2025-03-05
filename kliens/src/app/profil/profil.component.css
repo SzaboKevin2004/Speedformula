@@ -4,19 +4,281 @@
 
 .felhasznaloAdatok {
     display: flex;
-    align-items: center;
 }
 
 .felhasznaloAdat {
+    display: flex;
     margin-left: 20px;
+    flex-direction: column;
 }
 
-.felhasznaloKep {
+.felhasznaloAdatKep {
     height: 150px;
     width: 150px;
 }
 
-.felhasznaloNev {
+.felhasznaloAdatNev {
+    display: flex;
+    margin-top: 55px;
     font-size: 32px;
     font-weight: bold;
+}
+
+.felhasznaloAdatSzam {
+    display: flex;
+    gap: 10px;
+}
+
+.bejegyzesSzam {
+    font-weight: bold;
+}
+
+.bejegyzesSzam, .bejegyzesSzoveg {
+    display: flex;
+    margin: 0;
+}
+
+.bemutatkozas {
+    display: flex;
+    width: 100%;
+    word-break: break-all;
+    margin-top: 32px;
+    margin-bottom: 64px;
+}
+
+.vissza-gomb {
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+    right: 32px;
+    padding: 15px;
+    border-radius: 20px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.vissza-kep {
+    width: 25px;
+    height: 25px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.valasztoElemek {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.valasztoElemek img {
+    display: flex;
+    width: 32px;
+    height: 32px;
+}
+
+.bejegyzesek, .kommentek, .mentve {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+}
+
+.valasztoElemek div {
+    position: relative;
+}
+
+.valasztoElemek div.aktiv.bejegyzesek::after , .valasztoElemek div.aktiv.kommentek::after, .valasztoElemek div.aktiv.mentve::after {
+    position: absolute;
+    width: 80%;
+    height: 4px;
+    left: 50%;
+    bottom: 0;
+    content: "";
+    border-radius: 8px;
+    transform: translateX(-50%);
+}
+
+.valasztoElemek div:hover::after {
+    position: absolute;
+    width: 80%;
+    height: 4px;
+    left: 50%;
+    bottom: 0;
+    content: "";
+    border-radius: 8px;
+    transform: translateX(-50%);
+}
+
+.poszt {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.posztAdatok {
+    display: flex;
+    align-items: center;
+}
+
+.felhasznaloNev {
+    margin-left: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.felhasznaloKep {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.torles-kep {
+    margin-left: auto;
+    width: 25px;
+    height: 25px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.elteltIdo {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.cim {
+    margin: 5px 0 20px 0;
+    font-size: 22px;
+    word-break: break-all;
+}
+
+.szoveg {
+    margin: 0;
+    font-size: 18px;
+    word-break: break-all;
+}
+
+.letrehozas-gomb {
+    position: fixed;
+    margin-top: 25px;
+    right: 32px;
+    padding: 0px 10px 0px 10px;
+}
+
+.letrehozas-kep {
+    margin-right: 10px;
+}
+
+.letrehozas-gomb, .kedveles-gomb, .komment-gomb, 
+.megosztas-gomb, .mentes-gomb{
+    display: flex;
+    border-radius: 15px;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+}
+
+
+.letrehozas-kep, .kedveles-kep, .komment-kep, .megosztas-kep, .mentes-kep {
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+.megosztas-szoveg, .mentes-szoveg {
+    margin-left: -5px;
+}
+
+.posztGombok {
+    display: flex;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.kedveles-gomb, .komment-gomb, 
+.megosztas-gomb, .mentes-gomb{
+    padding: 0px 10px 0px 10px;
+}
+
+.nincsPoszt {
+    margin-top: 55px;
+    text-align: center;
+}
+
+.fejlesztes {
+    margin-top: 55px;
+    text-align: center;
+}
+
+@media only screen and (max-width: 1200px) {
+    .keret {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 867px) {
+    .keret {
+        width: 60%;
+    }
+
+    .vissza-gomb {
+        right: 5px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .keret {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .keret {
+        width: 80%;
+    }
+
+    .vissza-gomb {
+        margin-top: 5px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .keret {
+        width: 90%;
+    }
+
+    .valasztoElemek p {
+        display: none;
+    }
+
+    .felhasznaloAdatKep {
+        height: 64px;
+        width: 64px;
+    }
+
+    .felhasznaloAdatNev {
+        margin-top: 15px;
+    }
+
+    .valasztoElemek div.aktiv.bejegyzesek::after , .valasztoElemek div.aktiv.kommentek::after, .valasztoElemek div.aktiv.mentve::after {
+        bottom: -6px;
+
+    }
+    
+    .valasztoElemek div:hover::after {
+        bottom: -6px;
+    }    
+}
+
+@media only screen and (max-width: 400px) {
+    .keret {
+        width: 99%;
+    }
+
+    .vissza-gomb {
+        right: 2px;
+    }
 }

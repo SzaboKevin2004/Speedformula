@@ -1,14 +1,15 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ForumService } from '../services/forum.service';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-forum-poszt-reszlet',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './forum-poszt-reszlet.component.html',
   styleUrl: './forum-poszt-reszlet.component.css'
 })
@@ -50,7 +51,11 @@ export class ForumPosztReszletComponent implements OnInit {
   felhasznaloNev: string = '';
   szerep: number = 2;
 
-  constructor(private authservice: AuthService, private route: ActivatedRoute, private forumService: ForumService, private router: Router, private renderer: Renderer2) {}
+  constructor(private authservice: AuthService, private route: ActivatedRoute, private forumService: ForumService, private router: Router, private renderer: Renderer2, private location: Location) {}
+
+  vissza(){
+    this.location.back();
+  }
   linkeles(szoveg: string): string {
     const regex = /@([a-zA-ZáÁéÉíÍóÓöÖőŐúÚüÜűŰa-zA-Z0-9_]+)/g;
     return szoveg.replace(regex, (tartalom, felhasznalonev) => {

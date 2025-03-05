@@ -56,6 +56,7 @@
 .felhasznaloNev {
     margin-left: 10px;
     font-size: 18px;
+    cursor: pointer;
 }
 
 .felhasznaloKep {
@@ -81,16 +82,26 @@
     word-break: break-all;
 }
 
-.letrehozas-gomb {
+.vissza-gomb {
+    display: flex;
     position: fixed;
+    align-items: center;
+    justify-content: center;
     margin-top: 25px;
     right: 32px;
-    padding: 0px 10px 0px 10px;
+    padding: 15px;
+    border-radius: 20px;
+    user-select: none;
+    cursor: pointer;
 }
 
-.letrehozas-kep {
-    margin-right: 10px;
+.vissza-kep {
+    width: 25px;
+    height: 25px;
+    user-select: none;
+    cursor: pointer;
 }
+
 
 .torles-kep {
     margin-left: auto;
@@ -100,7 +111,7 @@
     cursor: pointer;
 }
 
-.letrehozas-gomb, .kedveles-gomb, .komment-gomb, 
+.kedveles-gomb, .komment-gomb, 
 .megosztas-gomb, .mentes-gomb{
     display: flex;
     border-radius: 15px;
@@ -110,7 +121,7 @@
 }
 
 
-.letrehozas-kep, .kedveles-kep, .komment-kep, .megosztas-kep, .mentes-kep {
+.kedveles-kep, .komment-kep, .megosztas-kep, .mentes-kep {
     margin-right: 10px;
     width: 25px;
     height: 25px;
@@ -222,7 +233,7 @@ button {
         width: 60%;
     }
 
-    .letrehozas-gomb {
+    .vissza-gomb {
         right: 5px;
     }
 }
@@ -230,6 +241,10 @@ button {
 @media only screen and (max-width: 700px) {
     .keret {
         width: 70%;
+    }
+
+    .vissza-gomb {
+        margin-top: 5px;
     }
 }
 
@@ -248,6 +263,10 @@ button {
 @media only screen and (max-width: 400px) {
     .keret {
         width: 99%;
+    }
+    
+    .vissza-gomb {
+        right: 2px;
     }
 }
 

@@ -25,3 +25,13 @@
 .nav-csapatok.vorosH:active {
     background-color: var(--szin-active-voros);
 }
+
+body {
+    font-family: var(--betutipus-alap);
+    font-size: var(--betumeret-fo);
+}
+
+h1 {
+    text-align: center;
+    margin: auto;
+}

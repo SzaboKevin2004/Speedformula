@@ -200,6 +200,7 @@ export class BeallitasokComponent implements OnInit {
     this.authservice.kepModositas().subscribe({
       next: (response) => {
         console.log('Sikeres kép módosítás:', response);
+        this.profilLekeres();
       },
       error: (error) => {
         console.error('Hiba történt a kép módosításakor:', error);

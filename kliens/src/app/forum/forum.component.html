@@ -16,7 +16,7 @@
                 <div class="poszt">
                     <div class="posztAdatok">
                         <img class="felhasznaloKep" [src]="poszt.fkep">
-                        <p class="felhasznaloNev">{{ poszt.felhasznalo }}</p>
+                        <p class="felhasznaloNev" [routerLink]="['/forum/profil',poszt.felhasznalo]">{{ poszt.felhasznalo }}</p>
                         <p class="elteltIdo"> • {{poszt.elteltIdo}}</p>
                         <div class="torles-kep" *ngIf="poszt.sajatFelhasznalo || szerep === 1" (click)="posztTorles(poszt.id)">
                             <img class="torles-kep" src="../../assets/icons/trash.png" *ngIf="vilagos">

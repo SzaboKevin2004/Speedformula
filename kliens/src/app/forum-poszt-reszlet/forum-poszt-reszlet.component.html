@@ -1,10 +1,14 @@
 <div class="tartalom" [ngClass]="temaSzinGordulo">
+    <div class="vissza-gomb" [ngClass]="[temaSzin2, temaSzinHover]" (click)="vissza()">
+        <img class="vissza-kep" src="../../assets/icons/back.png" *ngIf="vilagos">
+        <img class="vissza-kep" src="../../assets/icons/back-white.png" *ngIf="sotet || voros">
+    </div>
     <div class="keret" [ngClass]="temaSzinBetu">
         <div *ngIf="poszt">
             <div class="poszt">
                 <div class="posztAdatok">
                     <img class="felhasznaloKep" [src]="poszt.fkep">
-                    <p class="felhasznaloNev">{{ poszt.felhasznalo }}</p>
+                    <p class="felhasznaloNev" [routerLink]="['/forum/profil',poszt.felhasznalo]">{{ poszt.felhasznalo }}</p>
                     <p class="elteltIdo"> • {{poszt.elteltIdo}}</p>
                     <div class="torles-kep" *ngIf="poszt.sajatFelhasznalo || szerep === 1" (click)="posztTorles(poszt.id)">
                         <img class="torles-kep" src="../../assets/icons/trash.png" *ngIf="vilagos">
@@ -59,7 +63,7 @@
                 <div class="komment">
                     <div class="kommentAdatok">
                         <img class="felhasznaloKep" [src]="komment.fkep">
-                        <p class="felhasznaloNev">{{ komment.felhasznalo }}</p>
+                        <p class="felhasznaloNev" [routerLink]="['/forum/profil',komment.felhasznalo]">{{ komment.felhasznalo }}</p>
                         <p class="elteltIdo"> • {{ komment.elteltIdo }}</p>
                         <div class="torles-kep" *ngIf="komment.sajatFelhasznalo || szerep === 1" (click)="kommentTorles(komment.id)">
                             <img class="torles-kep" src="../../assets/icons/trash.png" *ngIf="vilagos">
@@ -103,7 +107,7 @@
                         <div class="komment">
                             <div class="kommentAdatok">
                                 <img class="felhasznaloKep" [src]="alkomment.fkep">
-                                <p class="felhasznaloNev">{{ alkomment.felhasznalo }}</p>
+                                <p class="felhasznaloNev" [routerLink]="['/forum/profil',alkomment.felhasznalo]">{{ alkomment.felhasznalo }}</p>
                                 <p class="elteltIdo"> • {{ alkomment.elteltIdo }}</p>
                                 <div class="torles-kep" *ngIf="alkomment.sajatFelhasznalo || szerep === 1" (click)="kommentTorles(alkomment.id)">
                                     <img class="torles-kep" src="../../assets/icons/trash.png" *ngIf="vilagos">
