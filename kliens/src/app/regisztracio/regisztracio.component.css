@@ -91,8 +91,9 @@ a[routerLink="/bejelentkezes"]:active {
 .ertesitessav{
     display: flex;
     width: 450px;
-    height: 50px;
+    height: fit-content;
     margin: auto;
+    padding: 10px;
     margin-bottom: 20px;
     border-radius: 35px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
