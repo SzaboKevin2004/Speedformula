@@ -18,10 +18,6 @@ const KedvencPoszt=db.define(
     kedveles:{
         type: DataTypes.INTEGER,
         defaultValue: 0
-    },
-    Megosztas:{
-        type: DataTypes.INTEGER,
-        defaultValue: 0
     }
 },{
     tableName: "kedvencposzt",

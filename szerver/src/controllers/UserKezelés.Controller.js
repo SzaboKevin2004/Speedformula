@@ -7,33 +7,13 @@ import multer from'multer';
 import path  from 'path';
 
 import dotenv from 'dotenv';
+import UjToken from "../models/újToken.Model.js";
  
 dotenv.config({ path:"C:/Users/david/Documents/szerver/src/.env"});
 
 const ADMIN_PASSWORD = "Admin123";
-/*const Midleware = async (req, res, next) => {
-    const midleHeader=req.header('Authorization');
-    if(!midleHeader){
-        return res.status(401).json({error: true, message: "Nem található ellenőrző JWT token!"});
-    }
-    const token =midleHeader.replace('Bearer ', '');
-    try {
-        const dekódolt=jwt.verify(token, process.env.JWT_SECRET);
-        const fh=await Felhasználó.findByPk(dekódolt.id);
-        if(!fh){
-            return res.status(401).json({error: true, message: "Érvénytelen JWT token!"});
-        }
-        req.user=fh;
-    } catch (error) {
-        if(error instanceof jwt.TokenExpiredError){
-            return res.status(401).json({error: true, message: "Lejárt a token!"});
-        }else if(error instanceof jwt.JsonWebTokenError){
-            return res.status(401).json({error: true, message: "Érvénytelen a token!"});
-        }else{
-            return res.status(500).json({ error: true, message: "Szerver hiba!"});
-        }
-    }
-}*/
+
+
 export default {
     //Regisztráció
     RegisztracioPostController: async (req, res) => {
@@ -181,8 +161,14 @@ export default {
             }  
             //console.log(process.env.JWT_SECRET);
             const token=jwt.sign({ id: felhasználó.id,felhasznalonev:felhasználó.felhasznalonev},process.env.JWT_SECRET, { expiresIn: '12h' });
-            //const reftoken=jwt.sign({ id: felhasználó.id,felhasznalonev:felhasználó.felhasznalonev},process.env.JWT_SECRET, { expiresIn: '7d' });
+            const reftoken=jwt.sign({ id: felhasználó.id,felhasznalonev:felhasználó.felhasznalonev},process.env.JWT_SECRET, { expiresIn: '7d' });
             
+            await UjToken.create(
+                {
+                    token: reftoken,
+                    felhasznalo_id:felhasználó.id
+                }
+            )
           
             //console.log(token);
             //console.log(reftoken);
@@ -192,6 +178,7 @@ export default {
                 username:felhasználó.felhasznalonev,
                 pfp:felhasználó.kep,
                 tema:felhasználó.tema_id,
+                szerep:felhasználó.szerep_id,
                 message: "Sikeres bejelentkezés!"
             });
         }catch(error){
@@ -203,12 +190,72 @@ export default {
         }
         
     },
+    ujtokenGeneralasPost:async function(req,res){
+        try {
+            const token = req.headers.authorization?.split(' ')[1]; 
+            if (!token) {
+                return res.status(401).json({ error: true, message: "Token nem lett megadva" });
+            }
+            const dekódolt = jwt.verify(token, process.env.JWT_SECRET);
+            const felhasználó = await Felhasználó.findOne({
+                where: { id: dekódolt.id },
+                include: [{
+                    model: Szerep,
+                    attributes: ['szerep_neve']
+                }]
+            });
+    
+            if (!felhasználó) {
+                return res.status(404).json({ error: true, message: "Felhasználó nem található!" });
+            }
+            const ujToken = await UjToken.findOne({ where: { felhasznalo_id: felhasználó.id } });
+            if (!ujToken) {
+                return res.status(401).json({ error: true, message: "Érvénytelen token!" });
+            }
+            jwt.verify(ujToken.token, process.env.JWT_SECRET, (err) => {
+                if (err) {
+                    return res.status(403).json({ error: true, message: "Hibás vagy lejárt refresh token!" });
+                }
+                const accessToken = jwt.sign({ id: felhasználó.id,felhasznalonev:felhasználó.felhasznalonev}, process.env.JWT_SECRET, { expiresIn: "12h" });
+                res.status(200).json({accessToken});
+            });
+            
+        } catch (error) {
+            console.error("Token generálás sikertelen!", error);
+            return res.status(500).json({
+                error: true,
+                message: "Token generálás sikertelen!"
+            });
+        }
+    },
     //Kijelentkezés
-    LogoutPostController: (req, res) =>{
-        res.status(200).json({
-            success: true,
-            message: "Sikeres kijelentkezés!"
-        });
+    LogoutPostController: async function (req, res){
+        try {
+            const token = req.headers.authorization?.split(' ')[1]; 
+            if (!token) {
+                return res.status(401).json({ error: true, message: "Token nem lett megadva" });
+            }
+            const dekódolt = jwt.verify(token, JWT_SECRET);
+            const felhasználó = await  Felhasználó.findOne({
+                where: { id: dekódolt.id },
+                include: [{
+                    model: Szerep,
+                    attributes: ['szerep_neve']
+                }]
+            });
+            if (!felhasználó) {
+                return res.status(404).json({ error: true, message: "Felhasználó nem található!" });
+            }
+            await UjToken.destroy({ where: { felhasznalo_id: dekódolt.id } });
+            res.json({ error: false, message: "Sikeres kijelentkezés!" });
+           
+        } catch (error) {
+            console.error("Kijelentkezés sikertelen!", error);
+            return res.status(500).json({
+                error: true,
+                message: "Kijelentkezés sikertelen!"
+            });
+        }
     },
     //Profil lekérés
     ProfilGetController: async (req, res) => {
@@ -244,12 +291,12 @@ export default {
 },
 //Más prfoil lekérése
 MásikProfilGetControler: async(req,res)=>{
-    const{id}=req.params;
+    const{felhasznalonev}=req.params;
     const token = req.headers.authorization?.split(' ')[1];
         try{
             const dekódolt=jwt.verify(token, process.env.JWT_SECRET);
             const másikfelhasználó= await Felhasználó.findOne({
-                where: {id},
+                where: {felhasznalonev},
                 include:[{
                     model: Szerep,
                     attributes: ['szerep_neve']
@@ -330,20 +377,7 @@ MásikProfilGetControler: async(req,res)=>{
             if (req.body.tema_id !== undefined && req.body.tema_id !== null) {
                 változás.tema_id = req.body.tema_id;
             }
-            /*
-            // Profilkép
-            if (req.file){
-                 await new Promise((resolve, reject) => {
-                    upload(req,res,(err)=>{
-                        if(err){
-                            reject(err);
-                        } else{
-                            resolve();
-                        }
-                    })
-                 });
-                 valtozas.kep=req.file.path;   
-            }*/
+
             //magamról
             if(req.body.magamrol !== undefined && req.body.magamrol.trim()!== "")
                 {
@@ -371,40 +405,120 @@ MásikProfilGetControler: async(req,res)=>{
         }
     },
     //Profil törlés
-    ProfilDeleteController: async (req, res) => {
+    ProfilDeleteController: async function (req, res){
         const token = req.headers.authorization?.split(' ')[1];
         try {
-            const dekódolt=jwt.verify(token, process.env.JWT_SECRET);
-            Felhasználó.findByPk(dekódolt.id)
-            .then(async(felhasználó)=>{
-                if(!felhasználó){
-                  return  res.status(404).json({ error: true, message: "Felhasználó nem található!" });
-             }else       
-                {
-                const törlés=await Felhasználó.destroy({ where: { id: dekódolt.id } });
-            
-                if(törlés===0){
-                    res.status(404).json({ error: true, message: "Felhasználó nem található!" });
-                }else{
-                    res.status(200).json({
-                    error: false,
-                    message: "Profil sikeresen törölve!"
-                    });
-                };   
-                }   
-            }).catch((err)=>{
-                console.error( err);
-                res.status(500).json({ error: true, message: "Adatbázis hiba történt!" });
+            const dekódolt = jwt.verify(token, process.env.JWT_SECRET);
+            const felhasználó = await Felhasználó.findByPk(dekódolt.id);
+    
+            if (!felhasználó) {
+                return res.status(404).json({ error: true, message: "Felhasználó nem található!" });
+            }
+            if (felhasználó.szerep_id !== 1 || felhasználó.id !== dekódolt.id) {
+                return res.status(403).json({ error: true, message: "Nincs jogosultságod a törléshez!" });
+            }
+            const törlés = await Felhasználó.destroy({ where: { id: dekódolt.id } });
+            if (törlés === 0) {
+                return res.status(404).json({ error: true, message: "Felhasználó nem található!" });
+            }
+            return res.status(200).json({
+                error: false,
+                message: "Profil sikeresen törölve!"
             });
         } catch (error) {
-            if(error instanceof jwt.TokenExpiredError){
-                return res.status(401).json({error: true, message: "Lejárt a token!"});
-            }else if(error instanceof jwt.JsonWebTokenError){
-                return res.status(401).json({error: true, message: "Érvénytelen a token!"});
-            }else{
-                return res.status(500).json({ error: true, message: "Szerver hiba!"});
+            if (error instanceof jwt.TokenExpiredError) {
+                return res.status(401).json({ error: true, message: "Lejárt a token!" });
+            } else if (error instanceof jwt.JsonWebTokenError) {
+                return res.status(401).json({ error: true, message: "Érvénytelen a token!" });
+            } else {
+                console.error(error);
+                return res.status(500).json({ error: true, message: "Szerver hiba!" });
             }
         }
+    
     },
+    ProfilIdDeleteController: async function (req, res){
+        const token = req.headers.authorization?.split(' ')[1];
+        const felhasznalonev = req.params.felhasznalonev;
+        try {
+            const dekódolt = jwt.verify(token, process.env.JWT_SECRET);
+            const felhasználó = await Felhasználó.findByPk(dekódolt.id);
+    
+            if (!felhasználó) {
+                return res.status(404).json({ error: true, message: "Felhasználó nem található!" });
+            }
+            if (felhasználó.szerep_id !== 1) {
+                return res.status(403).json({ error: true, message: "Nincs jogosultságod a törléshez!" });
+            }
+            const törlés = await Felhasználó.destroy({ where: { felhasznalonev: felhasznalonev } });
+            if (törlés === 0) {
+                return res.status(404).json({ error: true, message: "Felhasználó nem található!" });
+            }
+            return res.status(200).json({
+                error: false,
+                message: "Profil sikeresen törölve!"
+            });
+        } catch (error) {
+            if (error instanceof jwt.TokenExpiredError) {
+                return res.status(401).json({ error: true, message: "Lejárt a token!" });
+            } else if (error instanceof jwt.JsonWebTokenError) {
+                return res.status(401).json({ error: true, message: "Érvénytelen a token!" });
+            } else {
+                console.error(error);
+                return res.status(500).json({ error: true, message: "Szerver hiba!" });
+            }
+        }
+    
+    },
+    ProfilképPatchController: async function (req, res) {
+        const token = req.headers.authorization?.split(' ')[1];
+        try {
+            const dekódolt = jwt.verify(token, process.env.JWT_SECRET);
+            const felhasználó = await Felhasználó.findByPk(dekódolt.id);
+            
+            if (!felhasználó) {
+                return res.status(404).json({ error: true, message: "Felhasználó nem található!" });
+            }
+            const változás = {};
+            const kepEleres = [
+                "../assets/pfp/pfp_black.png",
+                "../assets/pfp/pfp_blue.png",
+                "../assets/pfp/pfp_brown.png",
+                "../assets/pfp/pfp_cyan.png",
+                "../assets/pfp/pfp_dark-cyan.png",
+                "../assets/pfp/pfp_dark-brown.png",
+                "../assets/pfp/pfp_green.png",
+                "../assets/pfp/pfp_dark-green.png",
+                "../assets/pfp/pfp_dark-blue.png",
+                "../assets/pfp/pfp_pink.png",
+                "../assets/pfp/pfp_dark-pink.png",
+                "../assets/pfp/pfp_magenta.png",
+                "../assets/pfp/pfp_dark-magenta.png",
+                "../assets/pfp/pfp_yellow.png",
+                "../assets/pfp/pfp_dark-yellow.png",
+                "../assets/pfp/pfp_orange.png",
+                "../assets/pfp/pfp_dark-orange.png",
+                "../assets/pfp/pfp_purple.png",
+                "../assets/pfp/pfp_dark-purple.png",
+                "../assets/pfp/pfp_red.png",
+                "../assets/pfp/pfp_dark-red.png",
+          ];
+        
+            const randomKep = kepEleres[Math.floor(Math.random() * kepEleres.length)];    
+            változás.kep =randomKep;
+            await felhasználó.update(változás);
+            
+            return res.status(200).json({
+                error: false,
+                message: "Profil sikeresen módosítva!",
+                felhasználó_id: felhasználó.id
+            });
+            }catch(error){
+                console.error("Hiba történt:", error);
+                return res.status(500).json({ error: true, message: "Szerver hiba!" });
+            }
+
+
+    }
 }
 

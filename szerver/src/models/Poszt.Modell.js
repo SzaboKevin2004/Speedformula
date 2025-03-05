@@ -3,6 +3,7 @@ import db from "../db.js";
 import Felhasználó from "./Felhasználó.Modell.js";
 
 
+
 const Poszt  = db.define("poszt",
      
     {
@@ -45,5 +46,6 @@ const Poszt  = db.define("poszt",
 
 Poszt.belongsTo(Felhasználó, {foreignKey: "user_id"});
 Felhasználó.hasMany(Poszt, { foreignKey: "user_id",onDelete: "CASCADE", hooks: true  });
+
 
 export default Poszt;

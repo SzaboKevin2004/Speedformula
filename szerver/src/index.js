@@ -21,6 +21,7 @@ db.authenticate()
       db.sync({
         //force: true //Kényszerítjük , hogy a modellek alapján az adatbázisban megjelenjenek a táblák. minden indításkor teljesen felülírja az adatbázisban lévő táblát.
       
+        
         //alter: true, //A modellek alapján a már meglévő táblák módosításra kerülnek.
       })
       .then(()=>{
