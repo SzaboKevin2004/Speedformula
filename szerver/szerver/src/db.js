@@ -8,11 +8,10 @@ export default new Sequelize(
         host: "localhost", 
         dialect: "mariadb",
         port:3306
-    });
-    /*
-    CREATE USER 'Speedformula'@'localhost' IDENTIFIED BY 'Speedformula123';
-
+    }
+);
+/*
+CREATE USER 'Speedformula'@'localhost' IDENTIFIED BY 'Speedformula123';
 GRANT ALL PRIVILEGES ON Speedformula.* TO 'Speedformula'@'localhost';
-
 FLUSH PRIVILEGES;
 */ 
