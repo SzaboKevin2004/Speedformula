@@ -414,7 +414,7 @@ MásikProfilGetControler: async(req,res)=>{
             if (!felhasználó) {
                 return res.status(404).json({ error: true, message: "Felhasználó nem található!" });
             }
-            if (felhasználó.szerep_id !== 1 || felhasználó.id !== dekódolt.id) {
+            if (felhasználó.id !== dekódolt.id) {
                 return res.status(403).json({ error: true, message: "Nincs jogosultságod a törléshez!" });
             }
             const törlés = await Felhasználó.destroy({ where: { id: dekódolt.id } });

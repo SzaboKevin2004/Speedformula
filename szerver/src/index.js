@@ -7,6 +7,10 @@ import Komment from "./models/Komment.Modell.js";
 import Chat from "./models/Chat.Modell.js";
 import KedvencPoszt from "./models/PosztKedvelések.js";
 import KedvencKomment from "./models/KommentKedvelések.Modell.js";
+import UjToken from "./models/újToken.Model.js";
+
+const ync=false;//Ha false akkor nem végzik teljes felülírást,csak ha true-ra van állítva
+const aync=false;//nem végzik részleges végrehajtást mikor false-ra van állítva.
 
 db.authenticate()
     .then(()=>{
@@ -18,13 +22,21 @@ db.authenticate()
       db.modelManager.addModel(Komment);
       db.modelManager.addModel(Chat);
       db.modelManager.addModel(KedvencKomment);
+      db.modelManager.addModel(UjToken);
       db.sync({
-        //force: true //Kényszerítjük , hogy a modellek alapján az adatbázisban megjelenjenek a táblák. minden indításkor teljesen felülírja az adatbázisban lévő táblát.
+        force: ync //Kényszerítjük , hogy a modellek alapján az adatbázisban megjelenjenek a táblák. minden indításkor teljesen felülírja az adatbázisban lévő táblát.
       
         
-        //alter: true, //A modellek alapján a már meglévő táblák módosításra kerülnek.
+        ,alter: aync //A modellek alapján a már meglévő táblák módosításra kerülnek.
       })
-      .then(()=>{
+      .then(async ()=>{
+        if(ync){
+          await Szerep.bulkCreate([
+            { id: 1, szerep_neve: 'admin' },
+            { id: 2, szerep_neve: 'felhasználó' }
+        ]);
+        }
+        
         console.log("A modellek szinkronízációja sikeres!");
         app.listen(3000, () => {
         console.log("Webszerver elindult a http://localhost:3000/ URL-en!");
