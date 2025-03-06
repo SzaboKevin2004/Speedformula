@@ -1,0 +1,37 @@
+<div class="tartalom" *ngIf="letrehoz">
+    <div class="keret" [ngClass]="temaSzinBetu">
+        <div>
+            <h1>Poszt létrehozás</h1>
+            <div class="valaszto">
+                <p class="cikk" [ngClass]="{ 'aktiv': cikk }" (click)="cikkClick()">Cikk</p>
+                <p class="media" [ngClass]="{ 'aktiv': media }" (click)="mediaClick()">Képek/Videó</p>
+            </div>
+            <div class="letrehozas-tartalom">
+                <input type="text" [(ngModel)]="cim" name="" id="" placeholder="Cím" [ngClass]="temaSzin">
+    
+                <textarea name="" id="" [(ngModel)]="szoveg" placeholder="Szöveg" [ngClass]="temaSzin" *ngIf="cikk"></textarea>
+    
+                <div class="feltolto-doboz" (click)="fileInput.click()" (dragover)="huzEsTart($event)" (dragleave)="huzasVege()" (drop)="fajlLedobva($event)" *ngIf="media" [ngClass]="temaSzin">
+                    <p>{{ fajlNev || 'Fogd és húzd, vagy töltsd fel a tartalmat!' }}</p>
+                    <img class="kepfeltoltes" src="../../assets/icons/upload.png" *ngIf="vilagos">
+                    <img class="kepfeltoltes" src="../../assets/icons/upload-white.png" *ngIf="sotet || voros">
+                    <input type="file" #fileInput (change)="fajlKivalasztva($event)">
+                </div>
+    
+            </div>
+    
+            <div class="gombok">
+                <button class="mentes" (click)="mentes()" [ngClass]="[temaSzin, temaSzinHover]">Mentés</button>
+                <button class="megse" (click)="bezar()" [ngClass]="[temaSzin, temaSzinHover]" routerLink="/forum">Mégse</button>
+            </div>
+        </div>
+            <div *ngIf="hiba" class="ertesitessav" id="hiba" [ngClass]="{ 'hibaSzin': hiba , 'hibaVillan': hiba}"> 
+                <p *ngIf="hibaUzenet" id="uzenet" >{{ hibaUzenet }}</p>
+            </div>
+    </div>
+</div>
+<div class="tartalom-siker">
+    <div *ngIf="siker" class="ertesitessav" id="siker" [ngClass]="{ 'sikerSzin': siker, 'sikerVillan': siker }"> 
+        <p *ngIf="sikerUzenet" id="uzenet" >{{ sikerUzenet }}</p>
+    </div>
+</div>

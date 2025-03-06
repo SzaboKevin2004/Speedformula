@@ -1,0 +1,147 @@
+.nav-sav{
+    display: none;
+}
+
+.hiba-keret {
+    width: 100%;
+    height: 100vh;
+    background-color: #F4B52E;
+}
+
+.kozep {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.kozepy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+}
+
+.nav-title {
+    display: flex;
+    width: auto;
+    align-items: center;
+    text-decoration: none;
+    font-size: 36px;
+    color: black;
+}
+
+.nav-title img {
+    height: 80px;
+    margin-top: 20px;
+}
+
+.kozep h1 {
+    font-family: 'Krona One';
+    font-weight: lighter;
+    font-size: 34px;
+    color: white;
+}
+
+.hibakep {
+    height: 350px;
+    border-radius: 25px;
+    z-index: 1;
+}
+
+.blur {
+    height: 455px;
+    width: 625px;
+    position: absolute;
+    background-image: radial-gradient(closest-side, #ffe135, rgba(190, 201, 37, 0));
+    z-index: 0;
+}
+
+.hiba-keret button {
+    margin-top: 20px;
+    padding: 30px 30px;
+    border-radius: 64px;
+    font-family: Lexend Zetta;
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    background-color: #393939;
+    color: white;
+    cursor: pointer;
+}
+
+.hiba-keret button:hover {
+    background-color: #212121;
+}
+
+@media only screen and (max-width: 1366px) {
+    .hibakep {
+        height: 300px;
+    }
+
+    .blur {
+        height: 280px;
+        width: 380px;
+    }
+
+}
+
+@media only screen and (max-width: 1024px) {
+    .hibakep {
+        height: 250px;
+    }
+
+    .blur {
+        height: 355px;
+        width: 450px;
+    }
+
+    .kozep h1 {
+        font-size: 28px;
+    }
+
+    .hiba-keret button {
+        font-size: 14px;
+        padding: 25px 25px;
+        border-radius: 32px;
+    }
+}
+
+@media only screen and (max-width: 468px) {
+    .blur {
+        height: 285px;
+        width: 350px;
+    }
+
+    .kozep h1 {
+        font-size: 24px;
+    }
+
+    .hiba-keret button {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 374px) {
+    .hibakep {
+        height: 180px;
+    }
+
+    .blur {
+        height: 245px;
+        width: 300px;
+    }
+
+    .kozep h1 {
+        font-size: 20px;
+    }
+
+    .hiba-keret button {
+        font-size: 11px;
+        padding: 15px 15px;
+        border-radius: 32px;
+        margin-top: 10px;
+    }
+}
+

@@ -1,0 +1,119 @@
+.tartalom-nelkul {
+    position: relative;
+}
+
+video {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    filter: blur(5px);
+}
+
+.kezdo-szoveg {
+    z-index: 1;
+}
+
+.kezdo-szoveg2 {
+    z-index: 1;
+}
+
+.kezdo-szoveg3 {
+    z-index: 1;
+}
+
+h1, h2, h3 {
+    font-family: 'Krona One';
+    line-height: 1.5;
+    white-space: nowrap;
+    opacity: 0;
+    overflow: hidden;
+    color: #eeeeee;
+    text-shadow:
+    3px 3px 3px black,
+    -3px -3px 3px black,
+    3px -3px 3px black,
+    -3px 3px 3px black;
+}
+
+.osszes-animacio {
+    height: fit-content;
+    width: fit-content;
+    margin: auto auto;
+    margin-top: 30vh;
+   text-align: center;
+}
+
+h1 {
+    width: 0;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(0.75rem, calc(3vw + .2rem), 3rem);
+}
+
+h2 {
+    width: 0;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(0.5rem, calc(2.5vw + .2rem), 2.5rem);
+    
+}
+
+h3 {
+    width: 0;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 45px;
+    font-size: clamp(0.4rem, calc(1.8vw + .2rem), 2.3rem);
+    
+}
+
+.animacio {
+    animation: iras 2s steps(40, end) forwards;
+    animation-delay: 0.5s;
+}
+
+.animacio2 {
+    animation: iras 2s steps(40, end) forwards;
+    animation-delay: 3s;
+}
+
+.animacio3 {
+    animation: iras 2s steps(40, end) forwards;
+    animation-delay: 5s;
+}
+
+@keyframes iras {
+    from {
+        width: 0%;
+        opacity: 0;
+    }
+    to {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    h3 {
+        margin-top: 35px;
+    }
+
+    .osszes-animacio {
+        margin-top: 35vh;
+    }
+
+    h1, h2, h3 {
+        text-shadow:
+        2px 2px 2px black,
+        -2px -2px 2px black,
+        2px -2px 2px black,
+        -2px 2px 2px black;
+    }
+}

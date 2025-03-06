@@ -1,0 +1,23 @@
+<div *ngIf="hiba || siker" class="ertesitessav" [ngClass]="{ 'hibaSzin': hiba , 'sikerSzin': siker , 'hibaVillan': hiba , 'sikerVillan': siker }">
+    <p *ngIf="hibaUzenet" id="uzenet" >{{ hibaUzenet }}</p>
+    <p *ngIf="sikerUzenet" id="uzenet" >{{ sikerUzenet }}</p>
+</div>
+<div *ngIf="keretMegjelenites" class="reg-keret">
+    <a class="nav-cim" routerLink="/">
+        <img src="../assets/img/logo.png">
+        SpeedFormula</a>
+    <form class="reg-form">
+        <input id="felhasznalonev" placeholder="Felhasználónév" [(ngModel)]="felhasznalonev" name="username">
+        <input id="emailcim" placeholder="E-mail-cím" [(ngModel)]="email" name="email">
+        <div class="jelszo-keret">
+            <input type="password" id="jelszo" placeholder="Jelszó" [(ngModel)]="password" name="password" [type]="jelszoLathatoE ? 'text' : 'password'">
+            <span class="jelszoIkon" (click)="jelszoLathatosag()" draggable="false">👁️</span>
+        </div>
+        <div class="jelszo-keret">
+            <input type="password" placeholder="Jelszó ismét" [(ngModel)]="confirm_password" name="confirmPassword" [type]="jelszoLathatoE2 ? 'text' : 'password'">
+            <span class="jelszoIkon" (click)="jelszoLathatosag2()" draggable="false">👁️</span>
+        </div>
+        <input type="button" value="REGISZTRÁLÁS" (click)="regisztracio()">
+        <a routerLink="/bejelentkezes">Már van fiókod?</a>
+    </form>
+</div>

@@ -1,0 +1,279 @@
+.nav-tortenet {
+    border-radius: 4px;
+}
+
+.nav-tortenet.feketeH {
+    background-color: var(--szin-hover-sotet);
+}
+
+.nav-tortenet.feketeH:active {
+    background-color: var(--szin-active-sotet);
+}
+
+.nav-tortenet.feherH {
+    background-color: var(--szin-hover-vilagos);
+}
+
+.nav-tortenet.feherH:active {
+    background-color: var(--szin-active-vilagos);
+}
+
+.nav-tortenet.vorosH {
+    background-color: var(--szin-hover-voros);
+}
+
+.nav-tortenet.vorosH:active {
+    background-color: var(--szin-active-voros);
+}
+
+
+.keret {
+    width: 50%;
+}
+
+h1 {
+    text-align: center;
+    font-weight: normal;
+}
+
+h2 {
+    font-family: var(--betutipus-alap);
+}
+
+.kozep p {
+    display: inline-block;
+    position: relative;
+    margin: 0 auto;
+    margin-left: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-family: var(--betutipus-alap);
+    font-size: var(--betumeret-fo);
+    cursor: pointer;
+}
+
+.kozep {
+    text-align: center;
+    user-select: none;
+}
+
+.keret p.aktiv.egyszeru::after , .keret p.aktiv.reszletes::after {
+    position: absolute;
+    width: 80%;
+    height: 4px;
+    left: 50%;
+    bottom: -6px;
+    content: "";
+    border-radius: 8px;
+    transform: translateX(-50%);
+}
+
+.kozep p:hover::after {
+    position: absolute;
+    width: 80%;
+    height: 4px;
+    left: 50%;
+    bottom: -6px;
+    content: "";
+    border-radius: 8px;
+    transform: translateX(-50%);
+}
+
+#kezdoszoveg{
+    margin-left: 20px;
+    margin-bottom: 60px;
+    text-align: justify;
+}
+
+.buborek{
+    width: 100%;
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 60px;
+}
+
+.buborek h2 {
+    margin-left: 20px;
+}
+
+.btartalom {
+    display: flex;
+    margin: 20px 0 0 0;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.btartalom img {
+    height: auto;
+    max-width: 40%;
+    border: 3px solid #ffffff;
+    border-radius: 16px;
+}
+
+.btartalom p {
+    max-width: 50%;
+    text-align: justify;
+    
+}
+
+.tobb {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+.tobb img {
+    height: auto;
+    max-width: 90%;
+    border-radius: 16px;
+}
+
+#tobbszoveg{
+    margin-left: 30px;
+}
+
+#btartalomzaro {
+    justify-content: center;
+    align-items: center;
+}
+
+.btartalomzaro p {
+    margin-left: 30px;
+    margin-right: 30px;
+    text-align: justify;
+}
+
+.reszletes-t {
+    width: 100%;
+    margin: 20px 0 60px 0;
+    border-collapse: collapse;
+}
+  
+.reszletes-t th, .reszletes-t td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.reszletes-t #ev {
+    text-align: center;
+}
+
+.reszletes-t td {
+    text-align: justify;
+}
+
+.reszletes-t th:nth-child(1),
+.reszletes-t td:nth-child(1) {
+  width: 120px;
+}
+
+@media only screen and (max-width: 1699px) {
+    .keret {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 1459px) {
+    .keret {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 1279px) {
+    .keret {
+        width: 80%;
+    }
+
+
+}
+
+@media only screen and (max-width: 1123px) {
+    .keret {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 1023px) {
+    .tartalom::-webkit-scrollbar {
+        display: none;
+    }
+
+    .keret {
+        width: 100%;
+        
+    }
+
+    #kezdoszoveg{
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 60px;
+        text-align: justify;
+    }
+
+    .reszletes-t {
+        margin: 20px 0 40px 0;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    .kozep p{
+        margin-bottom: 15px;
+    }
+}
+
+@media only screen and (max-width: 867px) {
+    .buborek {
+        border-radius: 0;
+    }
+
+    .btartalom {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: normal;
+    }
+
+    .btartalom img {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 70%;
+    }
+
+    .btartalom p {
+        margin-left: 15px;
+        margin-right: 15px;
+        max-width: 100%;
+    }
+
+    .keret {
+        font-size: 22px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .btartalom img {
+        max-width: 90%;
+    }
+
+    .keret {
+        margin: 0;
+        margin-bottom: 125px;
+        font-size: 16px;
+    }
+
+    .reszletes-t th:nth-child(1),
+    .reszletes-t td:nth-child(1) {
+        width: 40px;
+    }
+}
+
+@media only screen and (max-width: 530px) {
+    .reszletes-t td {
+        text-align: left;
+    }
+}

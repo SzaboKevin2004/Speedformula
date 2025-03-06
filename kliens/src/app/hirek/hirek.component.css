@@ -1,0 +1,94 @@
+.nav-hirek{
+    border-radius: 4px;
+}
+
+.nav-hirek.feketeH {
+    background-color: var(--szin-hover-sotet);
+}
+
+.nav-hirek.feketeH:active {
+    background-color: var(--szin-active-sotet);
+}
+
+.nav-hirek.feherH {
+    background-color: var(--szin-hover-vilagos);
+}
+
+.nav-hirek.feherH:active {
+    background-color: var(--szin-active-vilagos);
+}
+
+.nav-hirek.vorosH {
+    background-color: var(--szin-hover-voros);
+}
+
+.nav-hirek.vorosH:active {
+    background-color: var(--szin-active-voros);
+}
+
+.keret {
+    width: 70%;
+}
+  
+.hirek {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+  
+.hir {
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+  
+.hir img {
+    height: auto;
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.hirek .feketeK:hover {
+    background-color: var(--szin-hover-sotet);
+}
+
+.hirek .feherK:hover {
+    background-color: var(--szin-hover-vilagos);
+}
+
+.hirek .vorosK:hover {
+    background-color: var(--szin-hover-voros);
+}
+
+@media only screen and (max-width: 1599px ) {
+    .keret {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 1279px ) {
+    .keret {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 1023px ) {
+    .keret {
+        width: 100%;
+    }
+
+    h1 {
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 819px ) {
+    .hirek {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media only screen and (max-width: 480px ) {}
+
+@media only screen and (max-width: 600px ) {}

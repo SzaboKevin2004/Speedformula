@@ -1,0 +1,171 @@
+.nav-forum {
+    border-radius: 4px;
+}
+
+.keret {
+    user-select: none;
+}
+
+.tartalom-siker {
+    margin-top: 88px;
+}
+
+.valaszto {
+    display: flex;
+    gap: 25px;
+}
+
+.valaszto p {
+    position: relative;
+    cursor: pointer;
+}
+
+.valaszto p.aktiv.cikk::after , .valaszto p.aktiv.media::after {
+    position: absolute;
+    width: 80%;
+    height: 4px;
+    left: 50%;
+    bottom: -6px;
+    content: "";
+    border-radius: 8px;
+    transform: translateX(-50%);
+}
+
+.valaszto p:hover::after {
+    position: absolute;
+    width: 80%;
+    height: 4px;
+    left: 50%;
+    bottom: -6px;
+    content: "";
+    border-radius: 8px;
+    transform: translateX(-50%);
+}
+
+.letrehozas-tartalom {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    gap: 35px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    font-family: var(--betutipus-alap);
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 200px;
+    resize: none;
+}
+
+.feltolto-doboz {
+    display: flex;
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #777;
+    cursor: pointer;
+    gap: 15px;
+    transition: 0.3s ease;
+}
+
+.feltolto-doboz p {
+    margin: 0;
+}
+
+.feltolto-doboz input {
+    display: none;
+}
+
+.kepfeltoltes {
+    height: 25px;
+    width: 25px;
+}
+
+.gombok {
+    display: flex;
+    margin-top: 15px;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.ertesitessav{
+    display: flex;
+    height: 50px;
+    margin: auto;
+    border-radius: 35px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+#hiba {
+    width: 100%;
+    margin-top: 25px;
+}
+
+#siker {
+    width: 40%;
+    margin-top: 50vh;
+}
+
+.hibaSzin{
+    background-color: rgb(255, 158, 158);
+}
+
+.sikerSzin{
+    background-color: rgb(110, 204, 123);
+}
+
+#uzenet{
+    margin: auto;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    font-family: var(--betutipus-alap);
+    cursor: default;
+    color: white;
+}
+
+@keyframes hibaVillan {
+    0%, 100% {
+        background-color: rgb(255, 158, 158);
+    }
+    50% {
+        background-color: rgb(255, 87, 87);
+    }
+}
+
+@keyframes sikerVillan {
+    0%, 100% {
+        background-color: rgb(110, 204, 123);
+    }
+    50% {
+        background-color: rgb(46, 216, 54);
+    }
+}
+
+.ertesitessav.hibaVillan {
+    animation: hibaVillan 0.5s ease-in-out;
+}
+
+.ertesitessav.sikerVillan {
+    animation: sikerVillan 0.5s ease-in-out;
+}

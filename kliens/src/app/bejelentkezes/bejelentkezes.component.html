@@ -1,0 +1,18 @@
+<div *ngIf="hiba || siker" class="ertesitessav" [ngClass]="{ 'hibaSzin': hiba , 'sikerSzin': siker , 'hibaVillan': hiba , 'sikerVillan': siker }"> 
+    <p *ngIf="hibaUzenet" id="uzenet" >{{ hibaUzenet }}</p>
+    <p *ngIf="sikerUzenet" id="uzenet" >{{ sikerUzenet }}</p>
+</div>
+<div *ngIf="keretMegjelenites" class="be-keret">
+    <a class="nav-cim" routerLink="/">
+        <img src="../assets/img/logo.png">
+        SpeedFormula</a>
+        <form class="be-form" action="">
+        <input id="emailcim" placeholder="Felhasználónév / E-mail-cím" [(ngModel)]="identifier" name="identifier" >
+        <div class="jelszo-keret">
+            <input type="password" id="jelszo" placeholder="Jelszó" [(ngModel)]="password" name="password" [type]="jelszoLathatoE ? 'text' : 'password' ">
+            <span class="jelszoIkon" (click)="jelszoLathatosag()" draggable="false">👁️</span>
+        </div>
+        <input type="button" value="BEJELENTKEZÉS" (click)="bejelentkezes()">
+        <a routerLink="/regisztracio">Még nincs fiókod?</a>
+        </form>
+</div>

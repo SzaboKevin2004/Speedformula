@@ -1,0 +1,446 @@
+.tartalom {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.tartalom:focus {
+    outline: none;
+    background-color: transparent;
+}
+
+.tartalom::-webkit-scrollbar {
+    display: none;
+}
+
+.keret {
+    min-height: 500px;
+    max-width: 900px;
+    width: 45%;
+    border-radius: 70px;
+}
+
+h1, h2 {
+    font-family: var(--betutipus-alap);
+    font-weight: normal;
+    user-select: none;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    margin-left: 5vw;
+    margin-top: 2vh;
+}
+
+p {
+    margin-left: 1vw;
+    font-family: var(--betutipus-alap);
+    font-weight: normal;
+    user-select: none;
+}
+
+p.adat {
+    max-height: 22px;
+    margin-right: 1vw;
+    user-select: none;
+    color: grey;
+    overflow: hidden;
+}
+
+.gomb {
+    height: 45px;
+    width: 45px;
+    margin-right: 1vw;
+    user-select: none;
+}
+
+.opcio {
+    display: flex;
+    max-width: 650px;
+    width: 80%;
+    margin-left: 6vw;
+    margin-top: -0.5vh;
+    text-align: center;
+    justify-content: space-between;
+    border-radius: 15px;
+    cursor: pointer;
+    gap: 15px;
+}
+
+.opcio-kep {
+    display: flex;
+    max-width: 650px;
+    width: fit-content;
+    margin-left: 7vw;
+    margin-top: 1vh;
+    text-align: center;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+}
+
+.opcioTema {
+    display: flex;
+    margin-top: 4vh;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    gap: 3vw;
+}
+
+.temaElem {
+    display: flex;
+    padding: 10px 20px 10px 20px;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.temaIkon {
+    display: block;
+    height: 125px;
+    width: 125px;
+    user-select: none;
+}
+
+.temaElem p {
+    margin: 0;
+    margin-top: 1vh;
+    font-family: var(--betutipus-alap);
+    font-size: var(--betumeret-fo);
+    user-select: none;
+}
+
+ul.valaszto{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    list-style-type: none;
+}
+
+.valaszto li {
+    padding: 5px 10px;
+    font-family: var(--betutipus-alap);
+    font-size:  var(--betumeret-fo);
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+.valaszto>div {
+    margin: 0 5px 0 5px;
+    border-radius: 5px;
+}
+
+.opcioTema>div {
+    border-radius: 15px;
+}
+
+#password {
+    display: flex;
+    max-height: 48px;
+    margin: 0;
+    align-items: center;
+    margin-right: 15px;
+    margin-top: 10px;
+    font-size: 30px;
+}
+
+.profilkep {
+    height: 64px;
+    width: 64px;
+}
+
+.modositas {
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modositas-cim {
+    display: flex;
+    margin: 0;
+    justify-content: center;
+}
+
+.modositas-tartalom {
+    width: 80%;
+    max-width: 500px;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 15px;
+    user-select: none;
+}
+
+.bezar {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+}
+
+.bezar:hover,
+.bezar:focus {
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+
+input {
+    width: 95%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #888;
+}
+
+input:focus {
+    outline: none;
+}
+
+.jelszo-keret {
+    width: 100%;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 10px;
+    
+}
+
+.gombok {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#torloGombok {
+    margin-top: 15px;
+}
+
+button.mentes {
+    background-color: #4CAF50;
+}
+
+button.megse {
+    background-color: #ad4949;
+}
+
+button.mentes:hover {
+    background-color: #45a049;
+}
+
+button.megse:hover {
+    background-color: #a04545;
+}
+
+.sikerHatter {
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.ertesitessav {
+    display: flex;
+    position: fixed;
+    width: 450px;
+    height: 50px;
+    border-radius: 35px;
+    z-index: 2;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.ertesitessav#siker {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ertesitessav#hiba {
+    margin-top: 150px;
+}
+
+.hibaSzin {
+    background-color: rgb(255, 158, 158);
+}
+
+.sikerSzin{
+    background-color: rgb(110, 204, 123);
+}
+
+#uzenet {
+    margin: auto;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    font-family: var(--betutipus-alap);
+    cursor: default;
+    color: white;
+}
+
+@keyframes hibaVillan {
+    0%, 100% {
+        background-color: rgb(255, 158, 158);
+    }
+    50% {
+        background-color: rgb(255, 87, 87);
+    }
+}
+
+@keyframes sikerVillan {
+    0%, 100% {
+        background-color: rgb(110, 204, 123);
+    }
+    50% {
+        background-color: rgb(46, 216, 54);
+    }
+}
+
+.ertesitessav.hibaVillan {
+    animation: hibaVillan 0.5s ease-in-out;
+}
+
+.ertesitessav.sikerVillan {
+    animation: sikerVillan 0.5s ease-in-out;
+}
+
+@media only screen and (max-width: 1599px) {
+    .keret {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 1279px) {
+    .keret {
+        width: 60%;
+    }
+
+    .opcioTema {
+        margin-top: 5vh;
+    }
+
+    .temaIkon {
+        height: 100px;
+        width: 100px;
+    }
+
+}
+
+@media only screen and (max-width: 1023px) {
+    .keret {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 819px) {
+    .keret {
+        width: 80%;
+    }
+
+    .opcio {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .keret {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .keret {
+        width: 100%;
+    }
+
+    .opcio {
+        width: 90%;
+    }
+
+    ul.valaszto {
+        margin-bottom: 32px;
+    }
+}
+
+@media only screen and (max-width: 516px) {
+    .temaIkon {
+        height: 80px;
+        width: 80px;
+    }
+}
+
+@media only screen and (max-width: 413px) {
+    .opcioTema {
+        margin-top: 6vh;
+    }
+
+    .temaIkon {
+        height: 60px;
+        width: 60px;
+    }
+}
+
+@media only screen and (max-width: 374px) {
+    .temaIkon {
+        height: 50px;
+        width: 50px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    p.adat {
+        max-height: 16px;
+    }
+
+    #password {
+        max-height: 34px;
+        font-size: 25px;
+    }
+
+    .profilkep {
+        height: 40px;
+        width: 40px;
+    }
+}
+
+@media only screen and (max-height: 623px) {
+    .tartalom {
+        justify-content: start;
+    }
+}
+
+@media only screen and (min-width: 1921px) {
+    .opcio {
+        margin-left: 125px;
+    }
+
+    h2 {
+        margin-left: 120px;
+    }
+}

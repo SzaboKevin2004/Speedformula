@@ -1,0 +1,272 @@
+.nav-forum{
+    border-radius: 4px;
+}
+
+.nav-forum.feketeH {
+    background-color: var(--szin-hover-sotet);
+}
+
+.nav-forum.feketeH:active {
+    background-color: var(--szin-active-sotet);
+}
+
+.nav-forum.feherH {
+    background-color: var(--szin-hover-vilagos);
+}
+
+.nav-forum.feherH:active {
+    background-color: var(--szin-active-vilagos);
+}
+
+.nav-forum.vorosH {
+    background-color: var(--szin-hover-voros);
+}
+
+.nav-forum.vorosH:active {
+    background-color: var(--szin-active-voros);
+}
+
+.keret {
+    font-family: var(--betutipus-alap);
+    font-size: 16px;
+}
+
+.poszt {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.komment {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.posztAdatok {
+    display: flex;
+    align-items: center;
+}
+
+.kommentAdatok {
+    display: flex;
+    align-items: center;
+}
+
+.felhasznaloNev {
+    margin-left: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.felhasznaloKep {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.elteltIdo {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.cim {
+    margin: 5px 0 20px 0;
+    font-size: 22px;
+    word-break: break-all;
+}
+
+.szoveg {
+    margin: 0;
+    font-size: 18px;
+    word-break: break-all;
+}
+
+.vissza-gomb {
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+    right: 32px;
+    padding: 15px;
+    border-radius: 20px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.vissza-kep {
+    width: 25px;
+    height: 25px;
+    user-select: none;
+    cursor: pointer;
+}
+
+
+.torles-kep {
+    margin-left: auto;
+    width: 25px;
+    height: 25px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.kedveles-gomb, .komment-gomb, 
+.megosztas-gomb, .mentes-gomb{
+    display: flex;
+    border-radius: 15px;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+}
+
+
+.kedveles-kep, .komment-kep, .megosztas-kep, .mentes-kep {
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+.alkomment-kep {
+    width: 25px;
+    height: 25px;
+}
+
+.megosztas-szoveg, .mentes-szoveg {
+    margin-left: -5px;
+}
+
+.posztGombok {
+    display: flex;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.kommentGombok {
+    display: flex;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.kedveles-gomb, .komment-gomb, 
+.megosztas-gomb, .mentes-gomb{
+    padding: 0px 10px 0px 10px;
+}
+
+.uzenetGomb {
+    width: 100%;
+    padding: 15px;
+    border: 0;
+    font-family: var(--betutipus-alap);
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    text-align: left;
+    color: grey;
+    border-radius: 15px;
+    cursor: text;
+}
+
+.uzenet-keret {
+    width: 99%;
+    height: 55px;
+    padding: 15px;
+    font-family: var(--betutipus-alap);
+    font-size: 16px;
+    border: none;
+    border-radius: 15px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.uzenet-keret:focus {
+    outline: none;
+}
+
+.uzenetGombok-keret {
+    width: 100%;
+    
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.gombok {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    
+}
+
+.kommentek {
+    margin-top: 20px;
+}
+
+.kommentek .szoveg {
+    margin-left: 10px;
+}
+
+.valasz-megnyitas {
+    user-select: none;
+    cursor: pointer;
+}
+
+.alkommentek {
+    margin-left: 20px;
+}
+
+
+@media only screen and (max-width: 1200px) {
+    .keret {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 867px) {
+    .keret {
+        width: 60%;
+    }
+
+    .vissza-gomb {
+        right: 5px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .keret {
+        width: 70%;
+    }
+
+    .vissza-gomb {
+        margin-top: 5px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .keret {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .keret {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .keret {
+        width: 99%;
+    }
+    
+    .vissza-gomb {
+        right: 2px;
+    }
+}
+

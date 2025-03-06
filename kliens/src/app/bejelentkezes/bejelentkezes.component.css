@@ -1,0 +1,173 @@
+body{
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #e0e0e0 !important;
+}
+
+.be-keret {
+    display: flex;
+    width: 450px;
+    height: auto;
+    padding: 25px;
+    border-radius: 64px;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #ffffff !important;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.nav-cim {
+    width: 0;
+    color: black;
+    
+}
+
+.be-form {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+input[type="password"] {
+    width: 100%;
+}
+
+input[type="text"] {
+    width: 100%;
+}
+
+input[type="button"] {
+    width: 40%;
+    margin-top: 10px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+    color: white;
+    background-color: #414141;
+}
+
+input[type="button"]:hover {
+    background-color: #222222;
+}
+
+a[routerLink="/regisztracio"] {
+    text-decoration: none;
+    font-size: 16px;
+    color: #585858;
+}
+
+a[routerLink="/regisztracio"]:hover {
+    text-decoration: underline;
+}
+
+a[routerLink="/regisztracio"]:active {
+   color: #000000;
+}
+
+.ertesitessav{
+    display: flex;
+    width: 450px;
+    height: fit-content;
+    margin: auto;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 35px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.hibaSzin{
+    background-color: rgb(255, 158, 158);
+}
+
+.sikerSzin{
+    background-color: rgb(110, 204, 123);
+}
+
+#uzenet{
+    margin: auto;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    font-family: var(--betutipus-alap);
+    cursor: default;
+    color: white;
+}
+
+@keyframes hibaVillan {
+    0%, 100% {
+        background-color: rgb(255, 158, 158);
+    }
+    50% {
+        background-color: rgb(255, 87, 87);
+    }
+}
+
+@keyframes sikerVillan {
+    0%, 100% {
+        background-color: rgb(110, 204, 123);
+    }
+    50% {
+        background-color: rgb(46, 216, 54);
+    }
+}
+
+.ertesitessav.hibaVillan {
+    animation: hibaVillan 0.5s ease-in-out;
+}
+
+.ertesitessav.sikerVillan {
+    animation: sikerVillan 0.5s ease-in-out;
+}
+
+@media only screen and (max-width: 560px) {
+    .be-keret {
+        width: 80vw;
+    }
+
+    input[type="button"] {
+        width: 45%;
+    }
+
+    .ertesitessav {
+        width: 80vw;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    input {
+        width: 80%;
+    }
+
+    .jelszo-keret {
+        width: 85%;
+    }
+
+    input[type="button"] {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 390px) {
+    input[type='button'] {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 330px) {
+    input[type='button'] {
+        width: 70%;
+    }
+}

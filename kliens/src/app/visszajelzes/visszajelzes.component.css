@@ -1,0 +1,181 @@
+body{
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--betutipus-alap);
+    background-color: #e0e0e0;
+}
+
+.keret {
+    display: flex;
+    height: auto;
+    margin: 0 auto;
+    margin-left : 25px;
+    margin-bottom: 80px;
+}
+
+.visszajelzes-keret {
+    display: flex;
+    width: 450px;
+    height: auto;
+    margin-bottom: 100px;
+    padding: 25px;
+    border-radius: 64px;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.nav-cim {
+    width: 0;
+    color: black;
+    
+}
+
+.visszajelzes-form {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.visszajelzes h1 {
+    padding: 0;
+    margin: 0;
+}
+
+input, textarea {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+input[type="submit"] {
+    width: 40%;
+    margin-top: 10px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+    color: white;
+    background-color: #414141;
+}
+
+input[type="submit"]:hover {
+    background-color: #222222;
+}
+
+.sikerHatter {
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.ertesitessav {
+    display: flex;
+    position: fixed;
+    width: 450px;
+    height: 50px;
+    border-radius: 35px;
+    z-index: 2;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.ertesitessav#siker {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.hibaSzin {
+    background-color: rgb(255, 158, 158);
+}
+
+.sikerSzin{
+    background-color: rgb(110, 204, 123);
+}
+
+#ertesitesuzenet {
+    margin: auto;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    font-family: var(--betutipus-alap);
+    cursor: default;
+    color: white;
+}
+
+@keyframes hibaVillan {
+    0%, 100% {
+        background-color: rgb(255, 158, 158);
+    }
+    50% {
+        background-color: rgb(255, 87, 87);
+    }
+}
+
+@keyframes sikerVillan {
+    0%, 100% {
+        background-color: rgb(110, 204, 123);
+    }
+    50% {
+        background-color: rgb(46, 216, 54);
+    }
+}
+
+.ertesitessav.hibaVillan {
+    animation: hibaVillan 0.5s ease-in-out;
+}
+
+.ertesitessav.sikerVillan {
+    animation: sikerVillan 0.5s ease-in-out;
+}
+
+@media only screen and (max-width: 560px) {
+    .visszajelzes-keret {
+        width: 80vw;
+    }
+
+    input[type="submit"] {
+        width: 45%;
+    }
+
+    .ertesitessav {
+        width: 80vw;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    input, textarea {
+        width: 80%;
+    }
+
+    input[type="submit"] {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 390px) {
+    input[type='submit'] {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 330px) {
+    input[type='submit'] {
+        width: 70%;
+    }
+}

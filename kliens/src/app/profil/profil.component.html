@@ -1,0 +1,75 @@
+<div class="tartalom" [ngClass]="temaSzinGordulo">
+    <div class="vissza-gomb" [ngClass]="[temaSzin2, temaSzinHover, temaSzinBetu]" (click)="vissza()">
+        <img class="vissza-kep" src="../../assets/icons/back.png" [ngStyle]="{ display: vilagos ? 'flex' : 'none' }">
+        <img class="vissza-kep" src="../../assets/icons/back-white.png" [ngStyle]="{ display: sotet || voros ? 'flex' : 'none' }">
+    </div>
+    <div class="keret" [ngClass]="temaSzinBetu">
+        <div class="felhasznaloAdatok" *ngIf="vanFelhasznalo">
+            <img class="felhasznaloAdatKep" [src]="felhasznaloKep">
+            <div class="felhasznaloAdat">
+                <p class="felhasznaloAdatNev">{{felhasznaloNev}}</p>
+                <div class="felhasznaloAdatSzam">
+                    <p class="bejegyzesSzam">{{posztok.length}}</p>
+                    <p class="bejegyzesSzoveg">Bejegyzés</p>
+                </div>
+                <p class="bemutatkozas">{{ bemutatkozas }}</p>
+            </div>
+            <div class="torles-kep" *ngIf="szerep === 1" (click)="profilTorles(felhasznaloNev)">
+                <img class="torles-kep" src="../../assets/icons/trash.png" [ngStyle]="{ display: vilagos ? 'flex' : 'none' }">
+                <img class="torles-kep" src="../../assets/icons/trash-white.png" [ngStyle]="{ display: sotet || voros ? 'flex' : 'none' }">
+            </div>
+        </div>
+        <hr class="elvalaszto">
+        <div class="valasztoElemek">
+            <div class="bejegyzesek" [ngClass]="{ 'aktiv': bejegyzesKepcim }" (click)="bejegyzesekClick()">
+                <img src="../../assets/icons/post.png" [ngStyle]="{ display: vilagos ? 'flex' : 'none' }">
+                <img src="../../assets/icons/post-white.png" [ngStyle]="{ display: sotet || voros ? 'flex' : 'none' }">
+                <p class="bejegyzesKepcim">Bejegyzések</p>
+            </div>
+            <div class="kommentek" [ngClass]="{ 'aktiv': kommentKepcim }" (click)="kommentekClick()">
+                <img src="../../assets/icons/message.png" [ngStyle]="{ display: vilagos ? 'flex' : 'none' }">
+                <img src="../../assets/icons/message-white.png" [ngStyle]="{ display: sotet || voros ? 'flex' : 'none' }">
+                <p class="kommentKepcim">Kommentek</p>
+            </div>
+            <div class="mentve" [ngClass]="{ 'aktiv': mentveKepcim }" (click)="mentveClick()">
+                <img src="../../assets/icons/bookmark.png" [ngStyle]="{ display: vilagos ? 'flex' : 'none' }">
+                <img src="../../assets/icons/bookmark-white.png" [ngStyle]="{ display: sotet || voros ? 'flex' : 'none' }">
+                <p class="mentveKepcim">Mentve</p>
+            </div>
+        </div>
+        <div class="bejegyzes" *ngIf="bejegyzesKepcim">
+            <div *ngIf="posztok.length === 0">
+                <p class="nincsPoszt">Nincsenek elérhető posztok.</p>
+            </div>
+            <div class="posztok" *ngFor="let poszt of posztok">
+                <div class="poszt">
+                    <div class="posztAdatok">
+                        <img class="felhasznaloKep" [src]="poszt.fkep">
+                        <p class="felhasznaloNev" [routerLink]="['/forum/profil',poszt.felhasznalo]">{{ poszt.felhasznalo }}</p>
+                        <p class="elteltIdo"> • {{poszt.elteltIdo}}</p>
+                        <div class="torles-kep" *ngIf="poszt.sajatFelhasznalo || szerep === 1" (click)="posztTorles(poszt.id)">
+                            <img class="torles-kep" src="../../assets/icons/trash.png" [ngStyle]="{ display: vilagos ? 'flex' : 'none' }">
+                            <img class="torles-kep" src="../../assets/icons/trash-white.png" [ngStyle]="{ display: sotet || voros ? 'flex' : 'none' }">
+                        </div>
+                    </div>
+                    <div [routerLink]="['/forum',poszt.id]">
+                        <h2 class="cim">{{ poszt.cim }}</h2>
+                        <p class="szoveg" *ngIf="poszt.szoveg != null">{{ poszt.szoveg }}</p>
+                        <img class="kep" [src]="poszt.kep" *ngIf="poszt.kep != null">
+                        <img class="video" [src]="poszt.video" *ngIf="poszt.video != null">
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+
+        <div class="komment" *ngIf="kommentKepcim">
+            <h1 class="fejlesztes">Fejlesztés alatt!</h1>
+        </div>
+        
+        <div class="mentvet" *ngIf="mentveKepcim">
+            <h1 class="fejlesztes">Fejlesztés alatt!</h1>
+        </div>
+        
+    </div>
+</div>

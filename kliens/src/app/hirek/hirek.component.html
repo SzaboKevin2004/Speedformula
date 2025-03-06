@@ -1,0 +1,13 @@
+<div class="tartalom" [ngClass]="temaSzinGordulo">
+    <div class="keret" [ngClass]="temaSzinBetu">
+        <h1>Hírek</h1>
+        <div class="hirek">
+            <div class="hir" *ngFor="let article of hirek" [ngClass]="temaSzin" (click)="url(article.url)">
+                <img *ngIf="article.urlToImage" [src]="article.urlToImage" alt="Hír kép">
+                <h2>{{ article.title }}</h2>
+                <p>{{ article.description }}</p>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

@@ -1,0 +1,37 @@
+.nav-csapatok{
+    border-radius: 4px;
+}
+
+.nav-csapatok.feketeH {
+    background-color: var(--szin-hover-sotet);
+}
+
+.nav-csapatok.feketeH:active {
+    background-color: var(--szin-active-sotet);
+}
+
+.nav-csapatok.feherH {
+    background-color: var(--szin-hover-vilagos);
+}
+
+.nav-csapatok.feherH:active {
+    background-color: var(--szin-active-vilagos);
+}
+
+.nav-csapatok.vorosH {
+    background-color: var(--szin-hover-voros);
+}
+
+.nav-csapatok.vorosH:active {
+    background-color: var(--szin-active-voros);
+}
+
+body {
+    font-family: var(--betutipus-alap);
+    font-size: var(--betumeret-fo);
+}
+
+h1 {
+    text-align: center;
+    margin: auto;
+}

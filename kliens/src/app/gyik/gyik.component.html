@@ -1,0 +1,18 @@
+<div class="tartalom" [ngClass]="temaSzinGordulo">
+    <div class="keret" [ngClass]="temaSzinBetu">
+        <h1>Gyakori kérdések</h1>
+        <div *ngFor="let elem of elemek; let i = index">
+            <div class="kerdes" (click)="valaszMegjelenites(i)" [ngClass]="temaSzin">
+              {{ elem.kerdes }}
+              <img src="../../assets/icons/arrow_down-white.png" *ngIf="!valasztottIndexek.includes(i) && (sotet || voros)">
+              <img src="../../assets/icons/arrow_up-white.png" *ngIf="valasztottIndexek.includes(i) && (sotet || voros)">
+              <img src="../../assets/icons/arrow_down.png" *ngIf="!valasztottIndexek.includes(i) && vilagos">
+              <img src="../../assets/icons/arrow_up.png" *ngIf="valasztottIndexek.includes(i) && vilagos">
+            </div>
+            <div class="valasz" *ngIf="valasztottIndexek.includes(i)" [ngClass]="temaSzin2">
+              {{ elem.valasz }}
+            </div>
+          </div>
+    </div>
+    <app-footer></app-footer>
+</div>

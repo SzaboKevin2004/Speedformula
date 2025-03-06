@@ -1,0 +1,28 @@
+<footer [ngStyle]="{ 'background-color': voros ? 'var(--szin-navsav-voros)' : sotet ? 'var(--szin-navsav-sotet)' : vilagos ? 'var(--szin-navsav-vilagos)' : 'var(--szin-navsav-sotet)' }">
+    <div class="footer-keret" [ngClass]="temaSzinBetu">
+        <div class="footer-oszlop">
+            <h3>KAPCSOLAT</h3>
+            <ul>
+                <li><a [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" routerLink="/visszajelzes">Visszajelzés</a></li>
+                <li><a [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" href= "mailto: speedformulahun@gmail.com">speedformulahu&#64;gmail.com</a></li>
+                <li><a [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" href="tel: +36308141606">+36308141606</a></li>
+            </ul>
+        </div>
+        <div class="footer-oszlop">
+            <h3>INFORMÁCIÓ</h3>
+            <ul>
+                <li><a [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" routerLink="/rolunk">Rólunk</a></li>
+                <li><a [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" routerLink="/gyik">GYIK</a></li>
+                <li><a [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" routerLink="/adatvedelem">Adatvédelem</a></li>
+            </ul>
+        </div>
+        <div class="footer-oszlop">
+            <h3>KÖZÖSSÉGI MÉDIA</h3>
+            <ul>
+                <li><a href="#" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" id="bal"><img src="../../assets/img/logo_facebook.png" id="nagy"></a></li>
+                <li><a href="#" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" id="bal"><img src="../../assets/img/logo_instagram.png"></a></li>
+                <li><a href="#" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" id="bal"><img src="../../assets/img/logo_youtube.png" id="kicsi"></a></li>
+            </ul>
+        </div>
+    </div>
+    </footer>

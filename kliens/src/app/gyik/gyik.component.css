@@ -1,0 +1,72 @@
+h1 {
+    text-align: left;
+    font-weight: normal;
+}
+
+.kerdes{
+    display: flex;
+    width: 35vw;
+    height: fit-content;
+    margin: 3vh auto 0 auto;
+    padding: 15px 15px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px;
+    cursor: pointer;
+    user-select: none;
+    z-index: 1;
+}
+
+img{
+    width: 15px;
+    height: auto;
+    margin-right: 5px;
+    padding-left: 30px;
+    cursor: pointer;
+}
+
+.valasz{
+    display: flex;
+    width: 34vw;
+    height: fit-content;
+    margin: 0 auto;
+    padding: 15px;
+    align-items: center;
+    text-align: justify;
+    border-radius: 10px;
+    z-index: 0;
+}
+
+@media only screen and (max-width: 1023px) {
+    .kerdes{
+        width: 100%;
+    }
+
+    .valasz{
+        width: 100%;
+    }
+
+    .keret {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 819px) {
+    .keret {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .keret {
+        width: 100%;
+    }
+
+    .kerdes {
+        width: 80%;
+    }
+
+    h1 {
+        text-align: center;
+    }
+}
