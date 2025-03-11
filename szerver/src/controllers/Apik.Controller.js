@@ -2,6 +2,7 @@ import NewsAPI from 'newsapi';
 const newsapi = new NewsAPI('0839a4ca5d3247f0af119d1e3053bca2');
 import fetch from 'node-fetch';
 export default{
+    //Hirek lekérdezése Apiból
     HírekGetController:async (req, res) => {
         try{
             const válasz =await newsapi.v2.everything({
@@ -36,6 +37,7 @@ export default{
                 return res.status(500).json({ error: true, err });
             }
     },
+    //Csapatok lekérdezése
     CsapatokGetController:async (req, res) => {
         try {
             const válasz = await fetch('http://ergast.com/api/f1/constructors.json?limit=1000');
@@ -59,6 +61,7 @@ export default{
             return res.status(500).json({ error: true, message: "Hiba a csapatok lekérésénél!" });
         }
     },
+    //Versenyzők lekérdezése
     VersenyzőkGetController:async (req, res) => {
         try {
             const válasz = await fetch('https://api.openf1.org/v1/drivers');

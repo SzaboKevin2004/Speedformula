@@ -10,7 +10,7 @@ import KedvencKomment from "./models/KommentKedvelések.Modell.js";
 import UjToken from "./models/újToken.Model.js";
 
 const ync=false;//Ha false akkor nem végzik teljes felülírást,csak ha true-ra van állítva
-const aync=true;//nem végzik részleges végrehajtást mikor false-ra van állítva.
+const aync=false;//nem végzik részleges végrehajtást mikor false-ra van állítva.
 
 db.authenticate()
     .then(()=>{

@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config({ path:"C:/Users/david/Documents/szerver/src/.env"});
 export default{
+    //Új chat létrehozása
     ChatPost:async(req,res)=>{
         const token = req.headers.authorization?.split(' ')[1];
         try {
@@ -42,6 +43,7 @@ export default{
             }
         }
     },
+    //Chatek lekérdezése
     ChatGet:async(req,res)=>{
         try{
             const chat=await Chat.findAll({order:[['createdAt','ASC']],include:[{model:Felhasználó,attributes:['felhasznalonev','kep']}]});
@@ -59,6 +61,7 @@ export default{
             return res.status(500).json({ error: true, message: "Adatbázis hiba történt!" });
         };        
     },
+    //Chat törlée id alapján
     ChatIdDelete:async(req,res)=>{
         const {id}=req.params;
         const token = req.headers.authorization?.split(' ')[1];
@@ -95,6 +98,7 @@ export default{
             }
         }
     },
+    //Összes chat törlése
     ChatDeleteAll:async(req,res)=>{
         try{
             await Chat.truncate();

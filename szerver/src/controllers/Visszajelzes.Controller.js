@@ -23,7 +23,9 @@ const sendEmail =(email, message) => {
 
   return transporter.sendMail(mailOptions);
 };
+
 export default{
+//Visszajelzés
  VisszajelzesPostController: async (req, res) => {
   const { email, message } = req.body;
 

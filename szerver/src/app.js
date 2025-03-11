@@ -9,11 +9,11 @@ app.use(express.json());
 dotenv.config();
 app.use("/", router);
 
-app.get("/",(req,res)=>{
+/* app.get("/",(req,res)=>{
     res.json({
         apiName:"Speedformula",
         apiVersion:"1.0.0",
     });
-});
+}); */
 
 export default app;

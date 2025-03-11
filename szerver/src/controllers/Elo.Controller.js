@@ -1,4 +1,5 @@
 export default{
+    //elo lekérdezése
     EloGet:async function(req,res){
         const apiKey = 'AIzaSyD399Pb6YebmjeW7lJcUSM_rG3fA2pjgXE';
         const channelId = 'UCtpmd1UDP0W9MOwtsClRBkw';
