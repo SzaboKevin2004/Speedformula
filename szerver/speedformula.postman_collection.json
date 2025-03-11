@@ -1,0 +1,740 @@
+{
+	"info": {
+		"_postman_id": "fa218142-7efc-4522-aa35-ec29f3ac74d5",
+		"name": "speedformula",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39531798"
+	},
+	"item": [
+		{
+			"name": "Regisztráció",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"felhasznalonev\":\"tesztfiok1\",\r\n    \"email\":\"Simatesztfiok@gmail.com\",\r\n    \"password\":\"Teszt123\",\r\n    \"confirm_password\":\"Teszt123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/regist",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"regist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"felhasznalonev\":\"tesztadmin\",\r\n    \"email\":\"\",\r\n    \"password\":\"Admin123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Profil lekérés",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmVsaGFzem5hbG9uZXYiOiJ0ZXN6dGFkbWluIiwiaWF0IjoxNzQxNjk1ODM1LCJleHAiOjE3NDE3MzkwMzV9.EPZQtrHceecPWFSB29O8R70-yffNuRDL3An2J3LB3XU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/profil",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"profil"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fríssités",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZmVsaGFzem5hbG9uZXYiOiJ0ZXN6dDEyMzQiLCJpYXQiOjE3Mzg1NzEyNTksImV4cCI6MTczODU5Mjg1OX0.gjt7QpwqObcq6chQ7XrwPco5rYNoqzWLkWkvB4IPRI8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmVsaGFzem5hbG9uZXYiOiJrZXZpbiIsImlhdCI6MTczODE1MzQzNywiZXhwIjoxNzM4MTc1MDM3fQ.kEHsOAzVT1-BtI1-5_SdbD_t0IFiYWgKpDUAbkSrV-Y",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"felhasznalonev\":\"\",\r\n    \"email\":\"\",\r\n    \"password\":\"Teszt1234\",\r\n    \"tema_id\":\"\",\r\n    \"kep\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/profil",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"profil"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "törlés",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmVsaGFzem5hbG9uZXYiOiJ0ZXN6dDEiLCJpYXQiOjE3NDEwODg3MDksImV4cCI6MTc0MTEzMTkwOX0.JZ9-O4fnB2iLVIVBfrtdPyrSQXb5zoAynvrC2iKgO-M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/profil",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"profil"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chatlétrehozás",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZmVsaGFzem5hbG9uZXYiOiJ0ZXN6dDEyMzQiLCJpYXQiOjE3Mzg1NjcyOTIsImV4cCI6MTczODU4ODg5Mn0.WzGrr0QtzGORQjLWvdLltf2yX-6SvmylvXuIZp-dOts",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"uzenet\":\"tesztuzenet \"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/chat",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"chat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chatlekérés",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/chat",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"chat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Összes chat törlése",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/chat",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"chat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "hírek",
+			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": [
+						{
+							"key": "algorithm",
+							"value": "HS256",
+							"type": "string"
+						},
+						{
+							"key": "isSecretBase64Encoded",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "payload",
+							"value": "{}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "queryParamKey",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "header",
+							"value": "{}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/hirek",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hirek"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "versenyzők lekérése",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/versenyzok",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"versenyzok"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "csapatok",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/csapatok",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"csapatok"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EloApi",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/elo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"elo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Poszt létrehozása",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZmVsaGFzem5hbG9uZXYiOiJ0ZXN6dDEyIiwiaWF0IjoxNzQxMjQ2MTcyLCJleHAiOjE3NDEyODkzNzJ9.8lidFvBVUws5rdfT7WgUNeHJ54T_XLfXWmPuHHq7TgA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cim\":\"TesztPosztCim\",\r\n    \"szoveg\":\"TesztPosztSzoveg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/forum/cikk",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"forum",
+						"cikk"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Poszt lekérés",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/forum",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"forum"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Poszthoz komment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmVsaGFzem5hbG9uZXYiOiJ0ZXN6dDEiLCJpYXQiOjE3NDA1NjQzNjksImV4cCI6MTc0MDYwNzU2OX0.CrVljOtBp-D9kGe-t-sxnBMbCoKvZftBli-4mBcSyxc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"posztid\":4,\r\n   \"szoveg\":\"TesztPoszthozSzoveg\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/forum/komment/poszt",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"forum",
+						"komment",
+						"poszt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Kommenthez komment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmVsaGFzem5hbG9uZXYiOiJ0ZXN6dDEiLCJpYXQiOjE3NDA1NjQzNjksImV4cCI6MTc0MDYwNzU2OX0.CrVljOtBp-D9kGe-t-sxnBMbCoKvZftBli-4mBcSyxc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"kommentid\":19,\r\n    \"szoveg\":\"TesztKommenhezSzoveg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/forum/komment/komment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"forum",
+						"komment",
+						"komment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Komment lekérés",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"posztid\":4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/forum/komment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"forum",
+						"komment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Kommenttorles",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmVsaGFzem5hbG9uZXYiOiJ0ZXN6dDEiLCJpYXQiOjE3NDA1NjQzNjksImV4cCI6MTc0MDYwNzU2OX0.CrVljOtBp-D9kGe-t-sxnBMbCoKvZftBli-4mBcSyxc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"kommentid\":17\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/forum/kommenttorles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"forum",
+						"kommenttorles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Poszt torles",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmVsaGFzem5hbG9uZXYiOiJ0ZXN6dDEiLCJpYXQiOjE3NDA1NjQzNjksImV4cCI6MTc0MDYwNzU2OX0.CrVljOtBp-D9kGe-t-sxnBMbCoKvZftBli-4mBcSyxc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"posztid\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/forum/poszttorles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"forum",
+						"poszttorles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Poszt Kedvelése",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/forum/posztkedveles/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"forum",
+						"posztkedveles",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Poszt megosztása",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/forum/posztmegosztas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"forum",
+						"posztmegosztas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Komment kedvelése",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/forum/kommentkedveles/18",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"forum",
+						"kommentkedveles",
+						"18"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Komment megosztása",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/forum/kommentmegosztas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"forum",
+						"kommentmegosztas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Poszt kikedvelése",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/forum/posztkikedveles/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"forum",
+						"posztkikedveles",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Komment kikedvelése",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/forum/kommentkikedveles/18",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"forum",
+						"kommentkikedveles",
+						"18"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
