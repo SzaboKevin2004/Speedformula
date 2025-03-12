@@ -27,7 +27,7 @@ db.authenticate()
         force: ync,alter: aync 
       })
       .then(async ()=>{
-        if(ync){
+        if(ync || aync){
           await Szerep.bulkCreate([
             { id: 1, szerep_neve: 'admin' },
             { id: 2, szerep_neve: 'felhasználó' }

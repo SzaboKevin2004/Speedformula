@@ -415,6 +415,11 @@ export default{
                 return res.status(404).json({ error: true, message: "A komment nem található!" });
             }
             if((felhasználó.id=== kommentk.user_id)||(felhasználó.szerep_id===1)){
+                const kommentall=await Komment.findAll({where:{kommentszulo_id:kommentid}});
+                if(!kommentall){
+                    return res.status(404).json({ error: true, message: "A kommenthez tartozó kommentek is találhatók!" });
+                }
+                await Komment.destroy({ where:{kommentszulo_id:kommentid}});
                 await kommentk.destroy();
                 return res.status(200).json({
                     error: false,

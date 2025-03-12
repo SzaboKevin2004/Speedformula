@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 import { RolunkComponent } from './rolunk.component';
+import { of } from 'rxjs';
 
 describe('RolunkComponent', () => {
   let component: RolunkComponent;
@@ -8,7 +10,15 @@ describe('RolunkComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RolunkComponent]
+      imports: [RolunkComponent, HttpClientModule],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: { paramMap: of({ id: '123' }) },
+          },
+        },
+      ],
     })
     .compileComponents();
 

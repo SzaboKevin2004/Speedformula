@@ -1,5 +1,6 @@
 <div class="tartalom" [ngClass]="temaSzinGordulo">
-  <div class="video-chat-container" [ngClass]="temaSzinBetu" [ngStyle]="{display: liveMegyE? 'flex' : 'none'}">
+  <!-- <div class="video-chat-container" [ngClass]="temaSzinBetu" [ngStyle]="{display: liveMegyE? 'flex' : 'none'}"> -->
+  <div class="video-chat-container" [ngClass]="temaSzinBetu">
     <div class="video-keret" [ngClass]="temaSzin">
       <iframe
         [src]="videoUrl | safeUrl"
@@ -7,7 +8,7 @@
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
       </iframe>
-      <h2>MEXICO CITY GRAND PRIX 2025</h2>
+      <h2>Forma-1 Élő Adás</h2>
     </div>
 
     <div class="chat-container" [ngClass]="temaSzin">

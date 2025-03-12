@@ -74,7 +74,6 @@ export class EloComponent implements OnInit {
       this.eloservice.sendChatMessage(uzenet.text).subscribe(
         (response) => {
           console.log('Üzenet sikeresen elküldve:', response);
-          this.eloservice.getMessages().subscribe();
         },
         (error) => {
           console.error('Hiba történt az üzenet küldése során:', error);
