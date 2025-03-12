@@ -75,10 +75,6 @@ export class AuthService {
     this.felhBejelentkezettE.next(allapot);
   }
 
-  getBejelentkezettE() {
-    this.felhBejelentkezettE;
-  }
-
   setPfpId(pfp: string) {
     this.randomKep.next(pfp);
     if (typeof window !== 'undefined' && window.localStorage) {

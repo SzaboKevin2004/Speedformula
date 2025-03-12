@@ -1,5 +1,5 @@
 <div class="tartalom" [ngClass]="temaSzinGordulo">
-  <div class="video-chat-container" [ngClass]="temaSzinBetu" [ngStyle]="{display: liveMegyE? 'flex' : 'none'}">
+  <div class="video-chat-container" [ngClass]="temaSzinBetu" >
     <div class="video-keret" [ngClass]="temaSzin">
       <iframe
         [src]="videoUrl | safeUrl"

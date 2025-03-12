@@ -17,6 +17,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   const vedettUtvonalak = ['/beallitasok', '/forum', '/forum-poszt-letrehozas'];
   if (!hitelesitettE && (vedettUtvonalak.includes(state.url) || state.url.startsWith('/forum/'))) {
     router.navigate(['/bejelentkezes']);
+    alert("Kérem jelentkezzen be a használatához!");
     return false;
   }
 

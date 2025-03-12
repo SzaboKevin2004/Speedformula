@@ -54,7 +54,6 @@ export class BeallitasokComponent implements OnInit {
   hibaUzenet: string = '';
   siker: boolean = false;
   sikerUzenet: string = '';
-
   constructor(private authservice: AuthService, private router: Router) {}
 
   jelszoLathatosag() {
@@ -345,9 +344,5 @@ export class BeallitasokComponent implements OnInit {
     this.voros = true;
     this.authservice.setTheme(3);
     this.tema_id = 3;
-  }
-
-  teljesNevMegjelenites() {
-    this.teljesNev = !this.teljesNev;
   }
 }
