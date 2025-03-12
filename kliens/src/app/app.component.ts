@@ -38,15 +38,11 @@ export class AppComponent implements OnInit {
   constructor(private router: Router, private authservice: AuthService) {}
 
   profilLekeres() {
-    const randomSzam = Math.floor(Math.random() * (14 - 8 + 1)) +8;
-    const csillagok = '*'.repeat(randomSzam);
-
     this.authservice.profilLekeres().subscribe({
       next: (response) => {
         const profilAdatok = response.felhasználó;
         this.lekertFelhasznalonev = profilAdatok.felhasznalonev;
         this.lekertEmail = profilAdatok.email;
-        this.lekertPassword = csillagok;
         this.lekertTema_id = profilAdatok.tema_id;
         this.lekertKep = profilAdatok.kep;
       },

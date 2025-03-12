@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 import { CsapatokComponent } from './csapatok.component';
+import { of } from 'rxjs';
 
 describe('CsapatokComponent', () => {
   let component: CsapatokComponent;
@@ -8,7 +10,15 @@ describe('CsapatokComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CsapatokComponent]
+      imports: [CsapatokComponent, HttpClientModule],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: { paramMap: of({ id: '123' }) },
+          },
+        },
+      ],
     })
     .compileComponents();
 

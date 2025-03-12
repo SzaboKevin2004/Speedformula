@@ -29,7 +29,6 @@ export class HirekComponent implements OnInit {
   temaSzinGordulo: string = '';
 
   hirek: Article[] = [];
-  private defaultImageUrl = 'https://cdn.cms.mtv.hu/wp-content/uploads/sites/10/2021/04/forma1.jpg';
   url(url: string) {
     window.open(url, '_blank');
   }

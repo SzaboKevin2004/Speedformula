@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 import { ForumPosztReszletComponent } from './forum-poszt-reszlet.component';
+import { of } from 'rxjs';
 
 describe('ForumPosztReszletComponent', () => {
   let component: ForumPosztReszletComponent;
@@ -8,7 +10,15 @@ describe('ForumPosztReszletComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ForumPosztReszletComponent]
+      imports: [ForumPosztReszletComponent, HttpClientModule],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: { paramMap: of({ id: '123' }) },
+          },
+        },
+      ],
     })
     .compileComponents();
 

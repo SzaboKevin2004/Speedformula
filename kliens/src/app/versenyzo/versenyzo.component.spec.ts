@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 import { VersenyzoComponent } from './versenyzo.component';
+import { of } from 'rxjs';
 
 describe('VersenyzoComponent', () => {
   let component: VersenyzoComponent;
@@ -8,9 +10,16 @@ describe('VersenyzoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VersenyzoComponent]
-    })
-    .compileComponents();
+      imports: [VersenyzoComponent, HttpClientModule],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: { paramMap: of({ id: '123' }) },
+          },
+        },
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(VersenyzoComponent);
     component = fixture.componentInstance;

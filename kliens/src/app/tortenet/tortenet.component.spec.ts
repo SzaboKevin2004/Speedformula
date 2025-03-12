@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 import { TortenetComponent } from './tortenet.component';
+import { of } from 'rxjs';
 
 describe('TortenetComponent', () => {
   let component: TortenetComponent;
@@ -8,9 +10,16 @@ describe('TortenetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TortenetComponent]
-    })
-    .compileComponents();
+      imports: [TortenetComponent, HttpClientModule],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: { paramMap: of({ id: '123' }) },
+          },
+        },
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TortenetComponent);
     component = fixture.componentInstance;

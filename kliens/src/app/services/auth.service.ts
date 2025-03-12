@@ -144,7 +144,7 @@ export class AuthService {
         console.warn('Nincs token, nem indul az automatikus frissítés.');
         return;
       }
-      this.tokenFrissitoSub = timer(0, 12 * 60 * 60 * 1000)
+      this.tokenFrissitoSub = timer(0, 1 * 60 * 60 * 1000)
         .pipe(
           switchMap(() => this.http.post<{ accessToken: string }>(`${this.url}/ujToken`, {}, {
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }

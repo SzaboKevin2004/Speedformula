@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 import { HirekComponent } from './hirek.component';
+import { of } from 'rxjs';
 
 describe('HirekComponent', () => {
   let component: HirekComponent;
@@ -8,7 +10,15 @@ describe('HirekComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HirekComponent]
+      imports: [HirekComponent, HttpClientModule],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: { paramMap: of({ id: '456' }) },
+          },
+        },
+      ],
     })
     .compileComponents();
 

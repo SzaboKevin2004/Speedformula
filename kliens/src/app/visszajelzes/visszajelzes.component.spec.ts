@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 import { VisszajelzesComponent } from './visszajelzes.component';
+import { of } from 'rxjs';
 
 describe('VisszajelzesComponent', () => {
   let component: VisszajelzesComponent;
@@ -8,9 +10,16 @@ describe('VisszajelzesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VisszajelzesComponent]
-    })
-    .compileComponents();
+      imports: [VisszajelzesComponent, HttpClientModule],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: { paramMap: of({ id: '123' }) },
+          },
+        },
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(VisszajelzesComponent);
     component = fixture.componentInstance;
