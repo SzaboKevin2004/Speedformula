@@ -1,7 +1,10 @@
+<!-- Regisztráció felépítéséért felelős html -->
+<!-- Regisztráció hibájáról/sikerességéről való visszajelzés -->
 <div *ngIf="hiba || siker" class="ertesitessav" [ngClass]="{ 'hibaSzin': hiba , 'sikerSzin': siker , 'hibaVillan': hiba , 'sikerVillan': siker }">
     <p *ngIf="hibaUzenet" id="uzenet" >{{ hibaUzenet }}</p>
     <p *ngIf="sikerUzenet" id="uzenet" >{{ sikerUzenet }}</p>
 </div>
+<!-- Regisztráció -->
 <div *ngIf="keretMegjelenites" class="reg-keret">
     <a class="nav-cim" routerLink="/">
         <img src="../assets/img/logo.png">

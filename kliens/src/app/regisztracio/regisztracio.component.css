@@ -1,3 +1,4 @@
+/* Regisztráció kinézetéért felelős CSS */
 body{
     display: flex;
     height: 100vh;
@@ -87,7 +88,7 @@ a[routerLink="/bejelentkezes"]:hover {
 a[routerLink="/bejelentkezes"]:active {
    color: #000000;
 }
-
+/* Regisztráció visszajelzéséért (siker, hiba) felelős kinézet */
 .ertesitessav{
     display: flex;
     width: 450px;
@@ -116,7 +117,7 @@ a[routerLink="/bejelentkezes"]:active {
     cursor: default;
     color: white;
 }
-
+/* Animációkért felelős áttűnések */
 @keyframes hibaVillan {
     0%, 100% {
         background-color: rgb(255, 158, 158);
@@ -134,7 +135,7 @@ a[routerLink="/bejelentkezes"]:active {
         background-color: rgb(46, 216, 54);
     }
 }
-
+/* ANIMÁCIÓK */
 .ertesitessav.hibaVillan {
     animation: hibaVillan 0.5s ease-in-out;
 }
@@ -143,6 +144,7 @@ a[routerLink="/bejelentkezes"]:active {
     animation: sikerVillan 0.5s ease-in-out;
 }
 
+/* RESZPONZIVITÁS */
 @media only screen and (max-width: 560px) {
     .reg-keret {
         width: 80vw;

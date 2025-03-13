@@ -1,3 +1,4 @@
+// Navigációs sáv viselkedéséért, működéséért felelős ts
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -37,6 +38,7 @@ export class AppComponent implements OnInit {
   
   constructor(private router: Router, private authservice: AuthService) {}
 
+  //Profiladatok hozzáadása az AuthService-ből, pl felhasználó név, profilkép stb.
   profilLekeres() {
     this.authservice.profilLekeres().subscribe({
       next: (response) => {
@@ -53,15 +55,19 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    //Jelenlegi oldal URL-ének változóba tétele
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
       const jelenlegiUrl = this.router.url;
 
+      // Automatikus fehér háttér beállítás (bizonyos, "kivétel" oldalakhoz: Regisztráció, Bejelentkezés, Hiba, Visszajelzés)
       if (this.isFeherOldal()) {
         if (typeof document !== 'undefined') {
           document.body.className = 'feherBg';
         }
+
+      // Minden más oldal háttérszínét, betűszínét, színeit - téma alapján beállítása
       } else {
         this.authservice.szamSzin$.subscribe(szam => {
           if (szam === 1) {
@@ -123,28 +129,35 @@ export class AppComponent implements OnInit {
           }
         });
       }
+      //Bizonyos "kivétel" oldalakon ne jelenítse meg a navigációs sávot (regisztráció, bejelentkezés, hiba, visszajelzés oldalakon)
       this.navMegjelenites = !(jelenlegiUrl.includes('bejelentkezes') || 
       jelenlegiUrl.includes('regisztracio') || 
       jelenlegiUrl.includes('hiba') || 
       jelenlegiUrl.includes('visszajelzes'));
     });
 
+    //Megvizsgálja hogy a felhasználó belejentkezve van-e
+    //Amennyiben igen, megjeleníti a profilt és hozzátartozó adatokat és eltünteti a regisztráció, bejelentkezési gombot
+    //Ha nincs bejelentkezve, akkor ennek az ellentetje történik meg
     this.authservice.felhBejelentkezettE$.subscribe(bejelentkezettE => {
       this.bejelentkezesMegjelenites = !bejelentkezettE;
       this.profilMegjelenites = bejelentkezettE;
     });
 
+    //Felhasználó alapértelemezett profilkép elérési útvonalának változóban tárolása
     this.authservice.randomKep$.subscribe(kep => {
       this.randomKep = kep;
     });
 
     this.authservice.profilLekeres().subscribe();
 
+    //Felhasználó nevének változóban tárolása
     this.authservice.felhasznaloNev$.subscribe(nev => {
       this.felhasznaloNev = nev;
     });
   }
 
+  //Megvizsgálja hogy az adott oldal a "kivétel oldalakhoz tartoznak-e"
   isFeherOldal(): boolean {
     return this.router.url === '/visszajelzes' || 
     this.router.url === '/bejelentkezes' ||
@@ -152,6 +165,7 @@ export class AppComponent implements OnInit {
     this.router.url === '/hiba';
   }
 
+  //profil menüjének megnyitása/bezárása
   profilMenu() {
     this.profilMenuMegjelenites = !this.profilMenuMegjelenites;
 
@@ -160,22 +174,26 @@ export class AppComponent implements OnInit {
     }
   }
 
+  //profil menü bezárása, ha nyitva van
   profilMenuHA() {
     if (this.profilMenuMegjelenites) {
       this.profilMenuMegjelenites = false;
     }
   }
 
+  //Kis méretű képernyők navigációs menüjének megnyitása/bezárása
   menu() {
     this.menuMegjelenites =!this.menuMegjelenites;
   }
 
+  //Kis méretű képernyők navigációs menüjének bezárása, ha nyitva van
   menuHA() {
     if (this.menuMegjelenites) {
       this.menuMegjelenites = false;
     }
   }
 
+  //Kis méretű képernyők esetén egyszerre bezárja a profil menüt és a navigációs menüt
   menuESProfilMenuHA() {
     this.profilMenuHA();
     this.menuHA();

@@ -1,6 +1,9 @@
 <!-- Navigációs sáv felépítéséért felelős html -->
+
+ <!-- Navigációs sáv -->
 <div *ngIf="navMegjelenites">
 <nav class="nav-sav" [ngClass]="temaSzinN">
+<!-- Reszponzív - kis képernyőkön megjelenő navigációs menü tartalom -->
   <div class="menu" [ngClass]="temaSzin" *ngIf="menuMegjelenites">
     <div (click)="menuHA()">
       <img class="bezar" src="../assets/icons/cross-white.png" [ngStyle]="{ display: (voros || sotet) ? 'inline' : 'none' }">
@@ -51,8 +54,8 @@
         </li>
       </ul>
     </div>
-
   </div>
+  <!-- Navigációs sáv tartalom -->
   <div class="nav-keret">
     <div class="menu-gomb" (click)="menu()">
       <a class="nav-link" [ngStyle]="{ color: (voros || sotet) ? 'white' : 'black' }" (click)="profilMenuHA()">
@@ -104,6 +107,7 @@
         </li>
       </ul>
 
+      <!-- NEM bejelentkezett felhasználók számára (regisztráció és bejelentkezés gomb) -->
       <div [ngStyle]="{display: bejelentkezesMegjelenites ? 'flex' : 'none'}" class="nav-regjel-keret">
         <ul class="nav-regjel">
         <li [ngClass]="temaSzinHover" (click)="menuHA()">
@@ -121,6 +125,7 @@
         </ul>
       </div>
 
+      <!-- Bejelentkezett felhasználók számára (felhasználónév és profilkép) -->
       <div class="nav-bejel" [ngStyle]="{display: profilMegjelenites ? 'flex' : 'none'}">
         <ul>
         <li>
@@ -133,6 +138,7 @@
     </div>
 </nav>
 
+<!-- Profilképre kattintva: Bejelentkezett felhasználók számára (profil megtekintés, beállítások, kijelentkezés) -->
 <div class="bejel-lenyilo" [ngClass]="temaSzinN" [ngStyle]="{display: profilMenuMegjelenites ? 'flex' : 'none'}">
   <ul>
   <li [ngClass]="temaSzinHover" (click)="profilMenu()">

@@ -1,3 +1,4 @@
+//GYakran Ismételt Kérdések oldal viselkedéséért felelős ts
 import { Component, OnInit } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
@@ -70,6 +71,7 @@ export class GyikComponent implements OnInit {
     });
   }
 
+  //Oldal tartalma
   elemek = [
     { 
       kerdes: 'Miért szikráznak az F1-es autók?',
@@ -155,6 +157,7 @@ export class GyikComponent implements OnInit {
   ];
   valasztottIndexek: number[] = [];
 
+  //Egy kérdésre kattintva az index alapján megjelenítse a hozzátartozó választ.
   valaszMegjelenites(index: number): void {
     if (this.valasztottIndexek.includes(index)) {
       const indexElem = this.valasztottIndexek.indexOf(index);

@@ -1,3 +1,4 @@
+//Bejelentkezés viselkedéséért, működéséért felelős ts
 import { Component, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

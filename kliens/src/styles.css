@@ -1,3 +1,5 @@
+/* Globális formázásért, kinézetekért felelős CSS */
+/* Betűtípusok importálása */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Lilita+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@100..900&display=swap');
@@ -118,6 +120,7 @@
     }
 }
 
+/* Gördülősáv kinézete sötét témában */
 .feketeG::-webkit-scrollbar-track {
     background-color: var(--szin-gorduloSav-sotet);
 }
@@ -199,6 +202,7 @@
     }
 }
 
+/* Gördülősáv kinézete világos témában */
 .feherG::-webkit-scrollbar-track {
     background-color: var(--szin-gorduloSav-vilagos);
 }
@@ -279,6 +283,7 @@
     }
 }
 
+/* Gördülősáv kinézete vörös témában */
 .vorosG::-webkit-scrollbar-track {
     background-color: var(--szin-gorduloSav-voros);
 }
@@ -379,7 +384,7 @@ body::-webkit-scrollbar {
     height: 1.5rem;
     vertical-align: middle;
 }
-
+/* Navigációs sávon megjelenő reszponzív - navigációs menü gomb */
 .menu-gomb {
     display: none;
 }
@@ -390,7 +395,7 @@ body::-webkit-scrollbar {
     vertical-align: middle;
     cursor: pointer;
 }
-
+/* Reszponzív - kis képernyőkön megjelenő navigációs menü */
 .menu {
     display: flex;
     position: fixed;
@@ -490,6 +495,7 @@ body::-webkit-scrollbar {
     font-size: var(--betumeret-fo);
 }
 
+/* NEM bejelentkezett felhasználónál: Regisztráció és Bejelentkezési "gomb" */
 .nav-regjel {
     display: flex;
     gap: 0.6rem;
@@ -512,6 +518,7 @@ body::-webkit-scrollbar {
     margin-left: auto;
 }
 
+/* Bejelentkezett felhasználónál: Felhasználó név és profilkép */
 .nav-bejel {
     margin-left: auto;
 }
@@ -534,6 +541,7 @@ body::-webkit-scrollbar {
     cursor: default;
 }
 
+/* Profilképre kattintva: Lenyíló profil menü */
 .bejel-lenyilo {
     position: fixed;
     width: max-content;
@@ -701,6 +709,7 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* Reszponzivitás */
 @media only screen and (max-width: 1599px) {
     .nav-fo .nav-link img {
         display: none !important;

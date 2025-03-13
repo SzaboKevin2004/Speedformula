@@ -1,10 +1,13 @@
+<!-- Történet oldal felépítéséért felelős html -->
 <div class="tartalom" [ngClass]="temaSzinGordulo">
     <div class="keret" [ngClass]="temaSzinBetu">
         <h1 [ngClass]="temaSzinBetu">Történet</h1>
+        <!-- Egyszerű, részletes tartalom megjelenítésért felelős kiválasztó fülek -->
         <div class="kozep">
             <p class="egyszeru" [ngClass]="{ 'aktiv': egyszeru }" (click)="egyszeruClick()">Egyszerű</p>
             <p class="reszletes" [ngClass]="{ 'aktiv': reszletes }" (click)="reszletesClick()">Részletes</p>
         </div>
+        <!-- Egyszerű tartalom megjelenítése-->
         <div *ngIf="egyszeru" class="egyszeru-tartalom" >
             <h2>Kialakulása</h2>
             <p id="kezdoszoveg">Miután megszülettek az új technikai csodák, az autók, az emberek hamar felfedezték az autóversenyzés örömeit.
@@ -99,7 +102,7 @@
             </div>
 
         </div>
-
+        <!-- Részletes tartalom megjelenítése-->
         <div *ngIf="reszletes" class="reszletes-tartalom">
             <h2 [ngClass]="temaSzinBetu">Előzmények</h2>
             <table class="reszletes-t">
@@ -109,6 +112,7 @@
                         <th [ngClass]="temaSzin">Események</th>
                     </tr>
                 </thead>
+                <!-- Részletes tartalom információk a typescriptből-->
                 <tbody>
                     <tr *ngFor="let el of elozmenyek">
                         <td id="ev" [ngClass]="temaSzin2">{{ el.ev }}</td>
