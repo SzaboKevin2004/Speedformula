@@ -26,13 +26,16 @@ export class BejelentkezesComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
   
+  // jelszó láthatóságot állítja. Alapértelmezetten hamis érték, ha igaz értéket kap akkor láthatóvá válik a jelszó a jelszó beírásnál.
   jelszoLathatosag(){
     this.jelszoLathatoE =!this.jelszoLathatoE;
   }
+   // bejelentkezés meghívása, bejelentkezési adatok (változók) objektumba helyezése, majd küldése az AuthService onnan pedig a backendnek
   bejelentkezes() {
     this.hiba = false;
     this.hibaUzenet = '';
 
+    // Felhasználó email-címének ellenőrzésének, ha van email cím, akkor az email címet helyezzük el változóban, ha nincs akkor a felhasználónevet
     if(this.identifier.includes('@')){
       this.email = this.identifier;
       this.felhasznalonev = '';
@@ -41,6 +44,7 @@ export class BejelentkezesComponent {
       this.email = '';
     }
 
+    // Objektum mely az AuthServicehez kerül küldésre
     const loginData = {
       felhasznalonev: this.felhasznalonev,
       email: this.email,

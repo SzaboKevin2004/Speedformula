@@ -26,6 +26,7 @@ export class TortenetComponent {
 
   constructor(private authservice: AuthService) {}
 
+  //Téma beállítás
   ngOnInit(): void {
     this.authservice.szamSzin$.subscribe( szam => {
       if(szam === 1){

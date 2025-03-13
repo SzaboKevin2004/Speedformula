@@ -1,9 +1,14 @@
+<!-- Profil oldal felépítéséért felelős html -->
 <div class="tartalom" [ngClass]="temaSzinGordulo">
+    <!-- Vissza gomb, mely visszanavigál az előző oldalra -->
     <div class="vissza-gomb" [ngClass]="[temaSzin2, temaSzinHover, temaSzinBetu]" (click)="vissza()">
         <img class="vissza-kep" src="../../assets/icons/back.png" [ngStyle]="{ display: vilagos ? 'flex' : 'none' }">
         <img class="vissza-kep" src="../../assets/icons/back-white.png" [ngStyle]="{ display: sotet || voros ? 'flex' : 'none' }">
     </div>
+
     <div class="keret" [ngClass]="temaSzinBetu">
+
+        <!-- Felhasználó adatainak megjelenítése -->
         <div class="felhasznaloAdatok" *ngIf="vanFelhasznalo">
             <img class="felhasznaloAdatKep" [src]="felhasznaloKep">
             <div class="felhasznaloAdat">
@@ -14,12 +19,14 @@
                 </div>
                 <p class="bemutatkozas">{{ bemutatkozas }}</p>
             </div>
+            <!-- Felhasználó törlés gomb (adminok számára) -->
             <div class="torles-kep" *ngIf="szerep === 1" (click)="profilTorles(felhasznaloNev)">
                 <img class="torles-kep" src="../../assets/icons/trash.png" [ngStyle]="{ display: vilagos ? 'flex' : 'none' }">
                 <img class="torles-kep" src="../../assets/icons/trash-white.png" [ngStyle]="{ display: sotet || voros ? 'flex' : 'none' }">
             </div>
         </div>
         <hr class="elvalaszto">
+        <!-- Kiválasztó gombok -->
         <div class="valasztoElemek">
             <div class="bejegyzesek" [ngClass]="{ 'aktiv': bejegyzesKepcim }" (click)="bejegyzesekClick()">
                 <img src="../../assets/icons/post.png" [ngStyle]="{ display: vilagos ? 'flex' : 'none' }">
@@ -37,6 +44,7 @@
                 <p class="mentveKepcim">Mentve</p>
             </div>
         </div>
+        <!-- Adott profilhoz tartozó összes bejegyzés megjelenítése -->
         <div class="bejegyzes" *ngIf="bejegyzesKepcim">
             <div *ngIf="posztok.length === 0">
                 <p class="nincsPoszt">Nincsenek elérhető posztok.</p>

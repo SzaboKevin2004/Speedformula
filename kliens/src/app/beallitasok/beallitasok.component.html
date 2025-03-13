@@ -1,6 +1,9 @@
+<!-- Beállítások felépítéséért felelős html -->
 <div class="tartalom" [ngClass]="temaSzinBetu" (keyup.esc)="bezarModositas()" tabindex="0">
     <div class="keret" [ngClass]="temaSzin">
         <h1>Beállítások</h1>
+
+        <!-- Választó fülek az alábbiakhoz: Fiók, Profil, Téma -->
         <ul class="valaszto" [ngClass]="temaSzin">
             <div [ngClass]="temaSzinHover">
                 <li (click)="fiokMegjelenites()" [ngClass]="{'aktivValaszto' : fiok}">Fiók</li>
@@ -13,6 +16,7 @@
             </div>
         </ul>
         
+        <!-- Fiók tartalma -->
         <div class="fiok" *ngIf="fiok">
             <h2>Általános</h2>
             <div class="opcio" [ngClass]="temaSzinHover" (click)="megnyitModositas('email')">
@@ -29,12 +33,14 @@
             </div>
         </div>
         
+        <!-- Profil tartalma -->
         <div class="profil" *ngIf="profil">
             <h2>Általános</h2>
             <div class="opcio" [ngClass]="temaSzinHover" (click)="megnyitModositas('username')">
                 <p>Felhasználónév</p>
                 <p class="adat"> {{ lekertFelhasznalonev }}</p>
             </div>
+            <!-- Profilkép módosítás -->
             <div class="opcio-kep" (click)="kepModositas()">
                 <img [src]="lekertKep" class="profilkep">
                 <p class="kepszoveg">Random új kép</p>
@@ -46,28 +52,32 @@
             </div>
         </div>
         
-        <!-- Módositas -->
+        <!-- Módosítás keret -->
          <div *ngIf="siker" class="sikerHatter"></div>
         <div *ngIf="modositasNyitvaE" class="modositas" [ngClass]="temaSzin">
             <div class="modositas-tartalom" [ngClass]="temaSzin">
                 <span class="bezar" (click)="bezarModositas()">&times;</span>
                 <h2 class="modositas-cim" [ngClass]="temaSzinBetu">{{ modositasCim }}</h2>
                 
+                <!-- E-mail-cím módosítás -->
                 <input *ngIf="modositasCim.includes('E-mail')" [(ngModel)]="ujEmail" [placeholder]="modositasPlaceHolder" (keyup.enter)="mentesModositas()">
 
+                <!-- Jelszó módosítás -->
                 <div class="jelszo-keret">
                     <input type="password" *ngIf="modositasCim.includes('Jelszó')" [(ngModel)]="ujPassword" [placeholder]="modositasPlaceHolder" [type]="jelszoLathatoE ? 'text' : 'password'" />
                     <span *ngIf="modositasCim.includes('Jelszó')" (click)="jelszoLathatosag()" class="jelszoIkon" draggable="false">👁️</span>
                 </div>
-                  
                 <div class="jelszo-keret">
                     <input type="password" *ngIf="modositasCim.includes('Jelszó')" [(ngModel)]="ujraPassword" [placeholder]="'Jelszó ismét'" [type]="jelszoLathatoE2 ? 'text' : 'password'" (keyup.enter)="mentesModositas()"/>
                     <span *ngIf="modositasCim.includes('Jelszó')" (click)="jelszoLathatosag2()" class="jelszoIkon" draggable="false">👁️</span>
                 </div>
-
+                <!-- Felhasználónév módosítás -->
                 <input *ngIf="modositasCim.includes('Felhasználónév')" [(ngModel)]="ujFelhasznalonev" [placeholder]="modositasPlaceHolder" (keyup.enter)="mentesModositas()">
+
+                <!-- Bemutatkozás írás/módosítás -->
                 <input *ngIf="modositasCim.includes('Bemutatkozás')" [(ngModel)]="ujBemutatkozas" [placeholder]="modositasPlaceHolder" (keyup.enter)="mentesModositas()">
                 
+                <!-- Módosítás művelet gombok -->
                 <div class="gombok">
                     <button class="mentes" (click)="mentesModositas()">Mentés</button>
                     <button class="megse" (click)="bezarModositas()">Mégse</button>
@@ -75,10 +85,15 @@
             </div>
         </div>
 
+        <!-- Törlés keret -->
         <div *ngIf="fiokTorlesNyitvaE" class="modositas" [ngClass]="temaSzin">
             <div class="modositas-tartalom" [ngClass]="temaSzin">
                 <span class="bezar" (click)="bezarModositas()">&times;</span>
+
+                <!-- Fiók törlés -->
                 <h2 class="modositas-cim" [ngClass]="temaSzinBetu">Biztos törölni szeretnéd a fiókodat?</h2>
+
+                <!-- Törlés művelet gombok -->
                 <div class="gombok" id="torloGombok">
                     <button class="mentes" (click)="torlesFiok()">Törlés</button>
                     <button class="megse" (click)="bezarModositas()">Mégse</button>
@@ -86,8 +101,10 @@
             </div>
         </div>
         
+        <!-- Téma tartalma -->
         <div class="tema" *ngIf="tema">
             <div class="opcioTema">
+                <!-- Világos téma -->
                 <div [ngClass]="temaSzinHover" (click)="temaModositas()">
                     <div class="temaElem" (click)="vilagosMegjelenites()" [ngClass]="{'aktivTema': vilagos}">
                         <img src="../../assets/icons/theme-vilagos-black.png" *ngIf="sotet || voros" class="temaIkon" draggable="false">
@@ -95,6 +112,7 @@
                         <p>Világos</p>
                     </div>
                 </div>
+                <!-- Sötét téma -->
                 <div [ngClass]="temaSzinHover" (click)="temaModositas()">
                     <div class="temaElem" (click)="sotetMegjelenites()" [ngClass]="{'aktivTema': sotet}">
                         <img src="../../assets/icons/theme-sotet-black.png" *ngIf="sotet || voros" class="temaIkon" draggable="false">
@@ -102,6 +120,7 @@
                         <p>Sötét</p>
                     </div>
                 </div>
+                <!-- Vörös téma -->
                 <div [ngClass]="temaSzinHover" (click)="temaModositas()">
                     <div class="temaElem" (click)="vorosMegjelenites()" [ngClass]="{'aktivTema': voros}">
                         <img src="../../assets/icons/theme-voros-black.png" *ngIf="sotet || voros" class="temaIkon" draggable="false">
@@ -112,6 +131,7 @@
             </div>
         </div>
     </div>
+    <!-- Adat módosítás hibájáról/sikerességéről való visszajelzés -->
     <div *ngIf="hiba" class="ertesitessav" id="hiba" [ngClass]="{ 'hibaSzin': hiba , 'hibaVillan': hiba}"> 
         <p *ngIf="hibaUzenet" id="uzenet" >{{ hibaUzenet }}</p>
     </div>

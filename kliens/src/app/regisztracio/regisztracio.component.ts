@@ -35,7 +35,7 @@ export class RegisztracioComponent {
     this.jelszoLathatoE2 =!this.jelszoLathatoE2;
   }
   
-  // regisztráció meghívása, regisztrációs adatok (változók) objetumba helyezése, majd küldése az AuthService onnan pedig a backendnek
+  // regisztráció meghívása, regisztrációs adatok (változók) objektumba helyezése, majd küldése az AuthService onnan pedig a backendnek
   regisztracio() {
     this.hiba = false;
     this.hibaUzenet = '';

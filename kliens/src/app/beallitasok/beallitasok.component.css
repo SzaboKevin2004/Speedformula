@@ -1,3 +1,4 @@
+/* Beállítások kinézetéért felelős CSS */
 .tartalom {
     display: flex;
     height: 100vh;
@@ -252,6 +253,7 @@ button.megse:hover {
     background-color: #a04545;
 }
 
+/* Adat módosítás sikerességének, vagy hibájának jelzése */
 .sikerHatter {
     display: flex;
     position: fixed;
@@ -302,6 +304,7 @@ button.megse:hover {
     color: white;
 }
 
+/* Animációkért felelős áttűnések */
 @keyframes hibaVillan {
     0%, 100% {
         background-color: rgb(255, 158, 158);
@@ -320,6 +323,7 @@ button.megse:hover {
     }
 }
 
+/* Animációk */
 .ertesitessav.hibaVillan {
     animation: hibaVillan 0.5s ease-in-out;
 }
@@ -328,6 +332,7 @@ button.megse:hover {
     animation: sikerVillan 0.5s ease-in-out;
 }
 
+/* RESZPONZIVITÁS */
 @media only screen and (max-width: 1599px) {
     .keret {
         width: 50%;
