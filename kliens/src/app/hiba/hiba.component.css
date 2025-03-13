@@ -1,3 +1,4 @@
+/* Hiba oldal (404) kinézetéért felelős css */
 .nav-sav{
     display: none;
 }
@@ -74,6 +75,8 @@
 .hiba-keret button:hover {
     background-color: #212121;
 }
+
+/* Reszponzivitás */
 
 @media only screen and (max-width: 1366px) {
     .hibakep {

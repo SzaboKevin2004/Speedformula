@@ -53,7 +53,9 @@
     --szin-gorduloGombH-voros: rgb(255, 255, 255);
 }
 
-/* TÉMÁK */
+/* TÉMA SZERINTI KINÉZETEK */
+
+/* Sötét */
 .feketeN {
     background-color: var(--szin-navsav-sotet);
     color: white;
@@ -99,13 +101,14 @@
     h1,h2,p{
         color: var(--szin-betu-sotet);
     }
+    /* Más oldalakon megtalálható sötét témájú választó jel a szöveg alatt */
     p.aktiv.egyszeru::after , p.aktiv.reszletes::after, .valaszto p.aktiv.cikk::after, .valaszto p.aktiv.media::after, .valasztoElemek div.aktiv.bejegyzesek::after, .valasztoElemek div.aktiv.kommentek::after, .valasztoElemek div.aktiv.mentve::after {
         background-color: #ffffff;
     }
     .kozep p:hover::after, .valaszto p:hover::after, .valasztoElemek div:hover::after {
         background-color: #7a7979;
     }
-
+    /* Fórum oldal kép/videó poszt létrehozás fájl beillesztő doboza sötét témában */
     .feltolto-doboz {
         border: 2px dashed #555;
     }
@@ -132,6 +135,7 @@
     border: 0.5px solid rgb(143, 143, 143);
 }
 
+/* Világos */
 .feherN {
     background-color: var(--szin-navsav-vilagos);
     color: black;
@@ -177,6 +181,7 @@
     h1,h2,p{
         color: var(--szin-betu-vilagos);
     }
+    /* Más oldalakon megtalálható világos témájú választó jel a szöveg alatt */
     p.aktiv.egyszeru::after , p.aktiv.reszletes::after, .valaszto p.aktiv.cikk::after, .valaszto p.aktiv.media::after, .valasztoElemek div.aktiv.bejegyzesek::after, .valasztoElemek div.aktiv.kommentek::after, .valasztoElemek div.aktiv.mentve::after {
         background-color: #1a1a1a;
     }
@@ -184,6 +189,7 @@
         background-color: #5e5e5e;
     }
 
+    /* Fórum oldal kép/videó poszt létrehozás fájl beillesztő doboza világos témában */
     .feltolto-doboz{
         border: 2px dashed #ccc;
     }
@@ -210,6 +216,7 @@
     border: 0.5px solid rgb(63, 63, 63);
 }
 
+/* Vörös */
 .vorosN {
     background-color: var(--szin-navsav-voros);
     color: white;
@@ -254,6 +261,7 @@
     h1,h2,p{
         color: var(--szin-betu-voros);
     }
+    /* Más oldalakon megtalálható vörös témájú választó jel a szöveg alatt */
     p.aktiv.egyszeru::after , p.aktiv.reszletes::after, .valaszto p.aktiv.cikk::after, .valaszto p.aktiv.media::after, .valasztoElemek div.aktiv.bejegyzesek::after, .valasztoElemek div.aktiv.kommentek::after, .valasztoElemek div.aktiv.mentve::after {
         background-color: #ffffff;
     }
@@ -261,6 +269,7 @@
         background-color: #7a7979;
     }
 
+    /* Fórum oldal kép/videó poszt létrehozás fájl beillesztő doboza vörös témában */
     .feltolto-doboz {
         border: 2px dashed #555;
     }

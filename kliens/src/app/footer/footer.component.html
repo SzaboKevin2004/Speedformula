@@ -1,3 +1,5 @@
+<!-- Footer rész felépítéséért felelős html -->
+<!-- ngStyle és ngClass felel azért hogy a kiválasztott téma szerint legyenek megjelenítve színben -->
 <footer [ngStyle]="{ 'background-color': voros ? 'var(--szin-navsav-voros)' : sotet ? 'var(--szin-navsav-sotet)' : vilagos ? 'var(--szin-navsav-vilagos)' : 'var(--szin-navsav-sotet)' }">
     <div class="footer-keret" [ngClass]="temaSzinBetu">
         <div class="footer-oszlop">
