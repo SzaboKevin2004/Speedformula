@@ -1,3 +1,4 @@
+/* Profil oldal kinézetéért felelős CSS */
 .keret {
     font-family: Helvetica;
 }
@@ -91,6 +92,7 @@
     position: relative;
 }
 
+/* Jelenlegi bejegyzések, kommentek vagy mentve felület váltó alatt megjelenő csík */
 .valasztoElemek div.aktiv.bejegyzesek::after , .valasztoElemek div.aktiv.kommentek::after, .valasztoElemek div.aktiv.mentve::after {
     position: absolute;
     width: 80%;
@@ -102,6 +104,7 @@
     transform: translateX(-50%);
 }
 
+/* Kiválasztott felület váltó alatt megjelenő csík */
 .valasztoElemek div:hover::after {
     position: absolute;
     width: 80%;
@@ -214,6 +217,7 @@
     text-align: center;
 }
 
+/* RESZPONZIVITÁS */
 @media only screen and (max-width: 1200px) {
     .keret {
         width: 50%;

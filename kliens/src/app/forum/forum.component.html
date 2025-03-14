@@ -1,28 +1,36 @@
+<!-- Fórum főoldala felépítéséért felelős html -->
 <div class="tartalom" [ngClass]="temaSzinGordulo">
+    <!-- Poszt létrehozás gomb -->
     <div class="letrehozas-gomb" *ngIf="haBejelentkezett" [ngClass]="[temaSzin2, temaSzinHover]" routerLink="/forum-poszt-letrehozas">
         <img class="letrehozas-kep" src="../../assets/icons/create.png" *ngIf="vilagos">
         <img class="letrehozas-kep" src="../../assets/icons/create-white.png" *ngIf="sotet || voros">
         <p class="letrehozas-szoveg">Létrehozás</p>
     </div>
+    <!-- Posztok megjelenítése -->
     <div class="keret" [ngClass]="temaSzinBetu">
-
         <div class="forum-keret">
-          
+            <!-- Ha a posztok tömb nagysága 0, akkor visszaadja az alábbi szöveget -->
             <div *ngIf="posztok.length === 0">
               <p>Nincsenek elérhető posztok.</p>
             </div>
           
+            <!-- Összes poszt kiiratása -->
             <div class="posztok" *ngFor="let poszt of posztok">
                 <div class="poszt">
+                    <!-- Poszt adatainak megjelenítése -->
                     <div class="posztAdatok">
                         <img class="felhasznaloKep" [src]="poszt.fkep">
                         <p class="felhasznaloNev" [routerLink]="['/forum/profil',poszt.felhasznalo]">{{ poszt.felhasznalo }}</p>
                         <p class="elteltIdo"> • {{poszt.elteltIdo}}</p>
+
+                        <!-- Poszt törlés gomb -->
                         <div class="torles-kep" *ngIf="poszt.sajatFelhasznalo || szerep === 1" (click)="posztTorles(poszt.id)">
                             <img class="torles-kep" src="../../assets/icons/trash.png" *ngIf="vilagos">
                             <img class="torles-kep" src="../../assets/icons/trash-white.png" *ngIf="sotet || voros">
                         </div>
                     </div>
+
+                    <!-- Poszt címének és tartalmának megjelenítése -->
                     <div [routerLink]="['/forum',poszt.id]">
                         <h2 class="cim">{{ poszt.cim }}</h2>
                         <p class="szoveg" *ngIf="poszt.szoveg != null">{{ poszt.szoveg }}</p>
@@ -31,26 +39,28 @@
                     </div>
 
                 </div>
+                <!-- Poszt alatt megtalálható interakciót szolgáló gombok -->
                 <div class="posztGombok" *ngIf="haBejelentkezett">
-
+                    <!-- Kedvelés gomb -->
                     <div class="kedveles-gomb" *ngIf="!poszt.kedvelte" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kedvelesClick(poszt?.id)">
                         <img class="kedveles-kep" src="../../assets/icons/favorite.png" *ngIf="vilagos">
                         <img class="kedveles-kep" src="../../assets/icons/favorite-white.png" *ngIf="sotet || voros">
                         <p class="kedveles-szoveg">{{ poszt.kedveles }}</p>
                     </div>
+                    <!-- Kikedvelés gomb -->
                     <div class="kedveles-gomb" *ngIf="poszt.kedvelte" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kikedvelesClick(poszt?.id)">
                         <img class="kedveles-kep" src="../../assets/icons/favorite-full.png" *ngIf="vilagos">
                         <img class="kedveles-kep" src="../../assets/icons/favorite-white-full.png" *ngIf="sotet || voros">
                         <p class="kedveles-szoveg">{{ poszt.kedveles }}</p>
                     </div>
 
-
+                    <!-- Kommentek gomb -->
                     <div class="komment-gomb" [ngClass]="[temaSzin2, temaSzinHover]" [routerLink]="['/forum',poszt.id]">
                         <img class="komment-kep" src="../../assets/icons/message.png" *ngIf="vilagos">
                         <img class="komment-kep" src="../../assets/icons/message-white.png" *ngIf="sotet || voros">
                         <p class="komment-szoveg">{{ poszt.kommentek }}</p>
                     </div>
-
+                    <!-- Megosztás gomb -->
                     <div class="megosztas-gomb" [ngClass]="[temaSzin2, temaSzinHover]" (click)="urlMasolas(poszt?.id)" >
                         <img class="megosztas-kep" src="../../assets/icons/share.png" *ngIf="vilagos">
                         <img class="megosztas-kep" src="../../assets/icons/share-white.png" *ngIf="sotet || voros">

@@ -1,6 +1,8 @@
+<!-- Gyakran Ismételt Kérdések oldal felépítéséért felelős html -->
 <div class="tartalom" [ngClass]="temaSzinGordulo">
     <div class="keret" [ngClass]="temaSzinBetu">
         <h1>Gyakori kérdések</h1>
+        <!-- Végigmegy a ts-ba beírt tartalmi tömbbön és kiiratja azon elemeket -->
         <div *ngFor="let elem of elemek; let i = index">
             <div class="kerdes" (click)="valaszMegjelenites(i)" [ngClass]="temaSzin">
               {{ elem.kerdes }}
@@ -9,6 +11,7 @@
               <img src="../../assets/icons/arrow_down.png" *ngIf="!valasztottIndexek.includes(i) && vilagos">
               <img src="../../assets/icons/arrow_up.png" *ngIf="valasztottIndexek.includes(i) && vilagos">
             </div>
+            <!-- Megkapja a ts-től a választott kérdés alapján az indexét és itt íratja ki a hozzátartozó választ. -->
             <div class="valasz" *ngIf="valasztottIndexek.includes(i)" [ngClass]="temaSzin2">
               {{ elem.valasz }}
             </div>

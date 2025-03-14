@@ -1,3 +1,4 @@
+/* Visszajelzés kinézetéért felelős CSS */
 body{
     display: flex;
     height: 100vh;
@@ -71,6 +72,7 @@ input[type="submit"]:hover {
     background-color: #222222;
 }
 
+/* Visszajelzés sikerességének, vagy hibájának jelzése */
 .sikerHatter {
     display: flex;
     position: fixed;
@@ -99,7 +101,6 @@ input[type="submit"]:hover {
     transform: translate(-50%, -50%);
 }
 
-
 .hibaSzin {
     background-color: rgb(255, 158, 158);
 }
@@ -118,6 +119,7 @@ input[type="submit"]:hover {
     color: white;
 }
 
+/* Animációkért felelős áttűnések */
 @keyframes hibaVillan {
     0%, 100% {
         background-color: rgb(255, 158, 158);
@@ -136,6 +138,7 @@ input[type="submit"]:hover {
     }
 }
 
+/* Animációk */
 .ertesitessav.hibaVillan {
     animation: hibaVillan 0.5s ease-in-out;
 }
@@ -144,6 +147,7 @@ input[type="submit"]:hover {
     animation: sikerVillan 0.5s ease-in-out;
 }
 
+/* RESZPONZIVITÁS */
 @media only screen and (max-width: 560px) {
     .visszajelzes-keret {
         width: 80vw;

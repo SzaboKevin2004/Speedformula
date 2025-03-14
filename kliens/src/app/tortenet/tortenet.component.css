@@ -1,3 +1,4 @@
+/* Történet oldal kinézetéért felelős CSS */
 .nav-tortenet {
     border-radius: 4px;
 }
@@ -56,7 +57,7 @@ h2 {
     text-align: center;
     user-select: none;
 }
-
+/* Jelenlegi egyszerű vagy részletes felület váltó alatt megjelenő csík */
 .keret p.aktiv.egyszeru::after , .keret p.aktiv.reszletes::after {
     position: absolute;
     width: 80%;
@@ -68,6 +69,7 @@ h2 {
     transform: translateX(-50%);
 }
 
+/* Kiválasztott egyszerű vagy részletes felület váltó alatt megjelenő csík */
 .kozep p:hover::after {
     position: absolute;
     width: 80%;
@@ -170,6 +172,7 @@ h2 {
   width: 120px;
 }
 
+/* RESZPONZIVITÁS */
 @media only screen and (max-width: 1699px) {
     .keret {
         width: 60%;
@@ -186,8 +189,6 @@ h2 {
     .keret {
         width: 80%;
     }
-
-
 }
 
 @media only screen and (max-width: 1123px) {

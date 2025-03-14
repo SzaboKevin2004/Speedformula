@@ -1,3 +1,4 @@
+// Hiba oldal (404) viselkedéséért felelős ts
 import { Component, ViewEncapsulation } from '@angular/core';
 import { RouterModule } from '@angular/router';
 

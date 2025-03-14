@@ -1,44 +1,59 @@
+<!-- Poszt részlet(kommentek) oldal felépítéséért felelős html -->
 <div class="tartalom" [ngClass]="temaSzinGordulo">
+
+    <!-- Vissza gomb, amely visszalép az előző oldalra -->
     <div class="vissza-gomb" [ngClass]="[temaSzin2, temaSzinHover]" (click)="vissza()">
         <img class="vissza-kep" src="../../assets/icons/back.png" *ngIf="vilagos">
         <img class="vissza-kep" src="../../assets/icons/back-white.png" *ngIf="sotet || voros">
     </div>
+    
     <div class="keret" [ngClass]="temaSzinBetu">
         <div *ngIf="poszt">
             <div class="poszt">
+                <!-- Poszt adatai -->
                 <div class="posztAdatok">
+                    <!-- Felhasználói profilkép -->
                     <img class="felhasznaloKep" [src]="poszt.fkep">
+                    <!-- Felhasználónév, amelyre kattintva a profiljára lehet ugrani -->
                     <p class="felhasznaloNev" [routerLink]="['/forum/profil',poszt.felhasznalo]">{{ poszt.felhasznalo }}</p>
+                    <!-- Poszt közzétételének ideje -->
                     <p class="elteltIdo"> • {{poszt.elteltIdo}}</p>
+                    <!-- Poszt törlése, ha a felhasználó sajátja vagy admin -->
                     <div class="torles-kep" *ngIf="poszt.sajatFelhasznalo || szerep === 1" (click)="posztTorles(poszt.id)">
                         <img class="torles-kep" src="../../assets/icons/trash.png" *ngIf="vilagos">
                         <img class="torles-kep" src="../../assets/icons/trash-white.png" *ngIf="sotet || voros">
                     </div>
                 </div>
+                <!-- Poszt címe -->
                 <h2 class="cim">{{ poszt.cim }}</h2>
+                <!-- Poszt szövege -->
                 <p class="szoveg" *ngIf="poszt.szoveg != null">{{ poszt.szoveg }}</p>
+                <!-- Poszt kép/videó -->
                 <img class="kep" [src]="poszt.kep" *ngIf="poszt.kep != null">
                 <img class="video" [src]="poszt.video" *ngIf="poszt.video != null" >
             </div>
 
+            <!-- Poszt művelet gombok (kedvelés, komment, megosztás) -->
             <div class="posztGombok" *ngIf="haBejelentkezett">
+                <!-- Kedvelés gomb (ha még nem kedvelte) -->
                 <div class="kedveles-gomb" *ngIf="!poszt.kedvelte" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kedvelesClick(poszt?.id)">
                     <img class="kedveles-kep" src="../../assets/icons/favorite.png" *ngIf="vilagos">
                     <img class="kedveles-kep" src="../../assets/icons/favorite-white.png" *ngIf="sotet || voros">
                     <p class="kedveles-szoveg">{{ poszt.kedveles }}</p>
                 </div>
+                <!-- Kikedvelés gomb -->
                 <div class="kedveles-gomb" *ngIf="poszt.kedvelte" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kikedvelesClick(poszt?.id)">
                     <img class="kedveles-kep" src="../../assets/icons/favorite-full.png" *ngIf="vilagos">
                     <img class="kedveles-kep" src="../../assets/icons/favorite-white-full.png" *ngIf="sotet || voros">
                     <p class="kedveles-szoveg">{{ poszt.kedveles }}</p>
                 </div>
-
+                <!-- Komment gomb -->
                 <div class="komment-gomb" [ngClass]="[temaSzin2, temaSzinHover]" (click)="uzenetKuldesMegjelenitesClick()">
                     <img class="komment-kep" src="../../assets/icons/message.png" *ngIf="vilagos">
                     <img class="komment-kep" src="../../assets/icons/message-white.png" *ngIf="sotet || voros">
                     <p class="komment-szoveg">{{ poszt.kommentek }}</p>
                 </div>
-
+                <!-- Megosztás gomb -->
                 <div class="megosztas-gomb" [ngClass]="[temaSzin2, temaSzinHover]" (click)="urlMasolas(poszt?.id)" >
                     <img class="megosztas-kep" src="../../assets/icons/share.png" *ngIf="vilagos">
                     <img class="megosztas-kep" src="../../assets/icons/share-white.png" *ngIf="sotet || voros">
@@ -47,97 +62,129 @@
             </div>
             <hr *ngIf="!haBejelentkezett">
             <div *ngIf="haBejelentkezett">
+                <!-- Komment írása gomb -->
                 <button class="uzenetGomb" [ngClass]="temaSzin2" *ngIf="uzenetGombMegjelenites" (click)="uzenetKuldesMegjelenitesClick()">Komment írása...</button>
                 
+                <!-- Komment írásának szövegdoboza és gombjai -->
                 <div class="uzenetGombok-keret" [ngClass]="temaSzin2" *ngIf="uzenetKuldesMegjelenites">
                     <textarea #textarea class="uzenet-keret" [(ngModel)]="uzenet" [ngClass]="temaSzin2"></textarea>
          
                     <div class="gombok">
+                        <!-- Komment mentése -->
                         <button class="mentes" (click)="mentes(poszt?.id)" [ngClass]="[temaSzin, temaSzinHover]">Komment</button>
+                        <!-- Mégse gomb a komment írásának megszakítására -->
                         <button class="megse" (click)="bezar()" [ngClass]="[temaSzin, temaSzinHover]">Mégse</button>
                     </div>
                 </div>
             </div>
             
+            <!-- Kommentek szekció -->
             <div class="kommentek" *ngFor="let komment of kommentek">
                 <div class="komment">
+                    <!-- Komment adatok -->
                     <div class="kommentAdatok">
+                        <!-- Kommentelő profilképe -->
                         <img class="felhasznaloKep" [src]="komment.fkep">
+                        <!-- Kommentelő neve, amely a profiljára mutat -->
                         <p class="felhasznaloNev" [routerLink]="['/forum/profil',komment.felhasznalo]">{{ komment.felhasznalo }}</p>
+                        <!-- Komment létrehozás óta eltelt idő -->
                         <p class="elteltIdo"> • {{ komment.elteltIdo }}</p>
+                        <!-- Komment törlése, ha a felhasználó saját vagy admin -->
                         <div class="torles-kep" *ngIf="komment.sajatFelhasznalo || szerep === 1" (click)="kommentTorles(komment.id)">
                             <img class="torles-kep" src="../../assets/icons/trash.png" *ngIf="vilagos">
                             <img class="torles-kep" src="../../assets/icons/trash-white.png" *ngIf="sotet || voros">
                         </div>
                     </div>
+                    <!-- Komment szöveg megjelenítése, felhasználó linkekkel -->
                     <p class="szoveg" *ngIf="komment.szoveg != null" [innerHTML]="linkeles(komment.szoveg)">{{ komment.szoveg }}</p>
                 </div>
 
+                <!-- Komment interakciós gombok (kedvelés, válasz, megnyitás) -->
                 <div class="kommentGombok" *ngIf="haBejelentkezett">
+                    <!-- Kedvelés -->
                     <div class="kedveles-gomb" *ngIf="!komment.kedvelte" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kedvelesKommentClick(komment?.id)">
                         <img class="kedveles-kep" src="../../assets/icons/favorite.png" *ngIf="vilagos">
                         <img class="kedveles-kep" src="../../assets/icons/favorite-white.png" *ngIf="sotet || voros">
                         <p class="kedveles-szoveg">{{ komment.kedveles }}</p>
                     </div>
+                    <!-- Kedvelés visszavonása -->
                     <div class="kedveles-gomb" *ngIf="komment.kedvelte" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kikedvelesKommentClick(komment?.id)">
                         <img class="kedveles-kep" src="../../assets/icons/favorite-full.png" *ngIf="vilagos">
                         <img class="kedveles-kep" src="../../assets/icons/favorite-white-full.png" *ngIf="sotet || voros">
                         <p class="kedveles-szoveg">{{ komment.kedveles }}</p>
                     </div>
-
+                    <!-- Komment válasz gomb -->
                     <div class="komment-gomb" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kommentUzenetKuldesMegjelenitesClick(komment?.id)">
                         <img class="komment-kep" src="../../assets/icons/message.png" *ngIf="vilagos">
                         <img class="komment-kep" src="../../assets/icons/message-white.png" *ngIf="sotet || voros">
                         <p class="komment-szoveg">{{ komment.alkommentek }}</p>
                     </div>
+                    <!-- Alkommentek megnyitása -->
                     <p class="valasz-megnyitas" (click)="alKommentMegjelenitesClick(komment?.id)" *ngIf="komment?.alkommentek > 0">Válaszok megnyitása</p>
                 </div>
+                <!-- Válasz (alkomment írása) -->
                 <div class="uzenetGombok-keret" [ngClass]="temaSzin2" *ngIf="megnyitottKommentId === komment.id">
                     <textarea #textarea class="uzenet-keret" [(ngModel)]="uzenetek[komment.id]" [ngClass]="temaSzin2"></textarea>
          
                     <div class="gombok">
+                        <!-- Válasz mentése -->
                         <button class="mentes" (click)="mentesKomment(komment?.id)" [ngClass]="[temaSzin, temaSzinHover]">Komment</button>
+                        <!-- Mégse gomb a válasz írásának megszakítására -->
                         <button class="megse" (click)="bezarKomment(komment?.id)" [ngClass]="[temaSzin, temaSzinHover]">Mégse</button>
                     </div>
                 </div>
 
+                <!-- Alkommentek szekció -->
                 <div *ngIf="megnyitottAlkommentId === komment?.id">
                     <hr>
                     <div class="alkommentek" *ngFor="let alkomment of komment.alKommmentek">
                         <div class="komment">
+                            <!-- Alkomment adatok -->
                             <div class="kommentAdatok">
+                                <!-- Alkommentelő profilképe -->
                                 <img class="felhasznaloKep" [src]="alkomment.fkep">
+                                <!-- Alkommentelő neve, amely a profiljára mutat -->
                                 <p class="felhasznaloNev" [routerLink]="['/forum/profil',alkomment.felhasznalo]">{{ alkomment.felhasznalo }}</p>
+                                <!-- Alkomment létrehozás óta eltelt idő -->
                                 <p class="elteltIdo"> • {{ alkomment.elteltIdo }}</p>
+                                <!-- Alkomment törlése, ha a felhasználó saját vagy admin -->
                                 <div class="torles-kep" *ngIf="alkomment.sajatFelhasznalo || szerep === 1" (click)="kommentTorles(alkomment.id)">
                                     <img class="torles-kep" src="../../assets/icons/trash.png" *ngIf="vilagos">
                                     <img class="torles-kep" src="../../assets/icons/trash-white.png" *ngIf="sotet || voros">
                                 </div>
                             </div>
+
+                            <!-- Alkomment szöveg megjelenítése, felhasználó linkekkel -->
                             <p class="szoveg" [innerHTML]="linkeles(alkomment.szoveg)">{{ alkomment.szoveg }}</p>
                         </div>
+                        <!-- Alkomment interakciós gombok (kedvelés, válasz, megnyitás) -->
                         <div class="kommentGombok" *ngIf="haBejelentkezett">
+                            <!-- Kedvelés -->
                             <div class="kedveles-gomb" *ngIf="!alkomment.kedvelte" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kedvelesAlkommentClick(alkomment.id)">
                                 <img class="kedveles-kep" src="../../assets/icons/favorite.png" *ngIf="vilagos">
                                 <img class="kedveles-kep" src="../../assets/icons/favorite-white.png" *ngIf="sotet || voros">
                                 <p class="kedveles-szoveg">{{ alkomment.kedveles }}</p>
                             </div>
+                            <!-- Kedvelés visszavonása -->
                             <div class="kedveles-gomb" *ngIf="alkomment.kedvelte" [ngClass]="[temaSzin2, temaSzinHover]" (click)="kikedvelesAlkommentClick(alkomment.id)">
                                 <img class="kedveles-kep" src="../../assets/icons/favorite-full.png" *ngIf="vilagos">
                                 <img class="kedveles-kep" src="../../assets/icons/favorite-white-full.png" *ngIf="sotet || voros">
                                 <p class="kedveles-szoveg">{{ alkomment.kedveles }}</p>
                             </div>
-        
+                            <!-- Alkomment válasz gomb -->
                             <div class="komment-gomb" [ngClass]="[temaSzin2, temaSzinHover]" (click)="alKommentUzenetKuldesMegjelenitesClick(alkomment?.id,komment.id)">
                                 <img class="alkomment-kep" src="../../assets/icons/message.png" *ngIf="vilagos">
                                 <img class="alkomment-kep" src="../../assets/icons/message-white.png" *ngIf="sotet || voros">
                             </div>
                         </div>
+                        <!-- Válasz (alkomment írása) -->
                         <div class="uzenetGombok-keret" [ngClass]="temaSzin2" *ngIf="megnyitottKommentId === alkomment?.id">
                             <textarea #textarea class="uzenet-keret" [(ngModel)]="uzenetek[komment?.id]" [ngClass]="temaSzin2"></textarea>
              
                             <div class="gombok">
+                                <!-- Válasz mentése -->
                                 <button class="mentes" (click)="mentesKomment(komment.id)" [ngClass]="[temaSzin, temaSzinHover]">Komment</button>
+                                <!-- Mégse gomb a válasz írásának megszakítására -->
                                 <button class="megse" (click)="bezarAlkomment(alkomment.id)" [ngClass]="[temaSzin, temaSzinHover]">Mégse</button>
                             </div>
                         </div>

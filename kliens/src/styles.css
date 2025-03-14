@@ -1,3 +1,5 @@
+/* Globális formázásért, kinézetekért felelős CSS */
+/* Betűtípusok importálása */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Lilita+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@100..900&display=swap');
@@ -53,7 +55,9 @@
     --szin-gorduloGombH-voros: rgb(255, 255, 255);
 }
 
-/* TÉMÁK */
+/* TÉMA SZERINTI KINÉZETEK */
+
+/* Sötét */
 .feketeN {
     background-color: var(--szin-navsav-sotet);
     color: white;
@@ -99,13 +103,14 @@
     h1,h2,p{
         color: var(--szin-betu-sotet);
     }
+    /* Más oldalakon megtalálható sötét témájú választó jel a szöveg alatt */
     p.aktiv.egyszeru::after , p.aktiv.reszletes::after, .valaszto p.aktiv.cikk::after, .valaszto p.aktiv.media::after, .valasztoElemek div.aktiv.bejegyzesek::after, .valasztoElemek div.aktiv.kommentek::after, .valasztoElemek div.aktiv.mentve::after {
         background-color: #ffffff;
     }
     .kozep p:hover::after, .valaszto p:hover::after, .valasztoElemek div:hover::after {
         background-color: #7a7979;
     }
-
+    /* Fórum oldal kép/videó poszt létrehozás fájl beillesztő doboza sötét témában */
     .feltolto-doboz {
         border: 2px dashed #555;
     }
@@ -115,6 +120,7 @@
     }
 }
 
+/* Gördülősáv kinézete sötét témában */
 .feketeG::-webkit-scrollbar-track {
     background-color: var(--szin-gorduloSav-sotet);
 }
@@ -132,6 +138,7 @@
     border: 0.5px solid rgb(143, 143, 143);
 }
 
+/* Világos */
 .feherN {
     background-color: var(--szin-navsav-vilagos);
     color: black;
@@ -177,6 +184,7 @@
     h1,h2,p{
         color: var(--szin-betu-vilagos);
     }
+    /* Más oldalakon megtalálható világos témájú választó jel a szöveg alatt */
     p.aktiv.egyszeru::after , p.aktiv.reszletes::after, .valaszto p.aktiv.cikk::after, .valaszto p.aktiv.media::after, .valasztoElemek div.aktiv.bejegyzesek::after, .valasztoElemek div.aktiv.kommentek::after, .valasztoElemek div.aktiv.mentve::after {
         background-color: #1a1a1a;
     }
@@ -184,6 +192,7 @@
         background-color: #5e5e5e;
     }
 
+    /* Fórum oldal kép/videó poszt létrehozás fájl beillesztő doboza világos témában */
     .feltolto-doboz{
         border: 2px dashed #ccc;
     }
@@ -193,6 +202,7 @@
     }
 }
 
+/* Gördülősáv kinézete világos témában */
 .feherG::-webkit-scrollbar-track {
     background-color: var(--szin-gorduloSav-vilagos);
 }
@@ -210,6 +220,7 @@
     border: 0.5px solid rgb(63, 63, 63);
 }
 
+/* Vörös */
 .vorosN {
     background-color: var(--szin-navsav-voros);
     color: white;
@@ -254,6 +265,7 @@
     h1,h2,p{
         color: var(--szin-betu-voros);
     }
+    /* Más oldalakon megtalálható vörös témájú választó jel a szöveg alatt */
     p.aktiv.egyszeru::after , p.aktiv.reszletes::after, .valaszto p.aktiv.cikk::after, .valaszto p.aktiv.media::after, .valasztoElemek div.aktiv.bejegyzesek::after, .valasztoElemek div.aktiv.kommentek::after, .valasztoElemek div.aktiv.mentve::after {
         background-color: #ffffff;
     }
@@ -261,6 +273,7 @@
         background-color: #7a7979;
     }
 
+    /* Fórum oldal kép/videó poszt létrehozás fájl beillesztő doboza vörös témában */
     .feltolto-doboz {
         border: 2px dashed #555;
     }
@@ -270,6 +283,7 @@
     }
 }
 
+/* Gördülősáv kinézete vörös témában */
 .vorosG::-webkit-scrollbar-track {
     background-color: var(--szin-gorduloSav-voros);
 }
@@ -370,7 +384,7 @@ body::-webkit-scrollbar {
     height: 1.5rem;
     vertical-align: middle;
 }
-
+/* Navigációs sávon megjelenő reszponzív - navigációs menü gomb */
 .menu-gomb {
     display: none;
 }
@@ -381,7 +395,7 @@ body::-webkit-scrollbar {
     vertical-align: middle;
     cursor: pointer;
 }
-
+/* Reszponzív - kis képernyőkön megjelenő navigációs menü */
 .menu {
     display: flex;
     position: fixed;
@@ -481,6 +495,7 @@ body::-webkit-scrollbar {
     font-size: var(--betumeret-fo);
 }
 
+/* NEM bejelentkezett felhasználónál: Regisztráció és Bejelentkezési "gomb" */
 .nav-regjel {
     display: flex;
     gap: 0.6rem;
@@ -503,6 +518,7 @@ body::-webkit-scrollbar {
     margin-left: auto;
 }
 
+/* Bejelentkezett felhasználónál: Felhasználó név és profilkép */
 .nav-bejel {
     margin-left: auto;
 }
@@ -525,6 +541,7 @@ body::-webkit-scrollbar {
     cursor: default;
 }
 
+/* Profilképre kattintva: Lenyíló profil menü */
 .bejel-lenyilo {
     position: fixed;
     width: max-content;
@@ -692,6 +709,7 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* Reszponzivitás */
 @media only screen and (max-width: 1599px) {
     .nav-fo .nav-link img {
         display: none !important;

@@ -1,3 +1,4 @@
+/* Fórum főoldala kinézetéért felelős CSS */
 .nav-forum{
     border-radius: 4px;
 }
@@ -126,7 +127,7 @@
     padding: 0px 10px 0px 10px;
 }
 
-
+/* RESZPONZIVITÁS */
 @media only screen and (max-width: 1200px) {
     .keret {
         width: 50%;

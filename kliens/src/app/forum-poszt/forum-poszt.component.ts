@@ -1,3 +1,4 @@
+// Poszt létrehozás oldal viselkedéséért, működéséért felelős ts
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
@@ -39,9 +40,11 @@ export class ForumPosztComponent implements OnInit {
 
   constructor(private authservice: AuthService, private forumservice: ForumService, private router: Router) {}
 
+  // A kiválasztott fájlt eltárolja fajl változóban
   fajlKivalasztva(esemeny: any) {
     const fajl = esemeny.target.files[0];
 
+    // engedelyezettTipusok tömbben eltárolja azokat a fájl kiterjesztéseket, amiknek a feltöltése engedélyezett a weboldalon
     if (fajl) {
         const engedelyezettTipusok = [
           'image/jpeg',
@@ -68,25 +71,30 @@ export class ForumPosztComponent implements OnInit {
           'video/dvd'          // VOB
         ];
 
+        // Ha a feltölteni kívánt fájl típusa nem egyezik meg az engedélyezett típusokkal, hiba üzenetet küld vissza a felhasználónak és kilép returnnel
         if (!engedelyezettTipusok.includes(fajl.type)) {
             alert('Csak képeket és videókat tölthetsz fel!');
             return;
         }
-
+        // Ha engedélyezett típusba tartozik, akkor a fájlnevét elmenti a fajlNev változóba
         this.fajlNev = fajl.name;
     }
   }
 
+  // Ez a függvény akkor hívódik meg, amikor egy fájlt a feltöltő terület fölé húznak. Megakadályozza az alapértelmezett eseménykezelést és esemény továbbterjedést
+  // Illetve egy CSS osztályt ad hozzá hogy vizuális visszajelzést adjon így a felhasználónak
   huzEsTart(esemeny: DragEvent) {
     esemeny.preventDefault();
     esemeny.stopPropagation();
     (esemeny.currentTarget as HTMLElement).classList.add('huzas-folytatodik');
   }
 
+  // Amint nem húzza a felhasználó a fájlt, eltávolítja róla az "effektet"
   huzasVege() {
     document.querySelector('.feltolto-doboz')?.classList.remove('huzas-folytatodik');
   }
 
+  // Fájlkezelés. Amelyik fájlt a felhasználó hozzáaadja a "fajlok"-hoz a dataTransfer-el, majd megvizsgálja a hogy van-e legalább egy fájl benne. Aztán a első fájl nevét elmenti a fajlNev változóba
   fajlLedobva(esemeny: DragEvent) {
     esemeny.preventDefault();
     esemeny.stopPropagation();
@@ -97,6 +105,7 @@ export class ForumPosztComponent implements OnInit {
     }
   }
 
+  // Ez a metódus segít abban hogy a felhasználó a poszt létrehozásnál cikk létrehozást jelenítse meg
   cikkClick() {
     this.cikk = true;
     this.media = false;
@@ -108,6 +117,8 @@ export class ForumPosztComponent implements OnInit {
     this.fajlNev = undefined;
   }
 
+   // Ez a metódus segít abban hogy a felhasználó a poszt létrehozásnál kép/videó létrehozást jelenítse meg. (Jelenleg fejlesztés alatt)!
+   /*
   mediaClick() {
     this.cikk = false;
     this.media = true;
@@ -118,23 +129,27 @@ export class ForumPosztComponent implements OnInit {
     this.video = null;
     this.fajlNev = undefined;
   }
-
-  bezar() {}
-
+  */  
+  mediaClick(){
+    alert("Ez a funkció jelenleg fejlesztés alatt áll!");
+  }
+  // Poszt mentése
   mentes() {
     this.hiba = false;
     this.hibaUzenet = '';
     
+    // Adatok objektumba helyezi, a poszthoz tartozó adatokat, amit majd kérés küldésénél továbbít
     const adatok = {
       cim: this.cim,
       szoveg: this.szoveg,
       kep: this.kep,
       video: this.video
     }
+    // Poszt adatainak és kérésnek elküldése a forumService-n át a backendnek. Sikeres küldés/kérés esetén Létrejön a poszt, majd visszairányítja a felhasználót a fórum főoldalra. Hiba esetén kiírja a hibaüzenetet
     this.forumservice.createPost( adatok
     ).subscribe({
       next: (response) => {
-        console.log('Sikeres poszt létrehozás:', response);
+        //console.log('Sikeres poszt létrehozás:', response);
         this.letrehoz = false;
         this.siker = true;
         this.sikerUzenet = "Poszt létrehozva!";
@@ -155,6 +170,7 @@ export class ForumPosztComponent implements OnInit {
 
   ngOnInit() {
 
+    // téma beállítás
     this.authservice.szamSzin$.subscribe( szam => {
       if(szam === 1){
         this.sotet = true;

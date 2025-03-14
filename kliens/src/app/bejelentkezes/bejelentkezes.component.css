@@ -1,3 +1,4 @@
+/* Bejelentkezés kinézetéért felelős CSS */
 body{
     display: flex;
     height: 100vh;
@@ -77,6 +78,7 @@ a[routerLink="/regisztracio"]:active {
    color: #000000;
 }
 
+/* Bejelentkezés visszajelzéséért (siker, hiba) felelős kinézet */
 .ertesitessav{
     display: flex;
     width: 450px;
@@ -106,6 +108,7 @@ a[routerLink="/regisztracio"]:active {
     color: white;
 }
 
+/* Animációkért felelős áttűnések */
 @keyframes hibaVillan {
     0%, 100% {
         background-color: rgb(255, 158, 158);
@@ -124,6 +127,7 @@ a[routerLink="/regisztracio"]:active {
     }
 }
 
+/* ANIMÁCIÓK */
 .ertesitessav.hibaVillan {
     animation: hibaVillan 0.5s ease-in-out;
 }
@@ -132,6 +136,7 @@ a[routerLink="/regisztracio"]:active {
     animation: sikerVillan 0.5s ease-in-out;
 }
 
+/* RESZPONZIVITÁS */
 @media only screen and (max-width: 560px) {
     .be-keret {
         width: 80vw;

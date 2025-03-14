@@ -1,3 +1,4 @@
+//Regisztráció viselkedéséért, működéséért felelős ts
 import { Component, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -26,6 +27,7 @@ export class RegisztracioComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
+  // jelszó láthatóságot állítja. Alapértelmezetten hamis érték, ha igaz értéket kap akkor láthatóvá válik a jelszó a jelszó beírásnál.
   jelszoLathatosag(){
     this.jelszoLathatoE =!this.jelszoLathatoE;
   }
@@ -33,6 +35,7 @@ export class RegisztracioComponent {
     this.jelszoLathatoE2 =!this.jelszoLathatoE2;
   }
   
+  // regisztráció meghívása, regisztrációs adatok (változók) objektumba helyezése, majd küldése az AuthService onnan pedig a backendnek
   regisztracio() {
     this.hiba = false;
     this.hibaUzenet = '';
@@ -49,7 +52,7 @@ export class RegisztracioComponent {
         this.keretMegjelenites = false;
         this.siker = true;
         this.sikerUzenet = "Sikeres regisztráció!";
-        console.log('Regisztráció sikeres');
+        //console.log('Regisztráció sikeres');
         setTimeout(() => {
           this.router.navigate(['/bejelentkezes']);
         }, 1500);

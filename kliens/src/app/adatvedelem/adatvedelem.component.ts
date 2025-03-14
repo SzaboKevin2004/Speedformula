@@ -1,3 +1,4 @@
+// Adatvédelem viselkedéséért felelős ts
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { AuthService } from '../services/auth.service';

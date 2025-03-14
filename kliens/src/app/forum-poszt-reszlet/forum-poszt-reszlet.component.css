@@ -1,3 +1,4 @@
+/* Poszt részlet(kommentek) oldal kinézetéért felelős CSS */
 .nav-forum{
     border-radius: 4px;
 }
@@ -221,7 +222,7 @@ button {
     margin-left: 20px;
 }
 
-
+/* RESZPONZIVITÁS */
 @media only screen and (max-width: 1200px) {
     .keret {
         width: 50%;

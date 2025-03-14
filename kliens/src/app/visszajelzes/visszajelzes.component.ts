@@ -1,3 +1,4 @@
+//Visszajelzés viselkedéséért, működéséért felelős ts
 import { Component, ViewEncapsulation } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';

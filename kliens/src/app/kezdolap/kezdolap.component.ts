@@ -1,3 +1,4 @@
+// Kezdőlap viselkedéséért felelős ts
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';

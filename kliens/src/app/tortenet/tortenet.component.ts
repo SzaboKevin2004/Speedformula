@@ -1,3 +1,4 @@
+//Történet oldal viselkedéséért felelős ts
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../footer/footer.component';
@@ -25,6 +26,7 @@ export class TortenetComponent {
 
   constructor(private authservice: AuthService) {}
 
+  //Téma beállítás
   ngOnInit(): void {
     this.authservice.szamSzin$.subscribe( szam => {
       if(szam === 1){
@@ -73,15 +75,18 @@ export class TortenetComponent {
     });
   }
 
+  //Egyszerű oldalra váltás
   egyszeruClick(){
     this.egyszeru = true;
     this.reszletes = false;
   }
+  //Részletes oldalra váltás
   reszletesClick(){
     this.egyszeru = false;
     this.reszletes = true;
   }
 
+  //Részletes oldal tartalma:
   elozmenyek = [
     { ev: 1894, esemenyek: 'Első verseny Franciaországban' },
     { ev: 1906, esemenyek: 'Első nagydíj Franciaországban; nyertese Szisz Ferenc, a Renault magyar származású versenyzője.' },

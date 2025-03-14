@@ -1,3 +1,4 @@
+/* Poszt létrehozás oldal kinézetéért felelős CSS */
 .nav-forum {
     border-radius: 4px;
 }
@@ -108,6 +109,7 @@ button {
     cursor: pointer;
 }
 
+/* Poszt létrehozás sikerességének, vagy hibájának jelzése */
 .ertesitessav{
     display: flex;
     height: 50px;
@@ -144,6 +146,7 @@ button {
     color: white;
 }
 
+/* Animációkért felelős áttűnések */
 @keyframes hibaVillan {
     0%, 100% {
         background-color: rgb(255, 158, 158);
@@ -162,10 +165,56 @@ button {
     }
 }
 
+/* Animációk */
 .ertesitessav.hibaVillan {
     animation: hibaVillan 0.5s ease-in-out;
 }
 
 .ertesitessav.sikerVillan {
     animation: sikerVillan 0.5s ease-in-out;
+}
+
+
+/* RESZPONZIVITÁS */
+@media only screen and (max-width: 1200px) {
+    .keret {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 867px) {
+    .keret {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .keret {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .keret {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .keret {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .keret {
+        width: 99%;
+    }
+
+    .vissza-gomb {
+        right: 2px;
+    }
+    .tartalom {
+        margin-top: 30px;
+    }
 }

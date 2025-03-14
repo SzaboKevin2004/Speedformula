@@ -73,16 +73,16 @@ export class EloComponent implements OnInit {
 
       this.eloservice.sendChatMessage(uzenet.text).subscribe(
         (response) => {
-          console.log('Üzenet sikeresen elküldve:', response);
+          //console.log('Üzenet sikeresen elküldve:', response);
         },
         (error) => {
-          console.error('Hiba történt az üzenet küldése során:', error);
+          //console.error('Hiba történt az üzenet küldése során:', error);
         }
       );
 
       this.ujUzenet = ''; 
     } else {
-      console.error('Üzenet megadása kötelező!');
+      //console.error('Üzenet megadása kötelező!');
     }
   }
 

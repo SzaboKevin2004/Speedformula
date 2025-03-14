@@ -1,3 +1,4 @@
+/* Kezdőlap kinézetéért felelős css */
 .tartalom-nelkul {
     position: relative;
 }
@@ -71,8 +72,9 @@ h3 {
     margin-right: auto;
     margin-top: 45px;
     font-size: clamp(0.4rem, calc(1.8vw + .2rem), 2.3rem);
-    
 }
+
+/* Az írás animacióért felelős rész */
 
 .animacio {
     animation: iras 2s steps(40, end) forwards;
@@ -88,6 +90,8 @@ h3 {
     animation: iras 2s steps(40, end) forwards;
     animation-delay: 5s;
 }
+
+/* Reszponzivitások */
 
 @keyframes iras {
     from {

@@ -159,7 +159,7 @@ export class AuthService {
         .subscribe({
           next: (response) => {
             this.setToken(response.accessToken);
-            console.log('🔄 Token automatikusan frissítve.');
+            //console.log('🔄 Token automatikusan frissítve.');
           }
         });
     }

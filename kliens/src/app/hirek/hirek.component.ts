@@ -77,7 +77,7 @@ export class HirekComponent implements OnInit {
     this.apiservice.getNews().subscribe(
       (data) => {
         this.hirek = data;
-        console.log('Hírek:', this.hirek);
+        //console.log('Hírek:', this.hirek);
       },
       (error) => {
         console.error('Hiba történt a hírek betöltésekor', error);

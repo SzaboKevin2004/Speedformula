@@ -1,3 +1,4 @@
+/* Adatvédelem kinézetéért felelős css */
 .keret h1 {
     font-weight: normal;
 }
@@ -22,6 +23,8 @@
     padding: 1px 30px 30px 30px;
     border-radius: 30px;
 }
+
+/* Reszponzivitás */
 
 @media only screen and (max-width: 1599px) {
     .keret {
