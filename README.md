@@ -32,11 +32,13 @@ A SpeedFormula egy olyan weboldal, amely kifejezetten a magyar Forma-1 rajongók
 
 ## **Fejlesztéshez használt szoftverek (pontos verzióval):**  
 Node.js: v20.15.1  
-express: 4.21.2  
-npm: 10.7.0  
+Express: 4.21.2  
+Npm: 10.7.0  
 Angular CLI: 19.1.5  
 Web szerver: Apache  
 Adatbázis: XAMPP V3.3.0  
-Verziókezelő: Github  
+Verziókezelő: Github
+
+Trello munkatér: https://trello.com/b/jeqgCfuw/speedformula
 
 
